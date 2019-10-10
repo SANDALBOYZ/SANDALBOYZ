@@ -1,5 +1,6 @@
 import Image from 'gatsby-image';
 import styled, { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
@@ -15,19 +16,11 @@ export const breakpoints = {
 export const Container = styled.div`
   margin: 0 auto;
   padding: 0 80px;
-  width: 100%;
 `;
 
 export const GlobalStyle = createGlobalStyle`
-  html {
-    height: 100%;
-    box-sizing: border-box;
-  }
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
+  ${reset}
+
   body {
     color: ${colors.N900};
     font-family: ${fonts.STANDARD};
@@ -39,7 +32,9 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
+
   a {
+    color: #000;
     text-decoration: none;
   }
 `;

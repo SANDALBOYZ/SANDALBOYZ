@@ -1,5 +1,6 @@
 import { configure } from '@storybook/react';
 
+import 'reset-css';
 import './styles.css';
 
 // Gatsby's Link overrides:
