@@ -2,6 +2,29 @@ import styled from 'styled-components';
 
 import fonts, { weights } from '@utils/fonts';
 
+export const Body = styled.p`
+  font-family: ${fonts.STANDARD};
+  font-size: 15px;
+  font-weight: ${weights.LIGHT};
+  line-height: 28px;
+`;
+
+export const ContentLabel = styled.p`
+  font-family: ${fonts.CONDENSED};
+  font-size: 15px;
+  font-weight: ${weights.BOLD};
+  line-height: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+`;
+
+export const Detail = styled.span`
+  font-family: ${fonts.STANDARD};
+  font-size: 13px;
+  font-weight: ${weights.LIGHT};
+  line-height: 24px;
+`;
+
 export const H100 = styled.h1`
   font-family: ${fonts.CONDENSED};
   font-size: 100px;
@@ -56,18 +79,4 @@ export const H600 = styled.h6`
   line-height: 10px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-`;
-
-export const Body = styled.p`
-  font-family: ${fonts.STANDARD};
-  font-size: 15px;
-  font-weight: ${weights.LIGHT};
-  line-height: 28px;
-`;
-
-export const Detail = styled.span`
-  font-family: ${fonts.STANDARD};
-  font-size: 13px;
-  font-weight: ${weights.LIGHT};
-  line-height: 24px;
 `;

@@ -38,11 +38,12 @@ const Button = props => {
 };
 
 Button.propTypes = {
-  theme: PropTypes.string,
-  layout: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  fullWidth: PropTypes.bool,
   href: PropTypes.string,
   onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
+  size: PropTypes.oneOf(['small', 'large']),
+  theme: PropTypes.oneOf(['light', 'outline']),
 };
 
 export default Button;
