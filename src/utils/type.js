@@ -2,6 +2,15 @@ import styled from 'styled-components';
 
 import fonts, { weights } from '@utils/fonts';
 
+export const Badge = styled.span`
+  font-family: ${fonts.CONDENSED};
+  font-size: 13px;
+  font-weight: ${weights.BOLD};
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+`;
+
 export const Body = styled.p`
   font-family: ${fonts.STANDARD};
   font-size: 15px;

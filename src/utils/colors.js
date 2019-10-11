@@ -12,7 +12,7 @@ export default {
 
   // palette
   CAUTION: '#FEC25A',
-  NEGATIVE: '#FF76B3',
+  NEGATIVE: '#F22E2E',
   POSITIVE: '#49DCBB',
   PRIMARY: '#866BFE',
   SECONDARY: '#538FFF',
