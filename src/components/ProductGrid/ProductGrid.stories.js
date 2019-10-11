@@ -1,4 +1,5 @@
 import React from 'react';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 import ProductGrid from '.';
 
@@ -11,3 +12,15 @@ const products = [...Array(10)].map((_, idx) => ({
 }));
 
 export const Desktop = () => <ProductGrid products={products} />;
+
+
+export const Mobile = () => <ProductGrid products={products} title="Chroma Collection" />;
+
+Mobile.story = {
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: 'iphone6',
+    },
+  },
+};

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 import Button from '@components/Button';
 import Navigation from '@components/Navigation';
@@ -46,3 +47,14 @@ class Demo extends Component {
 }
 
 export const Desktop = () => <Demo />;
+
+export const Mobile = () => <Demo />;
+
+Mobile.story = {
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: 'iphone6',
+    },
+  },
+};

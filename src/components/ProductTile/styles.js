@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space from '@utils/space';
+import { mq } from '@utils/styles';
+import space, { H_PADDING_MOBILE } from '@utils/space';
 
 export const Image = styled.div`
   position: relative;
@@ -10,8 +11,11 @@ export const Image = styled.div`
 `;
 
 export const Info = styled.div`
-  padding-top: ${space[1]};
-  padding-bottom: ${space[5]};
+  padding: ${space[3]} ${H_PADDING_MOBILE} 0;
+
+  ${mq.gtlg} {
+    padding: ${space[1]} 0 ${space[5]};
+  }
 `;
 
 export const SoldOut = styled.div`
@@ -33,4 +37,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-bottom: ${space[3]};
+
+  ${mq.gtlg} {
+    margin-bottom: 0;
+  }
 `;

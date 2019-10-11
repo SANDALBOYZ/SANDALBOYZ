@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space from '@utils/space';
+import space, { H_PADDING_MOBILE } from '@utils/space';
+import { mq } from '@utils/styles';
 import { H600 as BaseH300 } from '@utils/type';
 
 export const H600 = styled(BaseH300)`
@@ -17,7 +18,11 @@ export const Image = styled.div`
 `;
 
 export const Info = styled.div`
-  padding: ${space[2]} 0 ${space[5]};
+  padding: ${space[3]} ${H_PADDING_MOBILE};
+
+  ${mq.gtlg} {
+    padding: ${space[2]} 0 ${space[5]};
+  }
 `;
 
 export const Wrapper = styled.div`

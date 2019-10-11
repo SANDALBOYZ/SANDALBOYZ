@@ -1,34 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space from '@utils/space';
+import { mq } from '@utils/styles';
 import Label from './Label';
 
 const getInputHeight = ({ size }) =>
   get(
     {
-      large: '50px',
-      xlarge: '60px',
+      large: css`
+        height: 45px;
+
+        ${mq.gtlg} {
+          height: 50px;
+        }
+      `,
+      xlarge: css`
+        height: 60px;
+      `,
     },
     size,
-    '40px'
+    css`
+      height: 40px;
+    `
   );
 
 const StyledInput = styled.input`
   display: block;
   font-family: ${fonts.STANDARD};
   font-weight: ${weights.LIGHT};
-  height: ${getInputHeight};
   width: 100%;
   padding: 0 ${space[1]};
   font-size: 15px;
   background-color: ${colors.N0};
   border: 1px solid ${colors.N200};
   appearance: none;
+  ${getInputHeight};
 
   &::placeholder {
     color: ${colors.N500};

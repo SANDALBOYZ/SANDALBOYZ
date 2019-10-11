@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container } from '@utils/styles';
 import ProductTile from '@components/ProductTile';
 import * as styled from './styles';
 
 const ProductGrid = ({ products, title }) => (
   <styled.Wrapper>
-    <Container>
+    <styled.Container>
       <styled.H500>{title}</styled.H500>
       <styled.Products>
         {products.map(product => (
           <ProductTile {...product} />
         ))}
       </styled.Products>
-    </Container>
+    </styled.Container>
   </styled.Wrapper>
 );
 

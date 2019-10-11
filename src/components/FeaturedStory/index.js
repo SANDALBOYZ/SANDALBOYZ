@@ -6,13 +6,15 @@ import * as styled from './styles';
 
 const FeaturedStory = ({ href, image, label, title }) => (
   <styled.Wrapper image={image}>
-    <styled.Overlay />
-    {label && (
-      <styled.ContentLabel>{label}</styled.ContentLabel>
-    )}
-    <Link to={href}>
-      <styled.H200>{title}</styled.H200>
-    </Link>
+    <styled.Inner>
+      <styled.Overlay />
+      {label && (
+        <styled.ContentLabel>{label}</styled.ContentLabel>
+      )}
+      <Link to={href}>
+        <styled.H200>{title}</styled.H200>
+      </Link>
+    </styled.Inner>
   </styled.Wrapper>
 );
 

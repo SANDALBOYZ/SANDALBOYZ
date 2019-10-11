@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
 
 const Navigation = ({ light }) => (
@@ -18,10 +19,11 @@ const Navigation = ({ light }) => (
         <styled.NavLink to="/search" alt="Search">
           <styled.Icon name="search" light={light} />
         </styled.NavLink>
-        <styled.NavLink to="/cart" alt="Cart">
+        <styled.NavLink to="/cart" alt="Cart" mobile>
           <styled.Icon name="briefcase" light={light} />
         </styled.NavLink>
         <styled.NavLink to="/login">Login</styled.NavLink>
+        <MobileMenuToggle light={light} />
       </styled.NavSection>
     </styled.Container>
   </styled.Nav>

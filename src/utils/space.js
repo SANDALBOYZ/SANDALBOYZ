@@ -16,3 +16,6 @@ export default [
   '640px',
   '768px',
 ];
+
+export const H_PADDING = '80px';
+export const H_PADDING_MOBILE = '20px';

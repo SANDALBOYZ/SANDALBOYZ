@@ -3,13 +3,55 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import styled, { css } from 'styled-components';
 
+import { breakpoints, mq } from '@utils/styles';
 import { baseButton, sizes, themes } from './styles';
 
+const getTheme = (theme) => {
+  if (!theme) {
+    return baseButton;
+  }
+
+  if (typeof theme === 'string') {
+    return themes[theme];
+  }
+
+  if (typeof theme === 'object') {
+    return css`
+      ${baseButton}
+
+      ${mq.gtxs} {
+        ${themes[theme[breakpoints.xs]]}
+      }
+      ${mq.gtsm} {
+        ${themes[theme[breakpoints.sm]]}
+      }
+      ${mq.gtmd} {
+        ${themes[theme[breakpoints.md]]}
+      }
+      ${mq.gtlg} {
+        ${themes[theme[breakpoints.lg]]}
+      }
+      ${mq.gtxl} {
+        ${themes[theme[breakpoints.xl]]}
+      }
+    `;
+  }
+};
+
 const Button = props => {
-  const { children, external, fullWidth, href, loading, size, theme, ...rest } = props;
+  const {
+    children,
+    external,
+    fullWidth,
+    href,
+    loading,
+    size,
+    theme,
+    ...rest
+  } = props;
 
   const styles = css`
-    ${!theme ? baseButton : themes[theme]}
+    ${getTheme(theme)}
     ${sizes[size]}
     ${fullWidth &&
       css`
@@ -42,7 +84,7 @@ Button.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   size: PropTypes.oneOf(['small', 'large']),
-  theme: PropTypes.oneOf(['light', 'outline']),
+  theme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 export default Button;

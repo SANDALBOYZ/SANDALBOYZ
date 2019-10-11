@@ -3,18 +3,19 @@ import { css } from 'styled-components';
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space from '@utils/space';
+import { mq } from '@utils/styles';
 
 export const baseButton = css`
   display: inline-block;
   position: relative;
-  height: 50px;
-  padding: 0 ${space[6]};
+  height: 45px;
+  padding: 0 ${space[5]};
   color: ${colors.N0};
   font-family: ${fonts.CONDENSED};
   font-size: 15px;
   font-weight: ${weights.BOLD};
   letter-spacing: 1px;
-  line-height: 48px;
+  line-height: 43px;
   text-align: center;
   text-indent: 2px;
   text-transform: uppercase;
@@ -41,18 +42,28 @@ export const baseButton = css`
     vertical-align: middle;
     transform: translateY(-1px);
   }
+
+  ${mq.gtlg} {
+    height: 50px;
+    padding: 0 ${space[6]};
+    line-height: 48px;
+  }
 `;
 
 export const sizes = {
   small: css`
-    height: 40px;
-    padding: 0 ${space[3]};
-    line-height: 40px;
+    ${mq.gtlg} {
+      height: 40px;
+      padding: 0 ${space[3]};
+      line-height: 40px;
+    }
   `,
   large: css`
-    height: 60px;
-    padding: 0 ${space[5]};
-    line-height: 60px;
+    ${mq.gtlg} {
+      height: 60px;
+      padding: 0 ${space[5]};
+      line-height: 60px;
+    }
   `,
 };
 
