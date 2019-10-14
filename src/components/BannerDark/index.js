@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 
 import * as styled from './styles';
 
 const BannerDark = ({ cta, image, label, title }) => (
   <styled.Wrapper>
-    <styled.Background image={image} />
+    <styled.Background image={get(image, 'childImageSharp.fluid.src', image)} />
     <styled.Box>
       {label && <styled.ContentLabel>{label}</styled.ContentLabel>}
       <styled.H200>{title}</styled.H200>
@@ -21,7 +22,7 @@ BannerDark.propTypes = {
     href: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   label: PropTypes.string,
   title: PropTypes.string.isRequired,
 };

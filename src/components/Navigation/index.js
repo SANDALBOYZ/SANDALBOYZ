@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
 
-const Navigation = ({ light }) => (
+const Navigation = ({ light, menuOpen, onMenuClose, onMenuOpen }) => (
   <styled.Nav light={light}>
     <styled.Container>
       <styled.NavSection>
@@ -19,11 +19,15 @@ const Navigation = ({ light }) => (
         <styled.NavLink to="/search" alt="Search">
           <styled.Icon name="search" light={light} />
         </styled.NavLink>
-        <styled.NavLink to="/cart" alt="Cart" mobile>
+        <styled.MobileNavLink to="/cart" alt="Cart">
           <styled.Icon name="briefcase" light={light} />
-        </styled.NavLink>
+        </styled.MobileNavLink>
         <styled.NavLink to="/login">Login</styled.NavLink>
-        <MobileMenuToggle light={light} />
+        <MobileMenuToggle
+          light={light}
+          open={menuOpen}
+          onClick={menuOpen ? onMenuClose : onMenuOpen}
+        />
       </styled.NavSection>
     </styled.Container>
   </styled.Nav>
@@ -31,6 +35,9 @@ const Navigation = ({ light }) => (
 
 Navigation.propTypes = {
   light: PropTypes.bool,
+  menuOpen: PropTypes.bool.isRequired,
+  onMenuClose: PropTypes.func.isRequired,
+  onMenuOpen: PropTypes.func.isRequired,
 };
 
 export default Navigation;

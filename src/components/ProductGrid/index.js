@@ -10,7 +10,7 @@ const ProductGrid = ({ products, title }) => (
       <styled.H500>{title}</styled.H500>
       <styled.Products>
         {products.map(product => (
-          <ProductTile {...product} />
+          <ProductTile key={product.id} {...product} />
         ))}
       </styled.Products>
     </styled.Container>

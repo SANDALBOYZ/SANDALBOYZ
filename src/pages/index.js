@@ -22,6 +22,7 @@ const LandingPage = ({ data }) => {
         products={
           Array.isArray(get(data, 'products.edges')) &&
           data.products.edges.map(({ node }) => ({
+            id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
             image: get(node, 'images[0].localFile.childImageSharp.fluid.src'),
             price: get(node, 'variants[0].price'),
@@ -64,6 +65,7 @@ const LandingPage = ({ data }) => {
         products={
           Array.isArray(get(data, 'products.edges')) &&
           data.products.edges.map(({ node }) => ({
+            id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
             image: get(node, 'images[0].localFile.childImageSharp.fluid.src'),
             price: get(node, 'variants[0].price'),

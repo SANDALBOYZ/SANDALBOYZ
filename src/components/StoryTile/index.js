@@ -19,7 +19,7 @@ const StoryTile = ({ category, href, image, title }) => (
 StoryTile.propTypes = {
   category: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   title: PropTypes.string.isRequired,
 };
 

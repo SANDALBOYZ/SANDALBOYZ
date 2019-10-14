@@ -69,8 +69,7 @@ export const NavSection = styled.div`
   align-items: center;
 `;
 
-export const NavLink = styled(Link)`
-  display: ${props => props.mobile ? 'inline-block' : 'none'};
+const navLinkStyles = css`
   color: ${colors.N900};
   font-family: ${fonts.CONDENSED};
   font-size: 14px;
@@ -87,4 +86,14 @@ export const NavLink = styled(Link)`
   ${mq.gtlg} {
     display: inline-block;
   }
+`;
+
+export const NavLink = styled(Link)`
+  ${navLinkStyles}
+  display: none;
+`;
+
+export const MobileNavLink = styled(Link)`
+  ${navLinkStyles}
+  display: inline-block;
 `;

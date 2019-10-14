@@ -9,6 +9,7 @@ import Navigation from '@components/Navigation';
 
 class Layout extends React.Component {
   state = {
+    menuOpen: false,
     store: {
       ...defaultStoreContext,
       addVariantToCart: (variantId, quantity) => {
@@ -42,6 +43,7 @@ class Layout extends React.Component {
             }));
           });
       },
+      closeMobileMenu: this.handleMenuClose,
       removeLineItem: (client, checkoutID, lineItemID) => {
         return client.checkout
           .removeLineItems(checkoutID, [lineItemID])
@@ -118,6 +120,14 @@ class Layout extends React.Component {
     this.initializeCheckout();
   }
 
+  handleMenuOpen = () => {
+    this.setState({ menuOpen: true });
+  };
+
+  handleMenuClose = () => {
+    this.setState({ menuOpen: false });
+  };
+
   render() {
     const { children } = this.props;
 
@@ -136,7 +146,11 @@ class Layout extends React.Component {
           `}
           render={data => (
             <>
-              <Navigation siteTitle={data.site.siteMetadata.title} />
+              <Navigation
+                menuOpen={this.state.menuOpen}
+                onMenuOpen={this.handleMenuOpen}
+                onMenuClose={this.handleMenuClose}
+              />
               {children}
               <Footer />
             </>
