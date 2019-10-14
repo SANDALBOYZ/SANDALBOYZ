@@ -15,6 +15,8 @@ export default [
   '512px',
   '640px',
   '768px',
+  '960px',
+  '1024px',
 ];
 
 export const H_PADDING = '80px';

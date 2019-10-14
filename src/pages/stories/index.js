@@ -51,6 +51,7 @@ export const storiesPageQuery = graphql`
     ) {
       edges {
         node {
+          id
           fields {
             slug
           }

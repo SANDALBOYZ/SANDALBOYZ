@@ -12,7 +12,10 @@ collections:
     fields:
       - { label: Template Key, name: templateKey, widget: hidden, default: story }
       - { label: Title, name: title }
-      - { label: Author, name: author, widget: string, default: SANDALBOYZ }
+      - label: Author(s)
+        name: authors
+        widget: list
+        field: { label: Author, name: author }
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Hero Image, name: hero, widget: image }
       - { label: Lede, name: lede, widget: text, required: false }

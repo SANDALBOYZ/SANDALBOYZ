@@ -6,6 +6,7 @@ import space from '@utils/space';
 import { H400 } from '@utils/type';
 
 export const FullWidthImage = styled.div`
+  margin: ${space[9]} 0;
   padding-bottom: 34%;
   background-color: ${colors.N100};
   background-image: ${props => `url(${props.image})`};
@@ -48,17 +49,16 @@ const SplitWrapper = styled.div`
   display: flex;
   justify-content: center;
   height: 672px;
+  margin: ${space[9]} 0;
 `;
 
-export const SplitImage = ({ caption, firstImage, secondImage }) => (
+export const SplitImage = ({ caption, images }) => (
   <SplitWrapper>
     <SplitLeft>
-      <SplitImageOne image={firstImage} />
-      {caption && (
-        <SplitCaption>{caption}</SplitCaption>
-      )}
+      <SplitImageOne image={images[0]} />
+      {caption && <SplitCaption>{caption}</SplitCaption>}
     </SplitLeft>
-    <SplitImageTwo image={secondImage} />
+    <SplitImageTwo image={images[1]} />
   </SplitWrapper>
 );
 
@@ -77,7 +77,8 @@ const TwoThirdsBackground = styled.div`
 
 const TwoThirdsWrapper = styled.div`
   position: relative;
-  padding-bottom: ${.77 * 66.67}%;
+  margin: ${space[9]} 0;
+  padding-bottom: ${0.77 * 66.67}%;
 `;
 
 export const TwoThirdsImage = ({ image }) => (

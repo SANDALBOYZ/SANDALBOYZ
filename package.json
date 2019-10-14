@@ -42,6 +42,8 @@
     "react-dom": "16.8.3",
     "react-helmet": "^5.2.0",
     "react-hook-form": "^3.23.18",
+    "remark": "^11.0.1",
+    "remark-html": "^10.0.0",
     "set-value": "2.0.1",
     "shopify-buy": "^2.7.2",
     "styled-components": "^4.4.0",
