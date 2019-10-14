@@ -13,10 +13,10 @@ const LandingPage = ({ data }) => {
     <>
       <Head title="Home" keywords={['gatsby', 'application', 'react']} />
       <Hero
-        href={get(data, 'hero.edges[0].node.fields.slug')}
-        image={get(data, 'hero.edges[0].node.frontmatter.hero')}
+        href={get(data, 'hero.fields.slug')}
+        image={get(data, 'hero.frontmatter.hero')}
         label="01 / Featured Story"
-        title={get(data, 'hero.edges[0].node.frontmatter.title')}
+        title={get(data, 'hero.frontmatter.title')}
       />
       <ProductGrid
         products={
@@ -54,12 +54,12 @@ const LandingPage = ({ data }) => {
         )}
       <BannerLight
         cta={{
-          href: get(data, 'teaser.edges[0].node.fields.slug'),
+          href: get(data, 'teaser.fields.slug'),
           name: 'View blog',
         }}
-        image={get(data, 'teaser.edges[0].node.frontmatter.hero')}
+        image={get(data, 'teaser.frontmatter.hero')}
         label="04 / Featured Story"
-        title={get(data, 'teaser.edges[0].node.frontmatter.title')}
+        title={get(data, 'teaser.frontmatter.title')}
       />
       <ProductGrid
         products={
@@ -82,25 +82,19 @@ export default LandingPage;
 
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    hero: allMarkdownRemark(
-      filter: { frontmatter: { landingFeatured: { eq: true } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            hero {
-              childImageSharp {
-                fluid(maxWidth: 2048, quality: 90) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+    hero: markdownRemark(frontmatter: {landingFeatured: {eq: true}}) {
+      fields {
+        slug
+      }
+      frontmatter {
+        hero {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 90) {
+              ...GatsbyImageSharpFluid
             }
-            title
           }
         }
+        title
       }
     }
     products: allShopifyProduct(
@@ -154,25 +148,19 @@ export const landingPageQuery = graphql`
         }
       }
     }
-    teaser: allMarkdownRemark(
-      filter: { frontmatter: { blogFeatured: { eq: true } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            hero {
-              childImageSharp {
-                fluid(maxWidth: 2048, quality: 90) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+    teaser: markdownRemark(frontmatter: {blogFeatured: {eq: true}}) {
+      fields {
+        slug
+      }
+      frontmatter {
+        hero {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 90) {
+              ...GatsbyImageSharpFluid
             }
-            title
           }
         }
+        title
       }
     }
   }

@@ -120,6 +120,13 @@ class Layout extends React.Component {
     this.initializeCheckout();
   }
 
+  getNavLight = () => {
+    const { path } = this.props;
+    const lightPaths = ['/stories/'];
+
+    return lightPaths.includes(path);
+  };
+
   handleMenuOpen = () => {
     this.setState({ menuOpen: true });
   };
@@ -147,6 +154,7 @@ class Layout extends React.Component {
           render={data => (
             <>
               <Navigation
+                light={this.getNavLight()}
                 menuOpen={this.state.menuOpen}
                 onMenuOpen={this.handleMenuOpen}
                 onMenuClose={this.handleMenuClose}

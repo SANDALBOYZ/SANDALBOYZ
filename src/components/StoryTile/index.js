@@ -6,18 +6,18 @@ import * as styled from './styles';
 
 const StoryTile = ({ category, href, image, title }) => (
   <styled.Wrapper image={image}>
-    <styled.Overlay />
-    <styled.Inner>
-      <styled.H600>{category}</styled.H600>
-      <Link to={href}>
+    <Link to={href}>
+      <styled.Overlay />
+      <styled.Inner>
+        {category && <styled.H600>{category}</styled.H600>}
         <styled.H400>{title}</styled.H400>
-      </Link>
-    </styled.Inner>
+      </styled.Inner>
+    </Link>
   </styled.Wrapper>
 );
 
 StoryTile.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   href: PropTypes.string.isRequired,
   image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   title: PropTypes.string.isRequired,
