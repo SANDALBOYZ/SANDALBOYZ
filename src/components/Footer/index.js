@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import { graphql, StaticQuery } from 'gatsby';
-import get from 'lodash/get';
 
 import { Container } from '@utils/styles';
 import { Body, Detail } from '@utils/type';
@@ -10,7 +8,7 @@ import Subscribe from '@components/Subscribe';
 import links from './links';
 import * as styled from './styles';
 
-export const Footer = ({ about }) => {
+const Footer = ({ about }) => {
   return (
     <Container>
       <Subscribe />
@@ -60,28 +58,4 @@ Footer.propTypes = {
   about: PropTypes.string,
 };
 
-export default () => (
-  <StaticQuery
-    query={graphql`
-      query FooterQuery {
-        about: allMarkdownRemark(
-          filter: { frontmatter: { templateKey: { eq: "about" } } }
-        ) {
-          edges {
-            node {
-              id
-              frontmatter {
-                about
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      return (
-        <Footer about={get(data, 'about.edges[0].node.frontmatter.about')} />
-      );
-    }}
-  />
-);
+export default Footer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-import { Footer } from '.';
+import Footer from '.';
 
 const props = {
   about:
