@@ -31,6 +31,10 @@ export const Icon = styled(BaseIcon)`
 export const Logo = styled(BaseLogo)`
   height: 14px;
   fill: ${props => (props.light ? colors.N0 : colors.N900)};
+
+  ${mq.gtlg} {
+    height: 20px;
+  }
 `;
 
 export const LogoLink = styled(Link)`
@@ -45,6 +49,12 @@ export const MobileNavWrapper = styled.div`
 `;
 
 export const Nav = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+
   ${props =>
     props.light &&
     css`

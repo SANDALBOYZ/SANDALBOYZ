@@ -4,6 +4,7 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
 import { GlobalStyle } from '@utils/styles';
+import Footer from '@components/Footer';
 import Navigation from '@components/Navigation';
 
 class Layout extends React.Component {
@@ -136,7 +137,8 @@ class Layout extends React.Component {
           render={data => (
             <>
               <Navigation siteTitle={data.site.siteMetadata.title} />
-              {/* {children} */}
+              {children}
+              <Footer />
             </>
           )}
         />

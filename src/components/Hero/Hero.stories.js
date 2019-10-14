@@ -7,17 +7,19 @@ export default { title: 'Hero' };
 
 export const Desktop = () => (
   <Hero
+    image="https://source.unsplash.com/random/2000x1500"
     label="01 / Featured Article"
     title="A$AP Ferg gets his nails done on a boat"
-    cta={{ href: '/stories', name: 'Read article' }}
+    href="/stories"
   />
 );
 
 export const Mobile = () => (
   <Hero
+    image="https://source.unsplash.com/random/1200x800"
     label="01 / Featured Article"
     title="A$AP Ferg gets his nails done on a boat"
-    cta={{ href: '/stories', name: 'Read article' }}
+    href="/stories"
   />
 );
 

@@ -11,7 +11,7 @@ class Subscribe extends Component {
       <styled.Wrapper>
         <H200>Subscribe to our mailing list.</H200>
         <styled.Form>
-          <Input size="large" type="email" placeholder="email@example.com" />
+          <Input name="email" size="large" type="email" placeholder="email@example.com" />
           <Button>Subscribe</Button>
         </styled.Form>
       </styled.Wrapper>

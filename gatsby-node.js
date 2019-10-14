@@ -1,4 +1,6 @@
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
+const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -11,11 +13,22 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
+      allMarkdownRemark {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+          }
+        }
+      }
     }
   `).then(result => {
+    // Create product pages
     result.data.allShopifyProduct.edges.forEach(({ node }) => {
       createPage({
-        path: `/product/${node.handle}/`,
+        path: `/products/${node.handle}/`,
         component: path.resolve('./src/templates/Product/index.js'),
         context: {
           // Data passed to context is available
@@ -24,5 +37,30 @@ exports.createPages = ({ graphql, actions }) => {
         },
       });
     });
+
+    // Create story pages
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      createPage({
+        path: node.fields.slug,
+        component: path.resolve('./src/templates/Story/index.js'),
+        context: {
+          id: node.id,
+        },
+      });
+    });
   });
+};
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+  fmImagesToRelative(node); // convert image paths for gatsby images
+
+  if (node.internal.type === 'MarkdownRemark') {
+    const value = createFilePath({ node, getNode });
+    createNodeField({
+      name: 'slug',
+      node,
+      value,
+    });
+  }
 };

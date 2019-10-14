@@ -44,8 +44,8 @@ const rotateBackReverse = keyframes`
 const Button = styled.a`
   display: inline-block;
   position: relative;
-  width: 22px;
-	height: 22px;
+  width: 28px;
+	height: 24px;
   cursor: pointer;
 
   ${mq.gtlg} {

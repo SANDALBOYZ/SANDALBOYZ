@@ -5,12 +5,12 @@ import { Breakpoint, breakpoints } from '@utils/styles';
 import { H100 } from '@utils/type';
 import * as styled from './styles';
 
-const Hero = ({ cta, image, label, title }) => (
+export const Hero = ({ href, image, label, title }) => (
   <styled.Wrapper>
-    <styled.Background image={image}>
+    <styled.Background image={image.childImageSharp ? image.childImageSharp.fluid.src : image}>
       <Breakpoint min={breakpoints.lg}>
-        <styled.Button theme="light" href={cta.href}>
-          {cta.name}
+        <styled.Button theme="light" href={href}>
+          Read article
         </styled.Button>
       </Breakpoint>
     </styled.Background>
@@ -18,19 +18,14 @@ const Hero = ({ cta, image, label, title }) => (
       {label && <styled.ContentLabel>{label}</styled.ContentLabel>}
       <H100>{title}</H100>
       <Breakpoint max={breakpoints.lg}>
-        <styled.Button href={cta.href}>
-          {cta.name}
-        </styled.Button>
+        <styled.Button href={href}>Read article</styled.Button>
       </Breakpoint>
     </styled.Box>
   </styled.Wrapper>
 );
 
 Hero.propTypes = {
-  cta: PropTypes.shape({
-    href: PropTypes.string,
-    name: PropTypes.string,
-  }).isRequired,
+  href: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   label: PropTypes.string,
   title: PropTypes.string.isRequired,

@@ -28,10 +28,9 @@ export default [
   {
     title: 'Follow Us',
     links: [
-      { name: 'Instagram', href: 'https://instagram.com/sandalboyz', external: true },
       { name: 'Facebook', href: 'https://facebook.com/sandalboyz', external: true },
+      { name: 'Instagram', href: 'https://instagram.com/sandalboyz', external: true },
       { name: 'Twitter', href: 'https://twitter.com/sandalboyz', external: true },
-      { name: 'Snapchat', href: 'https://snapchat.com/sandalboyz', external: true },
     ],
   },
 ];

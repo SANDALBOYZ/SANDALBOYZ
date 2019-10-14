@@ -4,7 +4,7 @@ import Head from '@utils/seo';
 
 const IndexPage = () => (
   <>
-    <Head title="Search" keywords={['gatsby', 'application', 'react']} />
+    <Head title="Stories" keywords={['gatsby', 'application', 'react']} />
   </>
 );
 

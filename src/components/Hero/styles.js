@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space, { H_PADDING_MOBILE } from '@utils/space';
+import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
 import { ContentLabel as BaseContentLabel } from '@utils/type';
 import BaseButton from '@components/Button';
@@ -35,7 +35,7 @@ export const Button = styled(BaseButton)`
   ${mq.gtlg} {
     position: absolute !important;
     bottom: 0;
-    left: 0;
+    left: -1px;
     margin-top: ${space[8]};
   }
 `;
@@ -45,7 +45,8 @@ export const ContentLabel = styled(BaseContentLabel)`
   color: ${colors.N500};
 
   ${mq.gtlg} {
-    margin-bottom: ${space[6]};
+    color: ${colors.N900};
+    margin-bottom: ${space[4]};
   }
 `;
 
@@ -57,6 +58,7 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: flex-end;
     height: 820px;
-    padding: ${space[10]} ${space[7]};
+    margin-bottom: ${space[9]};
+    padding: ${space[10]} ${H_PADDING};
   }
 `;
