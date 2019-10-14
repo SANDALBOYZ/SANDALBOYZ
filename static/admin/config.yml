@@ -15,10 +15,40 @@ collections:
       - { label: Author, name: author, widget: string, default: SANDALBOYZ }
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Hero Image, name: hero, widget: image }
-      - { label: Body, name: body, widget: markdown }
+      - { label: Lede, name: lede, widget: text, required: false }
       - { label: Feature on Landing Page Hero, name: landingFeatured, widget: boolean, required: false }
       - { label: Feature on Stories Page Hero, name: storiesFeatured, widget: boolean, required: false }
       - { label: Tags, name: tags, widget: list, required: false }
+      - label: Sections
+        name: sections
+        widget: list
+        types:
+          - label: Text Block
+            name: text
+            widget: object
+            fields:
+              - { label: Body, name: body, widget: markdown }
+          - label: Image Block
+            name: image
+            widget: object
+            fields:
+              - label: Image Type
+                name: imageType
+                widget: select
+                options:
+                  - { label: Fullwidth Image, value: fullWidth }
+                  - { label: Split Image, value: split }
+                  - { label: Two-Thirds Image, value: twoThirds }
+              - label: Images
+                name: images
+                widget: list
+                hint: Add one (1) image for Fullwidth and Two-Thirds Image Blocks, and two (2) images for the Split Image Block
+                field: { label: Image, name: image, widget: image }
+              - label: Caption
+                name: caption
+                widget: string
+                required: false
+                hint: Only displayed for the Split Image Block
 
   - label: Site Info
     name: siteInfo
