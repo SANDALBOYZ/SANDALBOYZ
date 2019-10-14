@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
-import { ContentLabel as BaseContentLabel } from '@utils/type';
+import { H500 as BaseH500 } from '@utils/type';
 import BaseButton from '@components/Button';
 
 export const Background = styled.div`
@@ -14,6 +14,9 @@ export const Background = styled.div`
   left: 0;
   z-index: -1;
   background-color: ${colors.N100};
+  background-image: url(${props => props.image});
+  background-position: center;
+  background-size: cover;
 `;
 
 export const Box = styled.div`
@@ -36,7 +39,7 @@ export const Button = styled(BaseButton)`
   }
 `;
 
-export const ContentLabel = styled(BaseContentLabel)`
+export const H500 = styled(BaseH500)`
   color: ${colors.N700};
   margin-bottom: ${space[3]};
 `;
@@ -49,5 +52,6 @@ export const Wrapper = styled.div`
 
   ${mq.gtlg} {
     height: 660px;
+    margin-bottom: ${space[9]};
   }
 `;

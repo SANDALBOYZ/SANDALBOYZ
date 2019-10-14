@@ -15,7 +15,7 @@ export const Hero = ({ href, image, label, title }) => (
       </Breakpoint>
     </styled.Background>
     <styled.Box>
-      {label && <styled.ContentLabel>{label}</styled.ContentLabel>}
+      {label && <styled.H500>{label}</styled.H500>}
       <H100>{title}</H100>
       <Breakpoint max={breakpoints.lg}>
         <styled.Button href={href}>Read article</styled.Button>

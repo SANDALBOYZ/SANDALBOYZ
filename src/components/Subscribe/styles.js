@@ -33,6 +33,7 @@ export const Wrapper = styled.div`
   text-align: center;
 
   ${mq.gtlg} {
+    margin-top: ${space[10]};
     margin-bottom: ${space[8]};
   }
 `;

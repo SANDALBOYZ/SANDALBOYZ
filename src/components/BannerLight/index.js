@@ -6,9 +6,9 @@ import * as styled from './styles';
 
 const BannerLight = ({ cta, image, label, title }) => (
   <styled.Wrapper>
-    <styled.Background image={image} />
+    <styled.Background image={image.childImageSharp ? image.childImageSharp.fluid.src : image} />
     <styled.Box>
-      {label && <styled.ContentLabel>{label}</styled.ContentLabel>}
+      {label && <styled.H500>{label}</styled.H500>}
       <H200>{title}</H200>
       <styled.Button href={cta.href}>
         {cta.name}

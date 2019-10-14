@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'gatsby-link';
 
 import { Badge, H400, H600 } from '@utils/type';
 import * as styled from './styles';
 
-const ProductTile = ({ image, price, soldOut, title }) => (
+const ProductTile = ({ href, image, price, soldOut, title }) => (
   <styled.Wrapper>
     {soldOut && (
       <styled.SoldOut>
         <Badge>Sold out</Badge>
       </styled.SoldOut>
     )}
-    <styled.Image />
+    <styled.Image image={image} />
     <styled.Info>
       <H600>{price} USD</H600>
-      <H400>{title}</H400>
+      <Link to={href}>
+        <H400>{title}</H400>
+      </Link>
     </styled.Info>
   </styled.Wrapper>
 );

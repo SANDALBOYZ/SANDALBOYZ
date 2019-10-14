@@ -8,6 +8,9 @@ export const Image = styled.div`
   position: relative;
   padding-bottom: 77%;
   background-color: ${colors.N100};
+  background-image: url(${props => props.image});
+  background-position: center;
+  background-size: cover;
 `;
 
 export const Info = styled.div`

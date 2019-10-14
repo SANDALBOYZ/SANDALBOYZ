@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
-import { ContentLabel as BaseContentLabel } from '@utils/type';
+import { H500 as BaseH500 } from '@utils/type';
 import BaseButton from '@components/Button';
 
 export const Background = styled.div`
@@ -40,7 +40,7 @@ export const Button = styled(BaseButton)`
   }
 `;
 
-export const ContentLabel = styled(BaseContentLabel)`
+export const H500 = styled(BaseH500)`
   margin: ${space[3]} 0 ${space[0]};
   color: ${colors.N500};
 
