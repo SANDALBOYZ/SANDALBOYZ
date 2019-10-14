@@ -122,7 +122,7 @@ class Layout extends React.Component {
 
   getNavLight = () => {
     const { path } = this.props;
-    const lightPaths = ['/stories/'];
+    const lightPaths = ['/login/', '/register/', '/stories/'];
 
     return lightPaths.includes(path);
   };
