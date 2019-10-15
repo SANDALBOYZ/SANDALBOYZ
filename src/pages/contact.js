@@ -1,10 +1,12 @@
 import React from 'react';
 
 import Head from '@utils/seo';
+import ContactPage from '@components/ContactPage';
 
 const IndexPage = () => (
   <>
-    <Head title="Contact" keywords={['gatsby', 'application', 'react']} />
+    <Head title="Contact" />
+    <ContactPage />
   </>
 );
 

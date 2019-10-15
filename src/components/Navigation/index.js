@@ -22,12 +22,12 @@ const Navigation = ({ light, menuOpen, onMenuClose, onMenuOpen }) => (
         <styled.MobileNavLink to="/cart" alt="Cart">
           <styled.Icon name="briefcase" light={light} />
         </styled.MobileNavLink>
-        <styled.NavLink to="/login">Login</styled.NavLink>
         <MobileMenuToggle
           light={light}
           open={menuOpen}
           onClick={menuOpen ? onMenuClose : onMenuOpen}
         />
+        <styled.NavLink to="/login">Login</styled.NavLink>
       </styled.NavSection>
     </styled.Container>
   </styled.Nav>
