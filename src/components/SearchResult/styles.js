@@ -50,5 +50,6 @@ export const Wrapper = styled.div`
 
   ${mq.gtlg} {
     height: 300px;
+    margin-bottom: ${space[5]};
   }
 `;

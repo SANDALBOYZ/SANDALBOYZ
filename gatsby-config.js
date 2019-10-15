@@ -148,5 +148,16 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
+      options: {
+        fields: ['title', 'tags'],
+        resolvers: {
+          ShopifyProduct: {
+            title: node => node.title,
+          },
+        },
+      },
+    },
   ],
 };
