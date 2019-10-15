@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 
+import getPrice from '@utils/price';
 import { Badge, H400, H600 } from '@utils/type';
 import * as styled from './styles';
 
@@ -14,7 +15,7 @@ const ProductTile = ({ href, image, price, soldOut, title }) => (
     )}
     <styled.Image image={image} />
     <styled.Info>
-      <H600>{price} USD</H600>
+      <H600>{getPrice(price)}</H600>
       <Link to={href}>
         <H400>{title}</H400>
       </Link>

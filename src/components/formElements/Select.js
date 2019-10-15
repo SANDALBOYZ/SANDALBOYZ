@@ -26,16 +26,18 @@ const StyledIcon = styled(Icon)`
   bottom: 0;
   margin: auto 0;
   height: 24px;
+  pointer-events: none;
 `;
 
 const StyledSelect = styled.select`
   display: block;
-  font-family: ${fonts.STANDARD};
-  font-weight: ${weights.LIGHT};
   height: 38px;
   width: 100%;
-  padding: 0 ${space[1]};
+  padding: 0 ${space[6]} 0 ${space[1]};
+  font-family: ${fonts.STANDARD};
+  font-weight: ${weights.LIGHT};
   font-size: 15px;
+  line-height: 38px;
   background-color: transparent;
   border: none;
   appearance: none;
@@ -53,8 +55,8 @@ const Select = ({ label, name, options, ...rest }) => {
   const select = (
     <SelectContainer>
       <StyledSelect name={name} {...rest}>
-        {options.map(({ name, value }) => (
-          <option value={value} key={value}>
+        {options.map(({ disabled, name, value }) => (
+          <option value={value} key={value} disabled={disabled}>
             {name}
           </option>
         ))}

@@ -21,7 +21,7 @@ const ProductsPage = ({ data }) => (
           title: get(node, 'title'),
         }))
       }
-      title="02 / Chroma Collection"
+      title="Collection"
     />
   </>
 );
