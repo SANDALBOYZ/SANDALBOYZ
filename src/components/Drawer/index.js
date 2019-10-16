@@ -5,33 +5,31 @@ import get from 'lodash/get';
 import Button from '@components/Button';
 import * as styled from './styles';
 
-const Drawer = React.forwardRef(
-  ({ actions, children, onClose, open, title }, ref) => (
-    <styled.Wrapper open={open} ref={ref}>
-      <styled.Drawer open={open}>
-        <styled.H300>{title}</styled.H300>
-        {children}
-        <styled.Actions>
-          <Button
-            fullWidth
-            onClick={onClose}
-            theme={get(actions, 'close.themeOverride', 'outline')}
-          >
-            {get(actions, 'close.name')}
-          </Button>
-          <Button
-            disabled={get(actions, 'next.disabled')}
-            external
-            fullWidth
-            href={get(actions, 'next.href')}
-            onClick={get(actions, 'next.onClick')}
-          >
-            {get(actions, 'next.name')}
-          </Button>
-        </styled.Actions>
-      </styled.Drawer>
-    </styled.Wrapper>
-  )
+const Drawer = ({ actions, children, onClose, open, title }) => (
+  <styled.Wrapper open={open}>
+    <styled.Drawer open={open}>
+      <styled.H300>{title}</styled.H300>
+      {children}
+      <styled.Actions>
+        <Button
+          fullWidth
+          onClick={onClose}
+          theme={get(actions, 'close.themeOverride', 'outline')}
+        >
+          {get(actions, 'close.name')}
+        </Button>
+        <Button
+          disabled={get(actions, 'next.disabled')}
+          external
+          fullWidth
+          href={get(actions, 'next.href')}
+          onClick={get(actions, 'next.onClick')}
+        >
+          {get(actions, 'next.name')}
+        </Button>
+      </styled.Actions>
+    </styled.Drawer>
+  </styled.Wrapper>
 );
 
 Drawer.propTypes = {

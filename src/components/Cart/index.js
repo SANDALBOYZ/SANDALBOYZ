@@ -17,18 +17,12 @@ class Cart extends Component {
 
   static contextType = StoreContext;
 
-  constructor() {
-    super();
-
-    this.scrollable = React.createRef();
-  }
-
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
       if (this.props.open) {
-        disableBodyScroll(this.scrollable.current);
+        disableBodyScroll();
       } else {
-        enableBodyScroll(this.scrollable.current);
+        enableBodyScroll();
       }
     }
   }
@@ -51,7 +45,6 @@ class Cart extends Component {
         }}
         onClose={onClose}
         open={open}
-        ref={this.scrollable}
         title="Your cart"
       >
         {checkout.lineItems.map(lineItem => (

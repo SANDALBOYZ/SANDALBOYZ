@@ -39,9 +39,10 @@ const StyledInput = styled.input`
   font-weight: ${weights.LIGHT};
   width: 100%;
   padding: 0 ${space[1]};
-  font-size: 15px;
+  font-size: 16px;
   background-color: ${colors.N0};
   border: 1px solid ${colors.N200};
+  border-radius: 0;
   appearance: none;
   ${getInputHeight};
 

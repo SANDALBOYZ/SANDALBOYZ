@@ -177,11 +177,14 @@ class Layout extends React.Component {
           render={data => (
             <>
               <Navigation
+                cartOpen={this.state.cartOpen}
+                hideCart={this.state.cartOpen}
                 light={this.getNavLight()}
                 menuOpen={this.state.menuOpen}
+                onCartClose={this.handleCartClose}
                 onCartOpen={this.handleCartOpen}
-                onMenuOpen={this.handleMenuOpen}
                 onMenuClose={this.handleMenuClose}
+                onMenuOpen={this.handleMenuOpen}
               />
               <MobileMenu
                 onCartOpen={this.handleCartOpen}

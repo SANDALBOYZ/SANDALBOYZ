@@ -36,7 +36,7 @@ const StyledSelect = styled.select`
   padding: 0 ${space[6]} 0 ${space[1]};
   font-family: ${fonts.STANDARD};
   font-weight: ${weights.LIGHT};
-  font-size: 15px;
+  font-size: 16px;
   line-height: 38px;
   background-color: transparent;
   border: none;

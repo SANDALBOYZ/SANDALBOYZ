@@ -20,7 +20,7 @@ export const Container = styled(BaseContainer)`
 `;
 
 export const Icon = styled(BaseIcon)`
-  fill: ${props => props.light ? colors.N0 : colors.N900};
+  fill: ${props => (props.light ? colors.N0 : colors.N900)};
   width: 22px;
 
   ${mq.gtlg} {
@@ -49,11 +49,18 @@ export const MobileNavWrapper = styled.div`
 `;
 
 export const Nav = styled.div`
-  position: absolute;
+  position: ${props => (props.cartOpen ? 'fixed' : 'absolute')};
   top: 0;
   right: 0;
   left: 0;
   z-index: 9999;
+  background-color: ${props => (props.cartOpen ? colors.N0 : 'transparent')};
+
+  ${mq.gtlg} {
+    background-color: ${props =>
+      props.cartOpen ? 'rgba(0, 0, 0, 0.5)' : 'transparent'};
+    transition: background-color 150ms linear;
+  }
 
   ${props =>
     props.light &&

@@ -15,9 +15,10 @@ const StyledTextarea = styled.textarea`
   max-height: 220px;
   width: 100%;
   padding: ${space[1]};
-  font-size: 15px;
+  font-size: 16px;
   background-color: ${colors.N0};
   border: 1px solid ${colors.N200};
+  border-radius: 0;
   appearance: none;
   resize: vertical;
 
