@@ -3,11 +3,11 @@ import React from 'react';
 import Head from '@utils/seo';
 import ContactPage from '@components/ContactPage';
 
-const IndexPage = () => (
+const ContactPageWrapper = () => (
   <>
     <Head title="Contact" />
     <ContactPage />
   </>
 );
 
-export default IndexPage;
+export default ContactPageWrapper;

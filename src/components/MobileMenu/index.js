@@ -26,7 +26,7 @@ class MobileMenu extends Component {
   }
 
   render() {
-    const { onCartOpen, onMenuClose, onMenuOpen, open } = this.props;
+    const { onCartClose, onCartOpen, onMenuClose, onMenuOpen, open } = this.props;
 
     return (
       <styled.Wrapper open={open}>
@@ -34,6 +34,7 @@ class MobileMenu extends Component {
           hideCart
           light
           menuOpen={open}
+          onCartClose={onCartClose}
           onCartOpen={onCartOpen}
           onMenuClose={onMenuClose}
           onMenuOpen={onMenuOpen}

@@ -33,6 +33,13 @@ const getInputHeight = ({ size }) =>
     `
   );
 
+const ErrorText = styled.div`
+  margin-top: ${space[0]};
+  color: ${colors.NEGATIVE};
+  font-size: 12px;
+  line-height: 1;
+`;
+
 const StyledInput = styled.input`
   display: block;
   font-family: ${fonts.STANDARD};
@@ -56,8 +63,17 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = ({ label, name, size, type, ...rest }) => {
-  const input = <StyledInput name={name} size={size} type={type} {...rest} />;
+const Input = React.forwardRef(({ error, label, name, size, type, ...rest }, ref) => {
+  let input = <StyledInput name={name} ref={ref} size={size} type={type} {...rest} />;
+
+  if (error) {
+    input = (
+      <div>
+        {input}
+        {error && <ErrorText>{error}</ErrorText>}
+      </div>
+    );
+  }
 
   if (label) {
     return (
@@ -68,7 +84,7 @@ const Input = ({ label, name, size, type, ...rest }) => {
   }
 
   return input;
-};
+});
 
 Input.propTypes = {
   label: PropTypes.string,

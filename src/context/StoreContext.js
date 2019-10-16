@@ -10,6 +10,7 @@ export const defaultStoreContext = {
   client,
   adding: false,
   checkout: { lineItems: [] },
+  customer: { loading: true },
   products: [],
   shop: {},
   addVariantToCart: () => {},

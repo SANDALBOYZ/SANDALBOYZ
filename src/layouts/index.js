@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
+import get from 'lodash/get';
 
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
+import { getCustomer } from '@utils/customer';
 import { GlobalStyle } from '@utils/styles';
 import Cart from '@components/Cart';
 import Footer from '@components/Footer/container';
@@ -120,8 +122,28 @@ class Layout extends React.Component {
     setCheckoutInState(newCheckout);
   }
 
+  async initializeCustomer() {
+    const isBrowser = typeof window !== 'undefined';
+
+    const setCustomerInState = async () => {
+      if (isBrowser) {
+        const customer = await getCustomer();
+
+        this.setState(state => ({
+          store: {
+            ...state.store,
+            customer,
+          },
+        }));
+      }
+    };
+
+    await setCustomerInState();
+  }
+
   componentDidMount() {
     this.initializeCheckout();
+    this.initializeCustomer();
   }
 
   componentDidUpdate(prevProps) {
@@ -177,6 +199,7 @@ class Layout extends React.Component {
           render={data => (
             <>
               <Navigation
+                authed={get(this, 'state.store.customer.id')}
                 cartOpen={this.state.cartOpen}
                 hideCart={this.state.cartOpen}
                 light={this.getNavLight()}
@@ -187,6 +210,7 @@ class Layout extends React.Component {
                 onMenuOpen={this.handleMenuOpen}
               />
               <MobileMenu
+                onCartClose={this.handleCartClose}
                 onCartOpen={this.handleCartOpen}
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}

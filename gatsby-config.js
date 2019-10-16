@@ -13,6 +13,12 @@ module.exports = {
   plugins: [
     'gatsby-plugin-layout',
     {
+      resolve: 'gatsby-plugin-create-client-paths',
+      options: {
+        prefixes: ['/account/*'],
+      },
+    },
+    {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
       options: {

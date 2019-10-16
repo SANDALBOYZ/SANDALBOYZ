@@ -1,11 +1,17 @@
 import React from 'react';
+import { Router } from '@reach/router';
 
 import Head from '@utils/seo';
+import AccountPage from '@components/AccountPage';
+import PrivateRoute from '@components/PrivateRoute';
 
-const IndexPage = () => (
+const AccountPageWrapper = () => (
   <>
-    <Head title="Account" keywords={['gatsby', 'application', 'react']} />
+    <Head title="Account" />
+    <Router>
+      <PrivateRoute path="/account" component={AccountPage} />
+    </Router>
   </>
 );
 
-export default IndexPage;
+export default AccountPageWrapper;

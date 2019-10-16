@@ -5,6 +5,7 @@ import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
 
 const Navigation = ({
+  authed,
   cartOpen,
   hideCart,
   light,
@@ -45,7 +46,9 @@ const Navigation = ({
             open={cartOpen || menuOpen}
             onClick={toggleFunction}
           />
-          <styled.NavLink to="/login">Login</styled.NavLink>
+          <styled.NavLink to={authed ? '/account' : '/login'}>
+            {authed ? 'My account' : 'Login'}
+          </styled.NavLink>
         </styled.NavSection>
       </styled.Container>
     </styled.Nav>

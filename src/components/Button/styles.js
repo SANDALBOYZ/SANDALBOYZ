@@ -40,6 +40,7 @@ export const baseButton = css`
   }
 
   & > svg {
+    height: 18px;
     vertical-align: middle;
     transform: translateY(-1px);
   }

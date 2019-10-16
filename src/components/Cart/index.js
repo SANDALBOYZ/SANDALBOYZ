@@ -26,9 +26,9 @@ class Cart extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
       if (this.props.open) {
-        disableBodyScroll();
+        disableBodyScroll(this.target);
       } else {
-        enableBodyScroll();
+        enableBodyScroll(this.target);
       }
     }
   }

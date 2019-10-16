@@ -6,7 +6,7 @@ import Head from '@utils/seo';
 import Header from '@components/Header';
 import Search from '@components/Search';
 
-const IndexPage = () => (
+const SearchPage = () => (
   <>
     <Head title="Search" keywords={['gatsby', 'application', 'react']} />
     <Header shrinkOnMobile title="Search Products" />
@@ -55,4 +55,4 @@ const IndexPage = () => (
   </>
 );
 
-export default IndexPage;
+export default SearchPage;

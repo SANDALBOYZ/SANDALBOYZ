@@ -18,6 +18,13 @@ export const Box = styled.div`
   }
 `;
 
+export const ErrorText = styled.div`
+  margin-top: ${space[2]};
+  color: ${colors.NEGATIVE};
+  font-size: 14px;
+  text-align: center;
+`;
+
 export const H400 = styled(BaseH400)`
   margin-bottom: ${space[4]};
   text-align: center;
@@ -45,7 +52,9 @@ export const Footer = styled.div`
 `;
 
 export const Form = styled.form`
-  margin-bottom: ${space[4]};
+  & > *:last-child {
+    margin-top: ${space[4]};
+  }
 
   & > *:not(:last-child) {
     margin-bottom: ${space[2]};
