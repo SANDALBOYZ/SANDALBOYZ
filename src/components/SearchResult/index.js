@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import getPrice from '@utils/price';
 import { Breakpoint, breakpoints } from '@utils/styles';
 import truncate from '@utils/truncate';
 import Button from '@components/Button';
@@ -11,7 +12,7 @@ const SearchResult = ({ collection, description, href, image, price, title }) =>
     <styled.Image image={image} />
     <styled.Info>
       <styled.H400>{collection && `${collection} | `}{title}</styled.H400>
-      <styled.H500>{price} USD</styled.H500>
+      <styled.H500>{getPrice(price)}</styled.H500>
       <styled.Body>{truncate(description, 240)}</styled.Body>
       <Breakpoint min={breakpoints.lg}>
         <Button href={href} size="small">

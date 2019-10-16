@@ -7,7 +7,7 @@ import RegisterForm from '@components/AuthForm/Register';
 const RegisterPage = () => (
   <>
     <Head title="Register" />
-    <Header label="Create Account" theme="dark" title="Join the team" />
+    <Header label="Create Account" shrinkOnMobile theme="dark" title="Join the team" />
     <RegisterForm />
   </>
 );

@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
 import { GlobalStyle } from '@utils/styles';
 import Footer from '@components/Footer/container';
+import MobileMenu from '@components/MobileMenu';
 import Navigation from '@components/Navigation';
 
 class Layout extends React.Component {
@@ -128,10 +129,12 @@ class Layout extends React.Component {
   };
 
   handleMenuOpen = () => {
+    document.body.classList.add('scroll-disabled');
     this.setState({ menuOpen: true });
   };
 
   handleMenuClose = () => {
+    document.body.classList.remove('scroll-disabled');
     this.setState({ menuOpen: false });
   };
 
@@ -159,6 +162,7 @@ class Layout extends React.Component {
                 onMenuOpen={this.handleMenuOpen}
                 onMenuClose={this.handleMenuClose}
               />
+              <MobileMenu open={this.state.menuOpen} onMenuClose={this.handleMenuClose} />
               {children}
               <Footer />
             </>

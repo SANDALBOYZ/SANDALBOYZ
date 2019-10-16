@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space from '@utils/space';
+import space, { H_PADDING_MOBILE } from '@utils/space';
 import { Body as BaseBody, H300 as BaseH300 } from '@utils/type';
 
 const Body = styled(BaseBody)`
@@ -19,6 +19,7 @@ export const H300 = styled(BaseH300)`
 export const Inner = styled.div`
   margin: auto;
   max-width: 500px;
+  padding: 0 ${H_PADDING_MOBILE};
 
   & table {
     width: 100%;

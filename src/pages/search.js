@@ -9,7 +9,7 @@ import Search from '@components/Search';
 const IndexPage = () => (
   <>
     <Head title="Search" keywords={['gatsby', 'application', 'react']} />
-    <Header title="Search Products" />
+    <Header shrinkOnMobile title="Search Products" />
     <StaticQuery
       query={graphql`
         query SearchIndexQuery {

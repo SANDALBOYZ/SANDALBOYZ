@@ -20,7 +20,11 @@ const getInputHeight = ({ size }) =>
         }
       `,
       xlarge: css`
-        height: 60px;
+        height: 45px;
+
+        ${mq.gtlg} {
+          height: 60px;
+        }
       `,
     },
     size,

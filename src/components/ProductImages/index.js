@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
+import { Img } from '@utils/styles';
 import * as styled from './styles';
 
 class ProductImages extends Component {
@@ -44,7 +45,7 @@ class ProductImages extends Component {
     return (
       <styled.Wrapper>
         <styled.MainImageWrapper>
-          <styled.MainImage fluid={get(images[activeIndex], 'localFile.childImageSharp.fluid')} />
+          <Img fluid={get(images[activeIndex], 'localFile.childImageSharp.fluid')} />
           <styled.Button onClick={this.handlePreviousImage}>
             <styled.Icon name="chevron-left" />
           </styled.Button>

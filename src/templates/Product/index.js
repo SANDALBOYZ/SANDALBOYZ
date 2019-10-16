@@ -4,7 +4,8 @@ import get from 'lodash/get';
 
 import getPrice from '@utils/price';
 import Head from '@utils/seo';
-import { ContentLabel, H300, H500 } from '@utils/type';
+import { Breakpoint, breakpoints } from '@utils/styles';
+import { ContentLabel, H300, H300M, H500 } from '@utils/type';
 import Button from '@components/Button';
 import Input from '@components/formElements/Input';
 import Select from '@components/formElements/Select';
@@ -18,10 +19,12 @@ class Product extends Component {
   };
 
   handleCloseSizeChart = () => {
+    document.body.classList.remove('scroll-disabled');
     this.setState({ sizeChartOpen: false });
   };
 
   handleOpenSizeChart = () => {
+    document.body.classList.add('scroll-disabled');
     this.setState({ sizeChartOpen: true });
   };
 
@@ -56,10 +59,16 @@ class Product extends Component {
       <>
         <Head title={product.title} description={product.description} />
         <styled.Container>
+          <styled.MobileProductInfo>
+            <H300M>{product.title}</H300M>
+            <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
+          </styled.MobileProductInfo>
           <ProductImages images={product.images} />
           <styled.ProductInfo>
-            <H300>{product.title}</H300>
-            <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
+            <Breakpoint min={breakpoints.lg}>
+              <H300>{product.title}</H300>
+              <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
+            </Breakpoint>
             <styled.Selections>
               <Select label="Size" name="size" options={this.getSizes()} />
               <Input
@@ -71,7 +80,7 @@ class Product extends Component {
                 type="number"
               />
               <Button size="small" type="submit">
-                Add to cart
+                Add to bag
               </Button>
             </styled.Selections>
             <styled.H600>Product Details</styled.H600>

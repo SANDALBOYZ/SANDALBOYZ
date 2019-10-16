@@ -40,12 +40,11 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding-bottom: 106.25%;
+  height: ${props => props.shrinkOnMobile ? '240px' : '360px'};
   text-align: center;
   background-color: ${props => props.theme === 'dark' ? colors.N700 : colors.N0};
 
   ${mq.gtlg} {
     height: 360px;
-    padding-bottom: 0;
   }
 `;

@@ -49,6 +49,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: flex-end;
   height: 480px;
+  margin-bottom: ${space[8]};
 
   ${mq.gtlg} {
     height: 660px;

@@ -35,7 +35,9 @@ export const Products = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  margin-bottom: ${space[8]};
+
   ${mq.gtlg} {
-    margin: ${space[2]} 0 ${space[8]};
+    margin-top: ${space[2]};
   }
 `;

@@ -24,7 +24,7 @@ export const Stories = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin: ${space[6]} 0;
+  margin: ${space[6]} 0 ${space[8]};
 
   ${mq.gtlg} {
     margin: ${space[8]} 0;

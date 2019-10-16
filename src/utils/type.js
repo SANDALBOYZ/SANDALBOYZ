@@ -95,23 +95,20 @@ export const H200 = styled.h2`
 
 export const H300 = styled.h3`
   font-family: ${fonts.CONDENSED};
+  font-size: 34px;
   font-weight: ${weights.BLACK};
   letter-spacing: 1px;
+  line-height: 38px;
   text-transform: uppercase;
+`;
 
-  ${fluidSize('font-size', {
-    minSize: 24,
-    maxSize: 34,
-    minScreenSize: breakpoints.xxs,
-    maxScreenSize: breakpoints.xl,
-  })}
-
-  ${fluidSize('line-height', {
-    minSize: 26,
-    maxSize: 38,
-    minScreenSize: breakpoints.xxs,
-    maxScreenSize: breakpoints.xl,
-  })}
+export const H300M = styled.h3`
+  font-family: ${fonts.CONDENSED};
+  font-size: 24px;
+  font-weight: ${weights.BLACK};
+  letter-spacing: 1px;
+  line-height: 24px;
+  text-transform: uppercase;
 `;
 
 export const H400 = styled.h4`

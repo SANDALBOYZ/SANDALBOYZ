@@ -113,6 +113,10 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
   }
 
+  body.scroll-disabled {
+    overflow: hidden;
+  }
+
   *,
   *:before,
   *:after {
@@ -146,5 +150,11 @@ export const Img = styled(Image)`
 
 export const TextContainer = styled.div`
   margin: 0 auto;
-  max-width: 960px;
+  width: 100%;
+  padding: 0 ${H_PADDING_MOBILE};
+
+  ${mq.gtlg} {
+    max-width: 960px;
+    padding: 0;
+  }
 `;

@@ -7,11 +7,12 @@ import { mq, Container as BaseContainer } from '@utils/styles';
 import { ContentLabel as BaseContentLabel } from '@utils/type';
 
 export const Authors = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: ${H_PADDING_MOBILE};
+  margin: 0 0 ${space[6]};
+  padding-left: ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {
+    position: absolute;
+    bottom: 0;
     left: ${H_PADDING};
   }
 `;
@@ -36,7 +37,11 @@ export const Background = styled.div`
 
 export const Box = styled.div`
   z-index: 1;
-  max-width: 620px;
+  padding: ${space[2]} ${H_PADDING_MOBILE} ${space[4]};
+
+  ${mq.gtlg} {
+    max-width: 620px;
+  }
 `;
 
 export const ContentLabel = styled(BaseContentLabel)`
@@ -44,8 +49,6 @@ export const ContentLabel = styled(BaseContentLabel)`
 `;
 
 export const Hero = styled.div`
-  padding-left: ${H_PADDING_MOBILE};
-
   ${mq.gtlg} {
     position: relative;
     display: flex;
@@ -68,17 +71,28 @@ export const Sections = styled.div`
     line-height: 28px;
     max-width: ${space[15]};
     margin: ${space[4]} auto;
+    padding: 0 ${H_PADDING_MOBILE};
+
+    ${mq.gtlg} {
+      padding: 0;
+    }
   }
 
   & blockquote * {
     max-width: ${space[17]};
-    margin: ${space[6]} ${H_PADDING};
+    margin: ${space[4]} 0;
     font-family: ${fonts.CONDENSED};
-    font-size: 54px;
+    font-size: 32px;
     font-style: italic;
     font-weight: ${weights.BLACK};
     letter-spacing: 1px;
-    line-height: 54px;
+    line-height: 32px;
     text-transform: uppercase;
+
+    ${mq.gtlg} {
+      margin: ${space[6]} ${H_PADDING};
+      font-size: 54px;
+      line-height: 54px;
+    }
   }
 `;

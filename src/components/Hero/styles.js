@@ -51,6 +51,8 @@ export const H500 = styled(BaseH500)`
 `;
 
 export const Wrapper = styled.div`
+  margin-top: 48px;
+  margin-bottom: ${space[8]};
   padding-left: ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {
@@ -58,6 +60,7 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: flex-end;
     height: 820px;
+    margin-top: 0;
     margin-bottom: ${space[9]};
     padding: ${space[10]} ${H_PADDING};
   }

@@ -47,6 +47,7 @@ export const Info = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   height: 80px;
+  margin-bottom: ${space[3]};
 
   ${mq.gtlg} {
     height: 300px;

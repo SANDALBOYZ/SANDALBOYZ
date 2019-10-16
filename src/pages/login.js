@@ -7,7 +7,7 @@ import LoginForm from '@components/AuthForm/Login';
 const LoginPage = () => (
   <>
     <Head title="Log in" />
-    <Header label="Log In" theme="dark" title="Welcome Back" />
+    <Header label="Log In" shrinkOnMobile theme="dark" title="Welcome Back" />
     <LoginForm />
   </>
 );

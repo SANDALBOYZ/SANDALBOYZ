@@ -80,11 +80,15 @@ const navLinkStyles = css`
   text-transform: uppercase;
 
   &:not(:last-child) {
-    margin-right: ${space[5]};
+    margin-right: ${space[4]};
   }
 
   ${mq.gtlg} {
     display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: ${space[5]};
+    }
   }
 `;
 

@@ -58,6 +58,7 @@ export const Wrapper = styled.div`
 
 
 export const Container = styled(BaseContainer)`
+  margin-bottom: ${space[8]};
   padding: 0;
 
   ${mq.gtlg} {

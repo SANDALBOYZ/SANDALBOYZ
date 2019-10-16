@@ -9,7 +9,7 @@ import ProductGrid from '@components/ProductGrid';
 const ProductsPage = ({ data }) => (
   <>
     <Head title="Products" />
-    <Header label="Fall 2019 Collections" title="All Products" />
+    <Header label="Fall 2019 Collections" shrinkOnMobile title="All Products" />
     <ProductGrid
       products={
         Array.isArray(get(data, 'products.edges')) &&
