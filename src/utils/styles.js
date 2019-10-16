@@ -113,10 +113,6 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
   }
 
-  body.scroll-disabled {
-    overflow: hidden;
-  }
-
   *,
   *:before,
   *:after {

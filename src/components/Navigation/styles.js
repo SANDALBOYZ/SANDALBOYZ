@@ -97,7 +97,8 @@ export const NavLink = styled(Link)`
   display: none;
 `;
 
-export const MobileNavLink = styled(Link)`
+export const MobileNavLink = styled.a`
   ${navLinkStyles}
   display: inline-block;
+  cursor: pointer;
 `;

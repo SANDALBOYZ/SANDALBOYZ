@@ -24,6 +24,7 @@ export const Actions = styled.div`
     left: ${space[5]};
 
     & > *:first-child {
+      margin-top: 0;
       margin-right: ${space[3]};
       margin-bottom: 0;
     }
@@ -60,6 +61,7 @@ export const Wrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 9998;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 150ms linear;
   opacity: ${props => (props.open ? 1 : 0)};

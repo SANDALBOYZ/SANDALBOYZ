@@ -55,7 +55,7 @@ const Button = props => {
     ${sizes[size]}
     ${fullWidth &&
       css`
-        padding: 0;
+        padding: 0 !important;
         width: 100%;
       `}
   `;

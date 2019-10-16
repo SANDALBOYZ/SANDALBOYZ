@@ -45,7 +45,9 @@ class ProductImages extends Component {
     return (
       <styled.Wrapper>
         <styled.MainImageWrapper>
-          <Img fluid={get(images[activeIndex], 'localFile.childImageSharp.fluid')} />
+          {get(images[activeIndex], 'localFile.childImageSharp.fluid') && (
+            <Img fluid={get(images[activeIndex], 'localFile.childImageSharp.fluid')} />
+          )}
           <styled.Button onClick={this.handlePreviousImage}>
             <styled.Icon name="chevron-left" />
           </styled.Button>

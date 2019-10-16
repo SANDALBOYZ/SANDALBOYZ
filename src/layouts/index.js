@@ -4,12 +4,14 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
 import { GlobalStyle } from '@utils/styles';
+import Cart from '@components/Cart';
 import Footer from '@components/Footer/container';
 import MobileMenu from '@components/MobileMenu';
 import Navigation from '@components/Navigation';
 
 class Layout extends React.Component {
   state = {
+    cartOpen: false,
     menuOpen: false,
     store: {
       ...defaultStoreContext,
@@ -20,6 +22,7 @@ class Layout extends React.Component {
         }
 
         this.setState(state => ({
+          cartOpen: true,
           store: {
             ...state.store,
             adding: true,
@@ -121,6 +124,17 @@ class Layout extends React.Component {
     this.initializeCheckout();
   }
 
+  componentDidUpdate(prevProps) {
+    const { path } = this.props;
+
+    if (path !== prevProps.path) {
+      this.setState({
+        cartOpen: false,
+        menuOpen: false,
+      });
+    }
+  }
+
   getNavLight = () => {
     const { path } = this.props;
     const lightPaths = ['/login/', '/register/', '/stories/'];
@@ -128,14 +142,20 @@ class Layout extends React.Component {
     return lightPaths.includes(path);
   };
 
-  handleMenuOpen = () => {
-    document.body.classList.add('scroll-disabled');
-    this.setState({ menuOpen: true });
+  handleCartClose = () => {
+    this.setState({ cartOpen: false });
+  };
+
+  handleCartOpen = () => {
+    this.setState({ cartOpen: true });
   };
 
   handleMenuClose = () => {
-    document.body.classList.remove('scroll-disabled');
     this.setState({ menuOpen: false });
+  };
+
+  handleMenuOpen = () => {
+    this.setState({ menuOpen: true });
   };
 
   render() {
@@ -159,10 +179,17 @@ class Layout extends React.Component {
               <Navigation
                 light={this.getNavLight()}
                 menuOpen={this.state.menuOpen}
+                onCartOpen={this.handleCartOpen}
                 onMenuOpen={this.handleMenuOpen}
                 onMenuClose={this.handleMenuClose}
               />
-              <MobileMenu open={this.state.menuOpen} onMenuClose={this.handleMenuClose} />
+              <MobileMenu
+                onCartOpen={this.handleCartOpen}
+                onMenuClose={this.handleMenuClose}
+                onMenuOpen={this.handleMenuOpen}
+                open={this.state.menuOpen}
+              />
+              <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
               {children}
               <Footer />
             </>

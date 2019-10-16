@@ -30,7 +30,8 @@ export const baseButton = css`
     fill linear 100ms;
 
   &:disabled {
-    color: ${colors.N400};
+    color: ${colors.N300};
+    background-color: ${colors.N400};
     pointer-events: none;
   }
 

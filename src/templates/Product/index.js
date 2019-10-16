@@ -6,6 +6,7 @@ import getPrice from '@utils/price';
 import Head from '@utils/seo';
 import { Breakpoint, breakpoints } from '@utils/styles';
 import { ContentLabel, H300, H300M, H500 } from '@utils/type';
+import StoreContext from '@context/StoreContext';
 import Button from '@components/Button';
 import Input from '@components/formElements/Input';
 import Select from '@components/formElements/Select';
@@ -14,8 +15,31 @@ import SizeChart from '@components/SizeChart';
 import * as styled from './styles';
 
 class Product extends Component {
-  state = {
-    sizeChartOpen: false,
+  static contextType = StoreContext;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      quantity: 1,
+      size: this.getFirstAvailableSize(),
+      sizeChartOpen: false,
+    };
+  }
+
+  handleAddToCart = () => {
+    const { data } = this.props;
+    const { quantity, size } = this.state;
+
+    const product = data.shopifyProduct;
+
+    let variantId = size;
+    if (!variantId) {
+      // for products with no size (socks)
+      variantId = get(product, 'variants[0].shopifyId');
+    }
+
+    this.context.addVariantToCart(variantId, quantity);
   };
 
   handleCloseSizeChart = () => {
@@ -26,6 +50,28 @@ class Product extends Component {
   handleOpenSizeChart = () => {
     document.body.classList.add('scroll-disabled');
     this.setState({ sizeChartOpen: true });
+  };
+
+  handleQuantityChange = evt => {
+    this.setState({ quantity: evt.target.value });
+  };
+
+  handleSizeChange = evt => {
+    this.setState({ size: evt.target.value });
+  };
+
+  getFirstAvailableSize = () => {
+    const { data } = this.props;
+    const product = data.shopifyProduct;
+
+    return get(
+      product.variants
+        .filter(variant =>
+          variant.selectedOptions.find(option => option.name === 'Size')
+        )
+        .find(variant => variant.availableForSale),
+      'shopifyId'
+    );
   };
 
   getSizes = () => {
@@ -43,17 +89,18 @@ class Product extends Component {
 
         return {
           name: size,
-          value: size,
-          disabled: variant.availableForSale,
+          value: variant.shopifyId,
+          disabled: !variant.availableForSale,
         };
       });
   };
 
   render() {
     const { data } = this.props;
-    const { sizeChartOpen } = this.state;
+    const { quantity, size, sizeChartOpen } = this.state;
 
     const product = data.shopifyProduct;
+    const sizes = this.getSizes();
 
     return (
       <>
@@ -70,16 +117,25 @@ class Product extends Component {
               <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
             </Breakpoint>
             <styled.Selections>
-              <Select label="Size" name="size" options={this.getSizes()} />
+              {sizes.length > 1 && (
+                <Select
+                  label="Size"
+                  name="size"
+                  onChange={this.handleSizeChange}
+                  options={sizes}
+                  value={size}
+                />
+              )}
               <Input
-                defaultValue={1}
                 label="Quantity"
                 min={1}
                 max={9}
                 name="quantity"
                 type="number"
+                value={quantity}
+                onChange={this.handleQuantityChange}
               />
-              <Button size="small" type="submit">
+              <Button size="small" onClick={this.handleAddToCart}>
                 Add to bag
               </Button>
             </styled.Selections>
