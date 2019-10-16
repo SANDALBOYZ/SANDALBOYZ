@@ -10,22 +10,22 @@ const RecentStories = ({ storyA, storyB }) => (
     <styled.H500>03 / Recent Stories</styled.H500>
     <styled.Inner>
       <styled.Wrapper>
-        <styled.Image image={storyA.image} />
-        <styled.Info>
-          <styled.H600>Recent Story</styled.H600>
-          <Link to={storyA.href}>
+        <Link to={storyA.href}>
+          <styled.Image image={storyA.image} />
+          <styled.Info>
+            <styled.H600>Recent Story</styled.H600>
             <H300>{storyA.title}</H300>
-          </Link>
-        </styled.Info>
+          </styled.Info>
+        </Link>
       </styled.Wrapper>
       <styled.Wrapper>
-        <styled.Image image={storyB.image} />
-        <styled.Info>
-          <styled.H600>Recent Story</styled.H600>
-          <Link to={storyB.href}>
+        <Link to={storyB.href}>
+          <styled.Image image={storyB.image} />
+          <styled.Info>
+            <styled.H600>Recent Story</styled.H600>
             <H300>{storyB.title}</H300>
-          </Link>
-        </styled.Info>
+          </styled.Info>
+        </Link>
       </styled.Wrapper>
     </styled.Inner>
   </styled.Container>

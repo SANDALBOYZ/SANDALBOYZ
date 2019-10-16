@@ -9,23 +9,23 @@ import * as styled from './styles';
 
 const ProductTile = ({ href, image, price, soldOut, title }) => (
   <styled.Wrapper>
-    {soldOut && (
-      <styled.SoldOut>
-        <Badge>Sold out</Badge>
-      </styled.SoldOut>
-    )}
-    <styled.Image image={image} />
-    <styled.Info>
-      <H600>{getPrice(price)}</H600>
-      <Link to={href}>
+    <Link to={href}>
+      {soldOut && (
+        <styled.SoldOut>
+          <Badge>Sold out</Badge>
+        </styled.SoldOut>
+      )}
+      <styled.Image image={image} />
+      <styled.Info>
+        <H600>{getPrice(price)}</H600>
         <Breakpoint max={breakpoints.lg}>
           <H300M>{title}</H300M>
         </Breakpoint>
         <Breakpoint min={breakpoints.lg}>
           <H400>{title}</H400>
         </Breakpoint>
-      </Link>
-    </styled.Info>
+      </styled.Info>
+    </Link>
   </styled.Wrapper>
 );
 
