@@ -30,10 +30,11 @@ export const Icon = styled(BaseIcon)`
 
 export const Logo = styled(BaseLogo)`
   height: 14px;
-  fill: ${props => (props.light ? colors.N0 : colors.N900)};
+  fill: ${props => (props.light && !props.cartOpen ? colors.N0 : colors.N900)};
 
   ${mq.gtlg} {
     height: 20px;
+    fill: ${props => (props.light ? colors.N0 : colors.N900)};
   }
 `;
 
@@ -57,13 +58,10 @@ export const Nav = styled.div`
   background-color: ${props => (props.cartOpen ? colors.N0 : 'transparent')};
 
   ${mq.gtlg} {
-    background-color: ${props =>
-      props.cartOpen ? 'rgba(0, 0, 0, 0.5)' : 'transparent'};
-    transition: background-color 150ms linear;
+    background-color: transparent;
   }
 
-  ${props =>
-    props.light &&
+  ${props => props.light &&
     css`
       & ${NavLink} {
         color: ${colors.N0};

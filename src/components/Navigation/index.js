@@ -25,7 +25,7 @@ const Navigation = ({
       <styled.Container>
         <styled.NavSection>
           <styled.LogoLink to="/">
-            <styled.Logo light={light} />
+            <styled.Logo cartOpen={cartOpen} light={light} />
           </styled.LogoLink>
           <styled.NavLink to="/products">Products</styled.NavLink>
           <styled.NavLink to="/stories">Stories</styled.NavLink>
@@ -41,7 +41,7 @@ const Navigation = ({
             </styled.MobileNavLink>
           )}
           <MobileMenuToggle
-            light={light}
+            light={light && !cartOpen}
             open={cartOpen || menuOpen}
             onClick={toggleFunction}
           />

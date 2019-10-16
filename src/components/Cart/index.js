@@ -17,6 +17,12 @@ class Cart extends Component {
 
   static contextType = StoreContext;
 
+  constructor() {
+    super();
+
+    this.target = React.createRef();
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
       if (this.props.open) {
@@ -60,6 +66,7 @@ class Cart extends Component {
             <Body>Nothing here yet</Body>
           </styled.Empty>
         )}
+        <div style={{ display: 'none' }} ref={this.target} />
       </Drawer>
     );
   }

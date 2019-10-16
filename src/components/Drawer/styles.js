@@ -61,13 +61,13 @@ export const Wrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9998;
+  z-index: 9999;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 150ms linear;
   opacity: ${props => (props.open ? 1 : 0)};
   pointer-events: ${props => (props.open ? 'auto' : 'none')};
 
   ${mq.gtlg} {
-    top: 80px;
+    top: 0;
   }
 `;
