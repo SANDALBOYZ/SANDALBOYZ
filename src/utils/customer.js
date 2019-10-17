@@ -36,9 +36,10 @@ export const getCustomerQuery = () =>
                   address2
                   city
                   country
-                  name
+                  firstName
+                  lastName
                   phone
-                  provinceCode
+                  province
                   zip
                 }
               }
@@ -62,6 +63,65 @@ export const getCustomerQuery = () =>
   }).then(({ data }) => {
     return get(data, 'data.customer');
   });
+
+export const addAddress = address =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation customerAddressCreate($customerAccessToken: String!, $address: MailingAddressInput!) {
+          customerAddressCreate(customerAccessToken: $customerAccessToken, address: $address) {
+            userErrors {
+              field
+              message
+            }
+            customerAddress {
+              id
+            }
+          }
+        }
+      `,
+      variables: {
+        customerAccessToken: Cookies.get('_sb_access_token'),
+        address,
+      },
+    },
+  }).then(({ data }) => ({
+    addressId: get(
+      data,
+      'data.customerAddressCreate.customerAddress.id'
+    ),
+  }));
+
+export const setDefaultAddress = addressId =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation customerDefaultAddressUpdate($customerAccessToken: String!, $addressId: ID!) {
+          customerDefaultAddressUpdate(customerAccessToken: $customerAccessToken, addressId: $addressId) {
+            userErrors {
+              field
+              message
+            }
+            customer {
+              id
+            }
+          }
+        }
+      `,
+      variables: {
+        customerAccessToken: Cookies.get('_sb_access_token'),
+        addressId,
+      },
+    },
+  }).then(({ data }) => ({
+    customer: get(data, 'data.customerDefaultAddressUpdate.customer'),
+  }));
 
 export const register = input =>
   axios({

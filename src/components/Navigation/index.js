@@ -5,7 +5,6 @@ import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
 
 const Navigation = ({
-  authed,
   cartOpen,
   hideCart,
   light,
@@ -14,6 +13,7 @@ const Navigation = ({
   onCartOpen,
   onMenuClose,
   onMenuOpen,
+  showLogout,
 }) => {
   let toggleFunction = menuOpen ? onMenuClose : onMenuOpen;
 
@@ -46,8 +46,8 @@ const Navigation = ({
             open={cartOpen || menuOpen}
             onClick={toggleFunction}
           />
-          <styled.NavLink to={authed ? '/account' : '/login'}>
-            {authed ? 'My account' : 'Login'}
+          <styled.NavLink to={showLogout ? '/logout' : '/login'}>
+            {showLogout ? 'Log out' : 'Login'}
           </styled.NavLink>
         </styled.NavSection>
       </styled.Container>

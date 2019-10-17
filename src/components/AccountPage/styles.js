@@ -9,12 +9,29 @@ export const Address = styled.div`
   padding: ${space[3]};
 `;
 
-const AUTO_GRID_MIN_SIZE = '22rem';
+export const AddressActions = styled.div`
+  display: flex;
+  margin-top: ${space[3]};
+
+  & > *:first-child {
+    margin-right: ${space[2]};
+  }
+`;
+
+const AUTO_GRID_MIN_SIZE = '12rem';
 
 export const Addresses = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(${AUTO_GRID_MIN_SIZE}, 1fr));
-  grid-row-gap: ${space[2]};
+  grid-gap: ${space[2]};
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  padding: ${space[8]} 0;
 `;
 
 export const Order = styled.div`
@@ -43,6 +60,7 @@ export const SectionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 50px;
   margin-bottom: ${space[4]};
 `;
 

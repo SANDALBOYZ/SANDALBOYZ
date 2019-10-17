@@ -90,7 +90,7 @@ Input.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['large', 'xlarge']),
-  type: PropTypes.oneOf(['email', 'number', 'password', 'text']),
+  type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
 };
 
 export default Input;

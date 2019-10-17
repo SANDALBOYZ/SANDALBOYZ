@@ -69,6 +69,20 @@ export const sizes = {
   `,
 };
 
+const textThemeStyles = css`
+  padding: 0;
+  font-family: ${fonts.CONDENSED};
+  font-size: 15px;
+  font-weight: ${weights.BOLD};
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  user-select: none;
+  appearance: none;
+  cursor: pointer;
+`;
+
 export const themes = {
   outline: css`
     ${baseButton};
@@ -89,5 +103,12 @@ export const themes = {
     &:hover {
       background-color: ${colors.N100};
     }
+  `,
+  text: css`
+    ${textThemeStyles}
+  `,
+  text_danger: css`
+    ${textThemeStyles}
+    color: ${colors.NEGATIVE};
   `,
 };

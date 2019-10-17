@@ -1,16 +1,12 @@
 import React from 'react';
-import { Router } from '@reach/router';
 
 import Head from '@utils/seo';
 import AccountPage from '@components/AccountPage';
-import PrivateRoute from '@components/PrivateRoute';
 
-const AccountPageWrapper = () => (
+const AccountPageWrapper = ({ location }) => (
   <>
     <Head title="Account" />
-    <Router>
-      <PrivateRoute path="/account" component={AccountPage} />
-    </Router>
+    <AccountPage location={location} />
   </>
 );
 

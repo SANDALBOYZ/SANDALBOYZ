@@ -44,6 +44,7 @@
     "prop-types": "^15.6.2",
     "querystringify": "2.0.0",
     "react": "16.8.3",
+    "react-country-region-selector": "^1.4.5",
     "react-dom": "16.8.3",
     "react-helmet": "^5.2.0",
     "react-hook-form": "^3.24.0",

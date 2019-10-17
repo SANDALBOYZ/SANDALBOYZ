@@ -42,11 +42,11 @@ const StyledWrapper = styled.label`
   align-items: center;
 `;
 
-const Checkbox = ({ checked, label, name }) => {
+const Checkbox = ({ checked, label, name, onChange }) => {
   return (
     <StyledWrapper>
       <StyledCheckbox checked={checked}>
-        <NativeCheckbox checked={checked} name={name} />
+        <NativeCheckbox checked={checked} name={name} onChange={onChange} />
         <StyledIcon checked={checked} name="check" />
       </StyledCheckbox>
       <StyledLabel>{label}</StyledLabel>
@@ -58,6 +58,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Checkbox;

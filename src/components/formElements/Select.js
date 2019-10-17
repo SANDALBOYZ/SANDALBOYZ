@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
@@ -29,7 +29,7 @@ const StyledIcon = styled(Icon)`
   pointer-events: none;
 `;
 
-const StyledSelect = styled.select`
+export const selectStyles = css`
   display: block;
   height: 38px;
   width: 100%;
@@ -51,16 +51,22 @@ const StyledSelect = styled.select`
   }
 `;
 
-const Select = ({ label, name, options, ...rest }) => {
+const StyledSelect = styled.select`
+  ${selectStyles};
+`;
+
+const Select = ({ children, label, name, options, ...rest }) => {
   const select = (
     <SelectContainer>
-      <StyledSelect name={name} {...rest}>
-        {options.map(({ disabled, name, value }) => (
-          <option value={value} key={value} disabled={disabled}>
-            {name}
-          </option>
-        ))}
-      </StyledSelect>
+      {children || (
+        <StyledSelect name={name} {...rest}>
+          {options.map(({ disabled, name, value }) => (
+            <option value={value} key={value} disabled={disabled}>
+              {name}
+            </option>
+          ))}
+        </StyledSelect>
+      )}
       <StyledIcon name="chevron-down" />
     </SelectContainer>
   );
