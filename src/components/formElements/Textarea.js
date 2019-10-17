@@ -32,8 +32,8 @@ const StyledTextarea = styled.textarea`
   }
 `;
 
-const Textarea = ({ label, name, size, type, ...rest }) => {
-  const textarea = <StyledTextarea name={name} size={size} {...rest} />;
+const Textarea = React.forwardRef(({ label, name, size, type, ...rest }, ref) => {
+  const textarea = <StyledTextarea name={name} ref={ref} size={size} {...rest} />;
 
   if (label) {
     return (
@@ -44,7 +44,7 @@ const Textarea = ({ label, name, size, type, ...rest }) => {
   }
 
   return textarea;
-};
+});
 
 Textarea.propTypes = {
   label: PropTypes.string,

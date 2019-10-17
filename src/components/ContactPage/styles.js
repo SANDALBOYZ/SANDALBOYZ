@@ -63,7 +63,7 @@ export const FormActions = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: ${space[3]};
 
   & > :first-child {
