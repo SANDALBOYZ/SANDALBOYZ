@@ -76,6 +76,7 @@ const textThemeStyles = css`
   font-weight: ${weights.BOLD};
   letter-spacing: 1px;
   text-transform: uppercase;
+  background: transparent;
   border: none;
   outline: none;
   user-select: none;

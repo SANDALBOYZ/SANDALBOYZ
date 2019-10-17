@@ -13,7 +13,8 @@ export default [
     links: [
       { name: 'FAQ', href: '/faq' },
       { name: 'Terms', href: '/terms' },
-      { name: 'Policy', href: '/policy' },
+      { name: 'Privacy', href: '/privacy' },
+      { name: 'Returns', href: '/returns' },
     ],
   },
   {

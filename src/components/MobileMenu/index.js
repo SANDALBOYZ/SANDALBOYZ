@@ -13,6 +13,7 @@ class MobileMenu extends Component {
     onMenuClose: PropTypes.func.isRequired,
     onMenuOpen: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
+    showLogout: PropTypes.bool.isRequired,
   };
 
   componentDidUpdate(prevProps) {
@@ -26,7 +27,14 @@ class MobileMenu extends Component {
   }
 
   render() {
-    const { onCartClose, onCartOpen, onMenuClose, onMenuOpen, open } = this.props;
+    const {
+      onCartClose,
+      onCartOpen,
+      onMenuClose,
+      onMenuOpen,
+      open,
+      showLogout,
+    } = this.props;
 
     return (
       <styled.Wrapper open={open}>
@@ -54,8 +62,8 @@ class MobileMenu extends Component {
           </Link>
         </styled.Links>
         <styled.Footer>
-          <Link to="/login" onClick={onMenuClose}>
-            <H500>Login</H500>
+          <Link to={showLogout ? '/logout' : '/login'} onClick={onMenuClose}>
+            <H500>{showLogout ? 'Log out' : 'Login'}</H500>
           </Link>
         </styled.Footer>
       </styled.Wrapper>

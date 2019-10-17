@@ -6,12 +6,9 @@ import { mq } from '@utils/styles';
 import { H300 as BaseH300 } from '@utils/type';
 
 export const Actions = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column-reverse;
-  right: ${H_PADDING_MOBILE};
-  bottom: ${H_PADDING_MOBILE};
-  left: ${H_PADDING_MOBILE};
+  margin-top: ${space[6]};
 
   & > *:first-child {
     margin-top: ${space[2]};
@@ -19,9 +16,6 @@ export const Actions = styled.div`
 
   ${mq.gtlg} {
     flex-direction: row;
-    right: ${space[5]};
-    bottom: ${space[5]};
-    left: ${space[5]};
 
     & > *:first-child {
       margin-top: 0;
@@ -32,6 +26,9 @@ export const Actions = styled.div`
 `;
 
 export const Drawer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   right: 0;
@@ -42,6 +39,7 @@ export const Drawer = styled.div`
   background-color: ${colors.N0};
   transition: transform 200ms ease-in-out;
   transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
+  overflow-y: auto;
 
   ${mq.gtlg} {
     width: 470px;

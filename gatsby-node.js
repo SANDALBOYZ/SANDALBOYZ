@@ -16,7 +16,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-      allMarkdownRemark {
+      allMarkdownRemark(filter: {frontmatter: { templateKey: { eq: "story" } } }) {
         edges {
           node {
             id

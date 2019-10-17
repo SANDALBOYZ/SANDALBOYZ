@@ -65,3 +65,39 @@ collections:
             name: about,
             hint: Say something about SANDALBOYZ,
             widget: text
+  - label: Pages
+    name: pages
+    files:
+      - label: FAQ
+        name: faq
+        file: src/content/faq.md
+        fields:
+          - { label: Template Key, name: templateKey, widget: hidden, default: faq }
+          - { label: Title, name: title, widget: string, default: FAQ }
+          - label: Questions
+            name: questions
+            widget: list
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: text }
+      - label: Privacy
+        name: privacy
+        file: src/content/privacy.md
+        fields:
+          - { label: Template Key, name: templateKey, widget: hidden, default: privacy }
+          - { label: Title, name: title, widget: string, default: Privacy Policy }
+          - { label: Body, name: body, widget: markdown }
+      - label: Returns
+        name: returns
+        file: src/content/returns.md
+        fields:
+          - { label: Template Key, name: templateKey, widget: hidden, default: returns }
+          - { label: Title, name: title, widget: string, default: Shipping and Returns }
+          - { label: Body, name: body, widget: markdown }
+      - label: Terms
+        name: terms
+        file: src/content/terms.md
+        fields:
+          - { label: Template Key, name: templateKey, widget: hidden, default: terms }
+          - { label: Title, name: title, widget: string, default: Terms and Conditions }
+          - { label: Body, name: body, widget: markdown }

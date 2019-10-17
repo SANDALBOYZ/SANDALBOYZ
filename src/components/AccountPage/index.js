@@ -138,7 +138,7 @@ class AccountPage extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Check Order Status
+                      Order Status
                     </a>
                     <H500>{getPrice(node.totalPrice)}</H500>
                   </styled.Order>

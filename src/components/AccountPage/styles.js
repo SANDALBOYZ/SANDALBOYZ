@@ -47,8 +47,11 @@ export const Order = styled.div`
 `;
 
 export const Section = styled.div`
+  margin-bottom: ${space[4]};
+
   ${mq.gtlg} {
     width: 50%;
+    margin-bottom: 0;
 
     &:first-child {
       margin-right: ${space[8]};
@@ -61,14 +64,20 @@ export const SectionHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  margin-bottom: ${space[4]};
+  margin-bottom: ${space[2]};
+
+  ${mq.gtlg} {
+    margin-bottom: ${space[4]};
+  }
 `;
 
 export const Wrapper = styled(Container)`
   display: flex;
   flex-direction: column;
+  margin-bottom: ${space[8]};
 
   ${mq.gtlg} {
     flex-direction: row;
+    margin-bottom: 0;
   }
 `;

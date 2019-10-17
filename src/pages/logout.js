@@ -8,7 +8,12 @@ class Logout extends Component {
   }
 
   render() {
-    navigate('/');
+    const isBrowser = typeof window !== 'undefined';
+
+    if (isBrowser) {
+      navigate('/');
+    }
+
     return null;
   }
 }

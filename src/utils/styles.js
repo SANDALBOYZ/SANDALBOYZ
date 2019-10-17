@@ -144,6 +144,54 @@ export const Img = styled(Image)`
   padding-top: 0;
 `;
 
+export const NarrowTextContainer = styled.div`
+  margin: 0 auto ${space[8]};
+  width: 100%;
+  padding: 0 ${H_PADDING_MOBILE};
+
+  ${mq.gtlg} {
+    max-width: ${space[15]};
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  & p {
+    font-family: ${fonts.STANDARD};
+    font-size: 15px;
+    font-weight: ${weights.LIGHT};
+    line-height: 28px;
+    max-width: ${space[15]};
+    margin: ${space[2]} auto;
+
+    ${mq.gtlg} {
+      padding: 0;
+    }
+  }
+
+  & h3 {
+    font-family: ${fonts.CONDENSED};
+    font-size: 18px;
+    font-weight: ${weights.BOLD};
+    line-height: 36px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    &:not(:first-of-type) {
+      margin-top: ${space[6]};
+    }
+  }
+
+  & h4 {
+    margin-top: ${space[4]};
+    font-family: ${fonts.CONDENSED};
+    font-size: 15px;
+    font-weight: ${weights.BOLD};
+    letter-spacing: 1px;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+`;
+
 export const TextContainer = styled.div`
   margin: 0 auto;
   width: 100%;

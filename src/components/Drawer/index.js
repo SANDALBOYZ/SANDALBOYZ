@@ -8,8 +8,10 @@ import * as styled from './styles';
 const Drawer = ({ actions, children, onClose, open, title }) => (
   <styled.Wrapper open={open}>
     <styled.Drawer open={open}>
-      <styled.H300>{title}</styled.H300>
-      {children}
+      <div>
+        <styled.H300>{title}</styled.H300>
+        {children}
+      </div>
       {actions && (
         <styled.Actions>
           <Button
