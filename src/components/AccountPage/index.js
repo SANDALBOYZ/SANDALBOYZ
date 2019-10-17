@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import { navigate } from 'gatsby';
 import get from 'lodash/get';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import format from 'date-fns/format';
 
 import StoreContext from '@context/StoreContext';
-import { addAddress, getCustomer, setDefaultAddress } from '@utils/customer';
+import {
+  addAddress,
+  deleteAddress,
+  getCustomer,
+  setDefaultAddress,
+  updateAddress,
+} from '@utils/customer';
+import getPrice from '@utils/price';
 import { Body, H200, H400, H500 } from '@utils/type';
 import AddressForm from '@components/AddressForm';
 import Button from '@components/Button';
@@ -19,7 +27,7 @@ class AccountPage extends Component {
   state = {
     customer: null,
     loading: true,
-    showAddressForm: false,
+    addressForm: {},
   };
 
   componentDidMount() {
@@ -51,19 +59,52 @@ class AccountPage extends Component {
     this.handleCloseAddressForm();
   };
 
-  handleCloseAddressForm = () => {
-    enableBodyScroll();
-    this.setState({ showAddressForm: false });
+  handleUpdateAddress = async (data, setDefault) => {
+    const { addressForm } = this.state;
+    const addressId = get(addressForm, 'values.id');
+
+    const { addressId: newAddressId } = await updateAddress(data, addressId);
+
+    if (setDefault) {
+      await setDefaultAddress(newAddressId);
+    }
+
+    const customer = await getCustomer();
+    this.context.setCustomer(customer);
+    this.setState({ customer });
+
+    this.handleCloseAddressForm();
   };
 
-  handleOpenAddressForm = () => {
+  handleDeleteAddress = async addressId => {
+    console.log(addressId);
+    await deleteAddress(addressId);
+
+    const customer = await getCustomer();
+    this.context.setCustomer(customer);
+    this.setState({ customer });
+  };
+
+  handleCloseAddressForm = () => {
+    enableBodyScroll();
+    this.setState({ addressForm: {} });
+  };
+
+  handleOpenAddressForm = values => {
     disableBodyScroll();
-    this.setState({ showAddressForm: true });
+    this.setState({
+      addressForm: {
+        open: true,
+        values,
+      },
+    });
   };
 
   render() {
     const { location } = this.props;
-    const { customer, loading, showAddressForm } = this.state;
+    const { customer, loading, addressForm } = this.state;
+
+    console.log(customer);
 
     if (loading) {
       return (
@@ -88,8 +129,19 @@ class AccountPage extends Component {
             </styled.SectionHeader>
             <div>
               {get(customer, 'orders.edges.length') ? (
-                customer.order.edges.map(({ node }) => (
-                  <styled.Order key={node.id}>{node.orderNumber}</styled.Order>
+                customer.orders.edges.map(({ node }) => (
+                  <styled.Order key={node.id}>
+                    <span>#{node.orderNumber}</span>
+                    <span>{format(new Date(node.processedAt), 'MM/d/yy')}</span>
+                    <a
+                      href={node.statusUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Check Order Status
+                    </a>
+                    <H500>{getPrice(node.totalPrice)}</H500>
+                  </styled.Order>
                 ))
               ) : (
                 <Body>You haven't placed any orders yet.</Body>
@@ -99,7 +151,11 @@ class AccountPage extends Component {
           <styled.Section>
             <styled.SectionHeader>
               <H400>Address Book</H400>
-              <Button size="small" theme="light" onClick={this.handleOpenAddressForm}>
+              <Button
+                size="small"
+                theme="light"
+                onClick={this.handleOpenAddressForm}
+              >
                 Add address <Icon name="plus" />
               </Button>
             </styled.SectionHeader>
@@ -116,17 +172,23 @@ class AccountPage extends Component {
                     <Body>
                       {node.city}, {node.province}
                     </Body>
-                    <Body>
-                      {node.country}
-                    </Body>
-                    <Body>
-                      {node.phone}
-                    </Body>
+                    <Body>{node.country}</Body>
+                    <Body>{node.phone}</Body>
                     <styled.AddressActions>
-                      <Button theme="text">
+                      <Button
+                        theme="text"
+                        onClick={() => {
+                          this.handleOpenAddressForm(node);
+                        }}
+                      >
                         Edit
                       </Button>
-                      <Button theme="text_danger">
+                      <Button
+                        theme="text_danger"
+                        onClick={() => {
+                          this.handleDeleteAddress(node.id.toString());
+                        }}
+                      >
                         Remove
                       </Button>
                     </styled.AddressActions>
@@ -138,11 +200,18 @@ class AccountPage extends Component {
             </styled.Addresses>
           </styled.Section>
         </styled.Wrapper>
-        <Drawer open={showAddressForm} title="Add Address">
-          <AddressForm
-            onCancel={this.handleCloseAddressForm}
-            onSubmit={this.handleAddAddress}
-          />
+        <Drawer open={Boolean(addressForm.open)} title="Add Address">
+          {addressForm.open && (
+            <AddressForm
+              initialValues={addressForm.values}
+              onCancel={this.handleCloseAddressForm}
+              onSubmit={
+                addressForm.values
+                  ? this.handleUpdateAddress
+                  : this.handleAddAddress
+              }
+            />
+          )}
         </Drawer>
       </>
     );

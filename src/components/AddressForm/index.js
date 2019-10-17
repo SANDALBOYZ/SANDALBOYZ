@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useForm from 'react-hook-form';
 import styled from 'styled-components';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import get from 'lodash/get';
 
 import space from '@utils/space';
 import Button from '@components/Button';
@@ -37,11 +38,13 @@ const custom = {
   `,
 };
 
-const AddressForm = ({ onCancel, onSubmit }) => {
-  const { errors, handleSubmit, register } = useForm();
+const AddressForm = ({ initialValues = {}, onCancel, onSubmit }) => {
+  const { errors, handleSubmit, register } = useForm({
+    defaultValues: initialValues,
+  });
   const [defaultAddress, setDefaultAddress] = useState(true);
-  const [region, setRegion] = useState('');
-  const [country, setCountry] = useState('');
+  const [region, setRegion] = useState(get(initialValues, 'provinceCode', ''));
+  const [country, setCountry] = useState(get(initialValues, 'country', ''));
 
   const onDefaultChange = evt => {
     setDefaultAddress(evt.target.checked);
@@ -80,11 +83,7 @@ const AddressForm = ({ onCancel, onSubmit }) => {
         ref={register}
       />
       <Group>
-        <Input
-          label="City"
-          name="city"
-          ref={register({ required: true })}
-        />
+        <Input label="City" name="city" ref={register({ required: true })} />
         <Select label="Country">
           <custom.CountryDropdown
             priorityOptions={['US', 'ID', 'CA', 'GB']}

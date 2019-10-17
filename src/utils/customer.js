@@ -40,6 +40,7 @@ export const getCustomerQuery = () =>
                   lastName
                   phone
                   province
+                  provinceCode
                   zip
                 }
               }
@@ -89,10 +90,63 @@ export const addAddress = address =>
       },
     },
   }).then(({ data }) => ({
-    addressId: get(
-      data,
-      'data.customerAddressCreate.customerAddress.id'
-    ),
+    addressId: get(data, 'data.customerAddressCreate.customerAddress.id'),
+  }));
+
+export const updateAddress = (newAddress, addressId) =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation customerAddressUpdate($customerAccessToken: String!, $id: ID!, $address: MailingAddressInput!) {
+          customerAddressUpdate(customerAccessToken: $customerAccessToken, id: $id, address: $address) {
+            userErrors {
+              field
+              message
+            }
+            customerAddress {
+              id
+            }
+          }
+        }
+      `,
+      variables: {
+        customerAccessToken: Cookies.get('_sb_access_token'),
+        id: addressId,
+        address: newAddress,
+      },
+    },
+  }).then(({ data }) => ({
+    addressId: get(data, 'data.customerAddressUpdate.customerAddress.id'),
+  }));
+
+export const deleteAddress = addressId =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation customerAddressDelete($id: ID!, $customerAccessToken: String!) {
+          customerAddressDelete(id: $id, customerAccessToken: $customerAccessToken) {
+            customerUserErrors {
+              code
+              field
+              message
+            }
+            deletedCustomerAddressId
+          }
+        }
+      `,
+      variables: {
+        customerAccessToken: Cookies.get('_sb_access_token'),
+        id: addressId,
+      },
+    },
+  }).then(({ data }) => ({
+    addressId: get(data, 'data.customerAddressDelete.deletedCustomerAddressId'),
   }));
 
 export const setDefaultAddress = addressId =>

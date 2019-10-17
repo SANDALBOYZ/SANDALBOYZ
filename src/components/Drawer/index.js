@@ -46,7 +46,7 @@ Drawer.propTypes = {
       onClick: PropTypes.func,
     }),
   }),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
