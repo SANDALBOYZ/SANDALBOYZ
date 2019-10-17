@@ -20,16 +20,17 @@ const LandingPage = ({ data }) => {
       />
       <ProductGrid
         products={
-          Array.isArray(get(data, 'products.edges')) &&
-          data.products.edges.map(({ node }) => ({
+          Array.isArray(get(data, 'inline.edges')) &&
+          data.inline.edges.map(({ node }) => ({
             id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
             image: get(node, 'images[0].localFile.childImageSharp.fluid.src'),
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
+            soldOut: !get(node, 'availableForSale'),
           }))
         }
-        title="02 / Chroma Collection"
+        title="02 / Inline Collection"
       />
       {Array.isArray(get(data, 'recentStories.edges')) &&
         data.recentStories.edges.length > 1 && (
@@ -63,16 +64,17 @@ const LandingPage = ({ data }) => {
       />
       <ProductGrid
         products={
-          Array.isArray(get(data, 'products.edges')) &&
-          data.products.edges.map(({ node }) => ({
+          Array.isArray(get(data, 'specialProjects.edges')) &&
+          data.specialProjects.edges.map(({ node }) => ({
             id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
             image: get(node, 'images[0].localFile.childImageSharp.fluid.src'),
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
+            soldOut: !get(node, 'availableForSale'),
           }))
         }
-        title="05 / Monogram Collection"
+        title="05 / Special Projects"
       />
     </>
   );
@@ -82,7 +84,7 @@ export default LandingPage;
 
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    hero: markdownRemark(frontmatter: {landingFeatured: {eq: true}}) {
+    hero: markdownRemark(frontmatter: { landingFeatured: { eq: true } }) {
       fields {
         slug
       }
@@ -97,13 +99,44 @@ export const landingPageQuery = graphql`
         title
       }
     }
-    products: allShopifyProduct(
+    inline: allShopifyProduct(
+      filter: { tags: { in: "collection:Inline" } }
       limit: 6
       sort: { fields: [createdAt], order: DESC }
     ) {
       edges {
         node {
           id
+          availableForSale
+          title
+          handle
+          createdAt
+          images {
+            id
+            originalSrc
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 910) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          variants {
+            price
+          }
+        }
+      }
+    }
+    specialProjects: allShopifyProduct(
+      filter: { tags: { in: "collection:Special Projects" } }
+      limit: 6
+      sort: { fields: [createdAt], order: DESC }
+    ) {
+      edges {
+        node {
+          id
+          availableForSale
           title
           handle
           createdAt
@@ -125,7 +158,7 @@ export const landingPageQuery = graphql`
       }
     }
     recentStories: allMarkdownRemark(
-      filter: { frontmatter: { title: { nin: "" } } }
+      filter: { frontmatter: { title: { nin: "" }, templateKey: { eq: "story" } } }
       limit: 2
       sort: { fields: frontmatter___date, order: DESC }
     ) {
@@ -148,7 +181,7 @@ export const landingPageQuery = graphql`
         }
       }
     }
-    teaser: markdownRemark(frontmatter: {blogFeatured: {eq: true}}) {
+    teaser: markdownRemark(frontmatter: { blogFeatured: { eq: true } }) {
       fields {
         slug
       }

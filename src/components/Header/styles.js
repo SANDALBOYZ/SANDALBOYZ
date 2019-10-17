@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space, { H_PADDING } from '@utils/space';
+import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
 import { ContentLabel as BaseContentLabel, H200 as BaseH200 } from '@utils/type';
 
 export const Children = styled.div`
   position: absolute;
   bottom: 0;
-  right: ${H_PADDING};
+  right: ${H_PADDING_MOBILE};
+
+  ${mq.gtlg} {
+    right: ${H_PADDING};
+  }
 `;
 
 export const ContentLabel = styled(BaseContentLabel)`

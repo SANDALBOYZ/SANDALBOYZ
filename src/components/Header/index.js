@@ -8,8 +8,8 @@ const Header = ({ children, label, shrinkOnMobile, theme, title }) => (
     {label && <styled.ContentLabel theme={theme}>{label}</styled.ContentLabel>}
     <styled.TitleContainer>
       <styled.H200 theme={theme}>{title}</styled.H200>
-      {children && <styled.Children>{children}</styled.Children>}
     </styled.TitleContainer>
+    {children && <styled.Children>{children}</styled.Children>}
   </styled.Wrapper>
 );
 

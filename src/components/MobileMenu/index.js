@@ -13,7 +13,7 @@ class MobileMenu extends Component {
     onMenuClose: PropTypes.func.isRequired,
     onMenuOpen: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
-    showLogout: PropTypes.bool.isRequired,
+    showLogout: PropTypes.bool,
   };
 
   componentDidUpdate(prevProps) {
