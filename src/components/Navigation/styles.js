@@ -1,4 +1,4 @@
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
@@ -7,6 +7,8 @@ import { Container as BaseContainer, mq } from '@utils/styles';
 import space from '@utils/space';
 import BaseIcon from '@components/Icon';
 import BaseLogo from '@components/Logo';
+
+const activeClassName = 'active';
 
 export const Container = styled(BaseContainer)`
   display: flex;
@@ -65,6 +67,10 @@ export const Nav = styled.div`
     css`
       & ${NavLink} {
         color: ${colors.N0};
+
+        &:not(:first-child).${activeClassName} {
+          border-bottom: 1px solid ${colors.N0};
+        }
       }
     `}
 `;
@@ -75,6 +81,7 @@ export const NavSection = styled.div`
 `;
 
 const navLinkStyles = css`
+  padding-bottom: ${space[0]};
   color: ${colors.N900};
   font-family: ${fonts.CONDENSED};
   font-size: 14px;
@@ -97,9 +104,15 @@ const navLinkStyles = css`
   }
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(Link).attrs({
+  activeClassName,
+})`
   ${navLinkStyles}
   display: none;
+
+  &:not(:first-child).${activeClassName} {
+    border-bottom: 1px solid ${colors.N900};
+  }
 `;
 
 export const MobileNavLink = styled.a`

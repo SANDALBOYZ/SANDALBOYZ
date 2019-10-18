@@ -28,8 +28,8 @@ const Navigation = ({
           <styled.LogoLink to="/">
             <styled.Logo cartOpen={cartOpen} light={light} />
           </styled.LogoLink>
-          <styled.NavLink to="/products">Products</styled.NavLink>
-          <styled.NavLink to="/stories">Stories</styled.NavLink>
+          <styled.NavLink to="/products" partiallyActive>Products</styled.NavLink>
+          <styled.NavLink to="/stories" partiallyActive>Stories</styled.NavLink>
           <styled.NavLink to="/contact">Contact</styled.NavLink>
         </styled.NavSection>
         <styled.NavSection>
