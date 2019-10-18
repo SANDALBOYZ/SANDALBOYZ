@@ -19,7 +19,7 @@ const ProductGrid = ({ products, title }) => (
 
 ProductGrid.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.object,
+    images: PropTypes.arrayOf(PropTypes.object),
     price: PropTypes.string,
     soldOut: PropTypes.bool,
     title: PropTypes.string.isRequired,

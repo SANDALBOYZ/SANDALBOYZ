@@ -24,7 +24,10 @@ const LandingPage = ({ data }) => {
           data.inline.edges.map(({ node }) => ({
             id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
-            image: get(node, 'images[0].localFile.childImageSharp.fluid'),
+            images: [
+              get(node, 'images[0].localFile.childImageSharp.fluid'),
+              get(node, 'images[1].localFile.childImageSharp.fluid'),
+            ],
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
             soldOut: !get(node, 'availableForSale'),
@@ -68,7 +71,10 @@ const LandingPage = ({ data }) => {
           data.specialProjects.edges.map(({ node }) => ({
             id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
-            image: get(node, 'images[0].localFile.childImageSharp.fluid'),
+            images: [
+              get(node, 'images[0].localFile.childImageSharp.fluid'),
+              get(node, 'images[1].localFile.childImageSharp.fluid'),
+            ],
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
             soldOut: !get(node, 'availableForSale'),
@@ -158,7 +164,9 @@ export const landingPageQuery = graphql`
       }
     }
     recentStories: allMarkdownRemark(
-      filter: { frontmatter: { title: { nin: "" }, templateKey: { eq: "story" } } }
+      filter: {
+        frontmatter: { title: { nin: "" }, templateKey: { eq: "story" } }
+      }
       limit: 2
       sort: { fields: frontmatter___date, order: DESC }
     ) {

@@ -8,6 +8,16 @@ export const ImageWrapper = styled.div`
   position: relative;
   padding-bottom: 77%;
   background-color: ${colors.N100};
+
+  & > *:last-child {
+    opacity: 0;
+  }
+
+  &:hover {
+    & > *:last-child {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Info = styled.div`

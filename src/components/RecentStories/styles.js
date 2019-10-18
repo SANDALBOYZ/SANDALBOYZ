@@ -23,6 +23,17 @@ export const ImageWrapper = styled.div`
   position: relative;
   padding-bottom: 100%;
   background-color: ${colors.N100};
+  overflow: hidden;
+
+  & > div {
+    transform: scale(1);
+    transition: transform 500ms linear;
+  }
+
+  & img {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
 `;
 
 export const Info = styled.div`
@@ -52,6 +63,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+
+  &:hover ${ImageWrapper} > div {
+    transform: scale(1.05);
+  }
 `;
 
 

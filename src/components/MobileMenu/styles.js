@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
@@ -18,17 +19,24 @@ export const Footer = styled.div`
   }
 `;
 
-export const Links = styled.div`
-  text-align: center;
+const activeClassName = 'active';
 
-  & > a {
-    display: block;
-    color: ${colors.N0};
+export const NavLink = styled(Link).attrs({ activeClassName })`
+  display: block;
+  color: ${colors.N0};
+
+  &.${activeClassName} {
+    color: ${colors.N600};
+    text-decoration: line-through;
   }
 
-  & > a:not(:last-child) {
+  &:not(:last-child) {
     margin-bottom: ${space[5]};
   }
+`;
+
+export const Links = styled.div`
+  text-align: center;
 `;
 
 export const Wrapper = styled.div`

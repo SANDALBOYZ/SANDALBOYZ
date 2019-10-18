@@ -48,18 +48,18 @@ class MobileMenu extends Component {
           onMenuOpen={onMenuOpen}
         />
         <styled.Links>
-          <Link to="/products" onClick={onMenuClose}>
+          <styled.NavLink to="/products" onClick={onMenuClose} partiallyActive>
             <H300>Products</H300>
-          </Link>
-          <Link to="/stories" onClick={onMenuClose}>
+          </styled.NavLink>
+          <styled.NavLink to="/stories" onClick={onMenuClose} partiallyActive>
             <H300>Stories</H300>
-          </Link>
-          <Link to="/search" onClick={onMenuClose}>
+          </styled.NavLink>
+          <styled.NavLink to="/search" onClick={onMenuClose}>
             <H300>Search</H300>
-          </Link>
-          <Link to="/contact" onClick={onMenuClose}>
+          </styled.NavLink>
+          <styled.NavLink to="/contact" onClick={onMenuClose}>
             <H300>Contact</H300>
-          </Link>
+          </styled.NavLink>
         </styled.Links>
         <styled.Footer>
           <Link to={showLogout ? '/logout' : '/login'} onClick={onMenuClose}>
