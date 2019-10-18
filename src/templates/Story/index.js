@@ -9,7 +9,7 @@ import { FullWidthImage, SplitImage, TwoThirdsImage } from '@components/StoryIma
 import * as styled from './styles';
 
 class Story extends Component {
-  renderSection = (section) => {
+  renderSection = (section, idx) => {
     if (section.type === 'image') {
       const { caption, imageType } = section;
       const images = get(section, 'images', []).map(image => get(image, 'childImageSharp.fluid'));
@@ -26,7 +26,7 @@ class Story extends Component {
       }
     }
 
-    return <div dangerouslySetInnerHTML={{ __html: section.html }} />;
+    return <div key={idx} dangerouslySetInnerHTML={{ __html: section.html }} />;
   };
 
   render() {

@@ -41,7 +41,7 @@ export const Drawer = styled.div`
   transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
   overflow-y: auto;
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     width: 470px;
     max-width: 470px;
     padding: ${space[5]};

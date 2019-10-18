@@ -85,19 +85,27 @@ const Contact = () => {
         <styled.Emails>
           <styled.Email>
             <styled.H600>Press:</styled.H600>
-            <Body>press@sandalboyz.com</Body>
+            <a href="mailto:press@sandalboyz.com">
+              <Body>press@sandalboyz.com</Body>
+            </a>
           </styled.Email>
           <styled.Email>
             <styled.H600>General:</styled.H600>
-            <Body>contact@sandalboyz.com</Body>
+            <a href="mailto:contact@sandalboyz.com">
+              <Body>contact@sandalboyz.com</Body>
+            </a>
           </styled.Email>
           <styled.Email>
             <styled.H600>Support:</styled.H600>
-            <Body>support@sandalboyz.com</Body>
+            <a href="mailto:support@sandalboyz.com">
+              <Body>support@sandalboyz.com</Body>
+            </a>
           </styled.Email>
           <styled.Email>
             <styled.H600>Wholesale:</styled.H600>
-            <Body>sales@sandalboyz.com</Body>
+            <a href="mailto:sales@sandalboyz.com">
+              <Body>sales@sandalboyz.com</Body>
+            </a>
           </styled.Email>
         </styled.Emails>
       </styled.TalkWrapper>

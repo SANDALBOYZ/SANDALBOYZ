@@ -20,7 +20,7 @@ StoriesGrid.propTypes = {
   stories: PropTypes.arrayOf(PropTypes.shape({
     category: PropTypes.string,
     href: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.object,
     title: PropTypes.string.isRequired,
   })),
 };

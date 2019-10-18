@@ -104,8 +104,6 @@ class AccountPage extends Component {
     const { location } = this.props;
     const { customer, loading, addressForm } = this.state;
 
-    console.log(customer);
-
     if (loading) {
       return (
         <styled.Loading>
@@ -114,10 +112,10 @@ class AccountPage extends Component {
       );
     }
 
-    if (!customer && location.pathname !== '/login') {
-      navigate('/login');
-      return null;
-    }
+    // if (!customer && location.pathname !== '/login') {
+    //   navigate('/login');
+    //   return null;
+    // }
 
     return (
       <>
@@ -159,9 +157,9 @@ class AccountPage extends Component {
                 Add address <Icon name="plus" />
               </Button>
             </styled.SectionHeader>
-            <styled.Addresses>
-              {get(customer, 'addresses.edges.length') ? (
-                customer.addresses.edges.map(({ node }) => (
+            {get(customer, 'addresses.edges.length') ? (
+              <styled.Addresses>
+                {customer.addresses.edges.map(({ node }) => (
                   <styled.Address key={node.id}>
                     <H500>
                       {node.firstName} {node.lastName}
@@ -193,11 +191,11 @@ class AccountPage extends Component {
                       </Button>
                     </styled.AddressActions>
                   </styled.Address>
-                ))
-              ) : (
-                <Body>You haven't added any addresses yet.</Body>
-              )}
-            </styled.Addresses>
+                ))}
+              </styled.Addresses>
+            ) : (
+              <Body>You haven't added any addresses yet.</Body>
+            )}
           </styled.Section>
         </styled.Wrapper>
         <Drawer open={Boolean(addressForm.open)} title="Add Address">

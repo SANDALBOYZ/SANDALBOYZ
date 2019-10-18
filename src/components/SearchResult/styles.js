@@ -10,7 +10,7 @@ export const Body = styled(type.Body)`
   margin-bottom: ${space[5]};
   color: ${colors.N500};
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     display: block;
   }
 `;
@@ -30,7 +30,7 @@ export const Image = styled.div`
   background-position: center;
   background-size: cover;
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     width: 300px;
   }
 `;
@@ -39,7 +39,7 @@ export const Info = styled.div`
   flex: 1;
   padding: ${space[2]};
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     padding: ${space[6]};
   }
 `;
@@ -49,7 +49,7 @@ export const Wrapper = styled.div`
   height: 80px;
   margin-bottom: ${space[3]};
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     height: 300px;
     margin-bottom: ${space[5]};
   }

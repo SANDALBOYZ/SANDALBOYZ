@@ -28,12 +28,16 @@ const LoginForm = () => {
         userErrors.forEach(err => {
           const errors = {};
 
-          if (err.field.includes('email')) {
+          if (err.field && err.field.includes('email')) {
             errors.email = err.message;
           }
 
-          if (err.field.includes('password')) {
+          if (err.field && err.field.includes('password')) {
             errors.password = err.message;
+          }
+
+          if (err.message && err.message.includes('Unidentified')) {
+            errors.general = 'We couldn\'t find an account matching that email.';
           }
 
           setErrors(errors);

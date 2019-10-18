@@ -13,7 +13,7 @@ export const Form = styled.form`
     margin-bottom: ${space[3]};
   }
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     flex-direction: row;
     width: ${space[13]};
     margin-top: ${space[6]};
@@ -31,6 +31,10 @@ export const Wrapper = styled.div`
   align-items: center;
   margin: ${space[2]} 0 ${space[7]};
   text-align: center;
+
+  ${mq.gtmd} {
+    margin-top: ${space[6]};
+  }
 
   ${mq.gtlg} {
     margin-top: ${space[10]};

@@ -49,7 +49,7 @@ export const Links = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     flex-wrap: nowrap;
   }
 `;

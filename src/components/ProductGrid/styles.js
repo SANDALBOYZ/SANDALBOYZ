@@ -9,7 +9,7 @@ export const H500 = styled(BaseH500)`
   margin-bottom: ${space[2]};
   padding: 0 ${H_PADDING_MOBILE};
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     padding: 0;
   }
 `;
@@ -18,6 +18,10 @@ const AUTO_GRID_MIN_SIZE = '22rem';
 
 export const Container = styled(BaseContainer)`
   padding: 0;
+
+  ${mq.gtmd} {
+    padding: 0 ${H_PADDING_MOBILE};
+  }
 
   ${mq.gtlg} {
     padding: 0 ${H_PADDING};
@@ -29,7 +33,7 @@ export const Products = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(${AUTO_GRID_MIN_SIZE}, 1fr));
   grid-row-gap: ${space[2]};
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     grid-gap: ${space[2]};
   }
 `;

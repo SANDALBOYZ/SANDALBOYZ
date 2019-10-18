@@ -68,7 +68,7 @@ export const Selections = styled.div`
     width: 100%;
   }
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     flex-wrap: nowrap;
     align-items: flex-end;
     margin: ${space[5]} 0 ${space[6]};

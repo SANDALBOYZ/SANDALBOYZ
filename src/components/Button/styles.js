@@ -45,7 +45,7 @@ export const baseButton = css`
     transform: translateY(-1px);
   }
 
-  ${mq.gtlg} {
+  ${mq.gtmd} {
     height: 50px;
     padding: 0 ${space[6]};
     line-height: 48px;
@@ -54,14 +54,14 @@ export const baseButton = css`
 
 export const sizes = {
   small: css`
-    ${mq.gtlg} {
+    ${mq.gtmd} {
       height: 40px;
       padding: 0 ${space[3]};
       line-height: 40px;
     }
   `,
   large: css`
-    ${mq.gtlg} {
+    ${mq.gtmd} {
       height: 60px;
       padding: 0 ${space[5]};
       line-height: 60px;
