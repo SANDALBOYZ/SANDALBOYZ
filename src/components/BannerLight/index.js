@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 
+import { AbsoluteImg } from '@utils/styles';
 import { H200 } from '@utils/type';
 import * as styled from './styles';
 
 const BannerLight = ({ cta, image, label, title }) => (
   <styled.Wrapper>
-    <styled.Background image={get(image, 'childImageSharp.fluid.src', image)} />
+    <styled.Background>
+      {image && (
+        <AbsoluteImg fluid={image} />
+      )}
+    </styled.Background>
     <styled.Box>
       {label && <styled.H500>{label}</styled.H500>}
       <H200>{title}</H200>

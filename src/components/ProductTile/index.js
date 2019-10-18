@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
 import getPrice from '@utils/price';
-import { Breakpoint, breakpoints } from '@utils/styles';
+import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
 import { Badge, H300M, H400, H600 } from '@utils/type';
 import * as styled from './styles';
 
@@ -15,7 +15,11 @@ const ProductTile = ({ href, image, price, soldOut, title }) => (
           <Badge>Sold out</Badge>
         </styled.SoldOut>
       )}
-      <styled.Image image={image} />
+      <styled.ImageWrapper>
+        {image && (
+          <AbsoluteImg fluid={image} />
+        )}
+      </styled.ImageWrapper>
       <styled.Info>
         <H600>{getPrice(price)}</H600>
         <Breakpoint max={breakpoints.lg}>
@@ -30,7 +34,7 @@ const ProductTile = ({ href, image, price, soldOut, title }) => (
 );
 
 ProductTile.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.object,
   price: PropTypes.string,
   soldOut: PropTypes.bool,
   title: PropTypes.string.isRequired,

@@ -4,13 +4,10 @@ import colors from '@utils/colors';
 import { mq } from '@utils/styles';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 
-export const Image = styled.div`
+export const ImageWrapper = styled.div`
   position: relative;
   padding-bottom: 77%;
   background-color: ${colors.N100};
-  background-image: url(${props => props.image});
-  background-position: center;
-  background-size: cover;
 `;
 
 export const Info = styled.div`

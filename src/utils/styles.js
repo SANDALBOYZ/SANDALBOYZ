@@ -144,6 +144,22 @@ export const Img = styled(Image)`
   padding-top: 0;
 `;
 
+export const AbsoluteImg = styled(Image)`
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+`;
+
 export const NarrowTextContainer = styled.div`
   margin: 0 auto ${space[8]};
   width: 100%;

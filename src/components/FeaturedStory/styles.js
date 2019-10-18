@@ -50,9 +50,6 @@ export const Wrapper = styled.div`
   position: relative;
   padding-bottom: 106.25%;
   background-color: ${colors.N100};
-  background-image: ${props => `url(${props.image})`};
-  background-position: center;
-  background-size: cover;
 
   ${mq.gtlg} {
     height: 500px;

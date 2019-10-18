@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import get from 'lodash/get';
 
+import { AbsoluteImg } from '@utils/styles';
 import * as styled from './styles';
 
 const FeaturedStory = ({ href, image, label, title }) => (
-  <styled.Wrapper image={get(image, 'childImageSharp.fluid.src', image)}>
+  <styled.Wrapper>
+    <AbsoluteImg fluid={image} />
     <styled.Inner>
       <styled.Overlay />
       {label && (
@@ -21,7 +22,7 @@ const FeaturedStory = ({ href, image, label, title }) => (
 
 FeaturedStory.propTypes = {
   href: PropTypes.string.isRequired,
-  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  image: PropTypes.object,
   label: PropTypes.string,
   title: PropTypes.string.isRequired,
 };

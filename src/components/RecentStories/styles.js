@@ -19,12 +19,10 @@ export const H600 = styled(BaseH300)`
   margin-bottom: ${space[1]};
 `;
 
-export const Image = styled.div`
+export const ImageWrapper = styled.div`
+  position: relative;
   padding-bottom: 100%;
   background-color: ${colors.N100};
-  background-image: ${props => `url(${props.image})`};
-  background-position: center;
-  background-size: cover;
 `;
 
 export const Info = styled.div`

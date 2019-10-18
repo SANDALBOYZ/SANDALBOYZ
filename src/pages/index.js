@@ -14,7 +14,7 @@ const LandingPage = ({ data }) => {
       <Head title="Home" keywords={['gatsby', 'application', 'react']} />
       <Hero
         href={get(data, 'hero.fields.slug')}
-        image={get(data, 'hero.frontmatter.hero')}
+        image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}
         label="01 / Featured Story"
         title={get(data, 'hero.frontmatter.title')}
       />
@@ -24,7 +24,7 @@ const LandingPage = ({ data }) => {
           data.inline.edges.map(({ node }) => ({
             id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
-            image: get(node, 'images[0].localFile.childImageSharp.fluid.src'),
+            image: get(node, 'images[0].localFile.childImageSharp.fluid'),
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
             soldOut: !get(node, 'availableForSale'),
@@ -39,7 +39,7 @@ const LandingPage = ({ data }) => {
               href: get(data, 'recentStories.edges[0].node.fields.slug'),
               image: get(
                 data,
-                'recentStories.edges[0].node.frontmatter.hero.childImageSharp.fluid.src'
+                'recentStories.edges[0].node.frontmatter.hero.childImageSharp.fluid'
               ),
               title: get(data, 'recentStories.edges[0].node.frontmatter.title'),
             }}
@@ -47,7 +47,7 @@ const LandingPage = ({ data }) => {
               href: get(data, 'recentStories.edges[1].node.fields.slug'),
               image: get(
                 data,
-                'recentStories.edges[1].node.frontmatter.hero.childImageSharp.fluid.src'
+                'recentStories.edges[1].node.frontmatter.hero.childImageSharp.fluid'
               ),
               title: get(data, 'recentStories.edges[1].node.frontmatter.title'),
             }}
@@ -58,7 +58,7 @@ const LandingPage = ({ data }) => {
           href: get(data, 'teaser.fields.slug'),
           name: 'View blog',
         }}
-        image={get(data, 'teaser.frontmatter.hero')}
+        image={get(data, 'teaser.frontmatter.hero.childImageSharp.fluid')}
         label="04 / Featured Story"
         title={get(data, 'teaser.frontmatter.title')}
       />
@@ -68,7 +68,7 @@ const LandingPage = ({ data }) => {
           data.specialProjects.edges.map(({ node }) => ({
             id: get(node, 'id'),
             href: `/products/${get(node, 'handle')}`,
-            image: get(node, 'images[0].localFile.childImageSharp.fluid.src'),
+            image: get(node, 'images[0].localFile.childImageSharp.fluid'),
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
             soldOut: !get(node, 'availableForSale'),

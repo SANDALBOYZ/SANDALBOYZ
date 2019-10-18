@@ -38,7 +38,4 @@ export const Wrapper = styled.div`
   position: relative;
   padding-bottom: 77%;
   background-color: ${colors.N100};
-  background-image: ${props => `url(${props.image})`};
-  background-position: center;
-  background-size: cover;
 `;

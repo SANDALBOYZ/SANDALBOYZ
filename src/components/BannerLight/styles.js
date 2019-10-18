@@ -14,9 +14,6 @@ export const Background = styled.div`
   left: 0;
   z-index: -1;
   background-color: ${colors.N100};
-  background-image: url(${props => props.image});
-  background-position: center;
-  background-size: cover;
 `;
 
 export const Box = styled.div`

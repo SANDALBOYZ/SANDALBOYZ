@@ -7,11 +7,9 @@ import { H500 as BaseH500 } from '@utils/type';
 import BaseButton from '@components/Button';
 
 export const Background = styled.div`
+  position: relative;
   padding-bottom: 95%;
   background-color: ${colors.N100};
-  background-image: url(${props => props.image});
-  background-position: center;
-  background-size: cover;
 
   ${mq.gtlg} {
     position: absolute;

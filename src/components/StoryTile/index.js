@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
+import { AbsoluteImg } from '@utils/styles';
 import * as styled from './styles';
 
 const StoryTile = ({ category, href, image, title }) => (
-  <styled.Wrapper image={image}>
+  <styled.Wrapper>
+    {image && (
+      <AbsoluteImg fluid={image} />
+    )}
     <Link to={href}>
       <styled.Overlay />
       <styled.Inner>
@@ -19,7 +23,7 @@ const StoryTile = ({ category, href, image, title }) => (
 StoryTile.propTypes = {
   category: PropTypes.string,
   href: PropTypes.string.isRequired,
-  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  image: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
 };
 

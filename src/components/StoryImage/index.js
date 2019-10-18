@@ -3,17 +3,14 @@ import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
 import space, { H_PADDING_MOBILE } from '@utils/space';
-import { mq } from '@utils/styles';
+import { AbsoluteImg, mq } from '@utils/styles';
 import { H400 } from '@utils/type';
 
-export const FullWidthImage = styled.div`
+const FullWidthImageWrapper = styled.div`
+  position: relative;
   margin: ${space[7]} 0;
   padding-bottom: 66.67%;
   background-color: ${colors.N100};
-  background-image: ${props => `url(${props.image})`};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
   ${mq.gtlg} {
     margin: ${space[9]} 0;
@@ -21,14 +18,19 @@ export const FullWidthImage = styled.div`
   }
 `;
 
+export const FullWidthImage = ({ image }) => (
+  <FullWidthImageWrapper>
+    {image && (
+      <AbsoluteImg fluid={image} />
+    )}
+  </FullWidthImageWrapper>
+);
+
 const splitImage = css`
+  position: relative;
   padding-bottom: 122.5%;
   width: 100%;
   background-color: ${colors.N100};
-  background-image: ${props => `url(${props.image})`};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
   ${mq.gtlg} {
     height: 580px;
@@ -77,10 +79,18 @@ const SplitWrapper = styled.div`
 export const SplitImage = ({ caption, images }) => (
   <SplitWrapper>
     <SplitLeft>
-      <SplitImageOne image={images[0]} />
+      <SplitImageOne>
+        {images[0] && (
+          <AbsoluteImg fluid={images[0]} />
+        )}
+      </SplitImageOne>
       {caption && <SplitCaption>{caption}</SplitCaption>}
     </SplitLeft>
-    <SplitImageTwo image={images[1]} />
+    <SplitImageTwo>
+      {images[1] && (
+        <AbsoluteImg fluid={images[1]} />
+      )}
+    </SplitImageTwo>
   </SplitWrapper>
 );
 
@@ -91,10 +101,6 @@ const TwoThirdsBackground = styled.div`
   bottom: 0;
   left: 0;
   background-color: ${colors.N100};
-  background-image: ${props => `url(${props.image})`};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
   ${mq.gtlg} {
     width: 77%;
@@ -114,6 +120,10 @@ const TwoThirdsWrapper = styled.div`
 
 export const TwoThirdsImage = ({ image }) => (
   <TwoThirdsWrapper>
-    <TwoThirdsBackground image={image} />
+    <TwoThirdsBackground>
+      {image && (
+        <AbsoluteImg fluid={image} />
+      )}
+    </TwoThirdsBackground>
   </TwoThirdsWrapper>
 );

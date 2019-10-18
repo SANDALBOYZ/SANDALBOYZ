@@ -18,11 +18,9 @@ export const Authors = styled.div`
 `;
 
 export const Background = styled.div`
+  position: relative;
   padding-bottom: 95%;
   background-color: ${colors.N100};
-  background-image: url(${props => props.image});
-  background-position: center;
-  background-size: cover;
 
   ${mq.gtlg} {
     position: absolute;

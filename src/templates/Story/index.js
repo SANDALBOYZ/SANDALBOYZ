@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
 import Head from '@utils/seo';
+import { AbsoluteImg } from '@utils/styles';
 import { H100, H200 } from '@utils/type';
 import { FullWidthImage, SplitImage, TwoThirdsImage } from '@components/StoryImage';
 import * as styled from './styles';
@@ -11,7 +12,7 @@ class Story extends Component {
   renderSection = (section) => {
     if (section.type === 'image') {
       const { caption, imageType } = section;
-      const images = get(section, 'images', []).map(image => get(image, 'childImageSharp.fluid.src'));
+      const images = get(section, 'images', []).map(image => get(image, 'childImageSharp.fluid'));
 
       switch (imageType) {
         case 'fullWidth':
@@ -35,9 +36,9 @@ class Story extends Component {
       <>
         <Head title="Story" />
         <styled.Hero>
-          <styled.Background
-            image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
-          />
+          <styled.Background>
+            <AbsoluteImg fluid={get(data, 'story.frontmatter.hero.childImageSharp.fluid')} />
+          </styled.Background>
           <styled.Box>
             <H100>{get(data, 'story.frontmatter.title')}</H100>
           </styled.Box>

@@ -88,7 +88,7 @@ class ProductsPage extends Component {
             products={products.map(({ node }) => ({
               id: get(node, 'id'),
               href: `/products/${get(node, 'handle')}`,
-              image: get(node, 'images[0].localFile.childImageSharp.fluid.src'),
+              image: get(node, 'images[0]'),
               price: get(node, 'variants[0].price'),
               title: get(node, 'title'),
               soldOut: !get(node, 'availableForSale'),

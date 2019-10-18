@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 
+import { AbsoluteImg } from '@utils/styles';
 import * as styled from './styles';
 
 const BannerDark = ({ cta, image, label, title }) => (
   <styled.Wrapper>
-    <styled.Background image={get(image, 'childImageSharp.fluid.src', image)} />
+    <styled.Background>
+      {image && (
+        <AbsoluteImg image={image} />
+      )}
+    </styled.Background>
     <styled.Box>
       {label && <styled.ContentLabel>{label}</styled.ContentLabel>}
       <styled.H200>{title}</styled.H200>
