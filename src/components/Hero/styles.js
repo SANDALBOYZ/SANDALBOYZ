@@ -40,7 +40,7 @@ export const Button = styled(BaseButton)`
 
 export const H500 = styled(BaseH500)`
   margin: ${space[3]} 0 ${space[0]};
-  color: ${colors.N500};
+  color: ${colors.N600};
 
   ${mq.gtlg} {
     color: ${colors.N900};

@@ -2,14 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import getPrice from '@utils/price';
-import { Breakpoint, breakpoints } from '@utils/styles';
+import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
 import truncate from '@utils/truncate';
 import Button from '@components/Button';
 import * as styled from './styles';
 
 const SearchResult = ({ collection, description, href, image, price, title }) => (
   <styled.Wrapper>
-    <styled.Image image={image} />
+    <styled.Image>
+      <AbsoluteImg fluid={image} />
+    </styled.Image>
     <styled.Info>
       <styled.H400>{collection && `${collection} | `}{title}</styled.H400>
       <styled.H500>{getPrice(price)}</styled.H500>

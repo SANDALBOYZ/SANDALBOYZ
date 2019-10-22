@@ -29,7 +29,7 @@ const SearchPage = () => (
                   originalSrc
                   localFile {
                     childImageSharp {
-                      fluid(maxWidth: 910) {
+                      fluid(maxWidth: 160) {
                         ...GatsbyImageSharpFluid
                       }
                     }

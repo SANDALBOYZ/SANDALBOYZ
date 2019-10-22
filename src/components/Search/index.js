@@ -57,7 +57,7 @@ class Search extends Component {
                   href={`/products/${get(matchingProduct, 'handle')}`}
                   image={get(
                     matchingProduct,
-                    'images[0].localFile.childImageSharp.fluid.src'
+                    'images[0].localFile.childImageSharp.fluid'
                   )}
                   price={get(matchingProduct, 'variants[0].price')}
                   title={get(matchingProduct, 'title')}

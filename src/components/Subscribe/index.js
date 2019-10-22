@@ -29,6 +29,7 @@ class Subscribe extends Component {
             placeholder="email@example.com"
             value={this.state.email}
             onChange={this.handleChange}
+            aria-label="Email"
           />
           <Button>Subscribe</Button>
         </styled.Form>

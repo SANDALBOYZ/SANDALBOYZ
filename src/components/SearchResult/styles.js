@@ -26,9 +26,6 @@ export const H500 = styled(type.H500)`
 export const Image = styled.div`
   width: 80px;
   background-color: ${colors.N100};
-  background-image: ${props => `url(${props.image})`};
-  background-position: center;
-  background-size: cover;
 
   ${mq.gtmd} {
     width: 300px;

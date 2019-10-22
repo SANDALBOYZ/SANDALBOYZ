@@ -25,7 +25,7 @@ const Navigation = ({
     <styled.Nav cartOpen={cartOpen} light={light}>
       <styled.Container>
         <styled.NavSection>
-          <styled.LogoLink to="/">
+          <styled.LogoLink to="/" aria-label="SANDALBOYZ">
             <styled.Logo cartOpen={cartOpen} light={light} />
           </styled.LogoLink>
           <styled.NavLink to="/products" partiallyActive>Products</styled.NavLink>

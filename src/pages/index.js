@@ -122,7 +122,7 @@ export const landingPageQuery = graphql`
             originalSrc
             localFile {
               childImageSharp {
-                fluid(maxWidth: 910) {
+                fluid(maxWidth: 360) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -151,7 +151,7 @@ export const landingPageQuery = graphql`
             originalSrc
             localFile {
               childImageSharp {
-                fluid(maxWidth: 910) {
+                fluid(maxWidth: 360) {
                   ...GatsbyImageSharpFluid
                 }
               }

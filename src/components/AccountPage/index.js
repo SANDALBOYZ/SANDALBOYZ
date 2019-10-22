@@ -77,7 +77,6 @@ class AccountPage extends Component {
   };
 
   handleDeleteAddress = async addressId => {
-    console.log(addressId);
     await deleteAddress(addressId);
 
     const customer = await getCustomer();

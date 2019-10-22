@@ -66,7 +66,15 @@ export const Section = styled.div`
   width: 50%;
   margin-bottom: ${space[6]};
 
+  & p {
+    line-height: 40px;
+  }
+
   ${mq.gtlg} {
+    & p {
+      line-height: 28px;
+    }
+
     &:not(:last-child) {
       margin-right: ${space[8]};
     }
