@@ -11,7 +11,7 @@ import RecentStories from '@components/RecentStories';
 const LandingPage = ({ data }) => {
   return (
     <>
-      <Head title="Home" keywords={['gatsby', 'application', 'react']} />
+      <Head title="Home" />
       <Hero
         href={get(data, 'hero.fields.slug')}
         image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}

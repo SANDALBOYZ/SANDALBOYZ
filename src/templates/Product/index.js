@@ -104,7 +104,26 @@ class Product extends Component {
 
     return (
       <>
-        <Head title={product.title} description={product.description} />
+        <Head
+          title={product.title}
+          description={product.description}
+          ogType="product"
+          meta={[
+            {
+              property: 'og:image',
+              content: get(product, 'images[0].localFile.childImageSharp.fluid.src'),
+            },
+            {
+              property: 'og:price:amount',
+              content: get(product, 'variants[0].price'),
+            },
+            {
+              property: 'og:price:amount',
+              content: 'USD',
+            },
+          ]}
+          slug={`/products/${product.handle}`}
+        />
         <styled.Container>
           <styled.MobileProductInfo>
             <H300M>{product.title}</H300M>

@@ -8,7 +8,7 @@ import Search from '@components/Search';
 
 const SearchPage = () => (
   <>
-    <Head title="Search" keywords={['gatsby', 'application', 'react']} />
+    <Head title="Search" />
     <Header shrinkOnMobile title="Search Products" />
     <StaticQuery
       query={graphql`
