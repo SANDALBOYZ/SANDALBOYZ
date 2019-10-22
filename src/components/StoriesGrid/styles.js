@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq, Container as BaseContainer } from '@utils/styles';
 
-const AUTO_GRID_MIN_SIZE = '22rem';
+const AUTO_GRID_MIN_SIZE = '20rem';
 
 export const Container = styled(BaseContainer)`
   padding: 0;
