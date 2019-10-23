@@ -64,14 +64,16 @@ const Button = props => {
     ${styles}
   `;
 
-  if (external && href) {
-    StyledButton = styled.a.attrs({ href })`
+  if (!rest.disabled) {
+    if (external && href) {
+      StyledButton = styled.a.attrs({ href })`
       ${styles}
-    `;
-  } else if (href) {
-    StyledButton = styled(Link).attrs({ to: href })`
+      `;
+    } else if (href) {
+      StyledButton = styled(Link).attrs({ to: href })`
       ${styles}
-    `;
+      `;
+    }
   }
 
   return <StyledButton {...rest}>{children}</StyledButton>;
