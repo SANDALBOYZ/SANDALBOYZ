@@ -111,10 +111,10 @@ class AccountPage extends Component {
       );
     }
 
-    // if (!customer && location.pathname !== '/login') {
-    //   navigate('/login');
-    //   return null;
-    // }
+    if (!customer && location.pathname !== '/signin') {
+      navigate('/signin');
+      return null;
+    }
 
     return (
       <>
@@ -203,7 +203,7 @@ class AccountPage extends Component {
               initialValues={addressForm.values}
               onCancel={this.handleCloseAddressForm}
               onSubmit={
-                addressForm.values
+                get(addressForm, 'values.id')
                   ? this.handleUpdateAddress
                   : this.handleAddAddress
               }

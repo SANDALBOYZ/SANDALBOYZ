@@ -113,7 +113,7 @@ const AddressForm = ({ initialValues = {}, onCancel, onSubmit }) => {
         <Input
           label="Phone"
           name="phone"
-          ref={register({ required: true })}
+          ref={register}
           type="tel"
         />
       </Group>
