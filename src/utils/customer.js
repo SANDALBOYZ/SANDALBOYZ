@@ -204,7 +204,7 @@ export const register = input =>
     userErrors: get(data, 'data.customerCreate.userErrors'),
   }));
 
-export const login = input =>
+export const signin = input =>
   axios({
     url: apiUrl,
     method: 'post',

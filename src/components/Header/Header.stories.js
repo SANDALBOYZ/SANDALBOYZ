@@ -8,14 +8,14 @@ export default { title: 'Header' };
 
 export const Desktop = () => (
   <Header
-    label="Login"
+    label="Sign in"
     title="Welcome back"
   />
 );
 
 export const desktopDark = () => (
   <Header
-    label="Login"
+    label="Sign in"
     theme="dark"
     title="Welcome back"
   />

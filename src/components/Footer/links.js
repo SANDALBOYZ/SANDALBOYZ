@@ -5,7 +5,7 @@ export default [
       { name: 'Products', href: '/products' },
       { name: 'Stories', href: '/stories' },
       { name: 'Contact', href: '/contact' },
-      { name: 'Login', href: '/login' },
+      { name: 'Sign in', href: '/signin' },
     ],
   },
   {

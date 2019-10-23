@@ -187,8 +187,8 @@ class Navigation extends Component {
               open={cartOpen || menuOpen}
               onClick={toggleFunction}
             />
-            <styled.NavLink to={showLogout ? '/logout' : '/login'}>
-              {showLogout ? 'Log out' : 'Login'}
+            <styled.NavLink to={showLogout ? '/logout' : '/signin'}>
+              {showLogout ? 'Log out' : 'Sign in'}
             </styled.NavLink>
           </styled.NavSection>
         </styled.Container>

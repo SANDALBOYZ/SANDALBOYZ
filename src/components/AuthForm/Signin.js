@@ -4,12 +4,12 @@ import useForm from 'react-hook-form';
 import get from 'lodash/get';
 import Cookies from 'js-cookie';
 
-import { login } from '@utils/customer';
+import { signin } from '@utils/customer';
 import Button from '@components/Button';
 import Input from '@components/formElements/Input';
 import * as styled from './styles';
 
-const LoginForm = () => {
+const SigninForm = () => {
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -18,7 +18,7 @@ const LoginForm = () => {
     setLoading(true);
 
     try {
-      const { accessToken, errors, expiresAt, userErrors } = await login(data);
+      const { accessToken, errors, expiresAt, userErrors } = await signin(data);
 
       if (get(errors, 'length')) {
         throw new Error();
@@ -59,7 +59,7 @@ const LoginForm = () => {
   return (
     <styled.Wrapper>
       <styled.Box>
-        <styled.H400>Log In</styled.H400>
+        <styled.H400>Sign In</styled.H400>
         <styled.Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             error={get(errors, 'email')}
@@ -78,7 +78,7 @@ const LoginForm = () => {
             type="password"
           />
           <Button disabled={loading} fullWidth type="submit">
-            Log In
+            Sign In
           </Button>
         </styled.Form>
         {get(errors, 'general') && (
@@ -93,4 +93,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SigninForm;

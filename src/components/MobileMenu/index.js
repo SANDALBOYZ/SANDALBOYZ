@@ -62,8 +62,8 @@ class MobileMenu extends Component {
           </styled.NavLink>
         </styled.Links>
         <styled.Footer>
-          <Link to={showLogout ? '/logout' : '/login'} onClick={onMenuClose}>
-            <H500>{showLogout ? 'Log out' : 'Login'}</H500>
+          <Link to={showLogout ? '/logout' : '/signin'} onClick={onMenuClose}>
+            <H500>{showLogout ? 'Log out' : 'Sign in'}</H500>
           </Link>
         </styled.Footer>
       </styled.Wrapper>

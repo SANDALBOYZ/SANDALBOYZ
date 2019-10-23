@@ -4,7 +4,7 @@ import useForm from 'react-hook-form';
 import get from 'lodash/get';
 import Cookies from 'js-cookie';
 
-import { login, register as registerUser } from '@utils/customer';
+import { signin, register as registerUser } from '@utils/customer';
 import Button from '@components/Button';
 import Input from '@components/formElements/Input';
 import * as styled from './styles';
@@ -37,7 +37,7 @@ const RegisterForm = () => {
           }
         });
       } else if (get(customer, 'id')) {
-        const { accessToken, errors, expiresAt } = await login(data);
+        const { accessToken, errors, expiresAt } = await signin(data);
 
         if (get(errors, 'length')) {
           throw new Error();
@@ -82,7 +82,7 @@ const RegisterForm = () => {
         {generalError && <styled.ErrorText>{generalError}</styled.ErrorText>}
       </styled.Box>
       <styled.Footer centered>
-        <Link to="/login">Already have an account? Log in</Link>
+        <Link to="/signin">Already have an account? Sign in</Link>
       </styled.Footer>
     </styled.Wrapper>
   );
