@@ -193,6 +193,7 @@ class Layout extends React.Component {
           render={data => (
             <>
               <Navigation
+                animate
                 cartOpen={this.state.cartOpen}
                 hideCart={this.state.cartOpen}
                 light={this.getNavLight()}
