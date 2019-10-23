@@ -14,7 +14,8 @@ export const H500 = styled(BaseH500)`
   }
 `;
 
-const AUTO_GRID_MIN_SIZE = '20rem';
+const M_AUTO_GRID_MIN_SIZE = '20rem';
+const D_AUTO_GRID_MIN_SIZE = '22rem';
 
 export const Container = styled(BaseContainer)`
   padding: 0;
@@ -30,10 +31,11 @@ export const Container = styled(BaseContainer)`
 
 export const Products = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(${AUTO_GRID_MIN_SIZE}, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(${M_AUTO_GRID_MIN_SIZE}, 1fr));
   grid-row-gap: ${space[2]};
 
   ${mq.gtmd} {
+    grid-template-columns: repeat(auto-fill, minmax(${D_AUTO_GRID_MIN_SIZE}, 1fr));
     grid-gap: ${space[2]};
   }
 `;
