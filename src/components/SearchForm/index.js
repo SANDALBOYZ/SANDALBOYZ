@@ -23,7 +23,7 @@ class SearchForm extends Component {
   };
 
   state = {
-    query: '',
+    query: this.props.query || '',
   };
 
   handleChange = evt => {

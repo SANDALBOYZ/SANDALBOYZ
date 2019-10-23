@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { navigate } from 'gatsby';
 import { Index } from 'elasticlunr';
 import get from 'lodash/get';
+import qs from 'querystringify';
 
 import { H400 } from '@utils/type';
 import SearchForm from '@components/SearchForm';
@@ -8,10 +10,23 @@ import SearchResult from '@components/SearchResult';
 import * as styled from './styles';
 
 class Search extends Component {
-  state = {
-    query: '',
-    results: [],
-  };
+  constructor(props) {
+    super(props);
+
+    this.index = this.getOrCreateIndex();
+
+    let query = '';
+    if (get(props, 'location.search')) {
+      query = get(qs.parse(props.location.search), 'search', '');
+    }
+
+    this.state = {
+      query,
+      results: this.index
+        .search(query, {})
+        .map(({ ref }) => this.index.documentStore.getDoc(ref)),
+    };
+  }
 
   getOrCreateIndex = () => {
     if (this.index) {
@@ -22,14 +37,19 @@ class Search extends Component {
   };
 
   handleSearch = query => {
-    this.index = this.getOrCreateIndex();
+    const { location } = this.props;
 
-    this.setState({
-      query,
-      results: this.index
-        .search(query, {})
-        .map(({ ref }) => this.index.documentStore.getDoc(ref)),
-    });
+    this.setState(
+      {
+        query,
+        results: this.index
+          .search(query, {})
+          .map(({ ref }) => this.index.documentStore.getDoc(ref)),
+      },
+      () => {
+        navigate(`${location.pathname}/?${qs.stringify({ search: query })}`);
+      }
+    );
   };
 
   render() {
@@ -38,7 +58,7 @@ class Search extends Component {
 
     return (
       <styled.Wrapper>
-        <SearchForm onSearch={this.handleSearch} />
+        <SearchForm onSearch={this.handleSearch} query={query} />
         {query && !results.length ? (
           <styled.NoResults>
             <H400>No results</H400>

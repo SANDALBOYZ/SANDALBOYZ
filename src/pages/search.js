@@ -6,7 +6,7 @@ import Head from '@utils/seo';
 import Header from '@components/Header';
 import Search from '@components/Search';
 
-const SearchPage = () => (
+const SearchPage = ({ location }) => (
   <>
     <Head title="Search" />
     <Header shrinkOnMobile title="Search Products" />
@@ -46,6 +46,7 @@ const SearchPage = () => (
       render={data => (
         <Search
           index={get(data, 'siteSearchIndex.index')}
+          location={location}
           products={get(data, 'allShopifyProduct.edges', []).map(
             ({ node }) => node
           )}

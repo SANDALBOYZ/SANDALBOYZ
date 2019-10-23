@@ -31,7 +31,7 @@ SearchResult.propTypes = {
   collection: PropTypes.string,
   description: PropTypes.string,
   href: PropTypes.string.isRequired,
-  image: PropTypes.string,
+  image: PropTypes.object,
   price: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
