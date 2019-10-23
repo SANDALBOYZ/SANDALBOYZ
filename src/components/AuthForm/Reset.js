@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
-import { Link, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import useForm from 'react-hook-form';
 import get from 'lodash/get';
 import Cookies from 'js-cookie';
 
-import { signin } from '@utils/customer';
+import { reset } from '@utils/customer';
 import Button from '@components/Button';
 import Input from '@components/formElements/Input';
 import * as styled from './styles';
 
-const SigninForm = () => {
+const ResetForm = ({ id, token }) => {
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const onSubmit = async data => {
+  const onSubmit = async ({ password }) => {
     setLoading(true);
 
     try {
-      const { accessToken, errors, expiresAt, userErrors } = await signin(data);
+      const customerId = window.btoa(`gid://shopify/Customer/${id}`);
+      const { accessToken, errors, expiresAt, userErrors } = await reset(
+        customerId,
+        {
+          resetToken: token,
+          password,
+        }
+      );
 
       if (get(errors, 'length')) {
         throw new Error();
@@ -28,16 +35,12 @@ const SigninForm = () => {
         userErrors.forEach(err => {
           const errors = {};
 
-          if (err.field && err.field.includes('email')) {
-            errors.email = err.message;
-          }
-
           if (err.field && err.field.includes('password')) {
             errors.password = err.message;
           }
 
-          if (err.message && err.message.includes('Unidentified')) {
-            errors.general = 'We couldn\'t find an account matching that email.';
+          if (err.message && err.message === 'Invalid reset token') {
+            throw new Error();
           }
 
           setErrors(errors);
@@ -61,38 +64,26 @@ const SigninForm = () => {
   return (
     <styled.Wrapper>
       <styled.Box>
-        <styled.H400>Sign In</styled.H400>
+        <styled.H400>Enter your new password</styled.H400>
         <styled.Form onSubmit={handleSubmit(onSubmit)}>
           <Input
-            error={get(errors, 'email')}
-            label="Email"
-            name="email"
-            placeholder="email@example.com"
-            ref={register}
-            type="email"
-          />
-          <Input
             error={get(errors, 'password')}
-            label="Password"
+            label="New password"
             name="password"
             placeholder="**************"
             ref={register}
             type="password"
           />
           <Button disabled={loading} fullWidth type="submit">
-            Sign In
+            Reset password
           </Button>
         </styled.Form>
         {get(errors, 'general') && (
           <styled.ErrorText>{errors.general}</styled.ErrorText>
         )}
       </styled.Box>
-      <styled.Footer>
-        <Link to="/forgot">Forgot your password?</Link>
-        <Link to="/register">Create Account</Link>
-      </styled.Footer>
     </styled.Wrapper>
   );
 };
 
-export default SigninForm;
+export default ResetForm;

@@ -36,6 +36,7 @@ const RegisterForm = () => {
             setPasswordError(err.message);
           }
         });
+        setLoading(false);
       } else if (get(customer, 'id')) {
         const { accessToken, errors, expiresAt } = await signin(data);
 
@@ -50,6 +51,7 @@ const RegisterForm = () => {
         navigate('/account');
       }
     } catch (err) {
+      setLoading(false);
       setGeneralError('Uh oh, something went wrong. Please try again later.');
     }
   };

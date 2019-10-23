@@ -44,6 +44,7 @@
     "netlify-cms-app": "^2.9.7",
     "netlify-cms-backend-fs": "^0.4.4",
     "prop-types": "^15.6.2",
+    "querystringify": "^2.1.1",
     "react": "16.8.3",
     "react-country-region-selector": "^1.4.5",
     "react-dom": "16.8.3",

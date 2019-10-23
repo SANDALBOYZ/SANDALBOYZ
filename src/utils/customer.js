@@ -238,3 +238,65 @@ export const signin = input =>
     errors: get(data, 'errors'),
     userErrors: get(data, 'data.customerAccessTokenCreate.userErrors'),
   }));
+
+export const forgot = email =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation customerRecover($email: String!) {
+          customerRecover(email: $email) {
+            customerUserErrors {
+              code
+              field
+              message
+            }
+          }
+        }
+      `,
+      variables: { email },
+    },
+  }).then(({ data }) => ({
+    errors: get(data, 'errors'),
+    userErrors: get(data, 'data.customerRecover.customerUserErrors'),
+  }));
+
+export const reset = (id, input) =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation customerReset($input: CustomerResetInput!) {
+          customerReset(id: "${id}", input: $input) {
+            customer {
+              id
+            }
+            customerAccessToken {
+              accessToken
+              expiresAt
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `,
+      variables: { input },
+    },
+  }).then(({ data }) => ({
+    accessToken: get(
+      data,
+      'data.customerReset.customerAccessToken.accessToken'
+    ),
+    expiresAt: get(
+      data,
+      'data.customerReset.customerAccessToken.expiresAt'
+    ),
+    errors: get(data, 'errors'),
+    userErrors: get(data, 'data.customerReset.customerUserErrors'),
+  }));

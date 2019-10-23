@@ -4,7 +4,11 @@ import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
-import { H400 as BaseH400 } from '@utils/type';
+import { Body as BaseBody, H400 as BaseH400 } from '@utils/type';
+
+export const Body = styled(BaseBody)`
+  text-align: center;
+`;
 
 export const Box = styled.div`
   width: 100%;
