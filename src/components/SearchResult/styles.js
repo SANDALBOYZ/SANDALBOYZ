@@ -24,6 +24,7 @@ export const H500 = styled(type.H500)`
 `;
 
 export const Image = styled.div`
+  position: relative;
   width: 80px;
   background-color: ${colors.N100};
 

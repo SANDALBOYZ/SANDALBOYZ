@@ -10,7 +10,9 @@ import * as styled from './styles';
 const SearchResult = ({ collection, description, href, image, price, title }) => (
   <styled.Wrapper>
     <styled.Image>
-      <AbsoluteImg fluid={image} />
+      {image && (
+        <AbsoluteImg fluid={image} />
+      )}
     </styled.Image>
     <styled.Info>
       <styled.H400>{collection && `${collection} | `}{title}</styled.H400>
@@ -29,8 +31,8 @@ SearchResult.propTypes = {
   collection: PropTypes.string,
   description: PropTypes.string,
   href: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  price: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
