@@ -6,7 +6,8 @@ import space, { H_PADDING_MOBILE } from '@utils/space';
 
 export const Footer = styled.div`
   display: flex;
-  align-items: space-between;
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
   right: 0;
   bottom: 0;

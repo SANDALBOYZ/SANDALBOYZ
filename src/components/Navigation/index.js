@@ -7,6 +7,7 @@ import * as styled from './styles';
 class Navigation extends Component {
   static propTypes = {
     animate: PropTypes.bool,
+    authLinks: PropTypes.array,
     cartOpen: PropTypes.bool,
     hideCart: PropTypes.bool,
     light: PropTypes.bool,
@@ -15,6 +16,10 @@ class Navigation extends Component {
     onCartOpen: PropTypes.func.isRequired,
     onMenuClose: PropTypes.func.isRequired,
     onMenuOpen: PropTypes.func,
+  };
+
+  static defaultProps = {
+    authLinks: [],
   };
 
   constructor() {
@@ -135,6 +140,7 @@ class Navigation extends Component {
 
   render() {
     const {
+      authLinks,
       cartOpen,
       hideCart,
       light,
@@ -143,7 +149,6 @@ class Navigation extends Component {
       onCartOpen,
       onMenuClose,
       onMenuOpen,
-      showLogout,
     } = this.props;
     const { navState } = this.state;
 
@@ -163,7 +168,10 @@ class Navigation extends Component {
         <styled.Container>
           <styled.NavSection>
             <styled.LogoLink to="/" aria-label="SANDALBOYZ">
-              <styled.Logo cartOpen={cartOpen} light={light && navState !== 'pinned'} />
+              <styled.Logo
+                cartOpen={cartOpen}
+                light={light && navState !== 'pinned'}
+              />
             </styled.LogoLink>
             <styled.NavLink to="/products" partiallyActive>
               Products
@@ -175,11 +183,17 @@ class Navigation extends Component {
           </styled.NavSection>
           <styled.NavSection>
             <styled.NavLink to="/search" alt="Search">
-              <styled.Icon name="search" light={light && navState !== 'pinned'} />
+              <styled.Icon
+                name="search"
+                light={light && navState !== 'pinned'}
+              />
             </styled.NavLink>
             {!hideCart && (
               <styled.MobileNavLink onClick={onCartOpen}>
-                <styled.Icon name="briefcase" light={light && navState !== 'pinned'} />
+                <styled.Icon
+                  name="briefcase"
+                  light={light && navState !== 'pinned'}
+                />
               </styled.MobileNavLink>
             )}
             <MobileMenuToggle
@@ -187,9 +201,11 @@ class Navigation extends Component {
               open={cartOpen || menuOpen}
               onClick={toggleFunction}
             />
-            <styled.NavLink to={showLogout ? '/logout' : '/signin'}>
-              {showLogout ? 'Log out' : 'Sign in'}
-            </styled.NavLink>
+            {authLinks.map(authLink => (
+              <styled.NavLink key={authLink.name} to={authLink.href}>
+                {authLink.name}
+              </styled.NavLink>
+            ))}
           </styled.NavSection>
         </styled.Container>
       </styled.Nav>

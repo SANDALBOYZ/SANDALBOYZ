@@ -9,12 +9,16 @@ import * as styled from './styles';
 
 class MobileMenu extends Component {
   static propTypes = {
+    authLinks: PropTypes.array,
     onCartOpen: PropTypes.func.isRequired,
     onMenuClose: PropTypes.func.isRequired,
     onMenuOpen: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
-    showLogout: PropTypes.bool,
   };
+
+  static defaultProps = {
+    authLinks: [],
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.open !== this.props.open) {
@@ -28,12 +32,12 @@ class MobileMenu extends Component {
 
   render() {
     const {
+      authLinks,
       onCartClose,
       onCartOpen,
       onMenuClose,
       onMenuOpen,
       open,
-      showLogout,
     } = this.props;
 
     return (
@@ -62,9 +66,11 @@ class MobileMenu extends Component {
           </styled.NavLink>
         </styled.Links>
         <styled.Footer>
-          <Link to={showLogout ? '/logout' : '/signin'} onClick={onMenuClose}>
-            <H500>{showLogout ? 'Log out' : 'Sign in'}</H500>
-          </Link>
+          {authLinks.map(authLink => (
+            <Link key={authLink.name} to={authLink.href} onClick={onMenuClose}>
+              <H500>{authLink.name}</H500>
+            </Link>
+          ))}
         </styled.Footer>
       </styled.Wrapper>
     );

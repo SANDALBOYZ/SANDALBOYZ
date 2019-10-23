@@ -4,6 +4,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import get from 'lodash/get';
 
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
+import { getCustomer } from '@utils/customer';
 import { GlobalStyle } from '@utils/styles';
 import Cart from '@components/Cart';
 import Footer from '@components/Footer/container';
@@ -129,8 +130,22 @@ class Layout extends React.Component {
     setCheckoutInState(newCheckout);
   }
 
+  async initializeCustomer() {
+    const customer = await getCustomer();
+
+    if (get(customer, 'id')) {
+      this.setState(state => ({
+        store: {
+          ...state.store,
+          customer,
+        },
+      }));
+    }
+  };
+
   componentDidMount() {
     this.initializeCheckout();
+    this.initializeCustomer();
   }
 
   componentDidUpdate(prevProps) {
@@ -142,6 +157,22 @@ class Layout extends React.Component {
         menuOpen: false,
       });
     }
+  }
+
+  getNavAuthLinks = () => {
+    const { store } = this.state;
+
+    if (get(store, 'customer.id')) {
+      return [{
+        name: 'My Account',
+        href: '/account',
+      }, {
+        name: 'Log out',
+        href: '/logout',
+      }];
+    }
+
+    return [{ name: 'Sign in', href: '/signin' }];
   }
 
   getNavLight = () => {
@@ -178,13 +209,6 @@ class Layout extends React.Component {
     this.setState({ menuOpen: true });
   };
 
-  shouldShowLogout = () => {
-    const { location } = this.props;
-    const { store } = this.state;
-
-    return get(store, 'customer.id') && location.pathname === '/account';
-  };
-
   render() {
     const { children } = this.props;
 
@@ -205,6 +229,7 @@ class Layout extends React.Component {
             <>
               <Navigation
                 animate
+                authLinks={this.getNavAuthLinks()}
                 cartOpen={this.state.cartOpen}
                 hideCart={this.state.cartOpen}
                 light={this.getNavLight()}
@@ -213,15 +238,14 @@ class Layout extends React.Component {
                 onCartOpen={this.handleCartOpen}
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}
-                showLogout={this.shouldShowLogout()}
               />
               <MobileMenu
+                authLinks={this.getNavAuthLinks()}
                 onCartClose={this.handleCartClose}
                 onCartOpen={this.handleCartOpen}
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}
                 open={this.state.menuOpen}
-                showLogout={this.shouldShowLogout()}
               />
               <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
               {children}
