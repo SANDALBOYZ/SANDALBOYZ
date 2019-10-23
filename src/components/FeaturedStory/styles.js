@@ -14,10 +14,6 @@ export const ContentLabel = styled(BaseContentLabel)`
 export const H200 = styled(BaseH200)`
   position: relative;
   color: ${colors.N0};
-
-  ${mq.gtlg} {
-    max-width: 50%;
-  }
 `;
 
 export const Inner = styled.div`
@@ -29,6 +25,7 @@ export const Inner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-start;
   padding: ${space[5]} ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {

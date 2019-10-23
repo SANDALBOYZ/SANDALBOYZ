@@ -10,10 +10,8 @@ const FeaturedStory = ({ href, image, label, title }) => (
     <AbsoluteImg fluid={image} />
     <styled.Inner>
       <styled.Overlay />
-      {label && (
-        <styled.ContentLabel>{label}</styled.ContentLabel>
-      )}
       <Link to={href}>
+        {label && <styled.ContentLabel>{label}</styled.ContentLabel>}
         <styled.H200>{title}</styled.H200>
       </Link>
     </styled.Inner>
