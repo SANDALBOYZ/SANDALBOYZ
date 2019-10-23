@@ -145,10 +145,21 @@ class Layout extends React.Component {
   }
 
   getNavLight = () => {
-    const { path } = this.props;
-    const lightPaths = ['/forgot/', '/signin/', '/register/', '/reset/', '/stories/'];
+    const { location } = this.props;
+    const lightPaths = [
+      '/forgot',
+      '/forgot/',
+      '/signin',
+      '/signin/',
+      '/register',
+      '/register/',
+      '/reset',
+      '/reset/',
+      '/stories',
+      '/stories/',
+    ];
 
-    return lightPaths.includes(path);
+    return lightPaths.includes(location.pathname);
   };
 
   handleCartClose = () => {
