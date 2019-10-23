@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
+import qs from 'querystringify';
 
 import getPrice from '@utils/price';
 import Head from '@utils/seo';
@@ -110,8 +111,18 @@ class Product extends Component {
           ogType="product"
           meta={[
             {
+              property: 'twitter:image',
+              content: get(
+                product,
+                'images[0].localFile.childImageSharp.fluid.src'
+              ),
+            },
+            {
               property: 'og:image',
-              content: get(product, 'images[0].localFile.childImageSharp.fluid.src'),
+              content: get(
+                product,
+                'images[0].localFile.childImageSharp.fluid.src'
+              ),
             },
             {
               property: 'og:price:amount',
@@ -166,23 +177,28 @@ class Product extends Component {
             </styled.Sizing>
             <styled.Social>
               <a
-                href="https://facebook.com/sandalboyz"
+                href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(
+                  { u: `https://pedantic-kepler-2981ce.netlify.com/products/${product.handle}` }
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <styled.Icon name="facebook" />
               </a>
               <a
-                href="https://twitter.com/sandalboyz"
+                href={`https://twitter.com/intent/tweet?${qs.stringify({
+                  url: `https://pedantic-kepler-2981ce.netlify.com/${product.handle}`,
+                  text: product.title,
+                })}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <styled.Icon name="twitter" />
               </a>
               <a
-                href="https://instagram.com/sandalboyz"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={get(product, 'images[0].originalSrc')}
+                download={`${product.title}.jpg`}
+                title={product.title}
               >
                 <styled.Icon name="instagram" />
               </a>
