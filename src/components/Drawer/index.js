@@ -24,8 +24,22 @@ class Drawer extends Component {
     title: PropTypes.string.isRequired,
   };
 
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   handleClick = evt => {
     evt.stopPropagation();
+  };
+
+  handleKeyDown = evt => {
+    if (evt.keyCode === 27 && this.props.open) {
+      this.props.onClose();
+    }
   };
 
   render() {
