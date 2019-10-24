@@ -92,13 +92,15 @@ class ProductsPage extends Component {
       Array.isArray(get(data, 'products.edges')) &&
       data.products.edges.filter(this.filterProducts);
 
+    const isFiltered = activeFilters.collection.concat(activeFilters.productType).length;
+
     return (
       <>
         <Head title="Products" />
         <Header
           label="Fall 2019 Collections"
           shrinkOnMobile
-          title="All Products"
+          title="Products"
         >
           <Button theme="text" onClick={this.handleOpenFilters}>
             Filter By
@@ -106,6 +108,8 @@ class ProductsPage extends Component {
         </Header>
         {products.length ? (
           <ProductGrid
+            filters={activeFilters}
+            onFilter={this.handleFilter}
             products={products.map(({ node }) => ({
               id: get(node, 'id'),
               href: `/products/${get(node, 'handle')}`,
@@ -117,7 +121,7 @@ class ProductsPage extends Component {
               title: get(node, 'title'),
               soldOut: !get(node, 'availableForSale'),
             }))}
-            title="All Products"
+            title={isFiltered ? 'Filtered Results' : 'All Products'}
           />
         ) : (
           <Empty>

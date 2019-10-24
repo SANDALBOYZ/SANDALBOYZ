@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import isEqual from 'react-fast-compare';
 
 import { Body, H600 } from '@utils/type';
 import Drawer from '@components/Drawer';
@@ -29,6 +30,10 @@ class Filters extends Component {
       } else {
         enableBodyScroll(this.target);
       }
+    }
+
+    if (!isEqual(this.props.activeFilters, prevProps.activeFilters)) {
+      this.setState({ activeFilters: this.props.activeFilters });
     }
   }
 

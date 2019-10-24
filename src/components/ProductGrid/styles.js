@@ -1,21 +1,26 @@
 import styled from 'styled-components';
 
+import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq, Container as BaseContainer } from '@utils/styles';
 import { H500 as BaseH500 } from '@utils/type';
+import BaseIcon from '@components/Icon';
 
-export const H500 = styled(BaseH500)`
-  margin-top: ${space[2]};
-  margin-bottom: ${space[2]};
-  padding: 0 ${H_PADDING_MOBILE};
+export const ClearFilter = styled.button`
+  background: transparent;
+  border: 0;
+  appearance: none;
+  margin-left: ${space[0]};
+  padding: 0;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  outline: 0;
 
-  ${mq.gtmd} {
-    padding: 0;
+  &:hover {
+    background-color: ${colors.N800};
   }
 `;
-
-const M_AUTO_GRID_MIN_SIZE = '20rem';
-const D_AUTO_GRID_MIN_SIZE = '22rem';
 
 export const Container = styled(BaseContainer)`
   padding: 0;
@@ -28,6 +33,45 @@ export const Container = styled(BaseContainer)`
     padding: 0 ${H_PADDING};
   }
 `;
+
+export const Filter = styled.div`
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-left: ${space[2]};
+  padding: 0 0 0 8px;
+  color: ${colors.N0};
+  background-color: ${colors.N700};
+
+  &:first-of-type {
+    margin-left: ${space[4]};
+  }
+`;
+
+export const H500 = styled(BaseH500)`
+  margin-top: ${space[2]};
+  margin-bottom: ${space[2]};
+  padding: 0 ${H_PADDING_MOBILE};
+
+  ${mq.gtmd} {
+    padding: 0;
+  }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Icon = styled(BaseIcon)`
+  height: 16px;
+  fill: ${colors.N0};
+  vertical-align: middle;
+  transform: translateY(1px);
+`;
+
+const M_AUTO_GRID_MIN_SIZE = '20rem';
+const D_AUTO_GRID_MIN_SIZE = '22rem';
 
 export const Products = styled.div`
   display: grid;
