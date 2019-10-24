@@ -10,6 +10,15 @@ export const Answer = styled(Body)`
   max-width: ${space[14]};
   margin-bottom: ${space[3]};
 
+  & a {
+    text-decoration: underline;
+  }
+
+  & ul {
+    list-style: disc;
+    padding-left: 40px;
+  }
+
   ${mq.gtlg} {
     margin-bottom: 0;
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import remark from 'remark';
+import html from 'remark-html';
 
 import { H400 } from '@utils/type';
 import * as styled from './styles';
@@ -48,9 +50,14 @@ class FAQ extends Component {
               <styled.Icon name={open.includes(idx) ? 'minus' : 'plus'} />
             </styled.Question>
             {open.includes(idx) && (
-              <styled.Answer>
-                {faq.answer}
-              </styled.Answer>
+              <styled.Answer
+                dangerouslySetInnerHTML={{
+                  __html: remark()
+                    .use(html)
+                    .processSync(faq.answer)
+                    .toString(),
+                }}
+              />
             )}
           </styled.Button>
         ))}

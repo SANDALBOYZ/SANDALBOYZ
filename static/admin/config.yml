@@ -61,9 +61,9 @@ collections:
         file: src/content/about.md
         fields:
           - { label: Template Key, name: templateKey, widget: hidden, default: about }
-          - label: About SANDALBOYZ,
-            name: about,
-            hint: Say something about SANDALBOYZ,
+          - label: About SANDALBOYZ
+            name: about
+            hint: Say something about SANDALBOYZ
             widget: text
   - label: Pages
     name: pages
@@ -79,7 +79,7 @@ collections:
             widget: list
             fields:
               - { label: Question, name: question, widget: string }
-              - { label: Answer, name: answer, widget: text }
+              - { label: Answer, name: answer, widget: markdown }
       - label: Privacy
         name: privacy
         file: src/content/privacy.md
