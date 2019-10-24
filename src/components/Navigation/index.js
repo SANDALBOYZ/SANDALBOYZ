@@ -22,22 +22,15 @@ class Navigation extends Component {
     authLinks: [],
   };
 
-  constructor() {
-    super();
-
-    this.navRef = React.createRef();
-    this.state = {
-      hasScrolled: false,
-    };
-  }
+  state = {
+    hasScrolled: false,
+  };
 
   componentDidMount() {
     if (this.props.animate) {
       this.scrollTicking = false;
-      this.navHeight = this.navRef.current.offsetHeight;
 
       window.addEventListener('scroll', this.handleScroll);
-      window.addEventListener('resize', this.handleResize);
     }
   }
 
@@ -48,20 +41,8 @@ class Navigation extends Component {
     }
   };
 
-  handleResize = () => {
-    if (!this.resizeTicking) {
-      this.resizeTicking = true;
-      requestAnimationFrame(this.setHeightOffset);
-    }
-  };
-
-  setHeightOffset = () => {
-    this.navHeight = this.navRef.current.offsetHeight;
-    this.resizeTicking = false;
-  };
-
   update = () => {
-    if (window.pageYOffset > this.navRef.current.offsetHeight) {
+    if (window.pageYOffset > 0) {
       this.setState({ hasScrolled: true });
     } else {
       this.setState({ hasScrolled: false });
@@ -72,7 +53,6 @@ class Navigation extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
@@ -99,7 +79,6 @@ class Navigation extends Component {
       <styled.Nav
         cartOpen={cartOpen}
         light={light && !hasScrolled}
-        ref={this.navRef}
         hasScrolled={hasScrolled}
       >
         <styled.Container>
