@@ -199,6 +199,8 @@ class Product extends Component {
                 href={get(product, 'images[0].originalSrc')}
                 download={`${product.title}.jpg`}
                 title={product.title}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <styled.Icon name="instagram" />
               </a>
