@@ -11,6 +11,7 @@ lede: >-
   clothing and lifestyle brand, Daily Paper, to create a collaborative slide
   sandal.
 landingFeatured: true
+storiesFeatured: true
 sections:
   - body: >-
       The sandal sports an all white colorway (white sole and white strap) with
@@ -31,7 +32,8 @@ sections:
       the United States and free shipping on orders over $150 USD for
       international orders.
     type: text
-  - imageType: split
+  - caption: SANDALBOYZ X DAILY PAPER
+    imageType: split
     images:
       - /assets/copy-of-white1.jpg
       - /assets/copy-of-wood_3.jpg

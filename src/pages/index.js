@@ -189,7 +189,7 @@ export const landingPageQuery = graphql`
         }
       }
     }
-    teaser: markdownRemark(frontmatter: { blogFeatured: { eq: true } }) {
+    teaser: markdownRemark(frontmatter: { storiesFeatured: { eq: true } }) {
       fields {
         slug
       }

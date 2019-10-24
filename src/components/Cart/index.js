@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import get from 'lodash/get';
 
+import { associateCheckout } from '@utils/customer';
 import { Body, H300 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
 import sandal from '@images/sandal.svg';
@@ -28,6 +30,16 @@ class Cart extends Component {
     }
   }
 
+  handleCheckout =  async() => {
+    const { checkout, customer } = this.context;
+
+    if (get(customer, 'id')) {
+      await associateCheckout(checkout.id);
+    }
+
+    window.location.href = checkout.webUrl;
+  }
+
   render() {
     const { onClose, open } = this.props;
     const { checkout } = this.context;
@@ -41,7 +53,7 @@ class Cart extends Component {
           next: {
             disabled: !checkout.lineItems.length,
             name: 'Proceed to checkout',
-            href: checkout.webUrl,
+            onClick: this.handleCheckout,
           },
         }}
         onClose={onClose}

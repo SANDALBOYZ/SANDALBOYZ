@@ -65,6 +65,65 @@ export const getCustomerQuery = () =>
     return get(data, 'data.customer');
   });
 
+export const associateCheckout = (checkoutId) =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation checkoutCustomerAssociateV2($checkoutId: ID!, $customerAccessToken: String!) {
+          checkoutCustomerAssociateV2(checkoutId: $checkoutId, customerAccessToken: $customerAccessToken) {
+            checkout {
+              id
+            }
+            checkoutUserErrors {
+              field
+              message
+            }
+            customer {
+              id
+            }
+          }
+        }
+      `,
+      variables: {
+        customerAccessToken: Cookies.get('_sb_access_token'),
+        checkoutId,
+      },
+    },
+  }).then(({ data }) => ({
+    checkoutId: get(data, 'data.checkoutCustomerAssociateV2.checkout.id'),
+  }));
+
+export const disassociateCheckout = (checkoutId) =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        mutation checkoutCustomerDisassociateV2($checkoutId: ID!) {
+          checkoutCustomerDisassociateV2(checkoutId: $checkoutId) {
+            checkout {
+              id
+            }
+            checkoutUserErrors {
+              code
+              field
+              message
+            }
+          }
+        }
+      `,
+      variables: {
+        checkoutId,
+      },
+    },
+  }).then(({ data }) => ({
+    checkoutId: get(data, 'data.checkoutCustomerDisassociateV2.checkout.id'),
+  }));
+
 export const addAddress = address =>
   axios({
     url: apiUrl,

@@ -30,7 +30,7 @@ export default StoriesPage;
 
 export const storiesPageQuery = graphql`
   query StoriesPageQuery {
-    featured: markdownRemark(frontmatter: { blogFeatured: { eq: true } }) {
+    featured: markdownRemark(frontmatter: { storiesFeatured: { eq: true } }) {
       fields {
         slug
       }
