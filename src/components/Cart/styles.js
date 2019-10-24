@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space, { H_PADDING_MOBILE } from '@utils/space';
-import { mq } from '@utils/styles';
-import { H500 as BaseH500 } from '@utils/type';
+import { Container, mq } from '@utils/styles';
+import { H300 as BaseH300, H500 as BaseH500 } from '@utils/type';
 
 export const Actions = styled.div`
   display: flex;
@@ -21,7 +21,27 @@ export const Actions = styled.div`
   }
 `;
 
-export const Empty = styled.div``;
+export const Empty = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  text-align: center;
+
+  ${mq.gtmd} {
+    padding: 0;
+  }
+`;
+
+export const H300 = styled(BaseH300)`
+  margin-bottom: ${space[3]};
+`;
 
 export const H500 = styled(BaseH500)`
   display: flex;
@@ -38,6 +58,11 @@ export const Info = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
+`;
+
+export const Image = styled.img`
+  height: 64px;
+  margin-bottom: ${space[4]};
 `;
 
 export const LineItem = styled.div`

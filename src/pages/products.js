@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
+import styled from 'styled-components';
 
 import Head from '@utils/seo';
+import space from '@utils/space';
 import { Container } from '@utils/styles';
-import { Body } from '@utils/type';
+import { Body, H300 } from '@utils/type';
+import sandal from '@images/sandal.svg';
 import Button from '@components/Button';
 import Filters from '@components/Filters';
 import Header from '@components/Header';
 import ProductGrid from '@components/ProductGrid';
+
+const Empty = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: ${space[8]} 0;
+`;
+
+const Heading = styled(H300)`
+  margin-bottom: ${space[2]};
+`;
+
+const Image = styled.img`
+  height: 64px;
+  margin-bottom: ${space[5]};
+`;
 
 class ProductsPage extends Component {
   state = {
@@ -99,9 +120,13 @@ class ProductsPage extends Component {
             title="All Products"
           />
         ) : (
-          <Container>
-            <Body>No matching products found.</Body>
-          </Container>
+          <Empty>
+            <Image src={sandal} />
+            <Heading>
+              No products found
+            </Heading>
+            <Body>Try selecting different filters to view more available products.</Body>
+          </Empty>
         )}
         <Filters
           activeFilters={activeFilters}

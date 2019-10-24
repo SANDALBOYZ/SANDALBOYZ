@@ -4,6 +4,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 import { Body, H300 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
+import sandal from '@images/sandal.svg';
 import Drawer from '@components/Drawer';
 import LineItem from './LineItem';
 
@@ -57,7 +58,9 @@ class Cart extends Component {
           </styled.Subtotal>
         ) : (
           <styled.Empty>
-            <Body>Nothing here yet</Body>
+            <styled.Image src={sandal} />
+            <styled.H300>Your cart is empty!</styled.H300>
+            <Body>Go add some sandals so we can ship them to you!</Body>
           </styled.Empty>
         )}
       </Drawer>
