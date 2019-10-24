@@ -96,12 +96,6 @@ const Contact = () => {
             </a>
           </styled.Email>
           <styled.Email>
-            <styled.H600>Support:</styled.H600>
-            <a href="mailto:support@sandalboyz.com">
-              <Body>support@sandalboyz.com</Body>
-            </a>
-          </styled.Email>
-          <styled.Email>
             <styled.H600>Wholesale:</styled.H600>
             <a href="mailto:sales@sandalboyz.com">
               <Body>sales@sandalboyz.com</Body>
