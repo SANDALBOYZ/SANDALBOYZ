@@ -27,18 +27,13 @@ class Navigation extends Component {
 
     this.navRef = React.createRef();
     this.state = {
-      navState: 'unfixed',
+      hasScrolled: false,
     };
   }
 
   componentDidMount() {
     if (this.props.animate) {
-      this.currentScrollY = 0;
-      this.lastKnownScrollY = 0;
       this.scrollTicking = false;
-      this.resizeTicking = false;
-      this.delta = 0;
-      this.downTolerance = 0;
       this.navHeight = this.navRef.current.offsetHeight;
 
       window.addEventListener('scroll', this.handleScroll);
@@ -65,71 +60,13 @@ class Navigation extends Component {
     this.resizeTicking = false;
   };
 
-  getAction = () => {
-    const { cartOpen } = this.props;
-    const { navState } = this.state;
-
-    const scrollDirection =
-      this.currentScrollY >= this.lastKnownScrollY ? 'down' : 'up';
-    const distanceScrolled = Math.abs(
-      this.currentScrollY - this.lastKnownScrollY
-    );
-
-    if (cartOpen) {
-      return 'none';
-    } else if (this.currentScrollY <= this.delta && navState !== 'unfixed') {
-      return 'unfix';
-    } else if (
-      this.currentScrollY <= this.navHeight &&
-      scrollDirection === 'down' &&
-      navState === 'unfixed'
-    ) {
-      return 'none';
-    } else if (
-      this.currentScrollY > this.navHeight + this.delta &&
-      scrollDirection === 'down' &&
-      navState === 'unfixed'
-    ) {
-      return 'unpin-snap';
-    } else if (
-      scrollDirection === 'down' &&
-      ['pinned', 'unfixed'].indexOf(navState) >= 0 &&
-      this.currentScrollY > this.navHeight + this.delta &&
-      distanceScrolled > 0
-    ) {
-      return 'unpin';
-    } else if (
-      scrollDirection === 'up' &&
-      distanceScrolled > 5 &&
-      ['pinned', 'unfixed'].indexOf(navState) < 0
-    ) {
-      return 'pin';
-    } else if (
-      scrollDirection === 'up' &&
-      this.currentScrollY <= this.navHeight &&
-      ['pinned', 'unfixed'].indexOf(navState) < 0
-    ) {
-      return 'pin';
-    } else {
-      return 'none';
-    }
-  };
-
   update = () => {
-    this.currentScrollY = window.pageYOffset;
-    const action = this.getAction();
-
-    if (action === 'pin') {
-      this.setState({ navState: 'pinned' });
-    } else if (action === 'unpin') {
-      this.setState({ navState: 'unpinned' });
-    } else if (action === 'unpin-snap') {
-      this.setState({ navState: 'unpinned-snap' });
-    } else if (action === 'unfix') {
-      this.setState({ navState: 'unfixed' });
+    if (window.pageYOffset > this.navRef.current.offsetHeight) {
+      this.setState({ hasScrolled: true });
+    } else {
+      this.setState({ hasScrolled: false });
     }
 
-    this.lastKnownScrollY = this.currentScrollY;
     this.scrollTicking = false;
   };
 
@@ -150,7 +87,7 @@ class Navigation extends Component {
       onMenuClose,
       onMenuOpen,
     } = this.props;
-    const { navState } = this.state;
+    const { hasScrolled } = this.state;
 
     let toggleFunction = menuOpen ? onMenuClose : onMenuOpen;
 
@@ -161,16 +98,16 @@ class Navigation extends Component {
     return (
       <styled.Nav
         cartOpen={cartOpen}
-        light={light && navState !== 'pinned'}
+        light={light && !hasScrolled}
         ref={this.navRef}
-        state={navState}
+        hasScrolled={hasScrolled}
       >
         <styled.Container>
           <styled.NavSection>
             <styled.LogoLink to="/" aria-label="SANDALBOYZ">
               <styled.Logo
                 cartOpen={cartOpen}
-                light={light && navState !== 'pinned'}
+                light={light && !hasScrolled}
               />
             </styled.LogoLink>
             <styled.NavLink to="/products" partiallyActive>
@@ -185,19 +122,19 @@ class Navigation extends Component {
             <styled.NavLink to="/search" alt="Search">
               <styled.Icon
                 name="search"
-                light={light && navState !== 'pinned'}
+                light={light && !hasScrolled}
               />
             </styled.NavLink>
             {!hideCart && (
               <styled.MobileNavLink onClick={onCartOpen}>
                 <styled.Icon
                   name="briefcase"
-                  light={light && navState !== 'pinned'}
+                  light={light && !hasScrolled}
                 />
               </styled.MobileNavLink>
             )}
             <MobileMenuToggle
-              light={light && !cartOpen && navState !== 'pinned'}
+              light={light && !cartOpen && !hasScrolled}
               open={cartOpen || menuOpen}
               onClick={toggleFunction}
             />

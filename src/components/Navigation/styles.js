@@ -51,54 +51,26 @@ export const MobileNavWrapper = styled.div`
   }
 `;
 
-const getNavPosition = props => {
-  if (props.cartOpen) {
-    return 'fixed';
-  }
-
-  if (props.state === 'unfixed') {
-    return 'absolute';
-  }
-
-  return 'fixed';
-};
-
 const getNavBackground = props => {
-  if (props.cartOpen && props.state !== 'unfixed') {
+  if (props.cartOpen && props.hasScrolled) {
     return colors.N0;
   }
 
-  if (props.state !== 'unfixed') {
+  if (props.hasScrolled) {
     return colors.N0;
   }
 
   return 'transparent';
 };
 
-const getNavTransition = props => {
-  if (props.state === 'pinned' || props.state === 'unpinned') {
-    return css`transition: transform 200ms ease-in-out;`;
-  }
-
-  if (props.state === 'unfixed') {
-    return css`transition: background-color 100ms linear;`;
-  };
-};
-
 export const Nav = styled.div`
-  position: ${getNavPosition};
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 9999;
   background-color: ${getNavBackground};
-  transform: translateY(
-    ${props =>
-      props.state === 'unpinned' || props.state === 'unpinned-snap'
-        ? '-100%'
-        : 0}
-  );
-  ${getNavTransition}
+  transition: background-color 100ms linear;
 
   ${props =>
     props.light &&
