@@ -147,7 +147,7 @@ export default ProductsPage;
 
 export const productsPageQuery = graphql`
   query ProductsPageQuery {
-    products: allShopifyProduct(sort: { fields: [title], order: DESC }) {
+    products: allShopifyProduct(sort: { fields: [createdAt], order: DESC }) {
       edges {
         node {
           id
