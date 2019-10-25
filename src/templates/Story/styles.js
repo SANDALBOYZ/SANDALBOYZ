@@ -14,6 +14,7 @@ export const Authors = styled.div`
     position: absolute;
     bottom: 0;
     left: ${H_PADDING};
+    padding-left: 0;
   }
 `;
 
@@ -51,10 +52,10 @@ export const Hero = styled.div`
   ${mq.gtlg} {
     position: relative;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     height: 820px;
     margin-bottom: ${space[8]};
-    padding: ${space[10]} ${H_PADDING};
+    padding: 0 ${H_PADDING};
   }
 `;
 
