@@ -38,29 +38,39 @@ export const Filter = styled.div`
   display: flex;
   align-items: center;
   height: 30px;
-  margin-left: ${space[2]};
+  margin-right: ${space[2]};
+  margin-bottom: ${space[2]};
   padding: 0 0 0 8px;
   color: ${colors.N0};
   background-color: ${colors.N700};
+  white-space: nowrap;
 
-  &:first-of-type {
-    margin-left: ${space[4]};
+  ${mq.gtmd} {
+    margin-bottom: 0;
   }
 `;
 
 export const H500 = styled(BaseH500)`
+  width: 100%;
   margin-top: ${space[2]};
   margin-bottom: ${space[2]};
-  padding: 0 ${H_PADDING_MOBILE};
+  margin-right: ${space[4]};
 
   ${mq.gtmd} {
-    padding: 0;
+    width: auto;
   }
 `;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 0 ${H_PADDING_MOBILE} ${space[2]};
+
+  ${mq.gtmd} {
+    flex-wrap: nowrap;
+    padding: 0;
+  }
 `;
 
 export const Icon = styled(BaseIcon)`
