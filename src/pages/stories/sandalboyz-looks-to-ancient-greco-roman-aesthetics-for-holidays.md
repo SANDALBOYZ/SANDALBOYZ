@@ -5,6 +5,7 @@ authors:
   - SANDALBOYZ
 date: 2019-10-25T16:10:15.212Z
 hero: /assets/sb_aw18_8.jpg
+storiesFeatured: true
 sections:
   - body: >-
       The sandal team from Los Angeles continues their fascination with the

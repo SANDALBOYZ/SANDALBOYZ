@@ -11,7 +11,7 @@ lede: >-
   clothing and lifestyle brand, Daily Paper, to create a collaborative slide
   sandal.
 landingFeatured: true
-storiesFeatured: true
+storiesFeatured: false
 sections:
   - body: >-
       The sandal sports an all white colorway (white sole and white strap) with
