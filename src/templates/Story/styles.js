@@ -39,6 +39,7 @@ export const Box = styled.div`
 
   ${mq.gtlg} {
     max-width: 620px;
+    padding: ${space[2]} 0 ${space[4]};
   }
 `;
 
