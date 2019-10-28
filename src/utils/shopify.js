@@ -65,7 +65,7 @@ export const getCustomerQuery = () =>
     return get(data, 'data.customer');
   });
 
-export const associateCheckout = (checkoutId) =>
+export const associateCheckout = checkoutId =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -96,7 +96,7 @@ export const associateCheckout = (checkoutId) =>
     checkoutId: get(data, 'data.checkoutCustomerAssociateV2.checkout.id'),
   }));
 
-export const disassociateCheckout = (checkoutId) =>
+export const disassociateCheckout = checkoutId =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -352,10 +352,30 @@ export const reset = (id, input) =>
       data,
       'data.customerReset.customerAccessToken.accessToken'
     ),
-    expiresAt: get(
-      data,
-      'data.customerReset.customerAccessToken.expiresAt'
-    ),
+    expiresAt: get(data, 'data.customerReset.customerAccessToken.expiresAt'),
     errors: get(data, 'errors'),
     userErrors: get(data, 'data.customerReset.customerUserErrors'),
+  }));
+
+export const getSortedProductIds = (sortKey, reverse) =>
+  axios({
+    url: apiUrl,
+    method: 'post',
+    headers: commonHeaders,
+    data: {
+      query: `
+        query productsQuery($sortKey: ProductSortKeys!, $reverse: Boolean) {
+          products(sortKey: $sortKey, reverse: $reverse, first: 250) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+        }
+      `,
+      variables: { sortKey, reverse },
+    },
+  }).then(({ data }) => ({
+    sortedProductIds: get(data, 'data.products.edges', []).map(({ node }) => `Shopify__Product__${node.id}`),
   }));

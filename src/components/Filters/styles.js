@@ -14,6 +14,7 @@ export const Filter = styled.div`
 export const Filters = styled.div`
   display: flex;
   margin-top: ${space[6]};
+  margin-bottom: ${space[4]};
 `;
 
 export const Option = styled.button`

@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import styled from 'styled-components';
 
 import Head from '@utils/seo';
+import { getSortedProductIds } from '@utils/shopify';
 import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
@@ -38,6 +39,7 @@ class ProductsPage extends Component {
       productType: [],
     },
     showFilters: false,
+    sortedProductIds: [],
   };
 
   filterProducts = ({ node: product }) => {
@@ -73,7 +75,7 @@ class ProductsPage extends Component {
   };
 
   handleFilter = filters => {
-    this.setState({ activeFilters: filters, showFilters: false });
+    this.setState({ activeFilters: filters });
   };
 
   handleCloseFilters = () => {
@@ -84,6 +86,41 @@ class ProductsPage extends Component {
     this.setState({ showFilters: true });
   };
 
+  handleSort = async key => {
+    let sortKey = key;
+    let reverse = false;
+
+    if (sortKey === 'PRICE_ASC') {
+      sortKey = 'PRICE';
+    } else if (sortKey === 'PRICE_DESC') {
+      sortKey = 'PRICE';
+      reverse = true;
+    }
+
+    const { sortedProductIds } = await getSortedProductIds(sortKey, reverse);
+
+    this.setState({ sortedProductIds });
+  };
+
+  sortProducts = ({ node: productA }, { node: productB }) => {
+    const { sortedProductIds } = this.state;
+
+    if (!sortedProductIds.length) {
+      return 0;
+    }
+
+    const indexA = sortedProductIds.indexOf(productA.id);
+    const indexB = sortedProductIds.indexOf(productB.id);
+
+    if (indexA < indexB) {
+      return -1;
+    } else if (indexA > indexB) {
+      return 1;
+    }
+
+    return 0;
+  };
+
   render() {
     const { data } = this.props;
     const { activeFilters, showFilters } = this.state;
@@ -92,25 +129,23 @@ class ProductsPage extends Component {
       Array.isArray(get(data, 'products.edges')) &&
       data.products.edges.filter(this.filterProducts);
 
-    const isFiltered = activeFilters.collection.concat(activeFilters.productType).length;
+    const isFiltered = activeFilters.collection.concat(
+      activeFilters.productType
+    ).length;
 
     return (
       <>
         <Head title="Products" />
-        <Header
-          label="Fall 2019 Collections"
-          shrinkOnMobile
-          title="Products"
-        >
+        <Header label="Fall 2019 Collections" shrinkOnMobile title="Products">
           <Button theme="text" onClick={this.handleOpenFilters}>
-            Filter By
+            Sort/Filter
           </Button>
         </Header>
         {products.length ? (
           <ProductGrid
             filters={activeFilters}
             onFilter={this.handleFilter}
-            products={products.map(({ node }) => ({
+            products={products.sort(this.sortProducts).map(({ node }) => ({
               id: get(node, 'id'),
               href: `/products/${get(node, 'handle')}`,
               images: [
@@ -126,16 +161,17 @@ class ProductsPage extends Component {
         ) : (
           <Empty>
             <Image src={sandal} />
-            <Heading>
-              No products found
-            </Heading>
-            <Body>Try selecting different filters to view more available products.</Body>
+            <Heading>No products found</Heading>
+            <Body>
+              Try selecting different filters to view more available products.
+            </Body>
           </Empty>
         )}
         <Filters
           activeFilters={activeFilters}
           onFilter={this.handleFilter}
           onClose={this.handleCloseFilters}
+          onSort={this.handleSort}
           open={showFilters}
         />
       </>

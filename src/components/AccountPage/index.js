@@ -11,7 +11,7 @@ import {
   getCustomer,
   setDefaultAddress,
   updateAddress,
-} from '@utils/customer';
+} from '@utils/shopify';
 import getPrice from '@utils/price';
 import { Body, H200, H400, H500 } from '@utils/type';
 import AddressForm from '@components/AddressForm';

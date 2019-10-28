@@ -5,6 +5,7 @@ import isEqual from 'react-fast-compare';
 
 import { Body, H600 } from '@utils/type';
 import Drawer from '@components/Drawer';
+import Select from '@components/formElements/Select';
 
 import * as styled from './styles';
 
@@ -16,11 +17,13 @@ class Filters extends Component {
     }).isRequired,
     onClose: PropTypes.func.isRequired,
     onFilter: PropTypes.func.isRequired,
+    onSort: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
   };
 
   state = {
     activeFilters: this.props.activeFilters,
+    activeSort: 'CREATED_AT',
   };
 
   componentDidUpdate(prevProps) {
@@ -51,9 +54,15 @@ class Filters extends Component {
     this.setState({ activeFilters: { ...activeFilters, [key]: existing } });
   };
 
-  handleFilterSubmit = () => {
-    const { activeFilters } = this.state;
+  handleSort = (evt) => {
+    this.setState({ activeSort: evt.target.value });
+  };
+
+  handleSubmit = () => {
+    const { activeFilters, activeSort } = this.state;
     this.props.onFilter(activeFilters);
+    this.props.onSort(activeSort);
+    this.props.onClose();
   };
 
   render() {
@@ -66,13 +75,13 @@ class Filters extends Component {
             name: 'Cancel',
           },
           next: {
-            name: 'Apply Filters',
-            onClick: this.handleFilterSubmit,
+            name: 'Apply',
+            onClick: this.handleSubmit,
           },
         }}
         onClose={onClose}
         open={open}
-        title="Filter By"
+        title="Sort/Filter"
       >
         <styled.Filters>
           <styled.Filter>
@@ -118,6 +127,18 @@ class Filters extends Component {
             </styled.Option>
           </styled.Filter>
         </styled.Filters>
+        <Select
+          label="Sort By"
+          name="sortKey"
+          options={[
+            { name: 'Default', value: 'CREATED_AT' },
+            { name: 'Price Ascending', value: 'PRICE_ASC' },
+            { name: 'Price Descending', value: 'PRICE_DESC' },
+            { name: 'Best Selling', value: 'BEST_SELLING' },
+            { name: 'Product Type', value: 'PRODUCT_TYPE' },
+          ]}
+          onChange={this.handleSort}
+        />
       </Drawer>
     );
   }

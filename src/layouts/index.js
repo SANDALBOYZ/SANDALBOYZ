@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import get from 'lodash/get';
 
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
-import { getCustomer } from '@utils/customer';
+import { getCustomer } from '@utils/shopify';
 import { GlobalStyle } from '@utils/styles';
 import Cart from '@components/Cart';
 import Footer from '@components/Footer/container';

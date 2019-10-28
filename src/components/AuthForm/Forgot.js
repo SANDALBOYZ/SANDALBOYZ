@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useForm from 'react-hook-form';
 import get from 'lodash/get';
 
-import { forgot } from '@utils/customer';
+import { forgot } from '@utils/shopify';
 import Button from '@components/Button';
 import Input from '@components/formElements/Input';
 import * as styled from './styles';

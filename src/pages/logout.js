@@ -3,7 +3,7 @@ import { navigate } from 'gatsby';
 import Cookies from 'js-cookie';
 import get from 'lodash/get';
 
-import { disassociateCheckout } from '@utils/customer';
+import { disassociateCheckout } from '@utils/shopify';
 import StoreContext from '@context/StoreContext';
 
 class Logout extends Component {

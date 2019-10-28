@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import get from 'lodash/get';
 
-import { associateCheckout } from '@utils/customer';
+import { associateCheckout } from '@utils/shopify';
 import { Body, H300 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
 import sandal from '@images/sandal.svg';
