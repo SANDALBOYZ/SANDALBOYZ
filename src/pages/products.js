@@ -95,6 +95,8 @@ class ProductsPage extends Component {
     } else if (sortKey === 'PRICE_DESC') {
       sortKey = 'PRICE';
       reverse = true;
+    } else if (sortKey === 'CREATED_AT') {
+      reverse = true;
     }
 
     const { sortedProductIds } = await getSortedProductIds(sortKey, reverse);
