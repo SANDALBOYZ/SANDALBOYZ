@@ -3,6 +3,7 @@ templateKey: story
 title: SANDALBOYZ LOOKS TO ANCIENT GRECO ROMAN AESTHETICS FOR HOLIDAYS
 authors:
   - SANDALBOYZ
+  - Ryan Chang
 date: 2019-10-25T16:10:15.212Z
 hero: /assets/sb_aw18_8.jpg
 storiesFeatured: true
