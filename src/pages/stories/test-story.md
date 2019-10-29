@@ -96,5 +96,10 @@ sections:
       - /assets/4022da6a-5c08-40cc-be04-9e670412a313.jpg
       - /assets/4b2a5362-e9a1-434b-a331-46bff018b263.jpg
     type: image
+  - caption: This is a "Two-Thirds Image"
+    imageType: twoThirds
+    images:
+      - /assets/copy-of-white_3.jpg
+    type: image
 ---
 
