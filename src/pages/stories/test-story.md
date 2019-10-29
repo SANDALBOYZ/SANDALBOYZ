@@ -4,6 +4,7 @@ title: Test Story
 authors:
   - 'WORDS, Ryan Chang'
   - 'PHOTOS, Ryan Chang'
+  - 'PHOTOS, Neal Donnelly'
 date: 2019-10-27T05:00:00.000Z
 hero: /assets/sb_aw18_5.jpg
 lede: >-
