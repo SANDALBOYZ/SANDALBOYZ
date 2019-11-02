@@ -45,7 +45,8 @@ sections:
       currently dominated by Atlanta-style rap laden with money, misogyny, and
       flaunting consumerism.
     type: text
-  - imageType: twoThirds
+  - caption: Bas
+    imageType: twoThirds
     images:
       - /assets/lw5a2053.jpg
     type: image
@@ -59,7 +60,8 @@ sections:
       branded Court Slides in green. Fiends is Bas’s personal brand. You can
       shop the collection [here](https://beta.sandalboyz.com/products/bas).
     type: text
-  - imageType: split
+  - caption: Bas
+    imageType: split
     images:
       - /assets/1722aa018.jpg
       - /assets/1722aa016.jpg
