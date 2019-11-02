@@ -21,7 +21,8 @@ sections:
       apparent that this unique upbringing has had a positive effect on his
       identity.
     type: text
-  - imageType: split
+  - caption: The design process
+    imageType: split
     images:
       - /assets/lw5a2003.jpg
       - /assets/lw5a2059.jpg
