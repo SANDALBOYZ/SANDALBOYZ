@@ -17,6 +17,12 @@ sections:
       Shop the collection [here](https://beta.sandalboyz.com/products/bas).
 
 
+      SANDALBOYZ BE YOU is a new ongoing series where we work with people in our
+      community to inspire confidence in individuality. The unique individuals
+      we will be working with show that it’s okay to be different and that it’s
+      okay to not fit in. 
+
+
       Abbas Hamad, known by his stage name Bas, is a Sudanese-American rapper
       hailing from Queens, New York. He was born in Paris to Sudanese immigrant
       parents. His family moved to Qatar briefly before finally setting in New
