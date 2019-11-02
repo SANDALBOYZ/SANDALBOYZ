@@ -7,7 +7,7 @@ authors:
   - 'PHOTOS, Neal Donnelly'
 date: 2019-10-27T05:00:00.000Z
 hero: /assets/fiends_sitting.jpg
-lede: We partnered with artist Bas to debut our BE YOU program.
+lede: We partnered with artist Bas to debut our BE YOU series.
 landingFeatured: true
 storiesFeatured: true
 tags:
@@ -56,7 +56,7 @@ sections:
 
       The result of this collaborative effort is a limited run of “FIENDS”
       branded Court Slides in green. Fiends is Bas’s personal brand. You can
-      shop the collection here.
+      shop the collection [here](https://beta.sandalboyz.com/products/bas).
     type: text
   - imageType: split
     images:
