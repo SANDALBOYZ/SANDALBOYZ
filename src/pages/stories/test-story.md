@@ -63,7 +63,7 @@ sections:
       branded Court Slides in green. Fiends is Bas’s personal brand. You can
       shop the collection [here](https://beta.sandalboyz.com/products/bas).
     type: text
-  - caption: Bas
+  - caption: ''
     imageType: split
     images:
       - /assets/1722aa018.jpg
