@@ -6,7 +6,7 @@ authors:
   - 'PHOTOS, Ryan Chang'
   - 'PHOTOS, Neal Donnelly'
 date: 2019-10-27T05:00:00.000Z
-hero: /assets/fiends_sitting.jpg
+hero: /assets/1722aa016.jpg
 lede: We partnered with artist Bas to debut our BE YOU series.
 landingFeatured: true
 storiesFeatured: true
