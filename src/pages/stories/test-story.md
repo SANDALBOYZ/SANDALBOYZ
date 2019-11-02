@@ -14,6 +14,9 @@ tags:
   - article
 sections:
   - body: >-
+      Shop the collection [here](https://beta.sandalboyz.com/products/bas).
+
+
       Abbas Hamad, known by his stage name Bas, is a Sudanese-American rapper
       hailing from Queens, New York. He was born in Paris to Sudanese immigrant
       parents. His family moved to Qatar briefly before finally setting in New
