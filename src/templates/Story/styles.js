@@ -64,6 +64,10 @@ export const Lede = styled(BaseContainer)`
 `;
 
 export const Sections = styled.div`
+  & a {
+    text-decoration: underline;
+  }
+
   & p {
     font-family: ${fonts.STANDARD};
     font-size: 15px;
