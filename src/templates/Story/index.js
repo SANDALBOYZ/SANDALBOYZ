@@ -9,7 +9,6 @@ import { FullWidthImage, SplitImage, TwoThirdsImage } from '@components/StoryIma
 import * as styled from './styles';
 
 export const StoryTemplate = ({ story }) => {
-  console.log(story);
   const renderSection = (section, idx) => {
     if (section.type === 'image') {
       const { caption, imageType } = section;
