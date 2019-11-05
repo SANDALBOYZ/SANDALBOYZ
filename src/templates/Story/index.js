@@ -38,7 +38,7 @@ export const StoryTemplate = ({ story }) => {
         <styled.Box>
           <H100>{get(story, 'frontmatter.title')}</H100>
         </styled.Box>
-        {get(story, 'frontmatter.authors.length') && (
+        {get(story, 'frontmatter.authors.length') > 0 && (
           <styled.Authors>
             {story.frontmatter.authors.map(author => (
               <styled.ContentLabel key={author}>{author}</styled.ContentLabel>
