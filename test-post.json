@@ -1,0 +1,1 @@
+{"type":"PR","pr":{"number":2,"head":"89a0a84e63ed3a08c041ace9efd465e505b9b113"},"user":"andrew","status":"draft","branch":"cms/test-post","collection":"stories","title":"Test post","description":"No Description!","objects":{"entry":{"path":"src/pages/stories/test-post.md","sha":"b0b6049a9ab1e149e12345045d5988bf15f72e58"},"files":[]},"timeStamp":"2019-11-05T19:02:28.422Z"}
