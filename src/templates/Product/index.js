@@ -88,8 +88,10 @@ class Product extends Component {
           option => option.name === 'Size'
         ).value;
 
+        const optionLabel = variant.availableForSale ? size : `${size} - Sold Out`;
+
         return {
-          name: size,
+          name: optionLabel,
           value: variant.shopifyId,
           disabled: !variant.availableForSale,
         };
@@ -232,6 +234,7 @@ export const query = graphql`
         id
         title
         price
+        compareAtPrice
         availableForSale
         shopifyId
         selectedOptions {

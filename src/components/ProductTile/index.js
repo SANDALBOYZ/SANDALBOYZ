@@ -8,13 +8,18 @@ import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
 import { Badge, H300M, H400, H600 } from '@utils/type';
 import * as styled from './styles';
 
-const ProductTile = ({ href, images, price, soldOut, title }) => (
+const ProductTile = ({ href, images, onSale, price, soldOut, title }) => (
   <styled.Wrapper>
     <Link to={href}>
       {soldOut && (
-        <styled.SoldOut>
+        <styled.Status>
           <Badge>Sold out</Badge>
-        </styled.SoldOut>
+        </styled.Status>
+      )}
+      {!soldOut && onSale && (
+        <styled.Status>
+          <Badge>Sale</Badge>
+        </styled.Status>
       )}
       <styled.ImageWrapper>
         {get(images, '0') && (
@@ -39,6 +44,7 @@ const ProductTile = ({ href, images, price, soldOut, title }) => (
 
 ProductTile.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object),
+  onSale: PropTypes.bool,
   price: PropTypes.string,
   soldOut: PropTypes.bool,
   title: PropTypes.string.isRequired,

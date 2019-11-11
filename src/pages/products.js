@@ -157,6 +157,7 @@ class ProductsPage extends Component {
               price: get(node, 'variants[0].price'),
               title: get(node, 'title'),
               soldOut: !get(node, 'availableForSale'),
+              onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
             }))}
             title={isFiltered ? 'Filtered Results' : 'All Products'}
           />
@@ -208,6 +209,7 @@ export const productsPageQuery = graphql`
           }
           variants {
             price
+            compareAtPrice
           }
         }
       }

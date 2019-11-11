@@ -28,7 +28,7 @@ export const Info = styled.div`
   }
 `;
 
-export const SoldOut = styled.div`
+export const Status = styled.div`
   position: absolute;
   top: ${space[2]};
   left: ${space[2]};

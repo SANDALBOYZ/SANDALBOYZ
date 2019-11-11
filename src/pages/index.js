@@ -31,6 +31,7 @@ const LandingPage = ({ data }) => {
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
             soldOut: !get(node, 'availableForSale'),
+            onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
           }))
         }
         title="02 / Inline Collection"
@@ -78,6 +79,7 @@ const LandingPage = ({ data }) => {
             price: get(node, 'variants[0].price'),
             title: get(node, 'title'),
             soldOut: !get(node, 'availableForSale'),
+            onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
           }))
         }
         title="05 / Special Projects"
@@ -130,6 +132,7 @@ export const landingPageQuery = graphql`
           }
           variants {
             price
+            compareAtPrice
           }
         }
       }
@@ -159,6 +162,7 @@ export const landingPageQuery = graphql`
           }
           variants {
             price
+            compareAtPrice
           }
         }
       }
