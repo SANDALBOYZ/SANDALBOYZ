@@ -59,6 +59,10 @@ export const MainImageWrapper = styled.div`
   position: relative;
   margin-bottom: ${space[2]};
 
+  & > div > div {
+    padding-bottom: 100%;
+  }
+
   ${mq.gtlg} {
     margin-bottom: ${space[3]};
   }

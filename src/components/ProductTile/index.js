@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import Link from 'gatsby-link';
+import get from 'lodash/get';
 
 import getPrice from '@utils/price';
 import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
@@ -16,10 +17,10 @@ const ProductTile = ({ href, images, price, soldOut, title }) => (
         </styled.SoldOut>
       )}
       <styled.ImageWrapper>
-        {images[0] && (
+        {get(images, '0') && (
           <AbsoluteImg fluid={images[0]} />
         )}
-        {images[0] && (
+        {get(images, '1') && (
           <AbsoluteImg fluid={images[1]} />
         )}
       </styled.ImageWrapper>

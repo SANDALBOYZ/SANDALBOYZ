@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import get from 'lodash/get';
 
 import colors from '@utils/colors';
 import space, { H_PADDING_MOBILE } from '@utils/space';
@@ -80,14 +81,14 @@ export const SplitImage = ({ caption, images }) => (
   <SplitWrapper>
     <SplitLeft>
       <SplitImageOne>
-        {images[0] && (
+        {get(images, '0') && (
           <AbsoluteImg fluid={images[0]} />
         )}
       </SplitImageOne>
       {caption && <SplitCaption>{caption}</SplitCaption>}
     </SplitLeft>
     <SplitImageTwo>
-      {images[1] && (
+      {get(images, '1') && (
         <AbsoluteImg fluid={images[1]} />
       )}
     </SplitImageTwo>

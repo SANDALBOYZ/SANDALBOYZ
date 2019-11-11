@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import styled from 'styled-components';
 
 import Button from '@components/Button';
 import Navigation from '@components/Navigation';
 import Drawer from '.';
+
+const LaunchButton = styled(Button)`
+  margin-top: 80px;
+`;
 
 export default { title: 'Drawer' };
 
@@ -26,7 +31,7 @@ class Demo extends Component {
     return (
       <div>
         <Navigation />
-        <Button onClick={this.handleOpen}>Open drawer</Button>
+        <LaunchButton onClick={this.handleOpen}>Open drawer</LaunchButton>
         <Drawer
           actions={{
             close: {

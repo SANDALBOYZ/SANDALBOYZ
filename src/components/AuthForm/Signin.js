@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
+import Link from 'gatsby-link';
 import useForm from 'react-hook-form';
 import get from 'lodash/get';
 import Cookies from 'js-cookie';

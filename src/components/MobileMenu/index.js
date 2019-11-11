@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import Link from 'gatsby-link';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 import { H300, H500 } from '@utils/type';
