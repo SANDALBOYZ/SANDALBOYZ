@@ -12,13 +12,16 @@ const LandingPage = ({ data }) => {
   return (
     <>
       <Head title="Home" />
-      <Hero
-        href={get(data, 'hero.fields.slug')}
-        image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}
-        label="01 / Featured Story"
-        title={get(data, 'hero.frontmatter.title')}
-      />
+      {get(data, 'hero') && (
+        <Hero
+          href={get(data, 'hero.fields.slug')}
+          image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}
+          label="Featured Story"
+          title={get(data, 'hero.frontmatter.title')}
+        />
+      )}
       <ProductGrid
+        offset={!get(data, 'hero')}
         products={
           Array.isArray(get(data, 'inline.edges')) &&
           data.inline.edges.map(({ node }) => ({
@@ -34,7 +37,7 @@ const LandingPage = ({ data }) => {
             onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
           }))
         }
-        title="02 / Inline Collection"
+        title="Featured Products"
       />
       {Array.isArray(get(data, 'recentStories.edges')) &&
         data.recentStories.edges.length > 1 && (
@@ -57,15 +60,17 @@ const LandingPage = ({ data }) => {
             }}
           />
         )}
-      <BannerLight
-        cta={{
-          href: get(data, 'teaser.fields.slug'),
-          name: 'View blog',
-        }}
-        image={get(data, 'teaser.frontmatter.hero.childImageSharp.fluid')}
-        label="04 / Featured Story"
-        title={get(data, 'teaser.frontmatter.title')}
-      />
+      {get(data, 'teaser') && (
+        <BannerLight
+          cta={{
+            href: get(data, 'teaser.fields.slug'),
+            name: 'View blog',
+          }}
+          image={get(data, 'teaser.frontmatter.hero.childImageSharp.fluid')}
+          label="Featured Story"
+          title={get(data, 'teaser.frontmatter.title')}
+        />
+      )}
       <ProductGrid
         products={
           Array.isArray(get(data, 'specialProjects.edges')) &&
@@ -82,7 +87,7 @@ const LandingPage = ({ data }) => {
             onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
           }))
         }
-        title="05 / Special Projects"
+        title="More Featured Projects"
       />
     </>
   );

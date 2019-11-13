@@ -16,7 +16,9 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-      allMarkdownRemark(filter: {frontmatter: { templateKey: { eq: "story" } } }) {
+      allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "story" } } }
+      ) {
         edges {
           node {
             id
@@ -52,6 +54,75 @@ exports.createPages = ({ graphql, actions }) => {
       });
     });
   });
+};
+
+exports.createSchemaCustomization = ({ actions, schema }) => {
+  const { createTypes } = actions;
+
+  const typeDefs = [
+    'type MarkdownRemark implements Node { fields: Fields, frontmatter: Frontmatter }',
+    schema.buildObjectType({
+      name: 'FieldsSections',
+      fields: {
+        body: 'String',
+        type: 'String',
+        html: 'String',
+        caption: 'String',
+        imageType: 'String',
+        images: {
+          type: '[File]',
+          extensions: {
+            fileByRelativePath: {},
+          },
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'Fields',
+      fields: {
+        slug: {
+          type: 'String',
+        },
+        sections: {
+          type: '[FieldsSections]',
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'Frontmatter',
+      fields: {
+        about: 'String',
+        authors: '[String]',
+        date: 'Date',
+        hero: {
+          type: 'File',
+          extensions: {
+            fileByRelativePath: {},
+          },
+        },
+        landingFeatured: 'Boolean',
+        lede: 'String',
+        sections: '[SectionPlaceholder]',
+        storiesFeatured: 'Boolean',
+        tags: '[String]',
+        templateKey: 'String',
+        title: 'String',
+      },
+    }),
+    schema.buildObjectType({
+      name: 'SectionPlaceholder',
+      fields: {
+        images: {
+          type: '[File]',
+          extensions: {
+            fileByRelativePath: {},
+          },
+        },
+      },
+    }),
+  ];
+
+  createTypes(typeDefs);
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

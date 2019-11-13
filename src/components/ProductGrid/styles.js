@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
@@ -96,8 +96,15 @@ export const Products = styled.div`
 
 export const Wrapper = styled.div`
   margin-bottom: ${space[8]};
+  ${props => props.offset && css`
+    padding-top: 48px;
+  `}
 
   ${mq.gtlg} {
     margin-top: ${space[2]};
+
+    ${props => props.offset && css`
+      padding-top: 80px;
+    `}
   }
 `;

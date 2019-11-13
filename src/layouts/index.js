@@ -218,9 +218,18 @@ class Layout extends React.Component {
         <StaticQuery
           query={graphql`
             query SiteTitleQuery {
-              site {
+              site: site {
                 siteMetadata {
                   title
+                }
+              }
+              stories: allMarkdownRemark(
+                filter: { frontmatter: { templateKey: { eq: "story" } } }
+              ) {
+                edges {
+                  node {
+                    id
+                  }
                 }
               }
             }
@@ -238,6 +247,7 @@ class Layout extends React.Component {
                 onCartOpen={this.handleCartOpen}
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}
+                showStories={get(data, 'stories.edges.length') > 0}
               />
               <MobileMenu
                 authLinks={this.getNavAuthLinks()}
@@ -246,10 +256,11 @@ class Layout extends React.Component {
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}
                 open={this.state.menuOpen}
+                showStories={get(data, 'stories.edges.length') > 0}
               />
               <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
               {children}
-              <Footer />
+              <Footer showStories={get(data, 'stories.edges.length') > 0} />
             </>
           )}
         />

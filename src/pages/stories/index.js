@@ -1,30 +1,45 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import get from 'lodash/get';
 
 import Head from '@utils/seo';
 import FeaturedStory from '@components/FeaturedStory';
 import StoriesGrid from '@components/StoriesGrid';
 
-const StoriesPage = ({ data }) => (
-  <>
-    <Head title="Stories" />
-    <FeaturedStory
-      href={get(data, 'featured.fields.slug')}
-      image={get(data, 'featured.frontmatter.hero.childImageSharp.fluid')}
-      label="Featured Story"
-      title={get(data, 'featured.frontmatter.title')}
-    />
-    <StoriesGrid
-      stories={get(data, 'stories.edges', []).map(({ node }) => ({
-        id: get(node, 'id'),
-        href: get(node, 'fields.slug'),
-        image: get(node, 'frontmatter.hero.childImageSharp.fluid'),
-        title: get(node, 'frontmatter.title'),
-      }))}
-    />
-  </>
-);
+const StoriesPage = ({ data }) => {
+  if (!get(data, 'stories.edges.length')) {
+    navigate('/');
+  }
+
+  let featured = get(data, 'featured');
+  if (!featured) {
+    featured = get(data, 'stories.edges[0].node');
+  }
+
+  return (
+    <>
+      <Head title="Stories" />
+      {featured && (
+        <FeaturedStory
+          href={get(featured, 'fields.slug')}
+          image={get(featured, 'frontmatter.hero.childImageSharp.fluid')}
+          label="Featured Story"
+          title={get(featured, 'frontmatter.title')}
+        />
+      )}
+      {Array.isArray(get(data, 'stories.edges')) && (
+        <StoriesGrid
+          stories={get(data, 'stories.edges', []).map(({ node }) => ({
+            id: get(node, 'id'),
+            href: get(node, 'fields.slug'),
+            image: get(node, 'frontmatter.hero.childImageSharp.fluid'),
+            title: get(node, 'frontmatter.title'),
+          }))}
+        />
+      )}
+    </>
+  );
+};
 
 export default StoriesPage;
 

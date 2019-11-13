@@ -16,6 +16,7 @@ class Navigation extends Component {
     onCartOpen: PropTypes.func.isRequired,
     onMenuClose: PropTypes.func.isRequired,
     onMenuOpen: PropTypes.func,
+    showStories: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -66,6 +67,7 @@ class Navigation extends Component {
       onCartOpen,
       onMenuClose,
       onMenuOpen,
+      showStories,
     } = this.props;
     const { hasScrolled } = this.state;
 
@@ -92,9 +94,11 @@ class Navigation extends Component {
             <styled.NavLink to="/products" partiallyActive>
               Products
             </styled.NavLink>
-            <styled.NavLink to="/stories" partiallyActive>
-              Stories
-            </styled.NavLink>
+            {showStories && (
+              <styled.NavLink to="/stories" partiallyActive>
+                Stories
+              </styled.NavLink>
+            )}
             <styled.NavLink to="/contact">Contact</styled.NavLink>
           </styled.NavSection>
           <styled.NavSection>

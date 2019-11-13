@@ -8,7 +8,7 @@ import * as styled from './styles';
 
 const RecentStories = ({ storyA, storyB }) => (
   <styled.Container>
-    <styled.H500>03 / Recent Stories</styled.H500>
+    <styled.H500>Recent Stories</styled.H500>
     <styled.Inner>
       <styled.Wrapper>
         <Link to={storyA.href}>

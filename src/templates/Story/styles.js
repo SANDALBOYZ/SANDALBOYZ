@@ -68,6 +68,80 @@ export const Sections = styled.div`
     text-decoration: underline;
   }
 
+  & em {
+    font-style: italic;
+  }
+
+  & h1 {
+    margin-bottom: 20px;
+    font-family: ${fonts.CONDENSED};
+    font-style: italic;
+    font-size: 35px;
+    font-weight: ${weights.BLACK};
+    letter-spacing: -0.01em;
+    line-height: 40px;
+    text-transform: uppercase;
+  }
+
+  & h2 {
+    margin-bottom: 18px;
+    font-family: ${fonts.CONDENSED};
+    font-style: italic;
+    font-size: 29px;
+    font-weight: ${weights.BLACK};
+    letter-spacing: -0.01em;
+    line-height: 32px;
+    text-transform: uppercase;
+  }
+
+  & h3 {
+    margin-bottom: 16px;
+    font-family: ${fonts.CONDENSED};
+    font-style: italic;
+    font-size: 24px;
+    font-weight: ${weights.BLACK};
+    letter-spacing: -0.01em;
+    line-height: 28px;
+    text-transform: uppercase;
+  }
+
+  & h4 {
+    margin-bottom: 12px;
+    font-family: ${fonts.CONDENSED};
+    font-style: italic;
+    font-size: 20px;
+    font-weight: ${weights.BLACK};
+    letter-spacing: -0.008em;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+
+  & h5 {
+    margin-bottom: 8px;
+    font-family: ${fonts.CONDENSED};
+    font-style: italic;
+    font-size: 16px;
+    font-weight: ${weights.BOLD};
+    letter-spacing: -0.006em;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+
+  & h6 {
+    margin-bottom: 4px;
+    font-family: ${fonts.CONDENSED};
+    font-style: italic;
+    font-size: 14px;
+    font-weight: ${weights.BOLD};
+    letter-spacing: -0.003em;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  & strong {
+    font-weight: ${weights.BOLD};
+  }
+
   & p {
     font-family: ${fonts.STANDARD};
     font-size: 15px;

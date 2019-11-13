@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ProductTile from '@components/ProductTile';
 import * as styled from './styles';
 
-const ProductGrid = ({ filters, onFilter, products, title }) => {
+const ProductGrid = ({ filters, offset, onFilter, products, title }) => {
   const clearFilter = (key, filter) => {
     const newFilters = { collection: [], productType: [] };
 
@@ -16,7 +16,7 @@ const ProductGrid = ({ filters, onFilter, products, title }) => {
   };
 
   return (
-    <styled.Wrapper>
+    <styled.Wrapper offset={offset}>
       <styled.Container>
         <styled.Header>
           <styled.H500>{title}</styled.H500>
@@ -51,6 +51,7 @@ ProductGrid.propTypes = {
     collection: PropTypes.array,
     productType: PropTypes.array,
   }),
+  offset: PropTypes.bool,
   onFilter: PropTypes.func,
   products: PropTypes.arrayOf(
     PropTypes.shape({

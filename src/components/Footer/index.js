@@ -8,7 +8,7 @@ import Subscribe from '@components/Subscribe';
 import links from './links';
 import * as styled from './styles';
 
-const Footer = ({ about }) => {
+const Footer = ({ about, showStories }) => {
   return (
     <Container>
       <Subscribe />
@@ -23,23 +23,29 @@ const Footer = ({ about }) => {
               <styled.Section key={linkSection.title}>
                 <styled.H600>{linkSection.title}</styled.H600>
                 <ul>
-                  {linkSection.links.map(link => (
-                    <li key={link.name}>
-                      {link.external ? (
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Body>{link.name}</Body>
-                        </a>
-                      ) : (
-                        <Link to={link.href}>
-                          <Body>{link.name}</Body>
-                        </Link>
-                      )}
-                    </li>
-                  ))}
+                  {linkSection.links.map(link => {
+                    if (link.name === 'Stories' && !showStories) {
+                      return null;
+                    }
+
+                    return (
+                      <li key={link.name}>
+                        {link.external ? (
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Body>{link.name}</Body>
+                          </a>
+                        ) : (
+                          <Link to={link.href}>
+                            <Body>{link.name}</Body>
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </styled.Section>
             ))}
