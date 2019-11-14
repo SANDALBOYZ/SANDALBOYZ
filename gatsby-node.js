@@ -4,6 +4,7 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 const get = require('lodash/get');
 const remark = require('remark');
 const html = require('remark-html');
+const slugify = require('slugify');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -132,11 +133,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === 'MarkdownRemark') {
     const value = createFilePath({ node, getNode });
 
-    createNodeField({
-      name: 'slug',
-      node,
-      value,
-    });
+    if (node.frontmatter.templateKey === 'story') {
+      createNodeField({
+        name: 'slug',
+        node,
+        value: `/stories/${slugify(node.frontmatter.slug, { lower: true })}`,
+      });
+    } else {
+      createNodeField({
+        name: 'slug',
+        node,
+        value,
+      });
+    }
 
     createNodeField({
       name: 'sections',

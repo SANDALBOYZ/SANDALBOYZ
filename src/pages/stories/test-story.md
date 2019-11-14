@@ -1,6 +1,7 @@
 ---
 templateKey: story
 title: SANDALBOYZ presents BE YOU with Bas
+slug: sandalboyz-presents-be-you-with-bas
 authors:
   - 'WORDS, Ryan Chang'
   - 'PHOTOS, Ryan Chang'

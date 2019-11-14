@@ -9,9 +9,11 @@ collections:
     name: stories
     folder: src/pages/stories
     create: true
+    slug: "{{fields.slug}}"
     fields:
       - { label: Template Key, name: templateKey, widget: hidden, default: story }
       - { label: Title, name: title }
+      - { label: Slug, name: slug, hint: Avoid changing this after the story is published. }
       - label: Author(s)
         name: authors
         widget: list
