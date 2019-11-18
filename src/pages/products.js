@@ -155,6 +155,7 @@ class ProductsPage extends Component {
                 get(node, 'images[1].localFile.childImageSharp.fluid'),
               ],
               price: get(node, 'variants[0].price'),
+              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
               title: get(node, 'title'),
               soldOut: !get(node, 'availableForSale'),
               onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),

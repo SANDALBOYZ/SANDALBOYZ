@@ -39,7 +39,7 @@ class ProductImages extends Component {
   };
 
   render() {
-    const { images } = this.props;
+    const { children, images } = this.props;
     const { activeIndex } = this.state;
 
     return (
@@ -54,6 +54,7 @@ class ProductImages extends Component {
           <styled.Button onClick={this.handleNextImage}>
             <styled.Icon name="chevron-right" />
           </styled.Button>
+          {children}
         </styled.MainImageWrapper>
         <styled.Thumbnails>
           {images.map((image, idx) => (

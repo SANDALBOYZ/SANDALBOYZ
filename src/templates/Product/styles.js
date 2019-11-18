@@ -91,6 +91,21 @@ export const Selections = styled.div`
   }
 `;
 
+export const Status = styled.div`
+  position: absolute;
+  top: ${space[2]};
+  left: ${space[2]};
+  z-index: 1;
+  padding: 0 ${space[1]};
+  color: ${colors.N0};
+  background-color: ${colors.NEGATIVE};
+
+  & > span {
+    display: inline-block;
+    transform: translateY(-1px);
+  }
+`;
+
 export const Sizing = styled.div`
   display: flex;
   align-items: center;

@@ -56,8 +56,10 @@ ProductGrid.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       images: PropTypes.arrayOf(PropTypes.object),
+      compareAtPrice: PropTypes.string,
       price: PropTypes.string,
       soldOut: PropTypes.bool,
+      onSale: PropTypes.bool,
       title: PropTypes.string.isRequired,
     })
   ),

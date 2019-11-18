@@ -6,7 +6,7 @@ import qs from 'querystringify';
 import getPrice from '@utils/price';
 import Head from '@utils/seo';
 import { Breakpoint, breakpoints } from '@utils/styles';
-import { ContentLabel, H300, H300M, H500 } from '@utils/type';
+import { Badge, ContentLabel, H300, H300M, H500 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
 import Button from '@components/Button';
 import Input from '@components/formElements/Input';
@@ -23,6 +23,7 @@ class Product extends Component {
 
     this.state = {
       quantity: 1,
+      onSale: this.getFirstSizeOnSale(),
       size: this.getFirstAvailableSize(),
       sizeChartOpen: false,
     };
@@ -58,7 +59,8 @@ class Product extends Component {
   };
 
   handleSizeChange = evt => {
-    this.setState({ size: evt.target.value });
+    const onSale = this.getFirstSizeOnSale(evt.target.value);
+    this.setState({ size: evt.target.value, onSale });
   };
 
   getFirstAvailableSize = () => {
@@ -73,6 +75,29 @@ class Product extends Component {
         .find(variant => variant.availableForSale),
       'shopifyId'
     );
+  };
+
+  getFirstSizeOnSale = (id) => {
+    const { data } = this.props;
+    const product = data.shopifyProduct;
+
+    const firstAvailable = product.variants
+      .filter(variant =>
+        variant.selectedOptions.find(option => option.name === 'Size')
+      )
+      .find(variant => {
+        if (id) {
+          return variant.shopifyId === id;
+        }
+
+        return variant.availableForSale;
+      });
+
+    if (firstAvailable) {
+      return firstAvailable.compareAtPrice > firstAvailable.price;
+    }
+
+    return false;
   };
 
   getSizes = () => {
@@ -100,10 +125,11 @@ class Product extends Component {
 
   render() {
     const { data } = this.props;
-    const { quantity, size, sizeChartOpen } = this.state;
+    const { quantity, onSale, size, sizeChartOpen } = this.state;
 
     const product = data.shopifyProduct;
     const sizes = this.getSizes();
+    const soldOut = !product.availableForSale;
 
     return (
       <>
@@ -142,11 +168,22 @@ class Product extends Component {
             <H300M>{product.title}</H300M>
             <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
           </styled.MobileProductInfo>
-          <ProductImages images={product.images} />
+          <ProductImages images={product.images}>
+            {soldOut && (
+              <styled.Status>
+                <Badge>Sold out</Badge>
+              </styled.Status>
+            )}
+            {!soldOut && onSale && (
+              <styled.Status>
+                <Badge>Sale</Badge>
+              </styled.Status>
+            )}
+          </ProductImages>
           <styled.ProductInfo>
             <Breakpoint min={breakpoints.lg}>
               <H300>{product.title}</H300>
-              <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
+              <H500>{getPrice(get(product, 'variants[0].price'), get(product, 'variants[0].compareAtPrice'))}</H500>
             </Breakpoint>
             <styled.Selections>
               {sizes.length > 1 && (
@@ -225,6 +262,7 @@ export const query = graphql`
       description
       descriptionHtml
       shopifyId
+      availableForSale
       options {
         id
         name
