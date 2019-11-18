@@ -20,25 +20,27 @@ const LandingPage = ({ data }) => {
           title={get(data, 'hero.frontmatter.title')}
         />
       )}
-      <ProductGrid
-        offset={!get(data, 'hero')}
-        products={
-          Array.isArray(get(data, 'inline.edges')) &&
-          data.inline.edges.map(({ node }) => ({
-            id: get(node, 'id'),
-            href: `/products/${get(node, 'handle')}`,
-            images: [
-              get(node, 'images[0].localFile.childImageSharp.fluid'),
-              get(node, 'images[1].localFile.childImageSharp.fluid'),
-            ],
-            price: get(node, 'variants[0].price'),
-            title: get(node, 'title'),
-            soldOut: !get(node, 'availableForSale'),
-            onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
-          }))
-        }
-        title="Featured Products"
-      />
+      {Array.isArray(get(data, 'recommendedPicks.edges')) &&
+        data.recommendedPicks.edges.length > 0 && (
+          <ProductGrid
+            offset={!get(data, 'hero')}
+            products={data.recommendedPicks.edges.map(({ node }) => ({
+              id: get(node, 'id'),
+              href: `/products/${get(node, 'handle')}`,
+              images: [
+                get(node, 'images[0].localFile.childImageSharp.fluid'),
+                get(node, 'images[1].localFile.childImageSharp.fluid'),
+              ],
+              price: get(node, 'variants[0].price'),
+              title: get(node, 'title'),
+              soldOut: !get(node, 'availableForSale'),
+              onSale:
+                get(node, 'variants[0].compareAtPrice') >
+                get(node, 'variants[0].price'),
+            }))}
+            title="Recommended Picks"
+          />
+        )}
       {Array.isArray(get(data, 'recentStories.edges')) &&
         data.recentStories.edges.length > 1 && (
           <RecentStories
@@ -71,24 +73,26 @@ const LandingPage = ({ data }) => {
           title={get(data, 'teaser.frontmatter.title')}
         />
       )}
-      <ProductGrid
-        products={
-          Array.isArray(get(data, 'specialProjects.edges')) &&
-          data.specialProjects.edges.map(({ node }) => ({
-            id: get(node, 'id'),
-            href: `/products/${get(node, 'handle')}`,
-            images: [
-              get(node, 'images[0].localFile.childImageSharp.fluid'),
-              get(node, 'images[1].localFile.childImageSharp.fluid'),
-            ],
-            price: get(node, 'variants[0].price'),
-            title: get(node, 'title'),
-            soldOut: !get(node, 'availableForSale'),
-            onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
-          }))
-        }
-        title="More Featured Projects"
-      />
+      {Array.isArray(get(data, 'recentProducts.edges')) &&
+        data.recentProducts.edges.length > 0 && (
+          <ProductGrid
+            products={data.recentProducts.edges.map(({ node }) => ({
+              id: get(node, 'id'),
+              href: `/products/${get(node, 'handle')}`,
+              images: [
+                get(node, 'images[0].localFile.childImageSharp.fluid'),
+                get(node, 'images[1].localFile.childImageSharp.fluid'),
+              ],
+              price: get(node, 'variants[0].price'),
+              title: get(node, 'title'),
+              soldOut: !get(node, 'availableForSale'),
+              onSale:
+                get(node, 'variants[0].compareAtPrice') >
+                get(node, 'variants[0].price'),
+            }))}
+            title="Recent Products"
+          />
+        )}
     </>
   );
 };
@@ -112,8 +116,8 @@ export const landingPageQuery = graphql`
         title
       }
     }
-    inline: allShopifyProduct(
-      filter: { tags: { in: "collection:Inline" } }
+    recommendedPicks: allShopifyProduct(
+      filter: { tags: { in: "featured:primary" } }
       limit: 6
       sort: { fields: [createdAt], order: DESC }
     ) {
@@ -142,8 +146,8 @@ export const landingPageQuery = graphql`
         }
       }
     }
-    specialProjects: allShopifyProduct(
-      filter: { tags: { in: "collection:Special Projects" } }
+    recentProducts: allShopifyProduct(
+      filter: { tags: { in: "featured:secondary" } }
       limit: 6
       sort: { fields: [createdAt], order: DESC }
     ) {
