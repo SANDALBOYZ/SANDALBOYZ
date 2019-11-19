@@ -68,13 +68,8 @@ class Story extends Component {
           title={get(data, 'story.frontmatter.title')}
           description={get(data, 'story.frontmatter.lede')}
           ogType="article"
-          meta={[
-            {
-              property: 'og:image',
-              content: get(data, 'story.frontmatter.hero.childImageSharp.fluid.src'),
-            },
-          ]}
-          slug={get(data, 'story.slug')}
+          image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
+          slug={get(data, 'story.fields.slug')}
         />
         <StoryTemplate story={data.story} />
       </>

@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, ogImage, ogType, slug, title }) {
+import shareImage from '@images/shareImage.jpg';
+
+function SEO({ description, lang, meta, image, ogType, slug, title }) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description;
+        const metaImage = image || shareImage;
+
         return (
           <Helmet
             htmlAttributes={{
@@ -27,6 +31,10 @@ function SEO({ description, lang, meta, ogImage, ogType, slug, title }) {
                 content: metaDescription,
               },
               {
+                property: 'og:image',
+                content: `${data.site.siteMetadata.siteUrl}${metaImage}`,
+              },
+              {
                 property: 'og:site_name',
                 content: 'SANDALBOYZ',
               },
@@ -40,11 +48,13 @@ function SEO({ description, lang, meta, ogImage, ogType, slug, title }) {
               },
               {
                 property: 'og:url',
-                content: slug ? `${data.site.siteMetadata.siteUrl}/${slug}` : `${data.site.siteMetadata.siteUrl}`,
+                content: slug
+                  ? `${data.site.siteMetadata.siteUrl}${slug}`
+                  : `${data.site.siteMetadata.siteUrl}`,
               },
               {
                 name: 'twitter:card',
-                content: 'summary',
+                content: 'summary_large_image',
               },
               {
                 name: 'twitter:site',
@@ -58,8 +68,7 @@ function SEO({ description, lang, meta, ogImage, ogType, slug, title }) {
                 name: 'twitter:description',
                 content: metaDescription,
               },
-            ]
-              .concat(meta)}
+            ].concat(meta)}
           />
         );
       }}
@@ -90,6 +99,7 @@ const detailsQuery = graphql`
       siteMetadata {
         title
         description
+        siteUrl
       }
     }
   }

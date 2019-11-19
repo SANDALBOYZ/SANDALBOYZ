@@ -137,21 +137,11 @@ class Product extends Component {
           title={product.title}
           description={product.description}
           ogType="product"
+          image={get(
+            product,
+            'images[0].localFile.childImageSharp.fluid.src'
+          )}
           meta={[
-            {
-              property: 'twitter:image',
-              content: get(
-                product,
-                'images[0].localFile.childImageSharp.fluid.src'
-              ),
-            },
-            {
-              property: 'og:image',
-              content: get(
-                product,
-                'images[0].localFile.childImageSharp.fluid.src'
-              ),
-            },
             {
               property: 'og:price:amount',
               content: get(product, 'variants[0].price'),
@@ -217,7 +207,7 @@ class Product extends Component {
             <styled.Social>
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(
-                  { u: `https://pedantic-kepler-2981ce.netlify.com/products/${product.handle}` }
+                  { u: `${get(data, 'site.siteMetadata.siteUrl', 'https://beta.sandalboyz.com')}/products/${product.handle}` }
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -226,7 +216,7 @@ class Product extends Component {
               </a>
               <a
                 href={`https://twitter.com/intent/tweet?${qs.stringify({
-                  url: `https://pedantic-kepler-2981ce.netlify.com/${product.handle}`,
+                  url: `${get(data, 'site.siteMetadata.siteUrl', 'https://beta.sandalboyz.com')}/products/${product.handle}`,
                   text: product.title,
                 })}`}
                 target="_blank"
@@ -254,6 +244,11 @@ class Product extends Component {
 
 export const query = graphql`
   query($handle: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     shopifyProduct(handle: { eq: $handle }) {
       id
       title
