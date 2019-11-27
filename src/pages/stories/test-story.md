@@ -9,7 +9,7 @@ authors:
 date: 2019-10-27T05:00:00.000Z
 hero: /assets/1722aa016.jpg
 lede: We partnered with artist Bas to debut our BE YOU series.
-landingFeatured: true
+landingFeatured: false
 storiesFeatured: true
 tags:
   - article
