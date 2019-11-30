@@ -18,6 +18,9 @@ sections:
 
 
       Limited time only.
+
+
+      Shop [here](https://beta.sandalboyz.com/products/) now.
     type: text
 ---
 
