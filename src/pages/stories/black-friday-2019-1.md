@@ -11,13 +11,14 @@ landingFeatured: true
 sections:
   - body: >-
       Buy one get one free on any pair of slides from the ChromaColor
-      collection!
+      collection! BOGO offer ends on December 1, 11:59pm Pacific Time.
 
 
-      Up to 40% off past collections. Get your pair now.
+      Up to 40% off past collections. Discounted sandals will continue through
+      Cyber Monday (December 2) and end at 11:59pm Pacific Time on December 2.
 
 
-      Limited time only.
+      Get your pair now. Limited time only. All sales are final.
 
 
       Shop [here](https://beta.sandalboyz.com/products/) now.
