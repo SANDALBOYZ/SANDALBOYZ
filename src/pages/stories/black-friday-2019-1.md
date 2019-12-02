@@ -7,7 +7,7 @@ authors:
 date: 2019-11-27T09:30:32.584Z
 hero: /assets/bf2019_banner_1215x1155.jpg
 lede: Buy one get one free! Up to 40% off past collections.
-landingFeatured: true
+landingFeatured: false
 sections:
   - body: >-
       Buy one get one free on any pair of slides from the ChromaColor
