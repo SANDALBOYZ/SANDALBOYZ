@@ -37,5 +37,18 @@ sections:
       - /assets/25ee5ecb-38f8-402d-a71d-28b421b95662.jpg
       - /assets/5aee86ea-44f6-484a-816f-46209f200bb7.jpg
     type: image
+  - body: >-
+      Similarly, SANDALBOYZ is an American company that has Indonesia in its
+      cultural heritage. Although our company is young, we have built a foothold
+      in Indonesia due to the fact that we manufacture our sandals in Jakarta,
+      and, on top of that, one of our founding members, Andrew Dharmosetio, is
+      Indonesian. One of our goals with SANDALBOYZ is to foster a global
+      creative community of people like-minded in their pursuit of uniqueness.
+      We actively encourage community among our fans and wearers. In addition,
+      the SANDALBOYZ mission is to give back whenever possible, whether it be to
+      the Indonesian community, American community, or the global community
+      altogether. We will be giving a portion of all proceeds from this
+      collection to [Divers Clean Action](https://www.diverscleanaction.org/).
+    type: text
 ---
 
