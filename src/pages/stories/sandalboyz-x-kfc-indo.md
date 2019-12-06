@@ -54,5 +54,18 @@ sections:
     images:
       - /assets/1133aa032.jpg
     type: image
+  - body: >-
+      Although a collaboration between a slides company and fried chicken
+      restaurant chain might seem far flung, the common ground shared in values
+      by the two companies is actually quite great. Whether the bucket is
+      enjoyed with mashed potatoes or rice – in sandals or shoes – it is always
+      better enjoyed in the warming presence of community, family, and loved
+      ones.
+    type: text
+  - imageType: split
+    images:
+      - /assets/000207870023.jpg
+      - /assets/000207870003.jpg
+    type: image
 ---
 
