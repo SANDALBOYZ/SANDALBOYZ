@@ -69,5 +69,9 @@ sections:
     type: image
   - body: "All items will be available for a limited time only at a SANDALBOYZ x KFC pop up store inside a KFC restaurant in Jakarta on December 14th, 2019. Follow [@sandalboyz](https://www.instagram.com/sandalboyz/) and [@kfcindonesia](https://www.instagram.com/kfcindonesia/) to stay updated. A United States release will follow some time in 2020 \U0001F414"
     type: text
+  - imageType: twoThirds
+    images:
+      - /assets/000207840014.jpg
+    type: image
 ---
 
