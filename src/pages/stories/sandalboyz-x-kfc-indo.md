@@ -50,5 +50,9 @@ sections:
       altogether. We will be giving a portion of all proceeds from this
       collection to [Divers Clean Action](https://www.diverscleanaction.org/).
     type: text
+  - imageType: fullWidth
+    images:
+      - /assets/1133aa032.jpg
+    type: image
 ---
 
