@@ -22,7 +22,7 @@ export default (price, compareAtPrice = null, currencyCode = 'USD') => {
     return (
       <>
         <OriginalPrice>
-          {formattedComparePrice} {currencyCode}
+          {formattedComparePrice}
         </OriginalPrice>
         {' '}
         {formattedPrice} {currencyCode}
