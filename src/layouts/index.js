@@ -10,6 +10,7 @@ import Cart from '@components/Cart';
 import Footer from '@components/Footer/container';
 import MobileMenu from '@components/MobileMenu';
 import Navigation from '@components/Navigation';
+import Popup from '@components/Popup';
 
 class Layout extends React.Component {
   state = {
@@ -220,7 +221,27 @@ class Layout extends React.Component {
             query SiteTitleQuery {
               site: site {
                 siteMetadata {
+                  siteUrl
                   title
+                }
+              }
+              popup: markdownRemark(frontmatter: { templateKey: { eq: "popup" } }) {
+                id
+                frontmatter {
+                  description
+                  expires
+                  image {
+                    childImageSharp {
+                      fluid(maxWidth: 2048, quality: 90) {
+                        ...GatsbyImageSharpFluid
+                      }
+                    }
+                  }
+                  label
+                  title
+                }
+                internal {
+                  contentDigest
                 }
               }
               stories: allMarkdownRemark(
@@ -261,6 +282,15 @@ class Layout extends React.Component {
               <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
               {children}
               <Footer showStories={get(data, 'stories.edges.length') > 0} />
+              <Popup
+                contentDigest={get(data, 'popup.internal.contentDigest')}
+                description={get(data, 'popup.frontmatter.description')}
+                expire={get(data, 'popup.frontmatter.expires')}
+                image={get(data, 'popup.frontmatter.image.childImageSharp.fluid')}
+                label={get(data, 'popup.frontmatter.label')}
+                siteUrl={get(data, 'site.siteMetadata.siteUrl')}
+                title={get(data, 'popup.frontmatter.title')}
+              />
             </>
           )}
         />

@@ -3,6 +3,7 @@ import CMS from 'netlify-cms-app';
 import FileSystemBackend from 'netlify-cms-backend-fs';
 
 import StylesheetInjector from '@utils/stylesheetInjector';
+import PopupPreview from './preview-templates/PopupPreview';
 import StoryPreview from './preview-templates/StoryPreview';
 
 // Register backends
@@ -12,6 +13,11 @@ CMS.registerBackend('file-system', FileSystemBackend);
 CMS.registerPreviewStyle('https://use.typekit.net/bmy0pxx.css');
 
 // Register preview templates
+CMS.registerPreviewTemplate('popup', props => (
+  <StylesheetInjector>
+    <PopupPreview {...props} />
+  </StylesheetInjector>
+));
 CMS.registerPreviewTemplate('stories', props => (
   <StylesheetInjector>
     <StoryPreview {...props} />

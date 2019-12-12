@@ -67,6 +67,31 @@ collections:
             name: about
             hint: Say something about SANDALBOYZ
             widget: text
+      - label: Popup
+        name: popup
+        file: src/content/popup.md
+        fields:
+          - { label: Template Key, name: templateKey, widget: hidden, default: popup }
+          - label: Label
+            name: label
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Description
+            name: description
+            widget: text
+          - label: Image
+            name: image
+            widget: image
+          - label: Popup Expiration Time
+            name: expires
+            widget: number
+            default: 2
+            valueType: int
+            min: 1
+            max: 365
+            hint: Enter value in number of days (i.e. 2 for 2 days, etc.)
   - label: Pages
     name: pages
     files:
