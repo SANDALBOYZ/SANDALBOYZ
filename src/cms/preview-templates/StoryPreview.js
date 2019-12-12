@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import remark from 'remark';
 import html from 'remark-html';
+import get from 'lodash/get';
 
 import { StoryTemplate } from '@templates/Story';
 
@@ -31,7 +32,7 @@ const StoryPreview = ({ entry }) => {
             if (section.type === 'image') {
               return {
                 ...section,
-                images: section.images.map(image => ({
+                images: get(section, 'images', []).map(image => ({
                   childImageSharp: {
                     fluid: {
                       src: image,
