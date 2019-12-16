@@ -23,7 +23,8 @@ class Product extends Component {
 
     this.state = {
       quantity: 1,
-      onSale: this.getFirstSizeOnSale(),
+      onSale: this.getFirstOnSale(),
+      color: this.getFirstAvailableColor(),
       size: this.getFirstAvailableSize(),
       sizeChartOpen: false,
     };
@@ -31,11 +32,11 @@ class Product extends Component {
 
   handleAddToCart = () => {
     const { data } = this.props;
-    const { quantity, size } = this.state;
+    const { color, quantity, size } = this.state;
 
     const product = data.shopifyProduct;
 
-    let variantId = size;
+    let variantId = size || color;
     if (!variantId) {
       // for products with no size (socks)
       variantId = get(product, 'variants[0].shopifyId');
@@ -58,9 +59,28 @@ class Product extends Component {
     this.setState({ quantity: evt.target.value });
   };
 
+  handleColorChange = evt => {
+    const onSale = this.getFirstOnSale(evt.target.value);
+    this.setState({ color: evt.target.value, onSale });
+  };
+
   handleSizeChange = evt => {
-    const onSale = this.getFirstSizeOnSale(evt.target.value);
+    const onSale = this.getFirstOnSale(evt.target.value);
     this.setState({ size: evt.target.value, onSale });
+  };
+
+  getFirstAvailableColor = () => {
+    const { data } = this.props;
+    const product = data.shopifyProduct;
+
+    return get(
+      product.variants
+        .filter(variant =>
+          variant.selectedOptions.find(option => option.name === 'Color')
+        )
+        .find(variant => variant.availableForSale),
+      'shopifyId'
+    );
   };
 
   getFirstAvailableSize = () => {
@@ -77,14 +97,11 @@ class Product extends Component {
     );
   };
 
-  getFirstSizeOnSale = (id) => {
+  getFirstOnSale = (id) => {
     const { data } = this.props;
     const product = data.shopifyProduct;
 
     const firstAvailable = product.variants
-      .filter(variant =>
-        variant.selectedOptions.find(option => option.name === 'Size')
-      )
       .find(variant => {
         if (id) {
           return variant.shopifyId === id;
@@ -99,6 +116,29 @@ class Product extends Component {
 
     return false;
   };
+
+  getColors = () => {
+    const { data } = this.props;
+    const product = data.shopifyProduct;
+
+    return product.variants
+      .filter(variant =>
+        variant.selectedOptions.find(option => option.name === 'Color')
+      )
+      .map(variant => {
+        const color = variant.selectedOptions.find(
+          option => option.name === 'Color'
+        ).value;
+
+        const optionLabel = variant.availableForSale ? color : `${color} - Sold Out`;
+
+        return {
+          name: optionLabel,
+          value: variant.shopifyId,
+          disabled: !variant.availableForSale,
+        };
+      });
+  }
 
   getSizes = () => {
     const { data } = this.props;
@@ -125,10 +165,11 @@ class Product extends Component {
 
   render() {
     const { data } = this.props;
-    const { quantity, onSale, size, sizeChartOpen } = this.state;
+    const { quantity, onSale, color, size, sizeChartOpen } = this.state;
 
     const product = data.shopifyProduct;
     const sizes = this.getSizes();
+    const colors = this.getColors();
     const soldOut = !product.availableForSale;
 
     return (
@@ -183,6 +224,15 @@ class Product extends Component {
                   onChange={this.handleSizeChange}
                   options={sizes}
                   value={size}
+                />
+              )}
+              {colors.length > 1 && (
+                <Select
+                  label="Color"
+                  name="color"
+                  onChange={this.handleColorChange}
+                  options={colors}
+                  value={color}
                 />
               )}
               <Input
