@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'gatsby-link';
 
+import { ContentLabel } from '@utils/type';
+import Icon from '@components/Icon';
 import ProductTile from '@components/ProductTile';
 import * as styled from './styles';
 
-const ProductGrid = ({ filters, offset, onFilter, products, title }) => {
+const ProductGrid = ({ cta, filters, offset, onFilter, products, title, titleIcon }) => {
   const clearFilter = (key, filter) => {
     const newFilters = { collection: [], productType: [] };
 
@@ -19,22 +22,36 @@ const ProductGrid = ({ filters, offset, onFilter, products, title }) => {
     <styled.Wrapper offset={offset}>
       <styled.Container>
         <styled.Header>
-          <styled.H500>{title}</styled.H500>
-          {filters &&
-            Object.keys(filters).map(key =>
-              filters[key].map(filter => (
-                <styled.Filter key={filter}>
-                  {filter}
-                  <styled.ClearFilter
-                    onClick={() => {
-                      clearFilter(key, filter);
-                    }}
-                  >
-                    <styled.Icon name="x" />
-                  </styled.ClearFilter>
-                </styled.Filter>
-              ))
-            )}
+          <styled.Title>
+            <styled.H500>
+              {title}
+              {titleIcon && (
+                <Icon name={titleIcon} />
+              )}
+            </styled.H500>
+            {filters &&
+              Object.keys(filters).map(key =>
+                filters[key].map(filter => (
+                  <styled.Filter key={filter}>
+                    {filter}
+                    <styled.ClearFilter
+                      onClick={() => {
+                        clearFilter(key, filter);
+                      }}
+                    >
+                      <styled.Icon name="x" />
+                    </styled.ClearFilter>
+                  </styled.Filter>
+                ))
+              )}
+          </styled.Title>
+          {cta && (
+            <Link to="/products">
+              <ContentLabel>
+                {cta}
+              </ContentLabel>
+            </Link>
+          )}
         </styled.Header>
         <styled.Products>
           {products.map(product => (

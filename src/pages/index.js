@@ -23,6 +23,7 @@ const LandingPage = ({ data }) => {
       {Array.isArray(get(data, 'recommendedPicks.edges')) &&
         data.recommendedPicks.edges.length > 0 && (
           <ProductGrid
+            cta="Shop Now / See More"
             offset={!get(data, 'hero')}
             products={data.recommendedPicks.edges.map(({ node }) => ({
               id: get(node, 'id'),
@@ -40,6 +41,7 @@ const LandingPage = ({ data }) => {
                 get(node, 'variants[0].price'),
             }))}
             title="Recommended Picks"
+            titleIcon="arrow-right"
           />
         )}
       {Array.isArray(get(data, 'recentStories.edges')) &&
@@ -77,6 +79,7 @@ const LandingPage = ({ data }) => {
       {Array.isArray(get(data, 'recentProducts.edges')) &&
         data.recentProducts.edges.length > 0 && (
           <ProductGrid
+            cta="Shop Now / See More"
             products={data.recentProducts.edges.map(({ node }) => ({
               id: get(node, 'id'),
               href: `/products/${get(node, 'handle')}`,
@@ -93,6 +96,7 @@ const LandingPage = ({ data }) => {
                 get(node, 'variants[0].price'),
             }))}
             title="Recent Products"
+            titleIcon="arrow-right"
           />
         )}
     </>

@@ -11,10 +11,18 @@ const products = [...Array(10)].map((_, idx) => ({
   soldOut: idx === 7,
 }));
 
-export const Desktop = () => <ProductGrid products={products} />;
+export const Desktop = () => (
+  <ProductGrid
+    cta="Shop Now / See More"
+    products={products}
+    title="Recommended Picks"
+    titleIcon="arrow-right"
+  />
+);
 
-
-export const Mobile = () => <ProductGrid products={products} title="Chroma Collection" />;
+export const Mobile = () => (
+  <ProductGrid products={products} title="Chroma Collection" />
+);
 
 Mobile.story = {
   parameters: {

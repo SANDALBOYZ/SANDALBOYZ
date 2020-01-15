@@ -51,6 +51,8 @@ export const Filter = styled.div`
 `;
 
 export const H500 = styled(BaseH500)`
+  display: flex;
+  align-items: center;
   width: 100%;
   margin-top: ${space[2]};
   margin-bottom: ${space[2]};
@@ -59,11 +61,19 @@ export const H500 = styled(BaseH500)`
   ${mq.gtmd} {
     width: auto;
   }
+
+  & svg {
+    height: 16px;
+    vertical-align: middle;
+    margin-left: ${space[1]};
+    transform: translateY(1px);
+  }
 `;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   padding: 0 ${H_PADDING_MOBILE} ${space[2]};
 
@@ -92,6 +102,11 @@ export const Products = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(${D_AUTO_GRID_MIN_SIZE}, 1fr));
     grid-gap: ${space[2]};
   }
+`;
+
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const Wrapper = styled.div`
