@@ -12,7 +12,7 @@ class Popup extends Component {
   static propTypes = {
     contentDigest: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    expires: PropTypes.number.isRequired,
+    expires: PropTypes.number,
     image: PropTypes.object,
     label: PropTypes.string,
     siteUrl: PropTypes.string.isRequired,

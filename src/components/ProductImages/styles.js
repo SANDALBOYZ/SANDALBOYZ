@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space, { H_PADDING_MOBILE } from '@utils/space';
+import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { Img, mq } from '@utils/styles';
 import BaseIcon from '@components/Icon';
 
@@ -21,6 +21,9 @@ export const Button = styled.button`
   appearance: none;
   cursor: pointer;
   outline: 0;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 150ms linear, transform 150ms ease;
 
   &:first-of-type {
     left: ${space[4]};
@@ -58,6 +61,7 @@ export const MainImage = styled(Img)`
 export const MainImageWrapper = styled.div`
   position: relative;
   margin-bottom: ${space[2]};
+  cursor: zoom-in;
 
   & > div > div {
     padding-bottom: 100%;
@@ -65,6 +69,49 @@ export const MainImageWrapper = styled.div`
 
   ${mq.gtlg} {
     margin-bottom: ${space[3]};
+  }
+
+  &:hover ${Button} {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+export const Modal = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: zoom-out;
+
+  ${mq.gtlg} {
+    display: block;
+  }
+
+  & ${Button} {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+export const ModalImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: ${H_PADDING};
+  right: ${H_PADDING};
+  bottom: ${H_PADDING};
+  left: ${H_PADDING};
+  cursor: zoom-out;
+
+  & img {
+    max-height: 100%;
+    cursor: default;
   }
 `;
 
@@ -84,6 +131,7 @@ export const ThumbnailWrapper = styled.button`
   border: 0;
   appearance: none;
   outline: 0;
+  cursor: pointer;
 `;
 
 export const Thumbnails = styled.div`

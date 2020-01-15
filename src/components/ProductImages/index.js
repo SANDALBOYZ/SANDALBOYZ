@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Image from 'gatsby-image';
 import get from 'lodash/get';
 
-import { Img } from '@utils/styles';
+import { AbsoluteImg, Img } from '@utils/styles';
 import * as styled from './styles';
 
 class ProductImages extends Component {
@@ -12,9 +13,19 @@ class ProductImages extends Component {
 
   state = {
     activeIndex: 0,
+    showModal: false,
   };
 
-  handleNextImage = () => {
+  handleClose = () => {
+    this.setState({ showModal: false });
+  };
+
+  handleModalClick = evt => {
+    evt.stopPropagation();
+  };
+
+  handleNextImage = evt => {
+    evt.stopPropagation();
     const { images } = this.props;
     const { activeIndex } = this.state;
 
@@ -24,7 +35,8 @@ class ProductImages extends Component {
     this.setState({ activeIndex: nextIndex });
   };
 
-  handlePreviousImage = () => {
+  handlePreviousImage = evt => {
+    evt.stopPropagation();
     const { images } = this.props;
     const { activeIndex } = this.state;
 
@@ -38,37 +50,72 @@ class ProductImages extends Component {
     this.setState({ activeIndex: idx });
   };
 
+  handleZoom = () => {
+    this.setState({
+      showModal: true,
+    });
+  };
+
   render() {
     const { children, images } = this.props;
-    const { activeIndex } = this.state;
+    const { activeIndex, showModal } = this.state;
 
     return (
-      <styled.Wrapper>
-        <styled.MainImageWrapper>
-          {get(images[activeIndex], 'localFile.childImageSharp.fluid') && (
-            <Img fluid={get(images[activeIndex], 'localFile.childImageSharp.fluid')} />
-          )}
-          <styled.Button onClick={this.handlePreviousImage}>
-            <styled.Icon name="chevron-left" />
-          </styled.Button>
-          <styled.Button onClick={this.handleNextImage}>
-            <styled.Icon name="chevron-right" />
-          </styled.Button>
-          {children}
-        </styled.MainImageWrapper>
-        <styled.Thumbnails>
-          {images.map((image, idx) => (
-            <styled.ThumbnailWrapper
-              key={idx}
-              onClick={() => {
-                this.handleSetIndex(idx);
-              }}
-            >
-              <styled.Thumbnail fluid={get(image, 'localFile.childImageSharp.fluid')} />
-            </styled.ThumbnailWrapper>
-          ))}
-        </styled.Thumbnails>
-      </styled.Wrapper>
+      <>
+        {showModal && (
+          <styled.Modal onClick={this.handleClose}>
+            <styled.ModalImage>
+              <img
+                alt=""
+                src={get(
+                  images[activeIndex],
+                  'localFile.childImageSharp.fluid.src'
+                )}
+                onClick={this.handleModalClick}
+              />
+            </styled.ModalImage>
+            <styled.Button onClick={this.handlePreviousImage}>
+              <styled.Icon name="chevron-left" />
+            </styled.Button>
+            <styled.Button onClick={this.handleNextImage}>
+              <styled.Icon name="chevron-right" />
+            </styled.Button>
+          </styled.Modal>
+        )}
+        <styled.Wrapper>
+          <styled.MainImageWrapper onClick={this.handleZoom}>
+            {get(images[activeIndex], 'localFile.childImageSharp.fluid') && (
+              <Img
+                fluid={get(
+                  images[activeIndex],
+                  'localFile.childImageSharp.fluid'
+                )}
+              />
+            )}
+            <styled.Button onClick={this.handlePreviousImage}>
+              <styled.Icon name="chevron-left" />
+            </styled.Button>
+            <styled.Button onClick={this.handleNextImage}>
+              <styled.Icon name="chevron-right" />
+            </styled.Button>
+            {children}
+          </styled.MainImageWrapper>
+          <styled.Thumbnails>
+            {images.map((image, idx) => (
+              <styled.ThumbnailWrapper
+                key={idx}
+                onClick={() => {
+                  this.handleSetIndex(idx);
+                }}
+              >
+                <styled.Thumbnail
+                  fluid={get(image, 'localFile.childImageSharp.fluid')}
+                />
+              </styled.ThumbnailWrapper>
+            ))}
+          </styled.Thumbnails>
+        </styled.Wrapper>
+      </>
     );
   }
 }
