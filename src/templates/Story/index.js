@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import Head from '@utils/seo';
 import { AbsoluteImg } from '@utils/styles';
 import { H100, H200 } from '@utils/type';
-import { FullWidthImage, SplitImage, TwoThirdsImage } from '@components/StoryImage';
+import * as storyImage from '@components/StoryImage';
 import * as styled from './styles';
 
 export const StoryTemplate = ({ story }) => {
@@ -15,12 +15,18 @@ export const StoryTemplate = ({ story }) => {
       const images = get(section, 'images', []).map(image => get(image, 'childImageSharp.fluid'));
 
       switch (imageType) {
+        case 'double':
+          return <storyImage.DoubleImage images={images} />;
+        case 'fullHeight':
+          return <storyImage.FullHeightImage image={images[0]} />;
         case 'fullWidth':
-          return <FullWidthImage image={images[0]} />;
+          return <storyImage.FullWidthImage image={images[0]} />;
+        case 'offsetGrid':
+          return <storyImage.OffsetGridImage images={images} />;
         case 'split':
-          return <SplitImage caption={caption} images={images} />;
+          return <storyImage.SplitImage caption={caption} images={images} />;
         case 'twoThirds':
-          return <TwoThirdsImage image={images[0]} />;
+          return <storyImage.TwoThirdsImage image={images[0]} />;
 
         default: // no default
       }

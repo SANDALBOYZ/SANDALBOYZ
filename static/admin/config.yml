@@ -41,13 +41,16 @@ collections:
                 name: imageType
                 widget: select
                 options:
-                  - { label: Fullwidth Image, value: fullWidth }
+                  - { label: Double Image, value: double }
+                  - { label: Full-Height Image, value: fullHeight }
+                  - { label: Full-Width Image, value: fullWidth }
                   - { label: Split Image, value: split }
                   - { label: Two-Thirds Image, value: twoThirds }
+                  - { label: Offset Grid Image, value: offsetGrid }
               - label: Images
                 name: images
                 widget: list
-                hint: Add one (1) image for Fullwidth and Two-Thirds Image Blocks, and two (2) images for the Split Image Block
+                hint: Add one (1) image for Fullwidth and Two-Thirds Image Blocks, two (2) images for the Double Image Block & Split Image Block, and four (4) images for the Offset Grid Block
                 field: { label: Image, name: image, widget: image }
               - label: Caption
                 name: caption
