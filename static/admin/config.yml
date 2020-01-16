@@ -70,6 +70,15 @@ collections:
             name: about
             hint: Say something about SANDALBOYZ
             widget: text
+      - label: Product Index
+        name: productIndex
+        file: src/content/productIndex.md
+        fields:
+          - { label: Template Key, name: templateKey, widget: hidden, default: productIndex }
+          - label: Product Index Page Title
+            name: pageTitle
+            widget: string
+            required: false
       - label: Popup
         name: popup
         file: src/content/popup.md

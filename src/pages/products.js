@@ -138,7 +138,11 @@ class ProductsPage extends Component {
     return (
       <>
         <Head title="Products" />
-        <Header label="Fall 2019 Collections" shrinkOnMobile title="Products">
+        <Header
+          label={get(data, 'productIndex.frontmatter.pageTitle')}
+          shrinkOnMobile
+          title="Products"
+        >
           <Button theme="text" onClick={this.handleOpenFilters}>
             Sort/Filter
           </Button>
@@ -158,7 +162,9 @@ class ProductsPage extends Component {
               compareAtPrice: get(node, 'variants[0].compareAtPrice'),
               title: get(node, 'title'),
               soldOut: !get(node, 'availableForSale'),
-              onSale: get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
+              onSale:
+                get(node, 'variants[0].compareAtPrice') >
+                get(node, 'variants[0].price'),
             }))}
             title={isFiltered ? 'Filtered Results' : 'All Products'}
           />
@@ -187,6 +193,14 @@ export default ProductsPage;
 
 export const productsPageQuery = graphql`
   query ProductsPageQuery {
+    productIndex: markdownRemark(
+      frontmatter: { templateKey: { eq: "productIndex" } }
+    ) {
+      id
+      frontmatter {
+        pageTitle
+      }
+    }
     products: allShopifyProduct(sort: { fields: [createdAt], order: DESC }) {
       edges {
         node {
