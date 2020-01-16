@@ -23,12 +23,23 @@ const ProductGrid = ({ cta, filters, offset, onFilter, products, title, titleIco
       <styled.Container>
         <styled.Header>
           <styled.Title>
-            <styled.H500>
-              {title}
-              {titleIcon && (
-                <Icon name={titleIcon} />
-              )}
-            </styled.H500>
+            {cta ? (
+              <Link to="/products">
+                <styled.H500>
+                  {title}
+                  {titleIcon && (
+                    <Icon name={titleIcon} />
+                  )}
+                </styled.H500>
+              </Link>
+            ) : (
+              <styled.H500>
+                {title}
+                {titleIcon && (
+                  <Icon name={titleIcon} />
+                )}
+              </styled.H500>
+            )}
             {filters &&
               Object.keys(filters).map(key =>
                 filters[key].map(filter => (
