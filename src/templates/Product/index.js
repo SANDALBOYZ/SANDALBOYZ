@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 import qs from 'querystringify';
+import remark from 'remark';
+import html from 'remark-html';
 
 import getPrice from '@utils/price';
 import Head from '@utils/seo';
@@ -249,7 +251,14 @@ class Product extends Component {
               </Button>
             </styled.Selections>
             <styled.H600>Product Details</styled.H600>
-            <styled.Body>{product.description}</styled.Body>
+            <styled.Body
+              dangerouslySetInnerHTML={{
+                __html: remark()
+                  .use(html)
+                  .processSync(product.descriptionHtml)
+                  .toString(),
+              }}
+            />
             <styled.Sizing onClick={this.handleOpenSizeChart}>
               <ContentLabel>View Sizing Chart</ContentLabel>
               <styled.Icon name="clipboard" />
