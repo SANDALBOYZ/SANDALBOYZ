@@ -27,5 +27,19 @@ sections:
       - /assets/000301520013.jpg
       - /assets/000301510014-2.jpg
     type: image
+  - body: >-
+      Bacon ipsum dolor amet venison andouille short ribs, prosciutto pork loin
+      turducken ground round corned beef boudin chicken. Doner beef ribs
+      prosciutto, leberkas buffalo burgdoggen pig pancetta boudin rump ham hock
+      alcatra. Alcatra beef ribs biltong frankfurter kevin andouille cow. Swine
+      rump chislic, pork belly shoulder meatball ham alcatra sausage hamburger
+      pancetta venison cow boudin pork. T-bone tri-tip fatback sausage filet
+      mignon prosciutto landjaeger tenderloin meatloaf frankfurter salami.
+    type: text
+  - imageType: double
+    images:
+      - /assets/000301510026.jpg
+      - /assets/000301510017.jpg
+    type: image
 ---
 
