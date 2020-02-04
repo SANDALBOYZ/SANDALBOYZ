@@ -1,12 +1,9 @@
 ---
 templateKey: popup
 label: SANDALBOYZ
-title: WELCOME!
-description: |-
-  Thanks for stopping by the SANDALBOYZ store.
-
-  Use the code "NEW2020" for 10% off your first order.
-image: /assets/2217f793-5aff-446c-bbdb-a7a3b5a5555d.jpg
-expires: 100
+title: KFC Collaboration
+description: COMING SOON! Stay up to date by following our Instagram.
+image: /assets/1.jpg
+expires: 2
 ---
 
