@@ -1,6 +1,6 @@
 ---
 templateKey: story
-title: Channelling Family and Community Through Fried Chicken
+title: 'Channelling Family and Community Through Fried Chicken: SANDALBOYZ x KFC'
 slug: sandalboyz-x-kfc-indo
 authors:
   - 'WORDS, Ryan Chang'
