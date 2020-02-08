@@ -73,5 +73,17 @@ sections:
     images:
       - /assets/000207840014.jpg
     type: image
+  - body: >-
+      The KFC Modern Court Slide in White and two accompaniment socks will be
+      available for a global release on February 8th, 2020 only at
+      [www.sandalboyz.com](www.sandalboyz.com).
+    type: text
+  - imageType: offsetGrid
+    images:
+      - /assets/000207860026.jpg
+      - /assets/1133aa007.jpg
+      - /assets/000207840020.jpg
+      - /assets/000207840009.jpg
+    type: image
 ---
 
