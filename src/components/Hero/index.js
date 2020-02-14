@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 
 import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
-import { H100 } from '@utils/type';
 import * as styled from './styles';
 
 export const Hero = ({ href, image, label, title }) => (
@@ -19,7 +19,7 @@ export const Hero = ({ href, image, label, title }) => (
     </styled.Background>
     <styled.Box>
       {label && <styled.H500>{label}</styled.H500>}
-      <H100>{title}</H100>
+      <styled.H100 isLong={get(title, 'length') > 48}>{title}</styled.H100>
       <Breakpoint max={breakpoints.lg}>
         <styled.Button href={href}>Read article</styled.Button>
       </Breakpoint>

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
-import { mq } from '@utils/styles';
-import { H500 as BaseH500 } from '@utils/type';
+import { breakpoints, fluidSize, mq } from '@utils/styles';
+import { H100 as BaseH100, H500 as BaseH500 } from '@utils/type';
 import BaseButton from '@components/Button';
 
 export const Background = styled.div`
@@ -36,6 +36,24 @@ export const Button = styled(BaseButton)`
     left: -1px;
     margin-top: ${space[8]};
   }
+`;
+
+export const H100 = styled(BaseH100)`
+  ${props => props.isLong && css`
+    ${fluidSize('font-size', {
+      minSize: 36,
+      maxSize: 84,
+      minScreenSize: breakpoints.xxs,
+      maxScreenSize: breakpoints.xl,
+    })}
+
+    ${fluidSize('line-height', {
+      minSize: 32,
+      maxSize: 76,
+      minScreenSize: breakpoints.xxs,
+      maxScreenSize: breakpoints.xl,
+    })}
+  `}
 `;
 
 export const H500 = styled(BaseH500)`
