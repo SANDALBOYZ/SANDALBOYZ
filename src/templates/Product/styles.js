@@ -95,11 +95,7 @@ export const Body = styled(BaseBody)`
     line-height: 28px;
     max-width: ${space[15]};
     margin: ${space[2]} auto;
-    padding: 0 ${H_PADDING_MOBILE};
-
-    ${mq.gtlg} {
-      padding: 0;
-    }
+    padding: 0;
   }
 
   & blockquote * {
@@ -151,11 +147,15 @@ export const MobileProductInfo = styled.div`
 `;
 
 export const ProductInfo = styled.div`
+  align-self: flex-start;
+  position: sticky;
+  top: calc(80px + 24px);
+  height: auto;
   margin-bottom: ${space[8]};
   padding: 0 ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {
-    width: 50%;
+    width: 40%;
     margin-bottom: 0;
     padding: ${space[6]} ${space[7]};
   }
@@ -166,10 +166,11 @@ export const Selections = styled.div`
   flex-wrap: wrap;
   margin: ${space[1]} 0 ${space[6]};
 
-  & label {
+  & > span {
+    display: inline-block;
     flex: 1;
 
-    &:first-of-type {
+    &:not(:last-of-type) {
       margin-right: ${space[3]};
     }
   }
@@ -180,33 +181,13 @@ export const Selections = styled.div`
   }
 
   ${mq.gtmd} {
-    flex-wrap: nowrap;
     align-items: flex-end;
     margin: ${space[5]} 0 ${space[6]};
-
-    & input {
-      width: 12ch;
-    }
-
-    & label {
-      flex: initial;
-    }
-
-    & button {
-      width: auto;
-    }
-
-    & > *:not(:last-child) {
-      margin-right: ${space[3]};
-    }
   }
 `;
 
 export const Status = styled.div`
-  position: absolute;
-  top: ${space[2]};
-  left: ${space[2]};
-  z-index: 1;
+  display: inline-block;
   padding: 0 ${space[1]};
   color: ${colors.N0};
   background-color: ${colors.NEGATIVE};

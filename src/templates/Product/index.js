@@ -11,8 +11,8 @@ import { Breakpoint, breakpoints } from '@utils/styles';
 import { Badge, ContentLabel, H300, H300M, H500 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
 import Button from '@components/Button';
+import Dropdown from '@components/Dropdown';
 import Input from '@components/formElements/Input';
-import Select from '@components/formElements/Select';
 import ProductImages from '@components/ProductImages';
 import SizeChart from '@components/SizeChart';
 import * as styled from './styles';
@@ -61,14 +61,14 @@ class Product extends Component {
     this.setState({ quantity: evt.target.value });
   };
 
-  handleColorChange = evt => {
-    const onSale = this.getFirstOnSale(evt.target.value);
-    this.setState({ color: evt.target.value, onSale });
+  handleColorChange = value => {
+    const onSale = this.getFirstOnSale(value);
+    this.setState({ color: value, onSale });
   };
 
-  handleSizeChange = evt => {
-    const onSale = this.getFirstOnSale(evt.target.value);
-    this.setState({ size: evt.target.value, onSale });
+  handleSizeChange = value => {
+    const onSale = this.getFirstOnSale(value);
+    this.setState({ size: value, onSale });
   };
 
   getFirstAvailableColor = () => {
@@ -99,18 +99,17 @@ class Product extends Component {
     );
   };
 
-  getFirstOnSale = (id) => {
+  getFirstOnSale = id => {
     const { data } = this.props;
     const product = data.shopifyProduct;
 
-    const firstAvailable = product.variants
-      .find(variant => {
-        if (id) {
-          return variant.shopifyId === id;
-        }
+    const firstAvailable = product.variants.find(variant => {
+      if (id) {
+        return variant.shopifyId === id;
+      }
 
-        return variant.availableForSale;
-      });
+      return variant.availableForSale;
+    });
 
     if (firstAvailable) {
       return firstAvailable.compareAtPrice > firstAvailable.price;
@@ -132,7 +131,9 @@ class Product extends Component {
           option => option.name === 'Color'
         ).value;
 
-        const optionLabel = variant.availableForSale ? color : `${color} - Sold Out`;
+        const optionLabel = variant.availableForSale
+          ? color
+          : `${color} - Sold Out`;
 
         return {
           name: optionLabel,
@@ -140,7 +141,7 @@ class Product extends Component {
           disabled: !variant.availableForSale,
         };
       });
-  }
+  };
 
   getSizes = () => {
     const { data } = this.props;
@@ -155,7 +156,9 @@ class Product extends Component {
           option => option.name === 'Size'
         ).value;
 
-        const optionLabel = variant.availableForSale ? size : `${size} - Sold Out`;
+        const optionLabel = variant.availableForSale
+          ? size
+          : `${size} - Sold Out`;
 
         return {
           name: optionLabel,
@@ -180,10 +183,7 @@ class Product extends Component {
           title={product.title}
           description={product.description}
           ogType="product"
-          image={get(
-            product,
-            'images[0].localFile.childImageSharp.fluid.src'
-          )}
+          image={get(product, 'images[0].localFile.childImageSharp.fluid.src')}
           meta={[
             {
               property: 'og:price:amount',
@@ -200,8 +200,6 @@ class Product extends Component {
           <styled.MobileProductInfo>
             <H300M>{product.title}</H300M>
             <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
-          </styled.MobileProductInfo>
-          <ProductImages images={product.images}>
             {soldOut && (
               <styled.Status>
                 <Badge>Sold out</Badge>
@@ -212,41 +210,62 @@ class Product extends Component {
                 <Badge>Sale</Badge>
               </styled.Status>
             )}
-          </ProductImages>
+          </styled.MobileProductInfo>
+          <ProductImages images={product.images} />
           <styled.ProductInfo>
             <Breakpoint min={breakpoints.lg}>
               <H300>{product.title}</H300>
-              <H500>{getPrice(get(product, 'variants[0].price'), get(product, 'variants[0].compareAtPrice'))}</H500>
+              <H500>
+                {getPrice(
+                  get(product, 'variants[0].price'),
+                  get(product, 'variants[0].compareAtPrice')
+                )}
+              </H500>
+              {soldOut && (
+                <styled.Status>
+                  <Badge>Sold out</Badge>
+                </styled.Status>
+              )}
+              {!soldOut && onSale && (
+                <styled.Status>
+                  <Badge>Sale</Badge>
+                </styled.Status>
+              )}
             </Breakpoint>
             <styled.Selections>
               {sizes.length > 1 && (
-                <Select
-                  label="Size"
-                  name="size"
-                  onChange={this.handleSizeChange}
-                  options={sizes}
-                  value={size}
-                />
+                <span>
+                  <Dropdown
+                    onChange={this.handleSizeChange}
+                    options={sizes}
+                    value={size}
+                    placeholder="Size"
+                    prefix="Size:"
+                  />
+                </span>
               )}
               {colors.length > 1 && (
-                <Select
-                  label="Color"
-                  name="color"
-                  onChange={this.handleColorChange}
-                  options={colors}
-                  value={color}
-                />
+                <span>
+                  <Dropdown
+                    onChange={this.handleColorChange}
+                    options={colors}
+                    value={color}
+                    placeholder="Color"
+                  />
+                </span>
               )}
-              <Input
-                label="Quantity"
-                min={1}
-                max={9}
-                name="quantity"
-                type="number"
-                value={quantity}
-                onChange={this.handleQuantityChange}
-              />
-              <Button size="small" onClick={this.handleAddToCart}>
+              <span>
+                <Input
+                  min={1}
+                  max={9}
+                  name="quantity"
+                  type="number"
+                  value={quantity}
+                  onChange={this.handleQuantityChange}
+                  prefix="Pairs:"
+                />
+              </span>
+              <Button size="small" onClick={this.handleAddToCart} disabled={soldOut}>
                 Add to bag
               </Button>
             </styled.Selections>
@@ -266,7 +285,13 @@ class Product extends Component {
             <styled.Social>
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(
-                  { u: `${get(data, 'site.siteMetadata.siteUrl', 'https://beta.sandalboyz.com')}/products/${product.handle}` }
+                  {
+                    u: `${get(
+                      data,
+                      'site.siteMetadata.siteUrl',
+                      'https://beta.sandalboyz.com'
+                    )}/products/${product.handle}`,
+                  }
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -275,7 +300,11 @@ class Product extends Component {
               </a>
               <a
                 href={`https://twitter.com/intent/tweet?${qs.stringify({
-                  url: `${get(data, 'site.siteMetadata.siteUrl', 'https://beta.sandalboyz.com')}/products/${product.handle}`,
+                  url: `${get(
+                    data,
+                    'site.siteMetadata.siteUrl',
+                    'https://beta.sandalboyz.com'
+                  )}/products/${product.handle}`,
                   text: product.title,
                 })}`}
                 target="_blank"

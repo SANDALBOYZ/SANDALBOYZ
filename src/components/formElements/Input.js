@@ -9,27 +9,27 @@ import space from '@utils/space';
 import { mq } from '@utils/styles';
 import Label from './Label';
 
-const getInputHeight = ({ size }) =>
+const getInputHeight = ({ hasPrefix, size }) =>
   get(
     {
       large: css`
-        height: 45px;
+        height: ${hasPrefix ? '43px' : '45px'};
 
         ${mq.gtmd} {
-          height: 50px;
+          height: ${hasPrefix ? '48px' : '50px'};
         }
       `,
       xlarge: css`
-        height: 45px;
+        height: ${hasPrefix ? '43px' : '45px'};
 
         ${mq.gtmd} {
-          height: 60px;
+          height: ${hasPrefix ? '58px' : '60px'};
         }
       `,
     },
     size,
     css`
-      height: 40px;
+      height: ${hasPrefix ? '38px' : '40px'};
     `
   );
 
@@ -40,12 +40,21 @@ const ErrorText = styled.div`
   line-height: 1;
 `;
 
-const StyledInput = styled.input`
-  display: block;
+const Prefix = styled.span`
+  display: inline-flex;
+  align-items: center;
+  right: ${space[1]};
   font-family: ${fonts.STANDARD};
   font-weight: ${weights.LIGHT};
+  font-size: 16px;
+`;
+
+const StyledInput = styled.input`
+  display: 'block';
   width: 100%;
   padding: 0 ${space[1]};
+  font-family: ${fonts.STANDARD};
+  font-weight: ${weights.LIGHT};
   font-size: 16px;
   background-color: ${colors.N0};
   border: 1px solid ${colors.N200};
@@ -63,28 +72,67 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = React.forwardRef(({ error, label, name, size, type, ...rest }, ref) => {
-  let input = <StyledInput name={name} ref={ref} size={size} type={type} {...rest} />;
+const Wrapper = styled.label`
+  display: flex;
+  position: relative;
+  padding: 0 ${space[1]};
+  background-color: ${colors.N0};
+  border: 1px solid ${colors.N200};
+  border-radius: 0;
 
-  if (error) {
-    input = (
-      <div>
-        {input}
-        {error && <ErrorText>{error}</ErrorText>}
-      </div>
-    );
+  &:focus-within {
+    border-color: ${colors.N500};
   }
 
-  if (label) {
+  & ${StyledInput} {
+    border: 0;
+
+    &:focus {
+      border: 0;
+    }
+  }
+`;
+
+const Input = React.forwardRef(
+  ({ error, label, name, prefix, size, type, ...rest }, ref) => {
+    let input = (
+      <StyledInput
+        name={name}
+        ref={ref}
+        size={size}
+        type={type}
+        hasPrefix={Boolean(prefix)}
+        {...rest}
+      />
+    );
+    const WrapperComp = prefix ? Wrapper : styled.div``;
+
+    if (error) {
+      input = (
+        <WrapperComp>
+          {prefix && <Prefix>{prefix}</Prefix>}
+          {input}
+          {error && <ErrorText>{error}</ErrorText>}
+        </WrapperComp>
+      );
+    }
+
+    if (label) {
+      return (
+        <Label htmlFor={name} text={label}>
+          {input}
+        </Label>
+      );
+    }
+
     return (
-      <Label htmlFor={name} text={label}>
+      <WrapperComp>
+        {prefix && <Prefix>{prefix}</Prefix>}
         {input}
-      </Label>
+      </WrapperComp>
     );
   }
-
-  return input;
-});
+);
 
 Input.propTypes = {
   label: PropTypes.string,

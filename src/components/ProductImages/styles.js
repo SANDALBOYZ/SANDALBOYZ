@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
+import space, { H_PADDING } from '@utils/space';
 import { Img, mq } from '@utils/styles';
 import BaseIcon from '@components/Icon';
 
@@ -55,28 +55,6 @@ export const Icon = styled(BaseIcon)`
   height: 24px;
 `;
 
-export const MainImage = styled(Img)`
-`;
-
-export const MainImageWrapper = styled.div`
-  position: relative;
-  margin-bottom: ${space[2]};
-  cursor: zoom-in;
-
-  & > div > div {
-    padding-bottom: 100%;
-  }
-
-  ${mq.gtlg} {
-    margin-bottom: ${space[3]};
-  }
-
-  &:hover ${Button} {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
 export const Modal = styled.div`
   display: none;
   position: fixed;
@@ -115,7 +93,7 @@ export const ModalImage = styled.div`
   }
 `;
 
-export const Thumbnail = styled(Img)`
+export const Image = styled(Img)`
   position: absolute !important;
   top: 0;
   right: 0;
@@ -123,7 +101,7 @@ export const Thumbnail = styled(Img)`
   left: 0;
 `;
 
-export const ThumbnailWrapper = styled.button`
+export const ImageWrapper = styled.div`
   position: relative;
   height: 0;
   padding-bottom: 100%;
@@ -132,18 +110,9 @@ export const ThumbnailWrapper = styled.button`
   appearance: none;
   outline: 0;
   cursor: pointer;
-`;
 
-export const Thumbnails = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: ${space[2]};
-  padding: 0 ${H_PADDING_MOBILE};
-
-  ${mq.gtlg} {
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: ${space[3]};
-    padding: 0;
+  &:not(:last-child) {
+    margin-bottom: ${space[3]};
   }
 `;
 
@@ -151,6 +120,6 @@ export const Wrapper = styled.div`
   width: 100%;
 
   ${mq.gtlg} {
-    width: 50%;
+    width: 60%;
   }
 `;
