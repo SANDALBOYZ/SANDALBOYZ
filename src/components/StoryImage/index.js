@@ -138,7 +138,7 @@ export const OffsetGridImage = props => (
               imgStyle={{
                 display: 'block',
                 height: 'initial',
-                position: 'relative',
+                position: 'absolute',
               }}
               style={{ overflow: 'initial' }}
             />
