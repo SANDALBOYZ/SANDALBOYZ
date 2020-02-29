@@ -121,5 +121,12 @@ sections:
 
       \---
     type: text
+  - imageType: offsetGrid
+    images:
+      - /assets/000339140013.jpg
+      - /assets/000339140022.jpg
+      - /assets/000339140031.jpg
+      - /assets/000339140015.jpg
+    type: image
 ---
 
