@@ -215,5 +215,78 @@ sections:
       - /assets/spencer-000339160029.jpg
       - /assets/spencer-000339160031.jpg
     type: image
+  - body: >-
+      **What kept you grounded and focused? What helped you ultimately overcome
+      this career-threatening injury mentally and emotionally?**
+
+
+      I woke up one night, and I was crying. My mom was there. I went through
+      the motions, asking why this happened, why me.
+
+
+      She was like, “Spencer, what do you want to do?”
+
+
+      I said, “I want to go to league. What do you mean?” I’m crying and shit. 
+
+
+      “Na, what do you want to do?”
+
+
+      “I want to go league. What are you talking about?”
+
+
+      “Then do it.”
+
+
+      That really helped ground me. I researched every little piece of this
+      injury. Researched what I should be doing, what I should be eating.
+      Whatever was not going to advance me to the goal did not have a place in
+      my life. I was as dedicated as humanly possible to getting in the league.
+
+
+      **What were some of the things you found in your research?**
+
+
+      Hyperbaric chamber. PRP injections. Elevating my leg. Anything you could
+      think of. I was eating ginger root, organic ginger root, straight. That
+      was my snack. I was eating mostly vegetables, some lean meats, lots of
+      fruit. I was laser locked in.
+
+
+      **Ginger root as a snack sounds gross.**
+
+
+      Haha, oh, it was. It’s a lot more fun to eat Skittles.
+
+
+      \---
+
+
+      The ginger roots eventually paid off as Spencer was able to make the NBA
+      training camp in early September – a mere 8 months post-injury – after
+      being selected 38th overall (2nd round) by the Detroit Pistons.
+
+
+      We shift the talk to his recent foray in blockchain technology. Dinwiddie
+      had first found out about it in Colorado from a fellow alumnus but had not
+      invested in cryptocurrency until mid-2017 right before Bitcoin’s all time
+      high was realized. While this new technology could only afford his “Vegas
+      gambling money,” it had certainly piqued the curious engineer inside of
+      him setting forth the motions that would manifest in DREAM Fan Shares.
+
+
+      DREAM Fan Shares is the platform which Spencer has set up to help other
+      athletes create their own Professional Athlete Investment Tokens (PAInTs).
+      The SD8 token, which is Dinwiddie’s own token, is the first token (on the
+      Ethereum blockchain) to be issued by the platform, and it allows the
+      public to invest in their favorite athletes. If the athlete appreciates in
+      value, whether it be through endorsement deals or new contracts, then the
+      token will see a similar trajectory. Spencer was able to see tremendous
+      opportunity in a now seemingly archaic form of sports contracts.
+
+
+      \---
+    type: text
 ---
 
