@@ -5,7 +5,7 @@ slug: spencer-dinwiddie
 authors:
   - 'WORDS, Ryan Chang'
   - 'PHOTOS, Ryan Chang'
-date: 2020-03-01T00:30:59.405Z
+date: 2020-02-29T00:30:59.405Z
 hero: /assets/000339140017.jpg
 lede: ''
 landingFeatured: true
