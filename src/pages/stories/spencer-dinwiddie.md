@@ -292,5 +292,58 @@ sections:
     images:
       - /assets/spencer-000339140006.jpg
     type: image
+  - body: >-
+      **What is the main reasoning behind tokenizing a player?**
+
+
+      This gives more power and freedom to the player by democratizing and
+      decentralizing where their money is coming from. It allows fans to
+      directly interface with the success of their favorite athletes.
+
+
+      **So investors will receive a token after investing?**
+
+
+      Yes, and the token pays them out in dollars. Yeah, that’s the other thing.
+      This isn’t a “currency.” The token is a representation of ownership that
+      is made possible by Ethereum.
+
+
+      \---
+
+
+      Spencer plans to do more investing with the money that he raises from the
+      SD8 token sale. He currently works on various ventures including Project
+      DREAM (Disrupt Reality Every Available Moment), a platform for athletes
+      (or anyone else) to make their own branded products without having to wait
+      for big brand endorsement to do it for them. Dinwiddie’s own brand K8IROS
+      (pronounced Kairos – Zeus’s youngest son) is the first offspring of
+      Project DREAM much like the SD8 token is of DREAM Fan Shares. SANDALBOYZ
+      was able to work with Project DREAM and K8IROS to create a signature
+      Spencer Dinwiddie Court Slide.
+
+
+      \---
+
+
+      **What are future plans with Project DREAM?**
+
+
+      Just keep it open to guys. See, Nike will only pay an athlete x amount
+      because they know they can 5x or 10x it. The fans pay the money to see the
+      asset, the athlete. The NBA or the brand is not what’s special. You are
+      what’s special. You’re the one that can 360 dunks when nobody can. I’m
+      really trying to enlighten people. If I can open the mind of the next
+      Lebron or the next Michael Jordan, then they can really cause a tectonic
+      shift in how people think. If this person is enlightened by the things I
+      do, then they will be able to carry generations.
+
+
+      - - -
+
+
+      The SANDALBOYZ x K8IROS Court Slide is available at
+      https://projectdream.io/shop/.
+    type: text
 ---
 
