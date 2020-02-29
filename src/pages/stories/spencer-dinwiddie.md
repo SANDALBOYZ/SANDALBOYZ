@@ -128,5 +128,87 @@ sections:
       - /assets/000339140031.jpg
       - /assets/000339140015.jpg
     type: image
+  - body: >-
+      **What did that “push for the league” look like?**
+
+
+      It really all happened in my junior year of high school, I started to
+      ascend as a player and become the player I envisioned myself being. I
+      started that year 6’1”.
+
+
+      **Oh wow, so you were just growing.**
+
+
+      Yeah. I was 5’7”, 5’10”, 6”1’, and finally 6’4”. I grew 3 inches every
+      year in high school and then another 2 before I ever played a college
+      game.
+
+
+      By the time I played my first college basketball game, I was 6’ 6”, 185
+      pounds. So some of this was God’s gift, haha.
+
+
+      **If basketball didn’t happen, what would have been plan B, would it have
+      been an academic fallback?**
+
+
+      I would have had no choice but to go the academic route. I probably
+      would’ve chosen Harvard over Colorado. I like to know how things work by
+      analyzing things and breaking them down, so maybe I would have ended up
+      with something in engineering.
+
+
+      **What do your parents do?**
+
+
+      My mom owns a preschool and my dad does real estate.
+
+
+      **The reason I ask is I want to know where you attribute your work ethic
+      to.**
+
+
+      I get that work ethic from my dad. He’s a hustler. He’s relentless.
+      Headstrong. Stubborn. A lot of the stuff that frustrates him about me.
+      Look in the mirror big fella.
+
+
+      **What values do you take from your mom?**
+
+
+      I think she’s the smart one. My dad’s obviously extremely intelligent, but
+      my mom has Ph.D. You know just the way she is with her vocabulary and her
+      words.
+
+
+      \---
+
+
+      I ask Spencer to tell me about the ACL injury. He chuckles when I bring it
+      up and gives me the abridged version before going into details: “Shit man,
+      I was dribbling up the court.” On January 12th, 2014, Dinwiddie blew out
+      his knee in a game against University of Washington. Ultimately, he had
+      torn his ACL, MCL, medial meniscus, and lateral meniscus.
+
+
+      > “Shit man, I was dribbling up the court.”
+
+
+      I discover how dedicated and steadfast Spencer is in his pursuit of
+      success. He tells me that he really wanted to break Adrian Peterson’s
+      record of having the surgery 6 days after the injury. On day 6
+      post-injury, Dinwiddie’s doctors let him know that he would be having
+      surgery on day 8. Things take a dark turn, and the aspirations of the
+      league slowly fade away against a backdrop of sadness and tears.
+
+
+      Sitting in the Brooklyn Nets Training Facility, knowing how the story
+      continues, I ask him what ultimately enabled him to declare for the NBA
+      that same year.
+
+
+      \---
+    type: text
 ---
 
