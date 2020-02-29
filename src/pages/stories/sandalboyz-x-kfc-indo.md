@@ -83,7 +83,7 @@ sections:
       - /assets/000207860026.jpg
       - /assets/1133aa007.jpg
       - /assets/000207840020.jpg
-      - /assets/000207840009.jpg
+      - /assets/kfc-028.jpg
     type: image
 ---
 
