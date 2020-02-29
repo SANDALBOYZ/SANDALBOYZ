@@ -11,7 +11,7 @@ hero: /assets/1133aa034.jpg
 lede: >-
   We teamed up with KFC Indonesia to bring a family style inspired collection of
   sandals and apparel.
-landingFeatured: true
+landingFeatured: false
 storiesFeatured: true
 sections:
   - body: >-
