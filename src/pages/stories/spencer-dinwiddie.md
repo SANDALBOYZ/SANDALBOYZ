@@ -7,6 +7,7 @@ authors:
   - 'PHOTOS, Ryan Chang'
 date: 2020-03-01T00:30:59.405Z
 hero: /assets/000339140017.jpg
+lede: ''
 landingFeatured: true
 storiesFeatured: true
 sections:
