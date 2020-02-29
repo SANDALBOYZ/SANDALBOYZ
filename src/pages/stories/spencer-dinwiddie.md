@@ -288,5 +288,9 @@ sections:
 
       \---
     type: text
+  - imageType: fullHeight
+    images:
+      - /assets/spencer-000339140006.jpg
+    type: image
 ---
 
