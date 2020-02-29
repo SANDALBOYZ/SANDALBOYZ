@@ -126,7 +126,7 @@ sections:
       - /assets/000339140013.jpg
       - /assets/000339140022.jpg
       - /assets/000339140031.jpg
-      - /assets/000339140015.jpg
+      - /assets/spencer-000339140015.jpg
     type: image
   - body: >-
       **What did that “push for the league” look like?**
