@@ -210,5 +210,10 @@ sections:
 
       \---
     type: text
+  - imageType: double
+    images:
+      - /assets/spencer-000339160029.jpg
+      - /assets/spencer-000339160031.jpg
+    type: image
 ---
 
