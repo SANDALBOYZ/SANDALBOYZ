@@ -98,5 +98,9 @@ sections:
       you really going after it if you aren’t putting your full effort or full
       focus on?
     type: text
+  - imageType: fullHeight
+    images:
+      - /assets/000339140008.jpg
+    type: image
 ---
 
