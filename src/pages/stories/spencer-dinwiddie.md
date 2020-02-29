@@ -102,5 +102,23 @@ sections:
     images:
       - /assets/000339140008.jpg
     type: image
+  - body: >-
+      \---
+
+
+      Spencer shares with me that his parents were very much the “as long as you
+      get good grades” type of parents. Their basketball demands of him were not
+      actualized until he brought up that he wanted to make a push at the league
+      in his junior year of high school. But until then, they pushed him in all
+      facets of his student athlete career with indiscriminate support. Having
+      started high school at 5’7” in height, Spencer tells me that his parents
+      wanted to make sure he had every opportunity afforded to him, which meant
+      he had to get good grades. He admits that it was easy to maintain his high
+      academics alongside his athletic focus – an ease no better illustrated by
+      him testing a 1400 out of 1600 on the SAT without any prior studying.
+
+
+      \---
+    type: text
 ---
 
