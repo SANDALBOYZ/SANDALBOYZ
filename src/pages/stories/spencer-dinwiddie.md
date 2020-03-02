@@ -33,7 +33,7 @@ sections:
       floor to ceiling windows paired with the breathtaking energy of the city
       helps make me feel infinitesimally smaller next to the 6’6” Nets guard.
     type: text
-  - imageType: double
+  - imageType: split
     images:
       - /assets/000339140018.jpg
       - /assets/000339140003.jpg
