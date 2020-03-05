@@ -290,7 +290,7 @@ sections:
     type: text
   - imageType: fullHeight
     images:
-      - /assets/spencer-000339140006.jpg
+      - /assets/000573540013.jpg
     type: image
   - body: >-
       **What is the main reasoning behind tokenizing a player?**
