@@ -59,9 +59,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
-    "@storybook/addon-viewport": "^5.2.3",
-    "@storybook/react": "^5.2.3",
-    "@storybook/theming": "^5.2.3",
+    "@storybook/addon-viewport": "^5.3.17",
+    "@storybook/react": "^5.3.17",
+    "@storybook/theming": "^5.3.17",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "eslint": "^5.16.0",
