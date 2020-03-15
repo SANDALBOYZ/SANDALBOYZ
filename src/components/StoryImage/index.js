@@ -23,6 +23,8 @@ const DoubleImageTwo = styled.div`
 `;
 
 const DoubleWrapper = styled.div`
+  position: relative;
+  background-color: ${colors.N100};
   display: flex;
   margin: ${space[7]} ${H_PADDING_MOBILE};
 
@@ -35,28 +37,12 @@ export const DoubleImage = ({ images }) => (
   <DoubleWrapper>
     <DoubleImageOne>
       {get(images, '0') && (
-        <Image
-          fluid={images[0]}
-          imgStyle={{
-            display: 'block',
-            height: 'initial',
-            position: 'relative',
-          }}
-          style={{ overflow: 'initial' }}
-        />
+        <Image fluid={images[0]} />
       )}
     </DoubleImageOne>
     <DoubleImageTwo>
       {get(images, '1') && (
-        <Image
-          fluid={images[1]}
-          imgStyle={{
-            display: 'block',
-            height: 'initial',
-            position: 'relative',
-          }}
-          style={{ overflow: 'initial' }}
-        />
+        <Image fluid={images[1]} />
       )}
     </DoubleImageTwo>
   </DoubleWrapper>
@@ -77,8 +63,6 @@ export const FullHeightImage = ({ image }) => (
     {image && (
       <Image
         fluid={image}
-        imgStyle={{ display: 'block', height: 'initial', position: 'relative' }}
-        style={{ overflow: 'initial' }}
       />
     )}
   </FullHeightImageWrapper>
