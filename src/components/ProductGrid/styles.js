@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
@@ -50,6 +50,44 @@ export const Filter = styled.div`
   }
 `;
 
+// const pulse = keyframes`
+//   0% {
+//     transform: scale3d(1, 1, 1);
+//   }
+
+//   50% {
+//     transform: scale3d(1.2, 1.2, 1.2);
+//   }
+
+//   100% {
+//     transform: scale3d(1, 1, 1);
+//   }
+// `;
+
+// `translateY` must be added because this animation is specific to `H500` below.
+const leftRight = keyframes`
+  0% {
+    transform: translateX(0) translateY(1px);
+  }
+
+  50% {
+    transform: translateX(6px) translateY(1px);
+  }
+
+  100% {
+    transform: translateX(0) translateY(1px);
+  }
+`;
+
+// const fadeIn = keyframes`
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// `;
+
 export const H500 = styled(BaseH500)`
   display: flex;
   align-items: center;
@@ -67,6 +105,11 @@ export const H500 = styled(BaseH500)`
     vertical-align: middle;
     margin-left: ${space[1]};
     transform: translateY(1px);
+    // TODO: Add transition so animation doesn't look snappy on mouse exit.
+  }
+
+  &:hover svg {
+    animation: ${leftRight} 1s ease-out infinite;
   }
 `;
 
