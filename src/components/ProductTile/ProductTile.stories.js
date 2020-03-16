@@ -61,6 +61,7 @@ export const onSale = () => (
   <Container>
     <ProductTile
       price="65"
+      onSale
       compareAtPrice="75" title="Kelly Green"
       images={[
         {

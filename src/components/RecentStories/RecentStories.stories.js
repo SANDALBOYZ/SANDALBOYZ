@@ -9,10 +9,12 @@ export const Desktop = () => (
   <RecentStories
     storyA={{
       href: '/stories/story',
+      date: '2020-03-16T01:54:34Z',
       title: 'This would be some sort of article title to go with this image',
     }}
     storyB={{
       href: '/stories/story',
+      date: '2020-03-16T01:54:34Z',
       title: 'This would be some sort of article title to go with this image',
     }}
   />
@@ -22,10 +24,12 @@ export const Mobile = () => (
   <RecentStories
     storyA={{
       href: '/stories/story',
+      date: '2020-03-16T01:54:34Z',
       title: 'This would be some sort of article title to go with this image',
     }}
     storyB={{
       href: '/stories/story',
+      date: '2020-03-16T01:54:34Z',
       title: 'This would be some sort of article title to go with this image',
     }}
   />

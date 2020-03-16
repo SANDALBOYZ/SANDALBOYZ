@@ -9,7 +9,7 @@ import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
 
 const LandingPage = ({ data }) => {
-  console.log(data.recentStories.edges)
+  console.log(data.recentStories.edges);
 
   return (
     <>

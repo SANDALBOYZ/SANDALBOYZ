@@ -5,8 +5,8 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "lint": "eslint src --ext .js",
+    "lint:fix": "eslint --fix src --ext .js",
     "format": "prettier --write",
     "storybook": "start-storybook",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
