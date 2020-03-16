@@ -77,10 +77,6 @@ export const Nav = styled.div`
     css`
       & ${NavLink} {
         color: ${colors.N0};
-
-        &:not(:first-child).${activeClassName} {
-          border-bottom: 1px solid ${colors.N0};
-        }
       }
     `}
 `;
@@ -100,6 +96,7 @@ const navLinkStyles = css`
   letter-spacing: 1px;
   line-height: 1;
   text-transform: uppercase;
+  cursor: pointer;
 
   &:not(:last-child) {
     margin-right: ${space[4]};
@@ -114,15 +111,42 @@ const navLinkStyles = css`
   }
 `;
 
+// Used for text links.
 export const NavLink = styled(Link).attrs({
   activeClassName,
 })`
   ${navLinkStyles}
   display: none;
 
-  &:not(:first-child).${activeClassName} {
-    border-bottom: 1px solid ${colors.N900};
+  &:after {
+    content: "";
+    margin-top: 5px;
+    border-bottom: 1px solid;
+    display: block;
+    transform: scaleX(0);
+    transition: transform 500ms cubic-bezier(0.645, 0.045, 0.345, 1) 0ms;
+    transform-origin: top left;
   }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1);
+      transition: transform 500ms cubic-bezier(0.645, 0.045, 0.345, 1) 0ms;
+      transform-origin: top left;
+    }
+  }
+
+  &:not(:first-child).${activeClassName} {
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+`;
+
+// Buttons do need the underline animation.
+export const NavButton = styled(Link)`
+  ${navLinkStyles}
+  display: none;
 `;
 
 export const MobileNavLink = styled.a`

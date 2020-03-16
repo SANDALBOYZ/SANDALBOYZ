@@ -102,12 +102,12 @@ class Navigation extends Component {
             <styled.NavLink to="/contact">Contact</styled.NavLink>
           </styled.NavSection>
           <styled.NavSection>
-            <styled.NavLink to="/search" alt="Search">
+            <styled.NavButton to="/search" alt="Search">
               <styled.Icon
                 name="search"
                 light={light && !hasScrolled}
               />
-            </styled.NavLink>
+            </styled.NavButton>
             {!hideCart && (
               <styled.MobileNavLink onClick={onCartOpen}>
                 <styled.Icon

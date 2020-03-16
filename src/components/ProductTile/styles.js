@@ -11,11 +11,13 @@ export const ImageWrapper = styled.div`
 
   & > *:last-child {
     opacity: 0;
+    transition: opacity 0.25s linear;
   }
 
   &:hover {
     & > *:last-child {
       opacity: 1;
+      transition: opacity 0.25s linear;
     }
   }
 `;

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import { format } from 'date-fns';
 
 import { AbsoluteImg } from '@utils/styles';
-import { H300 } from '@utils/type';
+import { H300, H500 } from '@utils/type';
 import * as styled from './styles';
 
 const RecentStories = ({ storyA, storyB }) => (
@@ -20,6 +21,7 @@ const RecentStories = ({ storyA, storyB }) => (
           <styled.Info>
             <styled.H600>Recent Story</styled.H600>
             <H300>{storyA.title}</H300>
+            <H500>{format(new Date(storyA.date), 'LLL yyyy')}</H500>
           </styled.Info>
         </Link>
       </styled.Wrapper>
@@ -33,6 +35,7 @@ const RecentStories = ({ storyA, storyB }) => (
           <styled.Info>
             <styled.H600>Recent Story</styled.H600>
             <H300>{storyB.title}</H300>
+            <H500>{format(new Date(storyB.date), 'LLL yyyy')}</H500>
           </styled.Info>
         </Link>
       </styled.Wrapper>

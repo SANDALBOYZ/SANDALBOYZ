@@ -122,6 +122,7 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: #000;
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 
