@@ -47,11 +47,19 @@ export const Status = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
+  opacity: 0;
+  transform: translateY(50px);
   flex-direction: column;
   position: relative;
   margin-bottom: ${space[3]};
 
   ${mq.gtlg} {
     margin-bottom: 0;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.9s cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 `;

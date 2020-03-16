@@ -87,7 +87,6 @@ export const NavSection = styled.div`
 `;
 
 const navLinkStyles = css`
-  padding-bottom: ${space[0]};
   color: ${colors.N900};
   font-family: ${fonts.CONDENSED};
   font-size: 14px;
@@ -120,17 +119,16 @@ export const NavLink = styled(Link).attrs({
 
   &:after {
     content: "";
-    margin-top: 5px;
     border-bottom: 1px solid;
     display: block;
-    transform: scaleX(0);
+    transform: scaleX(0) translateY(4px);
     transition: transform 500ms cubic-bezier(0.645, 0.045, 0.345, 1) 0ms;
     transform-origin: top left;
   }
 
   &:hover {
     &::after {
-      transform: scaleX(1);
+      transform: scaleX(1) translateY(4px);
       transition: transform 500ms cubic-bezier(0.645, 0.045, 0.345, 1) 0ms;
       transform-origin: top left;
     }
@@ -138,7 +136,7 @@ export const NavLink = styled(Link).attrs({
 
   &:not(:first-child).${activeClassName} {
     &::after {
-      transform: scaleX(1);
+      transform: scaleX(1) translateY(4px);
     }
   }
 `;

@@ -7,7 +7,7 @@ import space, {
   H_PADDING_MOBILE,
 } from '@utils/space';
 import { Container as BaseContainer, mq } from '@utils/styles';
-import { H500 as BaseH500, H600 as BaseH300 } from '@utils/type';
+import { H300, H500 as BaseH500, H600 as BaseH600 } from '@utils/type';
 
 export const H500 = styled(BaseH500)`
   margin-top: ${space[2]};
@@ -19,7 +19,7 @@ export const H500 = styled(BaseH500)`
   }
 `;
 
-export const H600 = styled(BaseH300)`
+export const H600 = styled(BaseH600)`
   margin-bottom: ${space[1]};
 `;
 
@@ -31,7 +31,7 @@ export const ImageWrapper = styled.div`
 
   & > div {
     transform: scale(1);
-    transition: transform 500ms linear;
+    transition: transform 800ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
   & img {
@@ -57,7 +57,7 @@ export const Inner = styled.div`
     display: flex;
 
     & > :first-child {
-      margin-right: ${space[3]};
+      margin-right: ${space[5]};
       margin-bottom: 0;
     }
   }
@@ -70,6 +70,15 @@ export const Wrapper = styled.div`
 
   &:hover ${ImageWrapper} > div {
     transform: scale(1.05);
+  }
+
+  & ${H300} {
+    transition: all 800ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  &:hover ${H300} {
+    color: ${colors.N600};
+    transform: skewX(-5deg);
   }
 `;
 
