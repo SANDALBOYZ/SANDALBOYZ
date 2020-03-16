@@ -1,4 +1,8 @@
 export default {
+  // theme
+  SANDALBOYZ_NATURAL: '#FDF9E8',
+  SANDALBOYZ_YELLOW: '#EDD54C',
+
   // neutrals
   N900: '#000000',
   N800: '#111111',

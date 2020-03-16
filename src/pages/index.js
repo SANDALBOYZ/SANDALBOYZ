@@ -9,6 +9,8 @@ import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
 
 const LandingPage = ({ data }) => {
+  console.log(data.recentStories.edges)
+
   return (
     <>
       <Head title="Home" />
@@ -54,6 +56,7 @@ const LandingPage = ({ data }) => {
                 'recentStories.edges[0].node.frontmatter.hero.childImageSharp.fluid'
               ),
               title: get(data, 'recentStories.edges[0].node.frontmatter.title'),
+              date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
             }}
             storyB={{
               href: get(data, 'recentStories.edges[1].node.fields.slug'),
@@ -62,6 +65,7 @@ const LandingPage = ({ data }) => {
                 'recentStories.edges[1].node.frontmatter.hero.childImageSharp.fluid'
               ),
               title: get(data, 'recentStories.edges[1].node.frontmatter.title'),
+              date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
             }}
           />
         )}
@@ -204,6 +208,7 @@ export const landingPageQuery = graphql`
               }
             }
             title
+            date
           }
         }
       }

@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
+import space, {
+  H_PADDING,
+  V_PADDING,
+  H_PADDING_MOBILE,
+} from '@utils/space';
 import { Container as BaseContainer, mq } from '@utils/styles';
 import { H500 as BaseH500, H600 as BaseH300 } from '@utils/type';
 
@@ -71,11 +75,12 @@ export const Wrapper = styled.div`
 
 
 export const Container = styled(BaseContainer)`
+  background-color: ${props => props.backgroundColor || colors.SANDALBOYZ_NATURAL};
   margin-bottom: ${space[8]};
   padding: 0;
 
   ${mq.gtlg} {
     margin-bottom: ${space[9]};
-    padding: 0 ${H_PADDING};
+    padding: ${V_PADDING} ${H_PADDING};
   }
 `;
