@@ -57,7 +57,7 @@ export const Inner = styled.div`
     display: flex;
 
     & > :first-child {
-      margin-right: ${space[3]};
+      margin-right: ${space[5]};
       margin-bottom: 0;
     }
   }
