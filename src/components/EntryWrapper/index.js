@@ -23,6 +23,12 @@ export const Wrapper = styled.div`
       animation-delay: 300ms;
     `
   }
+  display: block;
+  position: relative;
+  z-index: 1;
+  ${props => props.zIndex && css`
+    z-index: ${props.zIndex};
+  `}
 
   opacity: 0;
 
@@ -31,7 +37,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const EntryWrapper = ({ children, customAnimation }) => {
+export const EntryWrapper = ({ children, customAnimation, zIndex }) => {
   const [animationEnd, setAnimationEnd] = useState(false);
 
   return (
@@ -39,6 +45,7 @@ export const EntryWrapper = ({ children, customAnimation }) => {
       onAnimationEnd={() => setAnimationEnd(true)}
       className={animationEnd ? 'active' : ''}
       customAnimation={customAnimation}
+      zIndex={zIndex}
     >
       {children}
     </Wrapper>
@@ -49,6 +56,7 @@ EntryWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   // Use `styled-components/css`
   customAnimation: PropTypes.string,
+  zIndex: PropTypes.string,
 };
 
 export default EntryWrapper;

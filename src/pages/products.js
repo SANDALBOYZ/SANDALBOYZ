@@ -9,6 +9,7 @@ import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import sandal from '@images/sandal.svg';
+import EntryWrapper from '@components/EntryWrapper';
 import Button from '@components/Button';
 import Filters from '@components/Filters';
 import Header from '@components/Header';
@@ -136,7 +137,7 @@ class ProductsPage extends Component {
     ).length;
 
     return (
-      <>
+      <EntryWrapper>
         <Head title="Products" />
         <Header
           label={get(data, 'productIndex.frontmatter.pageTitle')}
@@ -184,7 +185,7 @@ class ProductsPage extends Component {
           onSort={this.handleSort}
           open={showFilters}
         />
-      </>
+      </EntryWrapper>
     );
   }
 }

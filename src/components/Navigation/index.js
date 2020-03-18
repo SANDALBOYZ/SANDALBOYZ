@@ -95,7 +95,7 @@ class Navigation extends Component {
     }
 
     return (
-      <EntryWrapper customAnimation={navigationAnimation}>
+      <EntryWrapper customAnimation={navigationAnimation} zIndex='9999'>
         <styled.Nav
           cartOpen={cartOpen}
           light={light && !hasScrolled}
