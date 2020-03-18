@@ -86,7 +86,7 @@ export const Wrapper = styled.div`
 export const Container = styled(BaseContainer)`
   background-color: ${props => props.backgroundColor || colors.SANDALBOYZ_NATURAL};
   margin-bottom: ${space[8]};
-  padding: 0;
+  padding: ${space[1]} 0;
 
   ${mq.gtlg} {
     margin-bottom: ${space[9]};

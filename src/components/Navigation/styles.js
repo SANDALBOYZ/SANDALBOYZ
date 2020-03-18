@@ -90,11 +90,11 @@ const navLinkStyles = css`
   color: ${colors.N900};
   font-family: ${fonts.CONDENSED};
   font-size: 14px;
-  font-style: italic;
-  font-weight: ${weights.BOLD};
-  letter-spacing: 1px;
+  // font-style: italic;
+  font-weight: ${weights.LIGHT};
+  letter-spacing: 0px;
   line-height: 1;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   cursor: pointer;
 
   &:not(:last-child) {

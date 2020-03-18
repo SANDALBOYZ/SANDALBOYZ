@@ -93,7 +93,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         typekit: {
-          id: 'bmy0pxx',
+          id: 'csw3kla',
         },
       },
     },
