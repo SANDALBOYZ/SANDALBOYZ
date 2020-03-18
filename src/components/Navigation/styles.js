@@ -70,7 +70,7 @@ export const Nav = styled.div`
   left: 0;
   z-index: 9999;
   background-color: ${getNavBackground};
-  transition: background-color 100ms linear;
+  transition: background-color 600ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 
   ${props =>
     props.light &&
