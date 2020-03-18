@@ -92,14 +92,12 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        typekit: {
-          id: 'bmy0pxx',
-        },
-        // TODO: Swap typography out.
-        // Nimbus Sans
         // typekit: {
-        //   id: 'csw3kla',
+        //   id: 'bmy0pxx',
         // },
+        typekit: {
+          id: 'csw3kla',
+        },
       },
     },
     {

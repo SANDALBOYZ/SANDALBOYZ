@@ -88,8 +88,8 @@ export const NavSection = styled.div`
 
 const navLinkStyles = css`
   color: ${colors.N900};
-  font-family: ${fonts.CONDENSED};
-  font-size: 14px;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-size: 15px;
   // font-style: italic;
   font-weight: ${weights.LIGHT};
   letter-spacing: 0px;
