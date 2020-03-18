@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { css, keyframes } from 'styled-components';
 
 import EntryWrapper from '@components/EntryWrapper';
 import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
+
+const fade = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+
+const navigationAnimation = css`
+  animation: ${fade} 500ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  animation-delay: 250ms;
+`;
 
 class Navigation extends Component {
   static propTypes = {
@@ -79,7 +95,7 @@ class Navigation extends Component {
     }
 
     return (
-      <EntryWrapper>
+      <EntryWrapper customAnimation={navigationAnimation}>
         <styled.Nav
           cartOpen={cartOpen}
           light={light && !hasScrolled}

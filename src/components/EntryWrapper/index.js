@@ -17,10 +17,12 @@ const zoomFade = keyframes`
 
 export const Wrapper = styled.div`
   ${props => props.customAnimation
-    ? css`animation: ${zoomFade} 1.5s cubic-bezier(.19, 1, .22, 1);`
-    : css`animation: ${zoomFade} 1.5s cubic-bezier(.19, 1, .22, 1);`
+    ? props.customAnimation
+    : css`
+      animation: ${zoomFade} 1.5s cubic-bezier(.19, 1, .22, 1);
+      animation-delay: 300ms;
+    `
   }
-  animation-delay: 250ms;
 
   opacity: 0;
 
