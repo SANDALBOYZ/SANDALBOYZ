@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
+import EntryWrapper from '@components/EntryWrapper';
 import Head from '@utils/seo';
 import BannerLight from '@components/BannerLight';
 import Hero from '@components/Hero';
@@ -9,10 +10,8 @@ import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
 
 const LandingPage = ({ data }) => {
-  console.log(data.recentStories.edges);
-
   return (
-    <>
+    <EntryWrapper>
       <Head title="Home" />
       {get(data, 'hero') && (
         <Hero
@@ -103,7 +102,7 @@ const LandingPage = ({ data }) => {
             titleIcon="arrow-right"
           />
         )}
-    </>
+    </EntryWrapper>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import EntryWrapper from '@components/EntryWrapper';
 import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
 
@@ -78,57 +79,53 @@ class Navigation extends Component {
     }
 
     return (
-      <styled.Nav
-        cartOpen={cartOpen}
-        light={light && !hasScrolled}
-        hasScrolled={hasScrolled}
-      >
-        <styled.Container>
-          <styled.NavSection>
-            <styled.LogoLink to="/" aria-label="SANDALBOYZ">
-              <styled.Logo
-                cartOpen={cartOpen}
-                light={light && !hasScrolled}
-              />
-            </styled.LogoLink>
-            <styled.NavLink to="/products" partiallyActive>
-              Products
-            </styled.NavLink>
-            {showStories && (
-              <styled.NavLink to="/stories" partiallyActive>
-                Stories
-              </styled.NavLink>
-            )}
-            <styled.NavLink to="/contact">Contact</styled.NavLink>
-          </styled.NavSection>
-          <styled.NavSection>
-            <styled.NavButton to="/search" alt="Search">
-              <styled.Icon
-                name="search"
-                light={light && !hasScrolled}
-              />
-            </styled.NavButton>
-            {!hideCart && (
-              <styled.MobileNavLink onClick={onCartOpen}>
-                <styled.Icon
-                  name="briefcase"
+      <EntryWrapper>
+        <styled.Nav
+          cartOpen={cartOpen}
+          light={light && !hasScrolled}
+          hasScrolled={hasScrolled}
+        >
+          <styled.Container>
+            <styled.NavSection>
+              <styled.LogoLink to="/" aria-label="SANDALBOYZ">
+                <styled.Logo
+                  cartOpen={cartOpen}
                   light={light && !hasScrolled}
                 />
-              </styled.MobileNavLink>
-            )}
-            <MobileMenuToggle
-              light={light && !cartOpen && !hasScrolled}
-              open={cartOpen || menuOpen}
-              onClick={toggleFunction}
-            />
-            {authLinks.map(authLink => (
-              <styled.NavLink key={authLink.name} to={authLink.href}>
-                {authLink.name}
+              </styled.LogoLink>
+              <styled.NavLink to="/products" partiallyActive>
+                Products
               </styled.NavLink>
-            ))}
-          </styled.NavSection>
-        </styled.Container>
-      </styled.Nav>
+              {showStories && (
+                <styled.NavLink to="/stories" partiallyActive>
+                  Stories
+                </styled.NavLink>
+              )}
+              <styled.NavLink to="/contact">Contact</styled.NavLink>
+            </styled.NavSection>
+            <styled.NavSection>
+              <styled.NavButton to="/search" alt="Search">
+                <styled.Icon name="search" light={light && !hasScrolled} />
+              </styled.NavButton>
+              {!hideCart && (
+                <styled.MobileNavLink onClick={onCartOpen}>
+                  <styled.Icon name="briefcase" light={light && !hasScrolled} />
+                </styled.MobileNavLink>
+              )}
+              <MobileMenuToggle
+                light={light && !cartOpen && !hasScrolled}
+                open={cartOpen || menuOpen}
+                onClick={toggleFunction}
+              />
+              {authLinks.map(authLink => (
+                <styled.NavLink key={authLink.name} to={authLink.href}>
+                  {authLink.name}
+                </styled.NavLink>
+              ))}
+            </styled.NavSection>
+          </styled.Container>
+        </styled.Nav>
+      </EntryWrapper>
     );
   }
 }
