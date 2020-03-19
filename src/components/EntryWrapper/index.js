@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import styled, { css, keyframes } from 'styled-components';
 
-const zoomFade = keyframes`
+// Shifts from above to in position while fading in.
+const shiftFade = keyframes`
   0% {
     transform: translateY(-5px);
     opacity: 0;
@@ -19,7 +20,7 @@ export const Wrapper = styled.div`
   ${props => props.customAnimation
     ? props.customAnimation
     : css`
-      animation: ${zoomFade} 1.5s cubic-bezier(.19, 1, .22, 1);
+      animation: ${shiftFade} 1.5s cubic-bezier(.19, 1, .22, 1);
       animation-delay: 300ms;
     `
   }
