@@ -37,12 +37,18 @@ export const DoubleImage = ({ images }) => (
   <DoubleWrapper>
     <DoubleImageOne>
       {get(images, '0') && (
-        <Image fluid={images[0]} />
+        <Image
+          fluid={images[0]}
+          backgroundColor={colors.THEME_COLORS_ARRAY[Math.floor((Math.random() * 5))]}
+        />
       )}
     </DoubleImageOne>
     <DoubleImageTwo>
       {get(images, '1') && (
-        <Image fluid={images[1]} />
+        <Image
+          fluid={images[1]}
+          backgroundColor={colors.THEME_COLORS_ARRAY[Math.floor((Math.random() * 5))]}
+        />
       )}
     </DoubleImageTwo>
   </DoubleWrapper>
@@ -63,6 +69,7 @@ export const FullHeightImage = ({ image }) => (
     {image && (
       <Image
         fluid={image}
+        backgroundColor={colors.THEME_COLORS_ARRAY[Math.floor((Math.random() * 5))]}
       />
     )}
   </FullHeightImageWrapper>
@@ -119,12 +126,7 @@ export const OffsetGridImage = props => (
           {image && (
             <Image
               fluid={image}
-              imgStyle={{
-                display: 'block',
-                height: 'initial',
-                position: 'absolute',
-              }}
-              style={{ overflow: 'initial' }}
+              backgroundColor={colors.THEME_COLORS_ARRAY[Math.floor((Math.random() * 5))]}
             />
           )}
         </OffsetGridImg>

@@ -58,21 +58,25 @@ export const offsetGridImage = () => (
         src: 'https://source.unsplash.com/random',
         srcSet: 'https://source.unsplash.com/random 2550w',
         sizes: '(max-width: 2550px) 100vw, 2550px',
+        aspectRatio: 0.8,
       },
       {
         src: 'https://source.unsplash.com/random',
         srcSet: 'https://source.unsplash.com/random 2550w',
         sizes: '(max-width: 2550px) 100vw, 2550px',
+        aspectRatio: 0.8,
       },
       {
         src: 'https://source.unsplash.com/random',
         srcSet: 'https://source.unsplash.com/random 2550w',
         sizes: '(max-width: 2550px) 100vw, 2550px',
+        aspectRatio: 0.8,
       },
       {
         src: 'https://source.unsplash.com/random',
         srcSet: 'https://source.unsplash.com/random 2550w',
         sizes: '(max-width: 2550px) 100vw, 2550px',
+        aspectRatio: 0.8,
       },
     ]}
   />

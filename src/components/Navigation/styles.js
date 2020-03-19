@@ -70,7 +70,7 @@ export const Nav = styled.div`
   left: 0;
   z-index: 9999;
   background-color: ${getNavBackground};
-  transition: background-color 100ms linear;
+  transition: background-color 600ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 
   ${props =>
     props.light &&
@@ -88,13 +88,13 @@ export const NavSection = styled.div`
 
 const navLinkStyles = css`
   color: ${colors.N900};
-  font-family: ${fonts.CONDENSED};
-  font-size: 14px;
-  font-style: italic;
-  font-weight: ${weights.BOLD};
-  letter-spacing: 1px;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-size: 15px;
+  // font-style: italic;
+  font-weight: ${weights.LIGHT};
+  letter-spacing: 0px;
   line-height: 1;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   cursor: pointer;
 
   &:not(:last-child) {

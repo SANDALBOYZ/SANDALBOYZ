@@ -49,7 +49,7 @@ export const Detail = styled.span`
 
 export const H100 = styled.h1`
   font-family: ${fonts.CONDENSED};
-  font-style: italic;
+  // font-style: italic;
   font-weight: ${weights.BLACK};
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -72,7 +72,7 @@ export const H100 = styled.h1`
 export const H200 = styled.h2`
   font-family: ${fonts.CONDENSED};
   font-size: 54px;
-  font-style: italic;
+  // font-style: italic;
   font-weight: ${weights.BLACK};
   letter-spacing: 1px;
   line-height: 54px;
