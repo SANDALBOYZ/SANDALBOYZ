@@ -4,21 +4,13 @@ export const SANDALBOYZ_BLACK = '#231F20';
 export const SANDALBOYZ_ROSE = '#F2AF94';
 export const SANDALBOYZ_OLIVE = '#9EB297';
 
-export default {
+const colors = {
   // theme
   SANDALBOYZ_NATURAL,
   SANDALBOYZ_YELLOW,
   SANDALBOYZ_BLACK,
   SANDALBOYZ_ROSE,
   SANDALBOYZ_OLIVE,
-
-  THEME_COLORS_ARRAY: [
-    SANDALBOYZ_NATURAL,
-    SANDALBOYZ_YELLOW,
-    SANDALBOYZ_BLACK,
-    SANDALBOYZ_ROSE,
-    SANDALBOYZ_OLIVE,
-  ],
 
   // neutrals
   N900: '#000000',
@@ -38,3 +30,16 @@ export default {
   PRIMARY: '#866BFE',
   SECONDARY: '#538FFF',
 };
+
+const SANDALBOYZ_COLORS = [
+  SANDALBOYZ_NATURAL,
+  SANDALBOYZ_YELLOW,
+  SANDALBOYZ_BLACK,
+  SANDALBOYZ_ROSE,
+  SANDALBOYZ_OLIVE,
+];
+
+export const randomSandalboyzColor = () =>
+  SANDALBOYZ_COLORS[Math.floor(Math.random() * 5)];
+
+export default colors;
