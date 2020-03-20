@@ -118,7 +118,7 @@ export const landingPageQuery = graphql`
         hero {
           childImageSharp {
             fluid(maxWidth: 2048, quality: 90) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_noBase64
             }
           }
         }

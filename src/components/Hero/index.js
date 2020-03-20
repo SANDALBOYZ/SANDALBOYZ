@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
+import { randomSandalboyzColor } from '@utils/colors';
 import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
 import * as styled from './styles';
 
@@ -9,7 +10,7 @@ export const Hero = ({ href, image, label, title }) => (
   <styled.Wrapper>
     <styled.Background>
       {image && (
-        <AbsoluteImg fluid={image} />
+        <AbsoluteImg fluid={image} backgroundColor={randomSandalboyzColor} />
       )}
       <Breakpoint min={breakpoints.lg}>
         <styled.Button theme="light" href={href}>
