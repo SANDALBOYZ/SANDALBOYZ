@@ -8169,12 +8169,12 @@ gatsby-plugin-google-analytics@^2.0.13:
   dependencies:
     "@babel/runtime" "^7.6.3"
 
-gatsby-plugin-layout@^1.0.11:
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.1.11.tgz#474e41ad6be0072ec495e14d0693240045f5c980"
-  integrity sha512-d6tNgjubefD5Q9Z3XESGW+yGl9E8EpE+Hf7cmXeRZ5g8DVA1D+9eltITEWGknL7brl5MEzlCgH9k+NT2z9z+BQ==
+gatsby-plugin-layout@^1.1.24:
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.1.24.tgz#1d57bfd7189dd9d68aed8baec5bd6e01360e40fe"
+  integrity sha512-RufPbZU1o/PApSQrKo+Jonn0O1jF1N73WBPHwD9BFaV75r2blAW45r3nxh24W7jiEldW09Fqs7+K+HAdpAP02w==
   dependencies:
-    "@babel/runtime" "^7.6.3"
+    "@babel/runtime" "^7.8.7"
 
 gatsby-plugin-manifest@^2.0.9:
   version "2.2.21"
@@ -8285,12 +8285,12 @@ gatsby-plugin-sitemap@^2.2.19:
     pify "^3.0.0"
     sitemap "^1.13.0"
 
-gatsby-plugin-styled-components@^3.1.9:
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-styled-components/-/gatsby-plugin-styled-components-3.1.9.tgz#b5e71c5cb14f6c63941ebda4255e09ba1f1d8bc6"
-  integrity sha512-NGzUViD4iIabV+7uPczoCgLq874mHyYLSzvsd7ncxt3SJyNtPIwcnpyNnGutARLnJ/n85uAJYCP3sF2xHkXWGw==
+gatsby-plugin-styled-components@^3.1.21:
+  version "3.1.21"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-styled-components/-/gatsby-plugin-styled-components-3.1.21.tgz#d376464a762ae0acdd1e313e02c002eabc1aa4a6"
+  integrity sha512-uU4MtUAw3zazeVnKnOL0c0+mhtpNfEKee983jyUnAGZnXyXa9EYfZ7Lw+b++FqCce+e6EDlI7VemUR4voSD0DQ==
   dependencies:
-    "@babel/runtime" "^7.6.3"
+    "@babel/runtime" "^7.8.7"
 
 gatsby-plugin-web-font-loader@^1.0.4:
   version "1.0.4"

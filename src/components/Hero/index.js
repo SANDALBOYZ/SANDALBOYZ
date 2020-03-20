@@ -10,7 +10,7 @@ export const Hero = ({ href, image, label, title }) => (
   <styled.Wrapper>
     <styled.Background>
       {image && (
-        <AbsoluteImg fluid={image} backgroundColor={randomSandalboyzColor} />
+        <AbsoluteImg fluid={image} backgroundColor={randomSandalboyzColor()} />
       )}
       <Breakpoint min={breakpoints.lg}>
         <styled.Button theme="light" href={href}>

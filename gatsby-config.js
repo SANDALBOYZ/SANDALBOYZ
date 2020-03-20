@@ -48,6 +48,7 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-netlify',
@@ -55,7 +56,6 @@ module.exports = {
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline'
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-alias-imports',
       options: {
