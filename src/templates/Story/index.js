@@ -5,7 +5,14 @@ import get from 'lodash/get';
 import Head from '@utils/seo';
 import { AbsoluteImg } from '@utils/styles';
 import { H100, H200 } from '@utils/type';
-import * as storyImage from '@components/StoryImage';
+import {
+  DoubleImage,
+  FullHeightImage,
+  FullWidthImage,
+  OffsetGridImage,
+  SplitImage,
+  TwoThirdsImage,
+} from '@components/StoryImage';
 import * as styled from './styles';
 
 export const StoryTemplate = ({ story }) => {
@@ -16,17 +23,17 @@ export const StoryTemplate = ({ story }) => {
 
       switch (imageType) {
         case 'double':
-          return <storyImage.DoubleImage images={images} />;
+          return <DoubleImage images={images} />;
         case 'fullHeight':
-          return <storyImage.FullHeightImage image={images[0]} />;
+          return <FullHeightImage image={images[0]} />;
         case 'fullWidth':
-          return <storyImage.FullWidthImage image={images[0]} />;
+          return <FullWidthImage image={images[0]} />;
         case 'offsetGrid':
-          return <storyImage.OffsetGridImage images={images} />;
+          return <OffsetGridImage images={images} />;
         case 'split':
-          return <storyImage.SplitImage caption={caption} images={images} />;
+          return <SplitImage caption={caption} images={images} />;
         case 'twoThirds':
-          return <storyImage.TwoThirdsImage image={images[0]} />;
+          return <TwoThirdsImage image={images[0]} />;
 
         default: // no default
       }
@@ -97,7 +104,7 @@ export const pageQuery = graphql`
           images {
             childImageSharp {
               fluid(maxWidth: 2048, quality: 90) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_noBase64
               }
             }
           }

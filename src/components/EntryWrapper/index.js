@@ -6,12 +6,12 @@ import styled, { css, keyframes } from 'styled-components';
 // Shifts from above to in position while fading in.
 const shiftFade = keyframes`
   0% {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.005);
     opacity: 0;
   }
 
   100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 `;
@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
     ? props.customAnimation
     : css`
       animation: ${shiftFade} 1.5s cubic-bezier(.19, 1, .22, 1);
-      animation-delay: 300ms;
+      animation-delay: 800ms;
     `
   }
   display: block;

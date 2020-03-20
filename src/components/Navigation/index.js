@@ -18,7 +18,7 @@ const fade = keyframes`
 
 const navigationAnimation = css`
   animation: ${fade} 500ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  animation-delay: 250ms;
+  animation-delay: 500ms;
 `;
 
 class Navigation extends Component {
