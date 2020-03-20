@@ -65,8 +65,8 @@ const LandingPage = ({ data }) => {
                 'recentStories.edges[1].node.frontmatter.hero.childImageSharp.fluid'
               ),
               title: get(data, 'recentStories.edges[1].node.frontmatter.title'),
-              date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
-              previewText: get(data, 'recentStories.edges[0].node.frontmatter.previewText'),
+              date: get(data, 'recentStories.edges[1].node.frontmatter.date'),
+              previewText: get(data, 'recentStories.edges[1].node.frontmatter.previewText'),
             }}
           />
         )}
