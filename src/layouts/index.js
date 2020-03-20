@@ -284,6 +284,7 @@ class Layout extends React.Component {
               <Footer showStories={get(data, 'stories.edges.length') > 0} />
               <Popup
                 contentDigest={get(data, 'popup.internal.contentDigest')}
+                enabled={get(data, 'popup.frontmatter.enabled')}
                 description={get(data, 'popup.frontmatter.description')}
                 expire={get(data, 'popup.frontmatter.expires')}
                 image={get(data, 'popup.frontmatter.image.childImageSharp.fluid')}

@@ -84,6 +84,9 @@ collections:
         file: src/content/popup.md
         fields:
           - { label: Template Key, name: templateKey, widget: hidden, default: popup }
+          - label: Enabled
+            name: enabled
+            widget: boolean
           - label: Label
             name: label
             widget: string

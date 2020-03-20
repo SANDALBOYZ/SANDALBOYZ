@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import qs from 'querystringify';
+// import qs from 'querystringify';
 import Cookies from 'js-cookie';
 
 import { AbsoluteImg } from '@utils/styles';
@@ -10,6 +10,7 @@ import * as styled from './styles';
 
 class Popup extends Component {
   static propTypes = {
+    enabled: PropTypes.bool,
     contentDigest: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     expires: PropTypes.number,
@@ -50,8 +51,14 @@ class Popup extends Component {
   };
 
   render() {
-    const { description, image, label, siteUrl, title } = this.props;
+    const { enabled, description, image, label, siteUrl, title } = this.props;
     const { open } = this.state;
+
+    console.log(`pop up is enabled: ${enabled}`)
+
+    if (!enabled) {
+      return null;
+    }
 
     return (
       <styled.Wrapper open={open} onClick={this.handleClose}>
@@ -64,7 +71,7 @@ class Popup extends Component {
               <ContentLabel>{label}</ContentLabel>
               <styled.Title>{title}</styled.Title>
               <styled.Description>{description}</styled.Description>
-              <styled.Social>
+              {/* <styled.Social>
                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(
                     {
@@ -86,7 +93,7 @@ class Popup extends Component {
                 >
                   <styled.Icon name="twitter" />
                 </a>
-              </styled.Social>
+              </styled.Social> */}
             </div>
           </styled.Content>
           <styled.Image>{image && <AbsoluteImg fluid={image} />}</styled.Image>
