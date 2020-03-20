@@ -24,6 +24,9 @@ collections:
       - { label: Feature on Landing Page Hero, name: landingFeatured, widget: boolean, required: false }
       - { label: Feature on Stories Page Hero, name: storiesFeatured, widget: boolean, required: false }
       - { label: Tags, name: tags, widget: list, required: false }
+      - label: Preview Text
+        name: previewText
+        widget: text
       - label: Sections
         name: sections
         widget: list

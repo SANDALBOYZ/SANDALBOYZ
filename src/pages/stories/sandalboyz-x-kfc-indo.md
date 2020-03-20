@@ -1,6 +1,6 @@
 ---
 templateKey: story
-title: 'Family, Community, Fried Chicken – SANDALBOYZ x KFC'
+title: 'Family, Community, Fried Chicken'
 slug: sandalboyz-x-kfc-indo
 authors:
   - 'WORDS, Ryan Chang'
@@ -13,6 +13,8 @@ lede: >-
   sandals and apparel.
 landingFeatured: false
 storiesFeatured: true
+previewText: We teamed up with KFC Indonesia to bring a family style inspired collection of
+  sandals and apparel.
 sections:
   - body: >-
       At the very heart of the fried chicken company from Louisville are the
