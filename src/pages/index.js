@@ -56,6 +56,7 @@ const LandingPage = ({ data }) => {
               ),
               title: get(data, 'recentStories.edges[0].node.frontmatter.title'),
               date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
+              previewText: get(data, 'recentStories.edges[0].node.frontmatter.previewText'),
             }}
             storyB={{
               href: get(data, 'recentStories.edges[1].node.fields.slug'),
@@ -65,6 +66,7 @@ const LandingPage = ({ data }) => {
               ),
               title: get(data, 'recentStories.edges[1].node.frontmatter.title'),
               date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
+              previewText: get(data, 'recentStories.edges[0].node.frontmatter.previewText'),
             }}
           />
         )}
@@ -208,6 +210,7 @@ export const landingPageQuery = graphql`
             }
             title
             date
+            previewText
           }
         }
       }

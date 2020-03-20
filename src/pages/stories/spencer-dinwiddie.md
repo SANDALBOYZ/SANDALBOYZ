@@ -1,6 +1,6 @@
 ---
 templateKey: story
-title: 'Blockchain and Basketball'
+title: Blockchain and Basketball – Spencer Dinwiddie
 slug: spencer-dinwiddie
 authors:
   - 'WORDS, Ryan Chang'
@@ -10,6 +10,7 @@ hero: /assets/000339140017.jpg
 lede: ''
 landingFeatured: true
 storiesFeatured: true
+previewText: A wide ranging conversation with NBA shooting guard Spencer Dinwiddie.
 sections:
   - body: >-
       It was an unusually warm January weekend in New York – so warm that AOC

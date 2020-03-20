@@ -19,8 +19,8 @@ const RecentStories = ({ storyA, storyB }) => (
             )}
           </styled.ImageWrapper>
           <styled.Info>
-            <styled.H600>Recent Story</styled.H600>
             <H300>{storyA.title}</H300>
+            <p>{storyA.previewText}</p>
             <H500>{format(new Date(storyA.date), 'LLL yyyy')}</H500>
           </styled.Info>
         </Link>
@@ -33,8 +33,8 @@ const RecentStories = ({ storyA, storyB }) => (
             )}
           </styled.ImageWrapper>
           <styled.Info>
-            <styled.H600>Recent Story</styled.H600>
             <H300>{storyB.title}</H300>
+            <p>{storyB.previewText}</p>
             <H500>{format(new Date(storyB.date), 'LLL yyyy')}</H500>
           </styled.Info>
         </Link>
