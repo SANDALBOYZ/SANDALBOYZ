@@ -1,6 +1,6 @@
 ---
 templateKey: story
-title: 'Channelling Family and Community Through Fried Chicken: SANDALBOYZ x KFC'
+title: 'Family, Community, Fried Chicken – SANDALBOYZ x KFC'
 slug: sandalboyz-x-kfc-indo
 authors:
   - 'WORDS, Ryan Chang'
@@ -86,4 +86,3 @@ sections:
       - /assets/kfc-028.jpg
     type: image
 ---
-

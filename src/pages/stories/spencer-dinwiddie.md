@@ -1,6 +1,6 @@
 ---
 templateKey: story
-title: 'Cryptocurrency, Greek Mythology, Basketball: Spencer Dinwiddie'
+title: 'Blockchain and Basketball'
 slug: spencer-dinwiddie
 authors:
   - 'WORDS, Ryan Chang'
@@ -45,7 +45,7 @@ sections:
       **You grew up in LA?**
 
 
-      Yeah, grew up in LA, South Central. Bust out to Taft for high school. 
+      Yeah, grew up in LA, South Central. Bust out to Taft for high school.
 
 
       **Oh, so you were living in South Central while you attended Taft
@@ -81,7 +81,7 @@ sections:
       ultimately ended up going to a public high school. Back then, the Los
       Angeles City Section had the best programs for basketball. You had Dwayne
       Polee on a historic Westchester team, Renardo Sidney at Fairfax, and Larry
-      Drew at Taft. 
+      Drew at Taft.
 
 
       **You’ve made a lot of basketball driven decisions for pivotal moments in
@@ -227,7 +227,7 @@ sections:
       She was like, “Spencer, what do you want to do?”
 
 
-      I said, “I want to go to league. What do you mean?” I’m crying and shit. 
+      I said, “I want to go to league. What do you mean?” I’m crying and shit.
 
 
       “Na, what do you want to do?”
@@ -346,4 +346,3 @@ sections:
       https://projectdream.io/shop/.
     type: text
 ---
-
