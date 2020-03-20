@@ -173,4 +173,12 @@ export const Sections = styled.div`
       line-height: 54px;
     }
   }
+
+  & hr {
+    width: 80%;
+
+    ${mq.gtlg} {
+      max-width: 800px;
+    }
+  }
 `;
