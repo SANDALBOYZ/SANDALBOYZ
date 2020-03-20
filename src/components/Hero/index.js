@@ -14,7 +14,7 @@ export const Hero = ({ href, image, label, title }) => (
       )}
       <Breakpoint min={breakpoints.lg}>
         <styled.Button theme="light" href={href}>
-          Read article
+          Read Article
         </styled.Button>
       </Breakpoint>
     </styled.Background>
@@ -22,7 +22,7 @@ export const Hero = ({ href, image, label, title }) => (
       {label && <styled.H500>{label}</styled.H500>}
       <styled.H100 isLong={get(title, 'length') > 48}>{title}</styled.H100>
       <Breakpoint max={breakpoints.lg}>
-        <styled.Button href={href}>Read article</styled.Button>
+        <styled.Button href={href}>Read Article</styled.Button>
       </Breakpoint>
     </styled.Box>
   </styled.Wrapper>
