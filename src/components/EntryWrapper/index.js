@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
     ? props.customAnimation
     : css`
       animation: ${shiftFade} 1.5s cubic-bezier(.19, 1, .22, 1);
-      animation-delay: 500ms;
+      animation-delay: 800ms;
     `
   }
   display: block;
