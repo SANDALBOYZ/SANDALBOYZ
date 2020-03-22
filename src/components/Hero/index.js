@@ -35,4 +35,10 @@ Hero.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
+const Wrapper = styled.div``
+
+export const HeroTwo = ({ href, image, headerText, labelText }) => (
+  <Wrapper />
+)
+
 export default Hero;
