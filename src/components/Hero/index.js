@@ -39,11 +39,12 @@ Hero.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const Wrapper = styled.div`
+const FullHeroWrapper = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  margin-bottom: 30px;
 `;
 
 const TextWrapper = styled.div`
@@ -56,10 +57,6 @@ const TextWrapper = styled.div`
   transform: translateX(-50%);
   color: ${colors.N0};
 `;
-
-const HeaderLabel = styled.div`
-  text-transform: uppercase;
-`
 
 const FullHeroH100 = styled(BaseH100)`
   margin-bottom: 15px;
@@ -86,26 +83,26 @@ const CallToAction = styled.div`
   }
 `;
 
-export const FullHero = ({ href, image, label, header, callToAction }) => (
-  <Wrapper>
+export const FullHero = ({ href, image, label, title, callToAction }) => (
+  <FullHeroWrapper>
     <Image fluid={image} backgroundColor={randomSandalboyzColor()} />
     <Link to={href}>
       <TextWrapper>
         {label && <BaseH500>{label}</BaseH500>}
-        <FullHeroH100>{header}</FullHeroH100>
+        <FullHeroH100>{title}</FullHeroH100>
         <CallToAction>
           {callToAction}
         </CallToAction>
       </TextWrapper>
     </Link>
-  </Wrapper>
+  </FullHeroWrapper>
 );
 
 FullHero.propTypes = {
   href: PropTypes.string.isRequired,
   image: PropTypes.object,
   label: PropTypes.string,
-  header: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   callToAction: PropTypes.string.isRequired,
 };
 

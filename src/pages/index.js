@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import EntryWrapper from '@components/EntryWrapper';
 import Head from '@utils/seo';
 import BannerLight from '@components/BannerLight';
-import Hero from '@components/Hero';
+import Hero, { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
 
@@ -13,12 +13,20 @@ const LandingPage = ({ data }) => {
   return (
     <EntryWrapper>
       <Head title="Home" />
-      {get(data, 'hero') && (
+      {/* {get(data, 'hero') && (
         <Hero
           href={get(data, 'hero.fields.slug')}
           image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}
           label="Featured Story"
           title={get(data, 'hero.frontmatter.title')}
+        />
+      )} */}
+      {get(data, 'hero') && (
+        <FullHero
+          href='/products'
+          image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}
+          title='SPRING PICKS'
+          callToAction='Shop Now'
         />
       )}
       {Array.isArray(get(data, 'recommendedPicks.edges')) &&

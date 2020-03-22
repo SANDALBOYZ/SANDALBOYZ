@@ -110,6 +110,26 @@ collections:
             min: 1
             max: 365
             hint: Enter value in number of days (i.e. 2 for 2 days, etc.)
+      - label: Full Hero
+        name: fullHero
+        file: src/content/fullHero.md
+        fields:
+          - { label: Template Key, name: templateKey, widget: hidden, default: fullHero }
+          - label: Label
+            name: label
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Call to Action
+            name: callToAction
+            widget: text
+          - label: Desktop Image
+            name: desktopImage
+            widget: image
+          - label: Mobile Image
+            name: mobileImage
+            widget: image
   - label: Pages
     name: pages
     files:
