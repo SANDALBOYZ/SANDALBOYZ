@@ -7,7 +7,7 @@ import Icon from '@components/Icon';
 import ProductTile from '@components/ProductTile';
 import * as styled from './styles';
 
-const ProductGrid = ({ cta, filters, offset, onFilter, products, title, titleIcon }) => {
+const ProductGrid = ({ cta, filters, extraPadding, onFilter, products, title, titleIcon }) => {
   const clearFilter = (key, filter) => {
     const newFilters = { collection: [], productType: [] };
 
@@ -19,7 +19,7 @@ const ProductGrid = ({ cta, filters, offset, onFilter, products, title, titleIco
   };
 
   return (
-    <styled.Wrapper offset={offset}>
+    <styled.ProductGridWrapper extraPadding={extraPadding}>
       <styled.Container>
         <styled.Header>
           <styled.Title>
@@ -70,7 +70,7 @@ const ProductGrid = ({ cta, filters, offset, onFilter, products, title, titleIco
           ))}
         </styled.Products>
       </styled.Container>
-    </styled.Wrapper>
+    </styled.ProductGridWrapper>
   );
 };
 
@@ -79,7 +79,7 @@ ProductGrid.propTypes = {
     collection: PropTypes.array,
     productType: PropTypes.array,
   }),
-  offset: PropTypes.bool,
+  extraPadding: PropTypes.bool,
   onFilter: PropTypes.func,
   products: PropTypes.arrayOf(
     PropTypes.shape({

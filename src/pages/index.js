@@ -43,7 +43,7 @@ const LandingPage = ({ data }) => {
         data.recommendedPicks.edges.length > 0 && (
           <ProductGrid
             cta="Shop Now / See More"
-            offset={!get(data, 'hero')}
+            extraPadding={!get(data, 'fullHero')}
             products={data.recommendedPicks.edges.map(({ node }) => ({
               id: get(node, 'id'),
               href: `/products/${get(node, 'handle')}`,
