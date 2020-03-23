@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
-import qs from 'querystringify';
+// import qs from 'querystringify';
 import remark from 'remark';
 import html from 'remark-html';
 
