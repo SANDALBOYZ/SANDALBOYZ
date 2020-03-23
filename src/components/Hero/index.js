@@ -65,6 +65,7 @@ const FullHeroH100 = styled(BaseH100)`
 
 const CallToAction = styled.div`
   color: ${colors.N0};
+  font-weight: bold;
 
   &:after {
     content: '';
