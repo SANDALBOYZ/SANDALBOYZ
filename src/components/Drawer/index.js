@@ -46,7 +46,7 @@ class Drawer extends Component {
     const { actions, children, onClose, open, title } = this.props;
 
     return (
-      <styled.Wrapper open={open} onClick={onClose}>
+      <styled.DrawerWrapper open={open} onClick={onClose}>
         <styled.Drawer open={open} onClick={this.handleClick}>
           <div>
             <styled.H300>{title}</styled.H300>
@@ -73,7 +73,7 @@ class Drawer extends Component {
             </styled.Actions>
           )}
         </styled.Drawer>
-      </styled.Wrapper>
+      </styled.DrawerWrapper>
     );
   }
 }

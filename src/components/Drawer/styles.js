@@ -37,7 +37,8 @@ export const Drawer = styled.div`
   max-width: 100%;
   padding: ${H_PADDING_MOBILE};
   background-color: ${colors.N0};
-  transition: transform 200ms ease-in-out;
+  // transition: transform 300ms ease-in-out;
+  transition: transform 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
   overflow-y: auto;
 
@@ -53,16 +54,17 @@ export const H300 = styled(BaseH300)`
   margin-bottom: ${space[4]};
 `;
 
-export const Wrapper = styled.div`
+export const DrawerWrapper = styled.div`
   position: fixed;
   top: 48px;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: opacity 150ms linear;
-  opacity: ${props => (props.open ? 1 : 0)};
+  background-color: ${props => (props.open ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)')};;
+  transition: background-color 400ms ease-in;
+  transition-delay: 250ms;
+  opacity: 1;
   pointer-events: ${props => (props.open ? 'auto' : 'none')};
 
   ${mq.gtlg} {

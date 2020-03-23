@@ -40,7 +40,7 @@ export const Links = styled.div`
   text-align: center;
 `;
 
-export const Wrapper = styled.div`
+export const MobileMenuWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
