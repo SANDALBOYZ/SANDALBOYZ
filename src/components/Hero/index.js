@@ -6,7 +6,7 @@ import Image from 'gatsby-image';
 import Link from 'gatsby-link';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
-import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
+import { AbsoluteImg, Breakpoint, breakpoints, mq } from '@utils/styles';
 import { H100 as BaseH100, H500 as BaseH500 } from '@utils/type';
 import * as styles from './styles';
 
@@ -53,10 +53,14 @@ const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  bottom: 10%;
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   color: ${colors.N0};
+
+  ${mq.gtmd} {
+    bottom: 10%;
+  }
 `;
 
 const FullHeroH100 = styled(BaseH100)`
@@ -106,7 +110,14 @@ export const FullHero = ({
 
   return (
     <FullHeroWrapper>
-      <Image fluid={sources} backgroundColor={randomSandalboyzColor()} />
+      <Image
+        fluid={sources}
+        backgroundColor={randomSandalboyzColor()}
+        // TODO: This is a little hacky – need to dig into `gatsby-image` and the `fluid` prop more.
+        style={{
+          maxHeight: 'calc(100vh + 30px)',
+        }}
+      />
       <Link to={href}>
         <TextWrapper>
           {label && <BaseH500>{label}</BaseH500>}

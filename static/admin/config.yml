@@ -128,7 +128,7 @@ collections:
           - label: Desktop Image
             name: desktopImage
             widget: image
-            hint: Use a square 1w x 1h image ratio
+            hint: Use a square 1w x 1h (1680px minimum) image ratio
           - label: Mobile Image
             name: mobileImage
             widget: image
