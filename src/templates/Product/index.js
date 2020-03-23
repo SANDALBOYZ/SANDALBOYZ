@@ -331,6 +331,7 @@ class Product extends Component {
           {sizes.length > 1 && (
             <span>
               <Dropdown
+                dropUp
                 onChange={this.handleSizeChange}
                 options={sizes}
                 value={size}
@@ -342,6 +343,7 @@ class Product extends Component {
           {colors.length > 1 && (
             <span>
               <Dropdown
+                dropUp
                 onChange={this.handleColorChange}
                 options={colors}
                 value={color}

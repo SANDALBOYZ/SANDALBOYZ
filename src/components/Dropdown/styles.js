@@ -6,11 +6,6 @@ import space from '@utils/space';
 
 export const Dropdown = styled.div`
   position: absolute;
-  ${props => props.dropUp
-    ? css`top: calc(-38px * ${props.optionsLength});`
-    : css`top: 38px;`
-  }
-
   right: -1px;
   left: -1px;
   z-index: 10;
@@ -19,6 +14,26 @@ export const Dropdown = styled.div`
   border-right-color: ${colors.N500};
   border-bottom-color: ${colors.N500};
   border-left-color: ${colors.N500};
+  max-height: 380px;
+  overflow: scroll;
+
+  ${props => {
+    if (props.dropUp) {
+      if (props.optionsLength > 10) {
+        return css`
+          top: -380px;
+          border-top-color: ${colors.N500};
+        `;
+      } else {
+        return css`
+          top: calc(-38px * ${props.optionsLength});
+          border-top-color: ${colors.N500};
+        `;
+      }
+    }
+
+    return css`top: 38px;`;
+  }}
 `;
 
 export const Option = styled.div`
