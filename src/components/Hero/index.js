@@ -49,6 +49,7 @@ const FullHeroWrapper = styled.div`
 
 const TextWrapper = styled.div`
   position: absolute;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,10 +93,13 @@ export const FullHero = ({
   callToAction,
 }) => {
   const sources = [
-    mobileImage,
+    {
+      ...mobileImage,
+      media: '(max-width: 916px)',
+    },
     {
       ...desktopImage,
-      media: '(min-width: 768px)',
+      media: '(min-width: 916px)',
     },
   ];
 

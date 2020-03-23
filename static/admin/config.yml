@@ -128,11 +128,11 @@ collections:
           - label: Desktop Image
             name: desktopImage
             widget: image
-            hint: 2019 MacBook Pro 15" = 1680 x 916
+            hint: Use a square 1w x 1h image ratio
           - label: Mobile Image
             name: mobileImage
             widget: image
-            hint: Safari on iPhone X has a screen display size of 375 points width and a height of 812 points. The actual number of pixels is 1125 pixels in width and 2436px in height.
+            hint: Use 375w x 812h image ratio (https://markcormack.co.uk/iphone-x-safari-browser-chrome-guide/)
   - label: Pages
     name: pages
     files:

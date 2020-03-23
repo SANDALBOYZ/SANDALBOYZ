@@ -205,14 +205,14 @@ export const landingPageQuery = graphql`
       frontmatter {
         desktopImage {
           childImageSharp {
-            fluid(maxWidth: 2000, quality: 90) {
+            fluid(maxWidth: 2048, quality: 90) {
               ...GatsbyImageSharpFluid_noBase64
             }
           }
         }
         mobileImage {
           childImageSharp {
-            fluid(maxWidth: 1000, quality: 90) {
+            fluid(maxWidth: 768, quality: 90) {
               ...GatsbyImageSharpFluid_noBase64
             }
           }
