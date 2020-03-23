@@ -1,8 +1,8 @@
 ---
 templateKey: fullHero
-label: New Products Available
-title: SPRING/SUMMER
+label: ''
+title: Spring Favorites
 callToAction: Shop Now
-desktopImage: /assets/1.jpg
-mobileImage: /assets/1.jpg
+desktopImage: /assets/herodesktop.jpg
+mobileImage: /assets/heromobile.jpg
 ---

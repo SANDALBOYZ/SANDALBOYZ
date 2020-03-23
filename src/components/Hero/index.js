@@ -66,7 +66,7 @@ const CallToAction = styled.div`
   color: ${colors.N0};
 
   &:after {
-    content: "";
+    content: '';
     border-bottom: 1px solid;
     display: block;
     transform: scaleX(0) translateY(4px);
@@ -83,24 +83,40 @@ const CallToAction = styled.div`
   }
 `;
 
-export const FullHero = ({ href, image, label, title, callToAction }) => (
-  <FullHeroWrapper>
-    <Image fluid={image} backgroundColor={randomSandalboyzColor()} />
-    <Link to={href}>
-      <TextWrapper>
-        {label && <BaseH500>{label}</BaseH500>}
-        <FullHeroH100>{title}</FullHeroH100>
-        <CallToAction>
-          {callToAction}
-        </CallToAction>
-      </TextWrapper>
-    </Link>
-  </FullHeroWrapper>
-);
+export const FullHero = ({
+  href,
+  desktopImage,
+  mobileImage,
+  label,
+  title,
+  callToAction,
+}) => {
+  const sources = [
+    mobileImage,
+    {
+      ...desktopImage,
+      media: '(min-width: 768px)',
+    },
+  ];
+
+  return (
+    <FullHeroWrapper>
+      <Image fluid={sources} backgroundColor={randomSandalboyzColor()} />
+      <Link to={href}>
+        <TextWrapper>
+          {label && <BaseH500>{label}</BaseH500>}
+          <FullHeroH100>{title}</FullHeroH100>
+          <CallToAction>{callToAction}</CallToAction>
+        </TextWrapper>
+      </Link>
+    </FullHeroWrapper>
+  );
+};
 
 FullHero.propTypes = {
   href: PropTypes.string.isRequired,
-  image: PropTypes.object,
+  desktopImage: PropTypes.object.isRequired,
+  mobileImage: PropTypes.object.isRequired,
   label: PropTypes.string,
   title: PropTypes.string.isRequired,
   callToAction: PropTypes.string.isRequired,
