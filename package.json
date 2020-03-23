@@ -5,6 +5,7 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
+    "clean": "rimraf build .cache",
     "lint": "eslint src --ext .js",
     "lint:fix": "eslint --fix src --ext .js",
     "format": "prettier --write",
@@ -76,7 +77,8 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
     "prettier": "^1.19.1",
-    "reset-css": "^4.0.1"
+    "reset-css": "^4.0.1",
+    "rimraf": "^3.0.2"
   },
   "eslintConfig": {
     "extends": [
