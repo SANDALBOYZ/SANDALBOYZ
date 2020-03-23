@@ -171,13 +171,5 @@ module.exports = {
         manualInit: true,
       },
     },
-    {
-      resolve: 'gatsby-source-contentful',
-      options: {
-        spaceId: 'mv57yj9145pj',
-        accessToken: 'FxFPJaKT10Q5PYVIVlS33Op2c1IltO1hWs3CgPsKF-Q',
-        host: 'preview.contentful.com',
-      },
-    },
   ],
 };
