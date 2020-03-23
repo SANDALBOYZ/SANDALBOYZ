@@ -7,19 +7,39 @@ import Navigation from '.';
 
 export default { title: 'Navigation ' };
 
-export const desktopDark = () => <Navigation />;
+export const DesktopDark = () =>
+  <Navigation
+    menuOpen={false}
+    onCartClose={() => console.log('onCartClose')}
+    onCartOpen={() => console.log('onCartOpen')}
+    onMenuClose={() => console.log('onMenuClose')}
+  />;
 
 const DarkBackground = styled.div`
   background-color: ${colors.N700};
+  width: 100vw;
+  height: 300px;
 `;
 
-export const desktopLight = () => (
+export const DesktopLight = () => (
   <DarkBackground>
-    <Navigation light />
+    <Navigation
+      light
+      menuOpen={false}
+      onCartClose={() => console.log('onCartClose')}
+      onCartOpen={() => console.log('onCartOpen')}
+      onMenuClose={() => console.log('onMenuClose')}
+    />
   </DarkBackground>
 );
 
-export const MobileDark = () => <Navigation />;
+export const MobileDark = () =>
+  <Navigation
+    menuOpen={false}
+    onCartClose={() => console.log('onCartClose')}
+    onCartOpen={() => console.log('onCartOpen')}
+    onMenuClose={() => console.log('onMenuClose')}
+  />;
 
 MobileDark.story = {
   parameters: {
@@ -32,7 +52,13 @@ MobileDark.story = {
 
 export const MobileLight = () => (
   <DarkBackground>
-    <Navigation light />
+    <Navigation
+      light
+      menuOpen={false}
+      onCartClose={() => console.log('onCartClose')}
+      onCartOpen={() => console.log('onCartOpen')}
+      onMenuClose={() => console.log('onMenuClose')}
+    />
   </DarkBackground>
 );
 

@@ -186,6 +186,31 @@ export const Selections = styled.div`
   }
 `;
 
+export const MobileSelections = styled.div`
+  position: sticky;
+  bottom: 0;
+  width: 100vw;
+  z-index: 9999;
+  background-color: ${colors.N0};
+  display: flex;
+  flex-wrap: wrap;
+  padding: ${space[2]};
+
+  & > span {
+    display: inline-block;
+    flex: 1;
+
+    &:not(:last-of-type) {
+      margin-right: ${space[3]};
+    }
+  }
+
+  & button {
+    margin-top: ${space[2]};
+    width: 100%;
+  }
+`;
+
 export const Status = styled.div`
   display: inline-block;
   padding: 0 ${space[1]};

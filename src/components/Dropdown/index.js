@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
 import Icon from '@components/Icon';
 import * as styled from './styles';
 
-const Dropdown = ({ onChange, options, placeholder, prefix, value }) => {
+const Dropdown = ({ onChange, options, placeholder, prefix, value, dropUp }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
@@ -30,7 +31,7 @@ const Dropdown = ({ onChange, options, placeholder, prefix, value }) => {
         <span>{placeholder}</span>
       )}
       {isOpen && (
-        <styled.Dropdown>
+        <styled.Dropdown optionsLength={options.length} dropUp={dropUp}>
           <div>
             {options.map(opt => (
               <styled.Option
@@ -52,6 +53,13 @@ const Dropdown = ({ onChange, options, placeholder, prefix, value }) => {
       <Icon name="chevron-down" />
     </styled.Wrapper>
   );
+};
+
+Dropdown.propTypes = {
+  options: PropTypes.array,
+  placeholder: PropTypes.string,
+  prefix: PropTypes.string,
+  dropUp: PropTypes.bool,
 };
 
 export default Dropdown;

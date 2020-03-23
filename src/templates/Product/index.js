@@ -269,6 +269,7 @@ class Product extends Component {
                 Add to bag
               </Button>
             </styled.Selections>
+
             <styled.H600>Product Details</styled.H600>
             <styled.Body
               dangerouslySetInnerHTML={{
@@ -282,7 +283,8 @@ class Product extends Component {
               <ContentLabel>View Sizing Chart</ContentLabel>
               <styled.Icon name="clipboard" />
             </styled.Sizing>
-            <styled.Social>
+
+            {/* <styled.Social>
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(
                   {
@@ -321,9 +323,47 @@ class Product extends Component {
               >
                 <styled.Icon name="instagram" />
               </a>
-            </styled.Social>
+            </styled.Social> */}
+
           </styled.ProductInfo>
         </styled.Container>
+        <styled.MobileSelections>
+          {sizes.length > 1 && (
+            <span>
+              <Dropdown
+                onChange={this.handleSizeChange}
+                options={sizes}
+                value={size}
+                placeholder="Size"
+                prefix="Size:"
+              />
+            </span>
+          )}
+          {colors.length > 1 && (
+            <span>
+              <Dropdown
+                onChange={this.handleColorChange}
+                options={colors}
+                value={color}
+                placeholder="Color"
+              />
+            </span>
+          )}
+          <span>
+            <Input
+              min={1}
+              max={9}
+              name="quantity"
+              type="number"
+              value={quantity}
+              onChange={this.handleQuantityChange}
+              prefix="Pairs:"
+            />
+          </span>
+          <Button size="small" onClick={this.handleAddToCart} disabled={soldOut}>
+            Add to bag
+              </Button>
+        </styled.MobileSelections>
         <SizeChart open={sizeChartOpen} onClose={this.handleCloseSizeChart} />
       </>
     );

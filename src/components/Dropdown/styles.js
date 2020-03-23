@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
@@ -6,7 +6,11 @@ import space from '@utils/space';
 
 export const Dropdown = styled.div`
   position: absolute;
-  top: 38px;
+  ${props => props.dropUp
+    ? css`top: calc(-38px * ${props.optionsLength});`
+    : css`top: 38px;`
+  }
+
   right: -1px;
   left: -1px;
   z-index: 10;
