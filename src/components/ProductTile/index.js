@@ -6,6 +6,7 @@ import get from 'lodash/get';
 import getPrice from '@utils/price';
 import { AbsoluteImg, Breakpoint, breakpoints } from '@utils/styles';
 import { Badge, H300M, H400, H600 } from '@utils/type';
+import { randomSandalboyzColor } from '@utils/colors';
 import * as styled from './styles';
 
 const ProductTile = ({
@@ -48,8 +49,8 @@ const ProductTile = ({
           </styled.Status>
         )}
         <styled.ImageWrapper>
-          {get(images, '0') && <AbsoluteImg fluid={images[0]} />}
-          {get(images, '1') && <AbsoluteImg fluid={images[1]} />}
+          {get(images, '0') && <AbsoluteImg fluid={images[0]} backgroundColor={randomSandalboyzColor()} />}
+          {get(images, '1') && <AbsoluteImg fluid={images[1]} backgroundColor={randomSandalboyzColor()} />}
         </styled.ImageWrapper>
         <styled.Info>
           <H600>{getPrice(price, compareAtPrice)}</H600>
