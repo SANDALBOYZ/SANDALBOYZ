@@ -130,6 +130,11 @@ export const Container = styled.div`
 
 export const H600 = styled(BaseH600)`
   margin-bottom: ${space[2]};
+  margin-top: ${space[4]};
+
+  ${mq.gtlg} {
+    margin-top: 0;
+  }
 `;
 
 export const Icon = styled(BaseIcon)`
@@ -162,7 +167,7 @@ export const ProductInfo = styled.div`
 `;
 
 export const Selections = styled.div`
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   margin: ${space[1]} 0 ${space[6]};
 
@@ -183,6 +188,10 @@ export const Selections = styled.div`
   ${mq.gtmd} {
     align-items: flex-end;
     margin: ${space[5]} 0 ${space[6]};
+  }
+
+  ${mq.gtlg} {
+    display: flex;
   }
 `;
 
@@ -208,6 +217,10 @@ export const MobileSelections = styled.div`
   & button {
     margin-top: ${space[2]};
     width: 100%;
+  }
+
+  ${mq.gtlg} {
+    display: none;
   }
 `;
 
