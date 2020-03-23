@@ -224,7 +224,7 @@ export const landingPageQuery = graphql`
     }
     recommendedPicks: allShopifyProduct(
       filter: { tags: { in: "featured:primary" } }
-      limit: 6
+      limit: 8
       sort: { fields: [createdAt], order: DESC }
     ) {
       edges {
