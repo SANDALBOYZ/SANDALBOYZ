@@ -4,8 +4,8 @@ import get from 'lodash/get';
 
 import EntryWrapper from '@components/EntryWrapper';
 import Head from '@utils/seo';
-import BannerLight from '@components/BannerLight';
-import Hero, { FullHero } from '@components/Hero';
+// import BannerLight from '@components/BannerLight';
+import { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
 
@@ -21,14 +21,24 @@ const LandingPage = ({ data }) => {
           title={get(data, 'hero.frontmatter.title')}
         />
       )} */}
-      {get(data, 'hero') && (
+
+      {get(data, 'fullHero') && (
         <FullHero
-          href='/products'
-          image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}
-          title='SPRING PICKS'
-          callToAction='Shop Now'
+          href="/products"
+          desktopImage={get(
+            data,
+            'fullHero.frontmatter.desktopImage.childImageSharp.fluid'
+          )}
+          mobileImage={get(
+            data,
+            'fullHero.frontmatter.mobileImage.childImageSharp.fluid'
+          )}
+          label={get(data, 'fullHero.frontmatter.label')}
+          title={get(data, 'fullHero.frontmatter.title')}
+          callToAction={get(data, 'fullHero.frontmatter.callToAction')}
         />
       )}
+
       {Array.isArray(get(data, 'recommendedPicks.edges')) &&
         data.recommendedPicks.edges.length > 0 && (
           <ProductGrid
@@ -53,6 +63,7 @@ const LandingPage = ({ data }) => {
             titleIcon="arrow-right"
           />
         )}
+
       {Array.isArray(get(data, 'recentStories.edges')) &&
         data.recentStories.edges.length > 1 && (
           <RecentStories
@@ -64,7 +75,10 @@ const LandingPage = ({ data }) => {
               ),
               title: get(data, 'recentStories.edges[0].node.frontmatter.title'),
               date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
-              previewText: get(data, 'recentStories.edges[0].node.frontmatter.previewText'),
+              previewText: get(
+                data,
+                'recentStories.edges[0].node.frontmatter.previewText'
+              ),
             }}
             storyB={{
               href: get(data, 'recentStories.edges[1].node.fields.slug'),
@@ -74,11 +88,14 @@ const LandingPage = ({ data }) => {
               ),
               title: get(data, 'recentStories.edges[1].node.frontmatter.title'),
               date: get(data, 'recentStories.edges[1].node.frontmatter.date'),
-              previewText: get(data, 'recentStories.edges[1].node.frontmatter.previewText'),
+              previewText: get(
+                data,
+                'recentStories.edges[1].node.frontmatter.previewText'
+              ),
             }}
           />
         )}
-      {get(data, 'teaser') && (
+      {/* {get(data, 'teaser') && (
         <BannerLight
           cta={{
             href: get(data, 'teaser.fields.slug'),
@@ -111,62 +128,102 @@ const LandingPage = ({ data }) => {
             title="Recent Products"
             titleIcon="arrow-right"
           />
-        )}
+        )} */}
     </EntryWrapper>
   );
 };
 
 export default LandingPage;
 
+// REMOVED QUERIES BELOW. LEAVING HERE JUST IN CASE I NEED THEM BACK LATER! - Ryan
+//
+// hero: markdownRemark(frontmatter: { landingFeatured: { eq: true } }) {
+//   fields {
+//     slug
+//   }
+//   frontmatter {
+//     hero {
+//       childImageSharp {
+//         fluid(maxWidth: 2048, quality: 90) {
+//           ...GatsbyImageSharpFluid_noBase64
+//         }
+//       }
+//     }
+//     title
+//   }
+// }
+// recentProducts: allShopifyProduct(
+//   filter: { tags: { in: "featured:secondary" } }
+//       limit: 6
+//       sort: { fields: [createdAt], order: DESC }
+// ) {
+//   edges {
+//     node {
+//       id
+//       availableForSale
+//       title
+//       handle
+//       createdAt
+//       images {
+//         id
+//         originalSrc
+//         localFile {
+//           childImageSharp {
+//             fluid(maxWidth: 360) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//       }
+//       variants {
+//         price
+//         compareAtPrice
+//       }
+//     }
+//   }
+// }
+// teaser: markdownRemark(frontmatter: { storiesFeatured: { eq: true } }) {
+//   fields {
+//     slug
+//   }
+//   frontmatter {
+//     hero {
+//       childImageSharp {
+//         fluid(maxWidth: 2048, quality: 90) {
+//           ...GatsbyImageSharpFluid
+//         }
+//       }
+//     }
+//     title
+//   }
+// }
+
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    hero: markdownRemark(frontmatter: { landingFeatured: { eq: true } }) {
-      fields {
-        slug
-      }
+    fullHero: markdownRemark(frontmatter: { templateKey: { eq: "fullHero" } }) {
+      id
       frontmatter {
-        hero {
+        desktopImage {
           childImageSharp {
-            fluid(maxWidth: 2048, quality: 90) {
+            fluid(maxWidth: 2000, quality: 90) {
               ...GatsbyImageSharpFluid_noBase64
             }
           }
         }
+        mobileImage {
+          childImageSharp {
+            fluid(maxWidth: 1000, quality: 90) {
+              ...GatsbyImageSharpFluid_noBase64
+            }
+          }
+        }
+        label
         title
+        callToAction
       }
     }
     recommendedPicks: allShopifyProduct(
       filter: { tags: { in: "featured:primary" } }
-      limit: 6
-      sort: { fields: [createdAt], order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          availableForSale
-          title
-          handle
-          createdAt
-          images {
-            id
-            originalSrc
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 360) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          variants {
-            price
-            compareAtPrice
-          }
-        }
-      }
-    }
-    recentProducts: allShopifyProduct(
-      filter: { tags: { in: "featured:secondary" } }
       limit: 6
       sort: { fields: [createdAt], order: DESC }
     ) {
@@ -221,21 +278,6 @@ export const landingPageQuery = graphql`
             previewText
           }
         }
-      }
-    }
-    teaser: markdownRemark(frontmatter: { storiesFeatured: { eq: true } }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        hero {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 90) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        title
       }
     }
   }
