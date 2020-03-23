@@ -55,8 +55,8 @@ export const EntryWrapper = ({ children, customAnimation, zIndex }) => {
 
 EntryWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  // Use `styled-components/css`
-  customAnimation: PropTypes.string,
+  // Use `styled-components/css` for `customAnimation`
+  customAnimation: PropTypes.array,
   zIndex: PropTypes.string,
 };
 

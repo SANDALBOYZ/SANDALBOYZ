@@ -54,7 +54,7 @@ class Popup extends Component {
     const { enabled, description, image, label, siteUrl, title } = this.props;
     const { open } = this.state;
 
-    console.log(`pop up is enabled: ${enabled}`)
+    console.log(`pop up is enabled: ${enabled}`);
 
     if (!enabled) {
       return null;
