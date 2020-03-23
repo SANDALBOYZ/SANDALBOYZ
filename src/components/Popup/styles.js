@@ -109,7 +109,7 @@ export const Title = styled(H200)`
   }
 `;
 
-export const Wrapper = styled.div`
+export const PopupWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

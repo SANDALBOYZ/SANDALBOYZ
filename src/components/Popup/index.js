@@ -59,7 +59,7 @@ class Popup extends Component {
     }
 
     return (
-      <styled.Wrapper open={open} onClick={this.handleClose}>
+      <styled.PopupWrapper open={open} onClick={this.handleClose}>
         <styled.Modal open={open} onClick={this.handleClick}>
           <styled.Button onClick={this.handleClose}>
             <Icon name="x" />
@@ -96,7 +96,7 @@ class Popup extends Component {
           </styled.Content>
           <styled.Image>{image && <AbsoluteImg fluid={image} />}</styled.Image>
         </styled.Modal>
-      </styled.Wrapper>
+      </styled.PopupWrapper>
     );
   }
 }
