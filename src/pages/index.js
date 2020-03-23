@@ -59,7 +59,7 @@ const LandingPage = ({ data }) => {
                 get(node, 'variants[0].compareAtPrice') >
                 get(node, 'variants[0].price'),
             }))}
-            title="Recommended Picks"
+            title="What's Hot"
             titleIcon="arrow-right"
           />
         )}
