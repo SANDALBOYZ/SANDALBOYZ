@@ -5,7 +5,14 @@ import get from 'lodash/get';
 import Icon from '@components/Icon';
 import * as styled from './styles';
 
-const Dropdown = ({ onChange, options, placeholder, prefix, currentValue, dropUp }) => {
+const Dropdown = ({
+  onChange,
+  options,
+  placeholder,
+  prefix,
+  value: currentValue,
+  dropUp,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
@@ -24,7 +31,10 @@ const Dropdown = ({ onChange, options, placeholder, prefix, currentValue, dropUp
         <>
           {prefix && <span>{prefix}</span>}
           <styled.Value>
-            {get(options.find(opt => opt.value === currentValue), 'name')}
+            {get(
+              options.find(opt => opt.value === currentValue),
+              'name'
+            )}
           </styled.Value>
         </>
       ) : (
@@ -42,9 +52,7 @@ const Dropdown = ({ onChange, options, placeholder, prefix, currentValue, dropUp
                 }}
               >
                 {prefix && <span>{placeholder}</span>}
-                <styled.Value>
-                  {opt.name}
-                </styled.Value>
+                <styled.Value>{opt.name}</styled.Value>
               </styled.Option>
             ))}
           </div>
@@ -64,7 +72,7 @@ Dropdown.propTypes = {
       disabled: PropTypes.bool,
     })
   ),
-  currentValue: PropTypes.string,
+  value: PropTypes.string,
   placeholder: PropTypes.string,
   prefix: PropTypes.string,
   dropUp: PropTypes.bool,
