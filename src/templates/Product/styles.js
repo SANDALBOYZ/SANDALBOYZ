@@ -158,7 +158,7 @@ export const ProductInfo = styled.div`
   position: sticky;
   top: calc(80px + 24px);
   height: auto;
-  margin-bottom: ${space[8]};
+  margin-bottom: ${space[4]};
   padding: 0 ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {
@@ -208,7 +208,7 @@ export const MobileSelections = styled.div`
   position: sticky;
   bottom: 0;
   width: 100vw;
-  margin-bottom: 50px;
+  margin-bottom: ${space[8]};
   z-index: 9999;
   background-color: ${colors.N0};
   display: flex;
