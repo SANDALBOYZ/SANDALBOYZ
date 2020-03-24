@@ -7,6 +7,14 @@ import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 
+export const Z_INDEX = [
+  9,
+  99,
+  999,
+  9999,
+  99999,
+];
+
 export const breakpoints = {
   xxs: 320,
   xs: 480,

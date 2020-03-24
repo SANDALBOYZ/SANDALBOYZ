@@ -209,7 +209,7 @@ export const MobileSelections = styled.div`
   bottom: 0;
   width: 100vw;
   margin-bottom: ${space[8]};
-  z-index: 9999;
+  z-index: 9998;
   background-color: ${colors.N0};
   display: flex;
   flex-wrap: wrap;
