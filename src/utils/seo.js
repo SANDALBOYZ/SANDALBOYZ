@@ -5,11 +5,20 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import shareImage from '@images/shareImage.jpg';
 
-function SEO({ description, lang, meta, image, ogType, slug, title }) {
+function SEO({ description, lang, meta, image, ogType, slug, title, additionalSchemaOrg }) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
+        const schemaOrg = {
+          '@context': 'http://schema.org',
+          '@type': ogType,
+          name: title,
+          description,
+          url: `${data.site.siteMetadata.siteUrl}${slug}`,
+          ...additionalSchemaOrg,
+        };
+
         const metaDescription =
           description || data.site.siteMetadata.description;
         const metaImage = image || shareImage;
@@ -69,7 +78,9 @@ function SEO({ description, lang, meta, image, ogType, slug, title }) {
                 content: metaDescription,
               },
             ].concat(meta)}
-          />
+          >
+            <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
+          </Helmet>
         );
       }}
     />
@@ -79,16 +90,19 @@ function SEO({ description, lang, meta, image, ogType, slug, title }) {
 SEO.defaultProps = {
   lang: 'en',
   meta: [],
-  ogType: 'website',
+  ogType: 'WebPage', // https://schema.org/WebPage
+  additionalSchemaOrg: {},
 };
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
+  // Use schema.org type for `ogType` i.e. https://schema.org/Product
   ogType: PropTypes.string,
   slug: PropTypes.string,
   title: PropTypes.string.isRequired,
+  additionalSchemaOrg: PropTypes.object,
 };
 
 export default SEO;

@@ -80,7 +80,7 @@ class Story extends Component {
         <Head
           title={get(data, 'story.frontmatter.title')}
           description={get(data, 'story.frontmatter.lede')}
-          ogType="article"
+          ogType="Article" // https://schema.org/Article
           image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
           slug={get(data, 'story.fields.slug')}
         />

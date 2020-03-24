@@ -177,12 +177,20 @@ class Product extends Component {
     const colors = this.getColors();
     const soldOut = !product.availableForSale;
 
+    const schemaOrg = {
+      brand: {
+        '@type': 'Brand',
+        name: 'SANDALBOYZ',
+      },
+      image: get(product, 'images', []).map(image => image.originalSrc),
+    };
+
     return (
       <>
         <Head
           title={product.title}
           description={product.description}
-          ogType="product"
+          ogType="Product" // https://schema.org/Product
           image={get(product, 'images[0].localFile.childImageSharp.fluid.src')}
           meta={[
             {
@@ -195,6 +203,7 @@ class Product extends Component {
             },
           ]}
           slug={`/products/${product.handle}`}
+          additionalSchemaOrg={schemaOrg}
         />
 
         <styled.Container>

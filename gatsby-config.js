@@ -5,7 +5,7 @@ require('dotenv').config({
 });
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://beta.sandalboyz.com',
+    siteUrl: 'https://sandalboyz.com',
     title: 'SANDALBOYZ',
     description:
       'SANDALBOYZ is a movement and lifestyle, existing to bridge the gap between sophistication and comfort.',
