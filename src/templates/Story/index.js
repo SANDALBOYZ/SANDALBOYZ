@@ -19,7 +19,9 @@ export const StoryTemplate = ({ story }) => {
   const renderSection = (section, idx) => {
     if (section.type === 'image') {
       const { caption, imageType } = section;
-      const images = get(section, 'images', []).map(image => get(image, 'childImageSharp.fluid'));
+      const images = get(section, 'images', []).map(image =>
+        get(image, 'childImageSharp.fluid')
+      );
 
       switch (imageType) {
         case 'double':
@@ -46,7 +48,9 @@ export const StoryTemplate = ({ story }) => {
     <>
       <styled.Hero>
         <styled.Background>
-          <AbsoluteImg fluid={get(story, 'frontmatter.hero.childImageSharp.fluid')} />
+          <AbsoluteImg
+            fluid={get(story, 'frontmatter.hero.childImageSharp.fluid')}
+          />
         </styled.Background>
         <styled.Box>
           <H100>{get(story, 'frontmatter.title')}</H100>
@@ -75,6 +79,12 @@ class Story extends Component {
   render() {
     const { data } = this.props;
 
+    const schemaOrg = {
+      author: get(data, 'story.frontmatter.authors[0]'),
+      image: get(data, 'story.frontmatter.hero.childImageSharp.fluid.src'),
+      datePublished: get(data, 'story.frontmatter.date'),
+    };
+
     return (
       <>
         <Head
@@ -83,6 +93,7 @@ class Story extends Component {
           ogType="Article" // https://schema.org/Article
           image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
           slug={get(data, 'story.fields.slug')}
+          additionalSchemaOrg={schemaOrg}
         />
         <StoryTemplate story={data.story} />
       </>
@@ -123,6 +134,7 @@ export const pageQuery = graphql`
         }
         lede
         title
+        date
       }
     }
   }
