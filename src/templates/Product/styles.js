@@ -142,7 +142,8 @@ export const Icon = styled(BaseIcon)`
   height: 16px;
 `;
 
-export const MobileProductInfo = styled.div`
+// Title and price
+export const MobileProductTitle = styled.div`
   margin-bottom: ${space[3]};
   padding: 0 ${H_PADDING_MOBILE};
 
@@ -151,6 +152,7 @@ export const MobileProductInfo = styled.div`
   }
 `;
 
+// Product description
 export const ProductInfo = styled.div`
   align-self: flex-start;
   position: sticky;
@@ -201,10 +203,12 @@ export const MobileSelectionsTitleContainer = styled.div`
   width: 100%;
 `;
 
+// Sticky bar that holds quantity dropdown/color selection/etc. and buy button
 export const MobileSelections = styled.div`
   position: sticky;
   bottom: 0;
   width: 100vw;
+  margin-bottom: 50px;
   z-index: 9999;
   background-color: ${colors.N0};
   display: flex;

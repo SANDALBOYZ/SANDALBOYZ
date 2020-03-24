@@ -198,7 +198,7 @@ class Product extends Component {
         />
 
         <styled.Container>
-          <styled.MobileProductInfo>
+          <styled.MobileProductTitle>
             <H300M>{product.title}</H300M>
             <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
             {soldOut && (
@@ -211,7 +211,7 @@ class Product extends Component {
                 <Badge>Sale</Badge>
               </styled.Status>
             )}
-          </styled.MobileProductInfo>
+          </styled.MobileProductTitle>
           <ProductImages images={product.images} />
           <styled.ProductInfo>
             <Breakpoint min={breakpoints.lg}>
