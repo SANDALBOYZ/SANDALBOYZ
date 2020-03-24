@@ -183,6 +183,13 @@ class Product extends Component {
         name: 'SANDALBOYZ',
       },
       image: get(product, 'images', []).map(image => image.originalSrc),
+      offers: {
+        '@type': 'Offer',
+        // @TODO: `availability` needs to be dynamic. https://schema.org/OutOfStock
+        availability: 'http://schema.org/InStock',
+        price: get(product, 'variants[0].price', ''),
+        priceCurrency: 'USD',
+      },
     };
 
     return (
