@@ -42,7 +42,7 @@ class MobileMenu extends Component {
     } = this.props;
 
     return (
-      <styled.Wrapper open={open}>
+      <styled.MobileMenuWrapper open={open}>
         <Navigation
           hideCart
           light
@@ -75,7 +75,7 @@ class MobileMenu extends Component {
             </Link>
           ))}
         </styled.Footer>
-      </styled.Wrapper>
+      </styled.MobileMenuWrapper>
     );
   }
 }

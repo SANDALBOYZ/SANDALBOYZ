@@ -130,6 +130,11 @@ export const Container = styled.div`
 
 export const H600 = styled(BaseH600)`
   margin-bottom: ${space[2]};
+  margin-top: ${space[4]};
+
+  ${mq.gtlg} {
+    margin-top: 0;
+  }
 `;
 
 export const Icon = styled(BaseIcon)`
@@ -137,7 +142,8 @@ export const Icon = styled(BaseIcon)`
   height: 16px;
 `;
 
-export const MobileProductInfo = styled.div`
+// Title and price
+export const MobileProductTitle = styled.div`
   margin-bottom: ${space[3]};
   padding: 0 ${H_PADDING_MOBILE};
 
@@ -146,12 +152,13 @@ export const MobileProductInfo = styled.div`
   }
 `;
 
+// Product description
 export const ProductInfo = styled.div`
   align-self: flex-start;
   position: sticky;
   top: calc(80px + 24px);
   height: auto;
-  margin-bottom: ${space[8]};
+  margin-bottom: ${space[4]};
   padding: 0 ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {
@@ -162,7 +169,7 @@ export const ProductInfo = styled.div`
 `;
 
 export const Selections = styled.div`
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   margin: ${space[1]} 0 ${space[6]};
 
@@ -183,6 +190,47 @@ export const Selections = styled.div`
   ${mq.gtmd} {
     align-items: flex-end;
     margin: ${space[5]} 0 ${space[6]};
+  }
+
+  ${mq.gtlg} {
+    display: flex;
+  }
+`;
+
+export const MobileSelectionsTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+// Sticky bar that holds quantity dropdown/color selection/etc. and buy button
+export const MobileSelections = styled.div`
+  position: sticky;
+  bottom: 0;
+  width: 100vw;
+  margin-bottom: ${space[8]};
+  z-index: 9999;
+  background-color: ${colors.N0};
+  display: flex;
+  flex-wrap: wrap;
+  padding: ${space[2]};
+
+  & > span {
+    display: inline-block;
+    flex: 1;
+
+    &:not(:last-of-type) {
+      margin-right: ${space[3]};
+    }
+  }
+
+  & button {
+    margin-top: ${space[2]};
+    width: 100%;
+  }
+
+  ${mq.gtlg} {
+    display: none;
   }
 `;
 

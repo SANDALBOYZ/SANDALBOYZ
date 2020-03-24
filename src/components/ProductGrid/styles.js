@@ -152,16 +152,16 @@ export const Title = styled.div`
   align-items: center;
 `;
 
-export const Wrapper = styled.div`
+export const ProductGridWrapper = styled.div`
   margin-bottom: ${space[8]};
-  ${props => props.offset && css`
+  ${props => props.extraPadding && css`
     padding-top: 48px;
   `}
 
   ${mq.gtlg} {
     margin-top: ${space[2]};
 
-    ${props => props.offset && css`
+    ${props => props.extraPadding && css`
       padding-top: 80px;
     `}
   }

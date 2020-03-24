@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
-import qs from 'querystringify';
+// import qs from 'querystringify';
 import remark from 'remark';
 import html from 'remark-html';
 
@@ -196,8 +196,9 @@ class Product extends Component {
           ]}
           slug={`/products/${product.handle}`}
         />
+
         <styled.Container>
-          <styled.MobileProductInfo>
+          <styled.MobileProductTitle>
             <H300M>{product.title}</H300M>
             <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
             {soldOut && (
@@ -210,7 +211,7 @@ class Product extends Component {
                 <Badge>Sale</Badge>
               </styled.Status>
             )}
-          </styled.MobileProductInfo>
+          </styled.MobileProductTitle>
           <ProductImages images={product.images} />
           <styled.ProductInfo>
             <Breakpoint min={breakpoints.lg}>
@@ -265,10 +266,15 @@ class Product extends Component {
                   prefix="Pairs:"
                 />
               </span>
-              <Button size="small" onClick={this.handleAddToCart} disabled={soldOut}>
+              <Button
+                size="small"
+                onClick={this.handleAddToCart}
+                disabled={soldOut}
+              >
                 Add to bag
               </Button>
             </styled.Selections>
+
             <styled.H600>Product Details</styled.H600>
             <styled.Body
               dangerouslySetInnerHTML={{
@@ -282,7 +288,8 @@ class Product extends Component {
               <ContentLabel>View Sizing Chart</ContentLabel>
               <styled.Icon name="clipboard" />
             </styled.Sizing>
-            <styled.Social>
+
+            {/* <styled.Social>
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(
                   {
@@ -321,9 +328,63 @@ class Product extends Component {
               >
                 <styled.Icon name="instagram" />
               </a>
-            </styled.Social>
+            </styled.Social> */}
           </styled.ProductInfo>
         </styled.Container>
+
+        <styled.MobileSelections>
+          <styled.MobileSelectionsTitleContainer>
+            <H300M>{product.title}</H300M>
+            <H500>
+              {getPrice(
+                get(product, 'variants[0].price'),
+                get(product, 'variants[0].compareAtPrice')
+              )}
+            </H500>
+          </styled.MobileSelectionsTitleContainer>
+          {sizes.length > 1 && (
+            <span>
+              <Dropdown
+                dropUp
+                onChange={this.handleSizeChange}
+                options={sizes}
+                value={size}
+                placeholder="Size"
+                prefix="Size:"
+              />
+            </span>
+          )}
+          {colors.length > 1 && (
+            <span>
+              <Dropdown
+                dropUp
+                onChange={this.handleColorChange}
+                options={colors}
+                value={color}
+                placeholder="Color"
+              />
+            </span>
+          )}
+          <span>
+            <Input
+              min={1}
+              max={9}
+              name="quantity"
+              type="number"
+              value={quantity}
+              onChange={this.handleQuantityChange}
+              prefix="Pairs:"
+            />
+          </span>
+          <Button
+            size="small"
+            onClick={this.handleAddToCart}
+            disabled={soldOut}
+          >
+            Add to bag
+          </Button>
+        </styled.MobileSelections>
+
         <SizeChart open={sizeChartOpen} onClose={this.handleCloseSizeChart} />
       </>
     );

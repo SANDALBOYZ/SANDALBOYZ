@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
 import Icon from '@components/Icon';
 import * as styled from './styles';
 
-const Dropdown = ({ onChange, options, placeholder, prefix, value }) => {
+const Dropdown = ({
+  onChange,
+  options,
+  placeholder,
+  prefix,
+  value: currentValue,
+  dropUp,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
@@ -19,18 +27,21 @@ const Dropdown = ({ onChange, options, placeholder, prefix, value }) => {
       }}
       tabIndex={0}
     >
-      {value ? (
+      {currentValue ? (
         <>
           {prefix && <span>{prefix}</span>}
           <styled.Value>
-            {get(options.find(opt => opt.value === value), 'name')}
+            {get(
+              options.find(opt => opt.value === currentValue),
+              'name'
+            )}
           </styled.Value>
         </>
       ) : (
         <span>{placeholder}</span>
       )}
       {isOpen && (
-        <styled.Dropdown>
+        <styled.Dropdown optionsLength={options.length} dropUp={dropUp}>
           <div>
             {options.map(opt => (
               <styled.Option
@@ -41,9 +52,7 @@ const Dropdown = ({ onChange, options, placeholder, prefix, value }) => {
                 }}
               >
                 {prefix && <span>{placeholder}</span>}
-                <styled.Value>
-                  {opt.name}
-                </styled.Value>
+                <styled.Value>{opt.name}</styled.Value>
               </styled.Option>
             ))}
           </div>
@@ -52,6 +61,21 @@ const Dropdown = ({ onChange, options, placeholder, prefix, value }) => {
       <Icon name="chevron-down" />
     </styled.Wrapper>
   );
+};
+
+Dropdown.propTypes = {
+  onChange: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      value: PropTypes.string,
+      disabled: PropTypes.bool,
+    })
+  ),
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  prefix: PropTypes.string,
+  dropUp: PropTypes.bool,
 };
 
 export default Dropdown;
