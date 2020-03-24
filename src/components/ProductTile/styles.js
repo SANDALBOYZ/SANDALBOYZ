@@ -45,7 +45,7 @@ export const Status = styled.div`
   }
 `;
 
-export const Wrapper = styled.div`
+export const ProductTileWrapper = styled.div`
   display: flex;
   opacity: 0;
   transform: translateY(50px);

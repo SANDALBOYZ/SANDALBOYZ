@@ -43,7 +43,7 @@ const ProductTile = ({
   }, [visible]);
 
   return (
-    <styled.Wrapper ref={domRef} className={visible ? 'visible' : ''} visible={visible}>
+    <styled.ProductTileWrapper ref={domRef} className={visible ? 'visible' : ''} visible={visible}>
       <Link to={href}>
         {soldOut && (
           <styled.Status>
@@ -69,7 +69,7 @@ const ProductTile = ({
           </Breakpoint>
         </styled.Info>
       </Link>
-    </styled.Wrapper>
+    </styled.ProductTileWrapper>
   );
 };
 
