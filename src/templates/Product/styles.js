@@ -195,6 +195,12 @@ export const Selections = styled.div`
   }
 `;
 
+export const MobileSelectionsTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const MobileSelections = styled.div`
   position: sticky;
   bottom: 0;

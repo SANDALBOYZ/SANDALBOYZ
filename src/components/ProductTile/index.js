@@ -1,4 +1,8 @@
-import React from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
@@ -18,10 +22,10 @@ const ProductTile = ({
   soldOut,
   title,
 }) => {
-  const [visible, setVisible] = React.useState(false);
-  const domRef = React.useRef();
+  const [visible, setVisible] = useState(false);
+  const domRef = useRef();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!visible) {
@@ -30,9 +34,12 @@ const ProductTile = ({
       });
     });
 
-    observer.observe(domRef.current);
+    // Capture `.current` so it can be `unobserved` below
+    const domRefCurrent = domRef.current;
 
-    return () => observer.unobserve(domRef.current);
+    observer.observe(domRefCurrent);
+
+    return () => observer.unobserve(domRefCurrent);
   }, [visible]);
 
   return (

@@ -196,6 +196,7 @@ class Product extends Component {
           ]}
           slug={`/products/${product.handle}`}
         />
+
         <styled.Container>
           <styled.MobileProductInfo>
             <H300M>{product.title}</H300M>
@@ -265,7 +266,11 @@ class Product extends Component {
                   prefix="Pairs:"
                 />
               </span>
-              <Button size="small" onClick={this.handleAddToCart} disabled={soldOut}>
+              <Button
+                size="small"
+                onClick={this.handleAddToCart}
+                disabled={soldOut}
+              >
                 Add to bag
               </Button>
             </styled.Selections>
@@ -324,10 +329,19 @@ class Product extends Component {
                 <styled.Icon name="instagram" />
               </a>
             </styled.Social> */}
-
           </styled.ProductInfo>
         </styled.Container>
+
         <styled.MobileSelections>
+          <styled.MobileSelectionsTitleContainer>
+            <H300M>{product.title}</H300M>
+            <H500>
+              {getPrice(
+                get(product, 'variants[0].price'),
+                get(product, 'variants[0].compareAtPrice')
+              )}
+            </H500>
+          </styled.MobileSelectionsTitleContainer>
           {sizes.length > 1 && (
             <span>
               <Dropdown
@@ -362,10 +376,15 @@ class Product extends Component {
               prefix="Pairs:"
             />
           </span>
-          <Button size="small" onClick={this.handleAddToCart} disabled={soldOut}>
+          <Button
+            size="small"
+            onClick={this.handleAddToCart}
+            disabled={soldOut}
+          >
             Add to bag
-              </Button>
+          </Button>
         </styled.MobileSelections>
+
         <SizeChart open={sizeChartOpen} onClose={this.handleCloseSizeChart} />
       </>
     );
