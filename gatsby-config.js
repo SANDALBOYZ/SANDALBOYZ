@@ -80,11 +80,12 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'SANDALBOYZ',
         short_name: 'SANDALBOYZ',
+        name: 'SANDALBOYZ Official Website',
+        description: 'A movement and lifestyle of cozy.',
         start_url: '/',
-        background_color: '#000',
-        theme_color: '#000',
+        background_color: '#F1EDE5',
+        theme_color: '#F1D000',
         display: 'minimal-ui',
         icon: 'src/images/icon.svg',
         icons: [
