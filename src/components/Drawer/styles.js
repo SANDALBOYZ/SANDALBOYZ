@@ -37,7 +37,6 @@ export const Drawer = styled.div`
   max-width: 100%;
   padding: ${H_PADDING_MOBILE};
   background-color: ${colors.N0};
-  // transition: transform 300ms ease-in-out;
   transition: transform 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
   overflow-y: auto;
