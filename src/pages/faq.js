@@ -32,6 +32,7 @@ const FaqPage = ({ data }) => {
       <Head
         title={get(data, 'markdownRemark.frontmatter.title')}
         additionalSchemaOrg={schemaOrg}
+        slug='/faq'
       />
       <Header
         shrinkOnMobile
