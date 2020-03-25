@@ -229,6 +229,7 @@ class Layout extends React.Component {
                 id
                 frontmatter {
                   description
+                  enabled
                   expires
                   image {
                     childImageSharp {

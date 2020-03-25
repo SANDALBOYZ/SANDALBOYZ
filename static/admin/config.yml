@@ -98,7 +98,7 @@ collections:
             widget: string
           - label: Description
             name: description
-            widget: text
+            widget: markdown
           - label: Image
             name: image
             widget: image
