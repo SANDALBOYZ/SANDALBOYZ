@@ -105,7 +105,8 @@ class Story extends Component {
         <Head
           title={get(data, 'story.frontmatter.title')}
           description={get(data, 'story.frontmatter.lede')}
-          ogType="Article" // https://schema.org/Article
+          schemaType="Article" // https://schema.org/Article
+          ogType="article" // https://ogp.me/#type_article
           image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
           slug={get(data, 'story.fields.slug')}
           additionalSchemaOrg={schemaOrg}

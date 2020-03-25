@@ -198,7 +198,7 @@ class Product extends Component {
         <Head
           title={product.title}
           description={product.description}
-          ogType="Product" // https://schema.org/Product
+          schemaType="Product" // https://schema.org/Product
           image={get(product, 'images[0].localFile.childImageSharp.fluid.src')}
           meta={[
             {

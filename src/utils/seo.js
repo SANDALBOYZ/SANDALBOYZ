@@ -5,7 +5,17 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import shareImage from '@images/shareImage.jpg';
 
-function SEO({ description, lang, meta, image, ogType, slug, title, additionalSchemaOrg }) {
+function SEO({
+  description,
+  lang,
+  meta,
+  image,
+  schemaType,
+  ogType,
+  slug,
+  title,
+  additionalSchemaOrg,
+}) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -16,7 +26,7 @@ function SEO({ description, lang, meta, image, ogType, slug, title, additionalSc
 
         const schemaOrg = {
           '@context': 'http://schema.org',
-          '@type': ogType,
+          '@type': schemaType,
           name: title,
           description,
           url,
@@ -81,7 +91,9 @@ function SEO({ description, lang, meta, image, ogType, slug, title, additionalSc
               },
             ].concat(meta)}
           >
-            <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
+            <script type="application/ld+json">
+              {JSON.stringify(schemaOrg)}
+            </script>
           </Helmet>
         );
       }}
@@ -92,7 +104,8 @@ function SEO({ description, lang, meta, image, ogType, slug, title, additionalSc
 SEO.defaultProps = {
   lang: 'en',
   meta: [],
-  ogType: 'WebPage', // https://schema.org/WebPage
+  schemaType: 'WebPage', // https://schema.org/WebPage
+  ogType: 'website', // https://ogp.me/#type_website
   additionalSchemaOrg: {},
 };
 
@@ -100,7 +113,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
-  // Use schema.org type for `ogType` i.e. https://schema.org/Product
+  schemaType: PropTypes.string,
   ogType: PropTypes.string,
   slug: PropTypes.string,
   title: PropTypes.string.isRequired,
