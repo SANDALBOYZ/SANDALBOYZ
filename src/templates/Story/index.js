@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
+import shareImage from '@images/shareImage.jpg';
 import Head from '@utils/seo';
 import { AbsoluteImg } from '@utils/styles';
 import { H100, H200 } from '@utils/type';
@@ -80,9 +81,22 @@ class Story extends Component {
     const { data } = this.props;
 
     const schemaOrg = {
-      author: get(data, 'story.frontmatter.authors[0]'),
+      author: {
+        '@type': 'Person',
+        name: get(data, 'story.frontmatter.authors[0]'),
+      },
       image: get(data, 'story.frontmatter.hero.childImageSharp.fluid.src'),
       datePublished: get(data, 'story.frontmatter.date'),
+      headline: get(data, 'story.frontmatter.lede') || get(data, 'story.frontmatter.title'),
+      publisher: {
+        '@type': 'Organization',
+        name: 'SANDALBOYZ',
+        logo: {
+          '@type': 'ImageObject',
+          // @TODO: Make this `siteUrl` dynamic. No hardcode!
+          url: `https://sandalboyz.com${shareImage}`,
+        },
+      },
     };
 
     return (
