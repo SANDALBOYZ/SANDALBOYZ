@@ -15,6 +15,7 @@ class Filters extends Component {
       collection: PropTypes.array,
       productType: PropTypes.array,
     }).isRequired,
+    activeSort: PropTypes.string,
     onClose: PropTypes.func.isRequired,
     onFilter: PropTypes.func.isRequired,
     onSort: PropTypes.func.isRequired,
@@ -23,7 +24,7 @@ class Filters extends Component {
 
   state = {
     activeFilters: this.props.activeFilters,
-    activeSort: 'CREATED_AT',
+    activeSort: this.props.activeSort,
   };
 
   componentDidUpdate(prevProps) {
@@ -60,9 +61,7 @@ class Filters extends Component {
 
   handleSubmit = () => {
     const { activeFilters, activeSort } = this.state;
-    this.props.onFilter(activeFilters);
-    this.props.onSort(activeSort);
-    this.props.onClose();
+    this.props.onClose(activeFilters, activeSort);
   };
 
   render() {
@@ -137,6 +136,7 @@ class Filters extends Component {
             { name: 'Best Selling', value: 'BEST_SELLING' },
             { name: 'Product Type', value: 'PRODUCT_TYPE' },
           ]}
+          value={this.state.activeSort}
           onChange={this.handleSort}
         />
       </Drawer>

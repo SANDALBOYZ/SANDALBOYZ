@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
+import { navigate } from '@reach/router';
 import get from 'lodash/get';
 import styled from 'styled-components';
+import qs from 'querystringify';
 
 import Head from '@utils/seo';
 import { getSortedProductIds } from '@utils/shopify';
@@ -34,14 +36,28 @@ const Image = styled.img`
 `;
 
 class ProductsPage extends Component {
-  state = {
-    activeFilters: {
-      collection: [],
-      productType: [],
-    },
-    showFilters: false,
-    sortedProductIds: [],
-  };
+  constructor(props) {
+    super(props);
+
+    const search = qs.parse(props.location.search);
+    const activeFilters = {
+      collection: get(search, 'collection', '').split(',').filter(Boolean),
+      productType: get(search, 'productType', '').split(',').filter(Boolean),
+    };
+
+    this.state = {
+      activeFilters,
+      activeSort: search.sort || 'CREATED_AT',
+      showFilters: false,
+      sortedProductIds: [],
+    };
+  }
+
+  componentDidMount() {
+    const { location } = this.props;
+    const search = qs.parse(location.search);
+    this.handleSort(search.sort);
+  }
 
   filterProducts = ({ node: product }) => {
     const { activeFilters } = this.state;
@@ -76,11 +92,70 @@ class ProductsPage extends Component {
   };
 
   handleFilter = filters => {
+    const { location } = this.props;
+
+    const query = qs.parse(location.search);
+
+    if (get(filters, 'collection')) {
+      const collectionFilters = filters.collection.join(',');
+
+      if (collectionFilters.length) {
+        query.collection = collectionFilters;
+      } else {
+        delete query.collection;
+      }
+    }
+
+    if (get(filters, 'productType')) {
+      const productTypeFilters = filters.productType.join(',');
+
+      if (productTypeFilters.length) {
+        query.productType = productTypeFilters;
+      } else {
+        delete query.productType;
+      }
+    }
+
+    navigate(`/products${qs.stringify(query, true)}`);
     this.setState({ activeFilters: filters });
   };
 
-  handleCloseFilters = () => {
-    this.setState({ showFilters: false });
+  handleCloseFilters = (filters, sort) => {
+    if (filters && sort) {
+      const { location } = this.props;
+      const query = qs.parse(location.search);
+
+      if (sort === 'CREATED_AT') {
+        delete query.sort;
+      } else {
+        query.sort = sort;
+      }
+
+      if (get(filters, 'collection')) {
+        const collectionFilters = filters.collection.join(',');
+
+        if (collectionFilters.length) {
+          query.collection = collectionFilters;
+        } else {
+          delete query.collection;
+        }
+      }
+
+      if (get(filters, 'productType')) {
+        const productTypeFilters = filters.productType.join(',');
+
+        if (productTypeFilters.length) {
+          query.productType = productTypeFilters;
+        } else {
+          delete query.productType;
+        }
+      }
+
+      navigate(`/products${qs.stringify(query, true)}`);
+      this.setState({ activeFilters: filters, activeSort: sort, showFilters: false });
+    } else {
+      this.setState({ showFilters: false });
+    }
   };
 
   handleOpenFilters = () => {
@@ -102,7 +177,7 @@ class ProductsPage extends Component {
 
     const { sortedProductIds } = await getSortedProductIds(sortKey, reverse);
 
-    this.setState({ sortedProductIds });
+    this.setState({ activeSort: key, sortedProductIds });
   };
 
   sortProducts = ({ node: productA }, { node: productB }) => {
@@ -126,7 +201,7 @@ class ProductsPage extends Component {
 
   render() {
     const { data } = this.props;
-    const { activeFilters, showFilters } = this.state;
+    const { activeFilters, activeSort, showFilters } = this.state;
 
     const products =
       Array.isArray(get(data, 'products.edges')) &&
@@ -180,6 +255,7 @@ class ProductsPage extends Component {
         )}
         <Filters
           activeFilters={activeFilters}
+          activeSort={activeSort}
           onFilter={this.handleFilter}
           onClose={this.handleCloseFilters}
           onSort={this.handleSort}
