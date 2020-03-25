@@ -57,8 +57,8 @@ class Product extends Component {
     this.setState({ sizeChartOpen: true });
   };
 
-  handleQuantityChange = evt => {
-    this.setState({ quantity: evt.target.value });
+  handleQuantityChange = value => {
+    this.setState({ quantity: value });
   };
 
   handleColorChange = value => {
@@ -273,14 +273,14 @@ class Product extends Component {
                 </span>
               )}
               <span>
-                <Input
-                  min={1}
-                  max={9}
-                  name="quantity"
-                  type="number"
-                  value={quantity}
+                <Dropdown
                   onChange={this.handleQuantityChange}
-                  prefix="Pairs:"
+                  options={[...Array(10)].map((_, idx) => ({
+                    name: idx + 1,
+                    value: idx + 1,
+                  }))}
+                  value={quantity}
+                  prefix="Quantity:"
                 />
               </span>
               <Button
