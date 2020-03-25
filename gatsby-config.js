@@ -5,7 +5,7 @@ require('dotenv').config({
 });
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://beta.sandalboyz.com',
+    siteUrl: 'https://sandalboyz.com',
     title: 'SANDALBOYZ',
     description:
       'SANDALBOYZ is a movement and lifestyle, existing to bridge the gap between sophistication and comfort.',
@@ -109,7 +109,7 @@ module.exports = {
         //   id: 'bmy0pxx',
         // },
         typekit: {
-          id: 'csw3kla',
+          id: process.env.TYPEKIT_ID || 'csw3kla',
         },
       },
     },

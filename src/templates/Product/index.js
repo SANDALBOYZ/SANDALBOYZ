@@ -177,12 +177,28 @@ class Product extends Component {
     const colors = this.getColors();
     const soldOut = !product.availableForSale;
 
+    // https://developers.google.com/search/docs/data-types/product
+    const schemaOrg = {
+      brand: {
+        '@type': 'Brand',
+        name: 'SANDALBOYZ',
+      },
+      image: get(product, 'images', []).map(image => image.originalSrc),
+      offers: {
+        '@type': 'Offer',
+        // @TODO: `availability` needs to be dynamic. https://schema.org/OutOfStock
+        availability: 'http://schema.org/InStock',
+        price: get(product, 'variants[0].price', ''),
+        priceCurrency: 'USD',
+      },
+    };
+
     return (
       <>
         <Head
           title={product.title}
           description={product.description}
-          ogType="product"
+          ogType="Product" // https://schema.org/Product
           image={get(product, 'images[0].localFile.childImageSharp.fluid.src')}
           meta={[
             {
@@ -195,6 +211,7 @@ class Product extends Component {
             },
           ]}
           slug={`/products/${product.handle}`}
+          additionalSchemaOrg={schemaOrg}
         />
 
         <styled.Container>
@@ -295,8 +312,7 @@ class Product extends Component {
                   {
                     u: `${get(
                       data,
-                      'site.siteMetadata.siteUrl',
-                      'https://beta.sandalboyz.com'
+                      'site.siteMetadata.siteUrl'
                     )}/products/${product.handle}`,
                   }
                 )}`}
@@ -309,8 +325,7 @@ class Product extends Component {
                 href={`https://twitter.com/intent/tweet?${qs.stringify({
                   url: `${get(
                     data,
-                    'site.siteMetadata.siteUrl',
-                    'https://beta.sandalboyz.com'
+                    'site.siteMetadata.siteUrl'
                   )}/products/${product.handle}`,
                   text: product.title,
                 })}`}

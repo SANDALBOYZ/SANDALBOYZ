@@ -16,8 +16,8 @@ class Subscribe extends Component {
 
   render() {
     return (
-      <styled.Wrapper>
-        <H200>Subscribe to our mailing list.</H200>
+      <styled.SubscribeWrapper>
+        <H200>Subscribe to our mailing list</H200>
         <styled.Form
           action="https://sandalboyz.us13.list-manage.com/subscribe/post?u=3f88b88a15f3d33d800b219a9&id=e87abd7b3e"
           method="post"
@@ -33,7 +33,7 @@ class Subscribe extends Component {
           />
           <Button>Subscribe</Button>
         </styled.Form>
-      </styled.Wrapper>
+      </styled.SubscribeWrapper>
     );
   }
 }

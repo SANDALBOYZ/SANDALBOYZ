@@ -41,6 +41,7 @@ class FAQ extends Component {
       <styled.Wrapper>
         {questions.map((faq, idx) => (
           <styled.Button
+            key={idx}
             onClick={() => {
               this.toggleOpen(idx);
             }}

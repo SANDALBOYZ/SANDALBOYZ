@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
+import shareImage from '@images/shareImage.jpg';
 import Head from '@utils/seo';
 import { AbsoluteImg } from '@utils/styles';
 import { H100, H200 } from '@utils/type';
@@ -19,7 +20,9 @@ export const StoryTemplate = ({ story }) => {
   const renderSection = (section, idx) => {
     if (section.type === 'image') {
       const { caption, imageType } = section;
-      const images = get(section, 'images', []).map(image => get(image, 'childImageSharp.fluid'));
+      const images = get(section, 'images', []).map(image =>
+        get(image, 'childImageSharp.fluid')
+      );
 
       switch (imageType) {
         case 'double':
@@ -46,7 +49,9 @@ export const StoryTemplate = ({ story }) => {
     <>
       <styled.Hero>
         <styled.Background>
-          <AbsoluteImg fluid={get(story, 'frontmatter.hero.childImageSharp.fluid')} />
+          <AbsoluteImg
+            fluid={get(story, 'frontmatter.hero.childImageSharp.fluid')}
+          />
         </styled.Background>
         <styled.Box>
           <H100>{get(story, 'frontmatter.title')}</H100>
@@ -75,14 +80,35 @@ class Story extends Component {
   render() {
     const { data } = this.props;
 
+    // https://developers.google.com/search/docs/data-types/article
+    const schemaOrg = {
+      author: {
+        '@type': 'Person',
+        name: get(data, 'story.frontmatter.authors[0]'),
+      },
+      image: get(data, 'story.frontmatter.hero.childImageSharp.fluid.src'),
+      datePublished: get(data, 'story.frontmatter.date'),
+      headline: get(data, 'story.frontmatter.lede') || get(data, 'story.frontmatter.title'),
+      publisher: {
+        '@type': 'Organization',
+        name: 'SANDALBOYZ',
+        logo: {
+          '@type': 'ImageObject',
+          // @TODO: Make this `siteUrl` dynamic. No hardcode!
+          url: `https://sandalboyz.com${shareImage}`,
+        },
+      },
+    };
+
     return (
       <>
         <Head
           title={get(data, 'story.frontmatter.title')}
           description={get(data, 'story.frontmatter.lede')}
-          ogType="article"
+          ogType="Article" // https://schema.org/Article
           image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
           slug={get(data, 'story.fields.slug')}
+          additionalSchemaOrg={schemaOrg}
         />
         <StoryTemplate story={data.story} />
       </>
@@ -123,6 +149,7 @@ export const pageQuery = graphql`
         }
         lede
         title
+        date
       }
     }
   }
