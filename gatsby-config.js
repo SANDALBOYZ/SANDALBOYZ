@@ -109,7 +109,7 @@ module.exports = {
         //   id: 'bmy0pxx',
         // },
         typekit: {
-          id: 'csw3kla',
+          id: process.env.TYPEKIT_ID || 'csw3kla',
         },
       },
     },
