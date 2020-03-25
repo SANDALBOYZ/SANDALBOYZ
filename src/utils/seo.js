@@ -10,12 +10,16 @@ function SEO({ description, lang, meta, image, ogType, slug, title, additionalSc
     <StaticQuery
       query={detailsQuery}
       render={data => {
+        const url = slug
+          ? `${data.site.siteMetadata.siteUrl}${slug}`
+          : `${data.site.siteMetadata.siteUrl}`;
+
         const schemaOrg = {
           '@context': 'http://schema.org',
           '@type': ogType,
           name: title,
           description,
-          url: `${data.site.siteMetadata.siteUrl}${slug}`,
+          url,
           ...additionalSchemaOrg,
         };
 
@@ -57,9 +61,7 @@ function SEO({ description, lang, meta, image, ogType, slug, title, additionalSc
               },
               {
                 property: 'og:url',
-                content: slug
-                  ? `${data.site.siteMetadata.siteUrl}${slug}`
-                  : `${data.site.siteMetadata.siteUrl}`,
+                content: url,
               },
               {
                 name: 'twitter:card',
