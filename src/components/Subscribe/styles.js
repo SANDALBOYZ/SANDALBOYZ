@@ -6,6 +6,7 @@ import { mq } from '@utils/styles';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   margin-top: ${space[4]};
 
@@ -25,7 +26,7 @@ export const Form = styled.form`
   }
 `;
 
-export const Wrapper = styled.div`
+export const SubscribeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

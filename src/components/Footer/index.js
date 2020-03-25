@@ -24,10 +24,6 @@ const Footer = ({ about, showStories }) => {
                 <styled.H600>{linkSection.title}</styled.H600>
                 <ul>
                   {linkSection.links.map(link => {
-                    if (link.name === 'Stories' && !showStories) {
-                      return null;
-                    }
-
                     return (
                       <li key={link.name}>
                         {link.external ? (

@@ -19,9 +19,10 @@ const Contact = () => {
           <styled.H200>I need help with an order!</styled.H200>
           <Body>
             If you have any questions at all about your order at any point in
-            time, please do not hesitate to use the form below to get in touch
+            time, please do not hesitate to use the form to get in touch
             with a real life human being from SANDALBOYZ. We respond to any and
-            every topic regarding your order within 24 hours.
+            every topic regarding your order within 24 hours. All channels of contact
+            are guaranteed to be robot free.
           </Body>
         </styled.HelpText>
         <styled.Form data-netlify="true" name="Contact Form" method="POST">
@@ -79,26 +80,15 @@ const Contact = () => {
             Have a non-order related question? Press? Sales? Just need someone
             to talk to? Shoulder to lean on? Please direct all other inquiries
             to our catchall contact email. Emails regarding orders sent to this
-            address will unfortunately be laughed at and not responded to.
+            email address will (unfortunately) be laughed at and not responded to.
+            Just kidding, we respond to everything.
           </Body>
         </styled.TextWrapper>
         <styled.Emails>
           <styled.Email>
-            <styled.H600>Press:</styled.H600>
-            <a href="mailto:press@sandalboyz.com">
-              <Body>press@sandalboyz.com</Body>
-            </a>
-          </styled.Email>
-          <styled.Email>
-            <styled.H600>General:</styled.H600>
+            <styled.H600>Let's fucking talk!:</styled.H600>
             <a href="mailto:contact@sandalboyz.com">
               <Body>contact@sandalboyz.com</Body>
-            </a>
-          </styled.Email>
-          <styled.Email>
-            <styled.H600>Wholesale:</styled.H600>
-            <a href="mailto:sales@sandalboyz.com">
-              <Body>sales@sandalboyz.com</Body>
             </a>
           </styled.Email>
         </styled.Emails>
