@@ -177,6 +177,7 @@ class Product extends Component {
     const colors = this.getColors();
     const soldOut = !product.availableForSale;
 
+    // https://developers.google.com/search/docs/data-types/product
     const schemaOrg = {
       brand: {
         '@type': 'Brand',

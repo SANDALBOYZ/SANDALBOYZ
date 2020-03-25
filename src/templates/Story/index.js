@@ -80,6 +80,7 @@ class Story extends Component {
   render() {
     const { data } = this.props;
 
+    // https://developers.google.com/search/docs/data-types/article
     const schemaOrg = {
       author: {
         '@type': 'Person',
