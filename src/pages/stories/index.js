@@ -34,6 +34,7 @@ const StoriesPage = ({ data }) => {
             date: get(node, 'frontmatter.date'),
             href: get(node, 'fields.slug'),
             image: get(node, 'frontmatter.hero.childImageSharp.fluid'),
+            lede: get(node, 'frontmatter.lede'),
             tags: get(node, 'frontmatter.tags', []),
             title: get(node, 'frontmatter.title'),
           }))}
@@ -80,6 +81,7 @@ export const storiesPageQuery = graphql`
                 }
               }
             }
+            lede
             tags
             date
             title
