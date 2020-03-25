@@ -21,7 +21,6 @@ sections:
       Get your pair now. Limited time only. All sales are final.
 
 
-      Shop [here](https://beta.sandalboyz.com/products/) now.
+      Shop [here](/products) now.
     type: text
 ---
-

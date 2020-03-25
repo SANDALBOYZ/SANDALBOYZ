@@ -312,8 +312,7 @@ class Product extends Component {
                   {
                     u: `${get(
                       data,
-                      'site.siteMetadata.siteUrl',
-                      'https://beta.sandalboyz.com'
+                      'site.siteMetadata.siteUrl'
                     )}/products/${product.handle}`,
                   }
                 )}`}
@@ -326,8 +325,7 @@ class Product extends Component {
                 href={`https://twitter.com/intent/tweet?${qs.stringify({
                   url: `${get(
                     data,
-                    'site.siteMetadata.siteUrl',
-                    'https://beta.sandalboyz.com'
+                    'site.siteMetadata.siteUrl'
                   )}/products/${product.handle}`,
                   text: product.title,
                 })}`}
