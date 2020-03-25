@@ -31,8 +31,10 @@ const StoriesPage = ({ data }) => {
         <StoriesGrid
           stories={get(data, 'stories.edges', []).map(({ node }) => ({
             id: get(node, 'id'),
+            date: get(node, 'frontmatter.date'),
             href: get(node, 'fields.slug'),
             image: get(node, 'frontmatter.hero.childImageSharp.fluid'),
+            tags: get(node, 'frontmatter.tags', []),
             title: get(node, 'frontmatter.title'),
           }))}
         />
@@ -78,6 +80,8 @@ export const storiesPageQuery = graphql`
                 }
               }
             }
+            tags
+            date
             title
           }
         }
