@@ -59,6 +59,14 @@ class ProductsPage extends Component {
     this.handleSort(search.sort);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activeSort !== this.state.activeSort) {
+      const { location } = this.props;
+      const search = qs.parse(location.search);
+      this.handleSort(search.sort);
+    }
+  }
+
   filterProducts = ({ node: product }) => {
     const { activeFilters } = this.state;
     let matchesCollection = true;
