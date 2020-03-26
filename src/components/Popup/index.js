@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import qs from 'querystringify';
 import Cookies from 'js-cookie';
+import remark from 'remark';
+import html from 'remark-html';
 
 import { AbsoluteImg } from '@utils/styles';
 import { ContentLabel } from '@utils/type';
@@ -68,7 +70,12 @@ class Popup extends Component {
             <div>
               <ContentLabel>{label}</ContentLabel>
               <styled.Title>{title}</styled.Title>
-              <styled.Description>{description}</styled.Description>
+              <styled.Description dangerouslySetInnerHTML={{
+                __html: remark()
+                  .use(html)
+                  .processSync(description)
+                  .toString(),
+              }}/>
               {/* <styled.Social>
                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(

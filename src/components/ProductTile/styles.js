@@ -6,7 +6,7 @@ import space, { H_PADDING_MOBILE } from '@utils/space';
 
 export const ImageWrapper = styled.div`
   position: relative;
-  padding-bottom: 77%;
+  padding-bottom: 100%;
   background-color: ${colors.N100};
 
   & > *:last-child {
