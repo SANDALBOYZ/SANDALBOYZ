@@ -17,8 +17,6 @@ class Filters extends Component {
     }).isRequired,
     activeSort: PropTypes.string,
     onClose: PropTypes.func.isRequired,
-    onFilter: PropTypes.func.isRequired,
-    onSort: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
   };
 
