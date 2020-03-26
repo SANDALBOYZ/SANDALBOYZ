@@ -70,11 +70,11 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-gtag',
       options: {
-        trackingId: 'UA-72562262-2',
+        trackingId: process.env.GOOGLE_TRACKING_ID || 'UA-72562262-2',
+        head: false,
         anonymize: true,
-        respectDNT: true,
       },
     },
     {
