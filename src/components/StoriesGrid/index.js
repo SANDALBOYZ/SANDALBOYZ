@@ -107,13 +107,12 @@ const StoriesGrid = ({ stories }) => {
         </styled.Header>
         <styled.Filters>
           <styled.SidebarTitle>Stories</styled.SidebarTitle>
-          {activeTagFilters}
-          {activeYearFilters}
           {storyTags.length > 0 && (
             <>
               <styled.FilterTitle>Tags</styled.FilterTitle>
               {storyTags.map(tag => (
                 <styled.Filter
+                  active={tagFilter.includes(tag)}
                   key={tag}
                   onClick={() => {
                     setTags(tag);
@@ -129,6 +128,7 @@ const StoriesGrid = ({ stories }) => {
               <styled.FilterTitle>Year</styled.FilterTitle>
               {storyYears.map(year => (
                 <styled.Filter
+                  active={yearFilter.includes(year)}
                   key={year}
                   onClick={() => {
                     setYears(year);

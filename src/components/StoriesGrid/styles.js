@@ -68,6 +68,7 @@ export const Empty = styled(BaseContainer)`
 export const Filter = styled.a`
   display: block;
   font-size: 18px;
+  text-decoration: ${props => props.active ? 'underline' : 'none'};
 `;
 
 export const Filters = styled.div`
