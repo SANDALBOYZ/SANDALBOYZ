@@ -6,7 +6,7 @@ import remark from 'remark';
 import html from 'remark-html';
 
 import getPrice from '@utils/price';
-import Head from '@utils/seo';
+import Head, { gtag } from '@utils/seo';
 import { Breakpoint, breakpoints } from '@utils/styles';
 import { Badge, ContentLabel, H300, H300M, H500 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
@@ -41,22 +41,20 @@ class Product extends Component {
 
     const selectedVariant = product.variants.find(variant => variant.shopifyId === sizeShopifyId);
 
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'add_to_cart', {
-        items: [
-          {
-            brand: 'SANDALBOYZ',
-            // @TODO: Make category dynamic.
-            // category: 'Sandals',
-            id: selectedVariant.sku,
-            name: get(product, 'title'),
-            variant: selectedVariant.title,
-            quantity,
-            price: selectedVariant.price,
-          },
-        ],
-      });
-    }
+    gtag('event', 'add_to_cart', {
+      items: [
+        {
+          brand: 'SANDALBOYZ',
+          // @TODO: Make category dynamic.
+          // category: 'Sandals',
+          id: selectedVariant.sku,
+          name: get(product, 'title'),
+          variant: selectedVariant.title,
+          quantity,
+          price: selectedVariant.price,
+        },
+      ],
+    });
 
     let variantId = sizeShopifyId || color;
     if (!variantId) {

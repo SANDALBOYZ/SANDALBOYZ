@@ -4,6 +4,7 @@ import get from 'lodash/get';
 
 import getPrice from '@utils/price';
 import { Body } from '@utils/type';
+import { gtag } from '@utils/seo';
 import StoreContext from '@context/StoreContext';
 import Input from '@components/formElements/Input';
 import * as styled from './styles';
@@ -31,22 +32,20 @@ class LineItem extends Component {
     const { checkout, client, removeLineItem } = this.context;
     const { lineItem } = this.props;
 
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'remove_from_cart', {
-        items: [
-          {
-            id: get(lineItem, 'variant.sku'),
-            name: get(lineItem, 'title'),
-            brand: 'SANDALBOYZ',
-            // category: 'Apparel/T-Shirts',
-            variant: get(lineItem, 'variant.title'),
-            // list_position: 1,
-            quantity: get(lineItem, 'quantity'),
-            price: get(lineItem, 'variant.price'),
-          },
-        ],
-      });
-    }
+    gtag('event', 'remove_from_cart', {
+      items: [
+        {
+          id: get(lineItem, 'variant.sku'),
+          name: get(lineItem, 'title'),
+          brand: 'SANDALBOYZ',
+          // category: 'Apparel/T-Shirts',
+          variant: get(lineItem, 'variant.title'),
+          // list_position: 1,
+          quantity: get(lineItem, 'quantity'),
+          price: get(lineItem, 'variant.price'),
+        },
+      ],
+    });
 
     removeLineItem(client, checkout.id, lineItem.id);
   };

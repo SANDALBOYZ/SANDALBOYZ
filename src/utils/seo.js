@@ -5,6 +5,18 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import shareImage from '@images/shareImage.jpg';
 
+export const gtag = (command, eventName, eventParams) => {
+  if (typeof window.gtag === 'function') {
+    window.gtag(command, eventName, eventParams);
+  }
+
+  if (process.env.GATSBY_DEBUG_GTAG === 'true') {
+    console.log(`command: ${command}`);
+    console.log(`eventName: ${eventName}`);
+    console.log(eventParams);
+  }
+};
+
 class SEO extends Component {
   static propTypes = {
     description: PropTypes.string,
@@ -32,10 +44,7 @@ class SEO extends Component {
   componentDidMount() {
     const { gtagData } = this.props;
 
-    if (typeof window.gtag === 'undefined' || !gtagData) { return; }
-
-    // `gtag` will send a `page_view` on every page. If we want to send a custom event, supply it to `props`.
-    window.gtag('event', gtagData.eventType, gtagData.payload);
+    gtag('event', gtagData.eventType, gtagData.payload);
   }
 
   render() {
