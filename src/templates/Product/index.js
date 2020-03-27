@@ -45,7 +45,7 @@ class Product extends Component {
           {
             brand: 'SANDALBOYZ',
             category: 'Sandals',
-            name: get(product, 'name'),
+            name: get(product, 'title'),
             variant: size,
             quantity,
             price: get(product, 'variants[0].price'),
@@ -307,7 +307,7 @@ class Product extends Component {
                   onChange={this.handleQuantityChange}
                   options={[...Array(10)].map((_, idx) => ({
                     name: `${idx + 1}`,
-                    value: `${idx + 1}`,
+                    value: idx + 1,
                   }))}
                   value={quantity}
                   prefix="Quantity:"

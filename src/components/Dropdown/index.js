@@ -72,7 +72,10 @@ Dropdown.propTypes = {
       disabled: PropTypes.bool,
     })
   ),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   placeholder: PropTypes.string,
   prefix: PropTypes.string,
   dropUp: PropTypes.bool,
