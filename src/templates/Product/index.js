@@ -6,7 +6,7 @@ import remark from 'remark';
 import html from 'remark-html';
 
 import getPrice from '@utils/price';
-import Head from '@utils/seo';
+import Head, { gtag } from '@utils/seo';
 import { Breakpoint, breakpoints } from '@utils/styles';
 import { Badge, ContentLabel, H300, H300M, H500 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
@@ -23,22 +23,42 @@ class Product extends Component {
   constructor(props) {
     super(props);
 
+    // @TODO: State handling needs to be reconsidered to add SKUs which are necessary for `gtag`.
     this.state = {
       quantity: 1,
       onSale: this.getFirstOnSale(),
       color: this.getFirstAvailableColor(),
-      size: this.getFirstAvailableSize(),
+      sizeShopifyId: this.getFirstAvailableSize(), // Looks like "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMTcyMzQ4MzIzNDQwMA=="
       sizeChartOpen: false,
     };
   }
 
   handleAddToCart = () => {
     const { data } = this.props;
-    const { color, quantity, size } = this.state;
+    const { color, quantity, sizeShopifyId } = this.state;
 
     const product = data.shopifyProduct;
 
-    let variantId = size || color;
+    const selectedVariant = product.variants.find(
+      variant => variant.shopifyId === sizeShopifyId
+    );
+
+    gtag('event', 'add_to_cart', {
+      items: [
+        {
+          brand: 'SANDALBOYZ',
+          // @TODO: Make category dynamic.
+          // category: 'Sandals',
+          id: selectedVariant.sku,
+          name: get(product, 'title'),
+          variant: selectedVariant.title,
+          quantity,
+          price: selectedVariant.price,
+        },
+      ],
+    });
+
+    let variantId = sizeShopifyId || color;
     if (!variantId) {
       // for products with no size (socks)
       variantId = get(product, 'variants[0].shopifyId');
@@ -170,7 +190,13 @@ class Product extends Component {
 
   render() {
     const { data } = this.props;
-    const { quantity, onSale, color, size, sizeChartOpen } = this.state;
+    const {
+      quantity,
+      onSale,
+      color,
+      sizeShopifyId,
+      sizeChartOpen,
+    } = this.state;
 
     const product = data.shopifyProduct;
     const sizes = this.getSizes();
@@ -193,12 +219,25 @@ class Product extends Component {
       },
     };
 
+    const gtagData = {
+      eventType: 'view_item',
+      payload: {
+        items: [
+          {
+            name: get(product, 'title'),
+            brand: 'SANDALBOYZ',
+            category: 'Sandals',
+          },
+        ],
+      },
+    };
+
     return (
       <>
         <Head
           title={product.title}
           description={product.description}
-          ogType="Product" // https://schema.org/Product
+          schemaType="Product" // https://schema.org/Product
           image={get(product, 'images[0].localFile.childImageSharp.fluid.src')}
           meta={[
             {
@@ -212,6 +251,7 @@ class Product extends Component {
           ]}
           slug={`/products/${product.handle}`}
           additionalSchemaOrg={schemaOrg}
+          gtagData={gtagData}
         />
 
         <styled.Container>
@@ -256,7 +296,7 @@ class Product extends Component {
                   <Dropdown
                     onChange={this.handleSizeChange}
                     options={sizes}
-                    value={size}
+                    value={sizeShopifyId}
                     placeholder="Size"
                     prefix="Size:"
                   />
@@ -276,7 +316,7 @@ class Product extends Component {
                 <Dropdown
                   onChange={this.handleQuantityChange}
                   options={[...Array(10)].map((_, idx) => ({
-                    name: idx + 1,
+                    name: `${idx + 1}`,
                     value: idx + 1,
                   }))}
                   value={quantity}
@@ -363,7 +403,7 @@ class Product extends Component {
                 dropUp
                 onChange={this.handleSizeChange}
                 options={sizes}
-                value={size}
+                value={sizeShopifyId}
                 placeholder="Size"
                 prefix="Size:"
               />
@@ -434,6 +474,7 @@ export const query = graphql`
         compareAtPrice
         availableForSale
         shopifyId
+        sku
         selectedOptions {
           name
           value

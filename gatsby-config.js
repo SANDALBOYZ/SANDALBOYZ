@@ -70,11 +70,24 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingId: 'UA-72562262-2',
-        anonymize: true,
-        respectDNT: true,
+        trackingIds: [
+          process.env.GOOGLE_TRACKING_ID || 'UA-72562262-2', // Google Analytics / GA
+          // 'AW-CONVERSION_ID', // Google Ads / Adwords / AW
+          // 'DC-FLOODIGHT_ID', // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
+        ],
+        gtagConfig: {
+          optimize_id: 'OPT_CONTAINER_ID',
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
+        pluginConfig: {
+          head: false,
+          respectDNT: true,
+          // Avoids sending pageview hits from custom paths
+          // exclude: ['/preview/**', '/do-not-track/me/too/'],
+        },
       },
     },
     {
