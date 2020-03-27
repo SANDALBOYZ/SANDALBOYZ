@@ -44,7 +44,9 @@ class SEO extends Component {
   componentDidMount() {
     const { gtagData } = this.props;
 
-    gtag('event', gtagData.eventType, gtagData.payload);
+    if (gtagData) {
+      gtag('event', gtagData.eventType, gtagData.payload);
+    }
   }
 
   render() {
