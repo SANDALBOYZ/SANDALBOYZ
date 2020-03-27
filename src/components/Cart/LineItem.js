@@ -29,9 +29,26 @@ class LineItem extends Component {
 
   handleRemove = () => {
     const { checkout, client, removeLineItem } = this.context;
-    const { id } = this.props.lineItem;
+    const { lineItem } = this.props;
 
-    removeLineItem(client, checkout.id, id);
+    if (typeof window.gtag === 'function') {
+      console.log('lineitemgtag')
+      window.gtag('event', 'remove_from_cart', {
+        items: [
+          {
+            name: get(lineItem, 'title'),
+            brand: 'SANDALBOYZ',
+            // category: 'Apparel/T-Shirts',
+            variant: get(lineItem, 'variant.title'),
+            // list_position: 1,
+            quantity: get(lineItem, 'quantity'),
+            price: get(lineItem, 'variant.price'),
+          }
+        ],
+      });
+    }
+
+    removeLineItem(client, checkout.id, lineItem.id);
   };
 
   handleUpdate = () => {
@@ -64,9 +81,7 @@ class LineItem extends Component {
           <styled.Actions>
             <div>
               {size && <Body>Size {size}</Body>}
-              <styled.Remove onClick={this.handleRemove}>
-                Remove
-              </styled.Remove>
+              <styled.Remove onClick={this.handleRemove}>Remove</styled.Remove>
             </div>
             <Input
               min={1}

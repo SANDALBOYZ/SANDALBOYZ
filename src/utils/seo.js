@@ -34,6 +34,7 @@ class SEO extends Component {
 
     if (typeof window.gtag === 'undefined' || !gtagData) { return; }
 
+    // `gtag` will send a `page_view` on every page. If we want to send a custom event, supply it to `props`.
     window.gtag('event', gtagData.eventType, gtagData.payload);
   }
 
