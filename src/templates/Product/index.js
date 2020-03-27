@@ -39,7 +39,9 @@ class Product extends Component {
 
     const product = data.shopifyProduct;
 
-    const selectedVariant = product.variants.find(variant => variant.shopifyId === sizeShopifyId);
+    const selectedVariant = product.variants.find(
+      variant => variant.shopifyId === sizeShopifyId
+    );
 
     gtag('event', 'add_to_cart', {
       items: [
@@ -188,7 +190,13 @@ class Product extends Component {
 
   render() {
     const { data } = this.props;
-    const { quantity, onSale, color, sizeShopifyId, sizeChartOpen } = this.state;
+    const {
+      quantity,
+      onSale,
+      color,
+      sizeShopifyId,
+      sizeChartOpen,
+    } = this.state;
 
     const product = data.shopifyProduct;
     const sizes = this.getSizes();
