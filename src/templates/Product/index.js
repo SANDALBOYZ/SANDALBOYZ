@@ -39,7 +39,7 @@ class Product extends Component {
 
     const product = data.shopifyProduct;
 
-    if (window.gtag) {
+    if (typeof window.gtag === 'function') {
       window.gtag('event', 'add_to_cart', {
         items: [
           {

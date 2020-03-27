@@ -32,11 +32,7 @@ class SEO extends Component {
   componentDidMount() {
     const { gtagData } = this.props;
 
-    if (!window.gtag || !gtagData) { return; }
-
-    console.log('gtag')
-    console.log(window.gtag)
-    console.log(gtagData)
+    if (typeof window.gtag === 'undefined' || !gtagData) { return; }
 
     window.gtag('event', gtagData.eventType, gtagData.payload);
   }
