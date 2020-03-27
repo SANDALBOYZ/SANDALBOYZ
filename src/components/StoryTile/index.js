@@ -10,12 +10,10 @@ import * as styled from './styles';
 
 const StoryTile = ({ category, date, href, image, lede, title }) => (
   <styled.Wrapper>
-    <styled.ImageWrapper>
-      {image && (
-        <AbsoluteImg fluid={image} />
-      )}
-    </styled.ImageWrapper>
     <Link to={href}>
+      <styled.ImageWrapper>
+        {image && <AbsoluteImg fluid={image} />}
+      </styled.ImageWrapper>
       <styled.Inner>
         {category && <styled.H600>{category}</styled.H600>}
         <styled.H400>{title}</styled.H400>

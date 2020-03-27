@@ -131,6 +131,7 @@ export const Stories = styled.div`
 
   ${mq.gtmd} {
     grid-gap: ${space[2]};
+    grid-row-gap: ${space[4]};
   }
 `;
 
