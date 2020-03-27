@@ -11,6 +11,7 @@ export const gtag = (command, eventName, eventParams) => {
   }
 
   if (process.env.GATSBY_DEBUG_GTAG === 'true') {
+    console.log('`gtag` debug');
     console.log(`command: ${command}`);
     console.log(`eventName: ${eventName}`);
     console.log(eventParams);
