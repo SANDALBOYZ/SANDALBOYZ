@@ -23,6 +23,7 @@ class Product extends Component {
   constructor(props) {
     super(props);
 
+    // @TODO: State handling needs to be reconsidered to add SKUs which are necessary for `gtag`.
     this.state = {
       quantity: 1,
       onSale: this.getFirstOnSale(),
@@ -37,6 +38,21 @@ class Product extends Component {
     const { color, quantity, size } = this.state;
 
     const product = data.shopifyProduct;
+
+    if (window.gtag) {
+      window.gtag('event', 'add_to_cart', {
+        items: [
+          {
+            brand: 'SANDALBOYZ',
+            category: 'Sandals',
+            name: get(product, 'name'),
+            variant: size,
+            quantity,
+            price: get(product, 'variants[0].price'),
+          },
+        ],
+      });
+    }
 
     let variantId = size || color;
     if (!variantId) {
@@ -193,6 +209,19 @@ class Product extends Component {
       },
     };
 
+    const gtagData = {
+      eventType: 'view_item',
+      payload: {
+        items: [
+          {
+            name: get(product, 'title'),
+            brand: 'SANDALBOYZ',
+            category: 'Sandals',
+          },
+        ],
+      },
+    };
+
     return (
       <>
         <Head
@@ -212,6 +241,7 @@ class Product extends Component {
           ]}
           slug={`/products/${product.handle}`}
           additionalSchemaOrg={schemaOrg}
+          gtagData={gtagData}
         />
 
         <styled.Container>
@@ -276,8 +306,8 @@ class Product extends Component {
                 <Dropdown
                   onChange={this.handleQuantityChange}
                   options={[...Array(10)].map((_, idx) => ({
-                    name: idx + 1,
-                    value: idx + 1,
+                    name: `${idx + 1}`,
+                    value: `${idx + 1}`,
                   }))}
                   value={quantity}
                   prefix="Quantity:"
