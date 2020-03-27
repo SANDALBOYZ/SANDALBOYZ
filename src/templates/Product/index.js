@@ -28,33 +28,37 @@ class Product extends Component {
       quantity: 1,
       onSale: this.getFirstOnSale(),
       color: this.getFirstAvailableColor(),
-      size: this.getFirstAvailableSize(),
+      sizeShopifyId: this.getFirstAvailableSize(), // Looks like "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMTcyMzQ4MzIzNDQwMA=="
       sizeChartOpen: false,
     };
   }
 
   handleAddToCart = () => {
     const { data } = this.props;
-    const { color, quantity, size } = this.state;
+    const { color, quantity, sizeShopifyId } = this.state;
 
     const product = data.shopifyProduct;
+
+    const selectedVariant = product.variants.find(variant => variant.shopifyId === sizeShopifyId);
 
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'add_to_cart', {
         items: [
           {
             brand: 'SANDALBOYZ',
-            category: 'Sandals',
+            // @TODO: Make category dynamic.
+            // category: 'Sandals',
+            id: selectedVariant.sku,
             name: get(product, 'title'),
-            variant: size,
+            variant: selectedVariant.title,
             quantity,
-            price: get(product, 'variants[0].price'),
+            price: selectedVariant.price,
           },
         ],
       });
     }
 
-    let variantId = size || color;
+    let variantId = sizeShopifyId || color;
     if (!variantId) {
       // for products with no size (socks)
       variantId = get(product, 'variants[0].shopifyId');
@@ -186,7 +190,7 @@ class Product extends Component {
 
   render() {
     const { data } = this.props;
-    const { quantity, onSale, color, size, sizeChartOpen } = this.state;
+    const { quantity, onSale, color, sizeShopifyId, sizeChartOpen } = this.state;
 
     const product = data.shopifyProduct;
     const sizes = this.getSizes();
@@ -286,7 +290,7 @@ class Product extends Component {
                   <Dropdown
                     onChange={this.handleSizeChange}
                     options={sizes}
-                    value={size}
+                    value={sizeShopifyId}
                     placeholder="Size"
                     prefix="Size:"
                   />
@@ -393,7 +397,7 @@ class Product extends Component {
                 dropUp
                 onChange={this.handleSizeChange}
                 options={sizes}
-                value={size}
+                value={sizeShopifyId}
                 placeholder="Size"
                 prefix="Size:"
               />
@@ -464,6 +468,7 @@ export const query = graphql`
         compareAtPrice
         availableForSale
         shopifyId
+        sku
         selectedOptions {
           name
           value

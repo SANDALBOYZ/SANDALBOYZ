@@ -32,10 +32,10 @@ class LineItem extends Component {
     const { lineItem } = this.props;
 
     if (typeof window.gtag === 'function') {
-      console.log('lineitemgtag')
       window.gtag('event', 'remove_from_cart', {
         items: [
           {
+            id: get(lineItem, 'variant.sku'),
             name: get(lineItem, 'title'),
             brand: 'SANDALBOYZ',
             // category: 'Apparel/T-Shirts',
@@ -43,7 +43,7 @@ class LineItem extends Component {
             // list_position: 1,
             quantity: get(lineItem, 'quantity'),
             price: get(lineItem, 'variant.price'),
-          }
+          },
         ],
       });
     }
