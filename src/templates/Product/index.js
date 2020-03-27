@@ -88,7 +88,7 @@ class Product extends Component {
 
   handleSizeChange = value => {
     const onSale = this.getFirstOnSale(value);
-    this.setState({ size: value, onSale });
+    this.setState({ sizeShopifyId: value, onSale });
   };
 
   getFirstAvailableColor = () => {
