@@ -78,7 +78,7 @@ module.exports = {
           // 'DC-FLOODIGHT_ID', // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
         ],
         gtagConfig: {
-          optimize_id: 'OPT_CONTAINER_ID',
+          // optimize_id: 'OPT_CONTAINER_ID',
           anonymize_ip: true,
           cookie_expires: 0,
         },
