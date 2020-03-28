@@ -51,6 +51,7 @@ class Cart extends Component {
       });
     }
 
+    // Send customer to Shopify
     window.location.href = checkout.webUrl;
   };
 
