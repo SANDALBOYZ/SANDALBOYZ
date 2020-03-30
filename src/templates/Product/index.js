@@ -23,7 +23,6 @@ class Product extends Component {
   constructor(props) {
     super(props);
 
-    // @TODO: State handling needs to be reconsidered to add SKUs which are necessary for `gtag`.
     this.state = {
       quantity: 1,
       onSale: this.getFirstOnSale(),
