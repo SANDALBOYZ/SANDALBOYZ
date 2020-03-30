@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import colors from '@utils/colors';
 import space, { H_PADDING_MOBILE } from '@utils/space';
@@ -47,6 +47,34 @@ export const Drawer = styled.div`
     padding: ${space[5]};
     transform: ${props => (props.open ? 'translateX(0)' : 'translateX(470px)')};
   }
+`;
+
+const loading = keyframes`
+  0% {
+    background-color: ${colors.SANDALBOYZ_ROSE};
+  }
+
+  33% {
+    background-color: ${colors.SANDALBOYZ_OLIVE};
+  }
+
+  66% {
+    background-color: ${colors.SANDALBOYZ_YELLOW};
+  }
+
+  100% {
+    background-color: ${colors.SANDALBOYZ_NEUTRAL};
+  }
+`;
+
+export const LoadingBar = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.5em;
+  background-color: ${colors.SANDALBOYZ_ROSE};
+  animation: ${loading} 1s infinite linear;
 `;
 
 export const H300 = styled(BaseH300)`

@@ -52,6 +52,13 @@ class Layout extends React.Component {
       },
       closeMobileMenu: this.handleMenuClose,
       removeLineItem: (client, checkoutID, lineItemID) => {
+        this.setState(state => ({
+          store: {
+            ...state.store,
+            adding: true,
+          },
+        }));
+
         return client.checkout
           .removeLineItems(checkoutID, [lineItemID])
           .then(res => {
@@ -59,6 +66,7 @@ class Layout extends React.Component {
               store: {
                 ...state.store,
                 checkout: res,
+                adding: false,
               },
             }));
           });

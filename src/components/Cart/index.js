@@ -42,7 +42,7 @@ class Cart extends Component {
 
   render() {
     const { onClose, open } = this.props;
-    const { checkout } = this.context;
+    const { checkout, adding } = this.context;
 
     return (
       <Drawer
@@ -59,6 +59,7 @@ class Cart extends Component {
         onClose={onClose}
         open={open}
         title="Your cart"
+        loading={adding}
       >
         {checkout.lineItems.map(lineItem => (
           <LineItem key={lineItem.id.toString()} lineItem={lineItem} />
