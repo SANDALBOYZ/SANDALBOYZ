@@ -1,3 +1,4 @@
+import React from 'react';
 import TransitionLink from 'gatsby-plugin-transition-link';
 import styled, { css } from 'styled-components';
 
@@ -9,6 +10,14 @@ import BaseIcon from '@components/Icon';
 import BaseLogo from '@components/Logo';
 
 const activeClassName = 'active';
+
+export const Link = (props) => (
+  <TransitionLink
+    entry={{ length: 1.5 }}
+    exit={{ length: 1.5 }}
+    {...props}
+  />
+);
 
 export const Container = styled(BaseContainer)`
   display: flex;
@@ -40,7 +49,7 @@ export const Logo = styled(BaseLogo)`
   }
 `;
 
-export const LogoLink = styled(TransitionLink)`
+export const LogoLink = styled(Link)`
   margin-right: ${space[7]};
   line-height: 1;
 `;
@@ -111,7 +120,7 @@ const navLinkStyles = css`
 `;
 
 // Used for text links.
-export const NavLink = styled(TransitionLink).attrs({
+export const NavLink = styled(Link).attrs({
   activeClassName,
 })`
   ${navLinkStyles}
@@ -142,7 +151,7 @@ export const NavLink = styled(TransitionLink).attrs({
 `;
 
 // Buttons do need the underline animation.
-export const NavButton = styled(TransitionLink)`
+export const NavButton = styled(Link)`
   ${navLinkStyles}
   display: none;
 `;
