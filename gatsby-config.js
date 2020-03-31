@@ -12,7 +12,13 @@ module.exports = {
   },
   developMiddleware: netlifyFsAPI,
   plugins: [
-    'gatsby-plugin-layout',
+    // 'gatsby-plugin-layout',
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: require.resolve('./src/layouts/index.js'),
+      },
+    },
     {
       resolve: 'gatsby-plugin-create-client-paths',
       options: {
