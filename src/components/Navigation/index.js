@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
 
-import EntryWrapper from '@components/EntryWrapper';
 import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
 
@@ -95,7 +94,6 @@ class Navigation extends Component {
     }
 
     return (
-      <EntryWrapper customAnimation={navigationAnimation} zIndex='9999'>
         <styled.Nav
           cartOpen={cartOpen}
           light={light && !hasScrolled}
@@ -109,7 +107,18 @@ class Navigation extends Component {
                   light={light && !hasScrolled}
                 />
               </styled.LogoLink>
-              <styled.NavLink to="/products" partiallyActive>
+              <styled.NavLink
+                to="/products"
+                partiallyActive
+                entry={{
+                  length: 1.5,
+                  trigger: () => console.log('We are entering'),
+                }}
+                exit={{
+                  length: 1.5,
+                  trigger: () => console.log('We are exiting'),
+                }}
+              >
                 Products
               </styled.NavLink>
               {showStories && (
@@ -141,7 +150,6 @@ class Navigation extends Component {
             </styled.NavSection>
           </styled.Container>
         </styled.Nav>
-      </EntryWrapper>
     );
   }
 }

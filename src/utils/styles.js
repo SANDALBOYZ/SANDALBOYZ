@@ -7,6 +7,8 @@ import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 
+export const DEFAULT_TRANSITION_SECONDS = 1.5;
+
 export const Z_INDEX = [
   9,
   99,

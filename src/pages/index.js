@@ -1,17 +1,38 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
-import EntryWrapper from '@components/EntryWrapper';
 import Head from '@utils/seo';
 // import BannerLight from '@components/BannerLight';
 import { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
 
-const LandingPage = ({ data }) => {
+const LandingPage = ({ data, transitionStatus }) => {
+  console.log(`LandingPage: ${transitionStatus}`);
+
+  const variants = {
+    entered: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      // @TODO: Add delay for FIRST PAGE LOAD of the browser.
+      // We can use localStorage or cookies or something...
+      transition: { ease: [0.19, 1, 0.22, 1], duration: 1.5 },
+    },
+    exiting: {
+      opacity: 0,
+      transition: { ease: [0.19, 1, 0.22, 1], duration: 1.5 },
+    },
+  };
+
   return (
-    <EntryWrapper>
+    <motion.div
+      initial={{ opacity: 0, scale: 1.01, y: '-5px' }}
+      variants={variants}
+      animate={transitionStatus}
+    >
       <Head title="Home" />
       {/* {get(data, 'hero') && (
         <Hero
@@ -129,7 +150,7 @@ const LandingPage = ({ data }) => {
             titleIcon="arrow-right"
           />
         )} */}
-    </EntryWrapper>
+    </motion.div>
   );
 };
 

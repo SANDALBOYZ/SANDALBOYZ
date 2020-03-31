@@ -1,4 +1,4 @@
-import Link from 'gatsby-link';
+import TransitionLink from 'gatsby-plugin-transition-link';
 import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
@@ -40,7 +40,7 @@ export const Logo = styled(BaseLogo)`
   }
 `;
 
-export const LogoLink = styled(Link)`
+export const LogoLink = styled(TransitionLink)`
   margin-right: ${space[7]};
   line-height: 1;
 `;
@@ -111,7 +111,7 @@ const navLinkStyles = css`
 `;
 
 // Used for text links.
-export const NavLink = styled(Link).attrs({
+export const NavLink = styled(TransitionLink).attrs({
   activeClassName,
 })`
   ${navLinkStyles}
@@ -142,7 +142,7 @@ export const NavLink = styled(Link).attrs({
 `;
 
 // Buttons do need the underline animation.
-export const NavButton = styled(Link)`
+export const NavButton = styled(TransitionLink)`
   ${navLinkStyles}
   display: none;
 `;

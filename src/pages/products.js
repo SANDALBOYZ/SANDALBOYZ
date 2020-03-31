@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
 import get from 'lodash/get';
@@ -11,7 +12,6 @@ import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import sandal from '@images/sandal.svg';
-import EntryWrapper from '@components/EntryWrapper';
 import Button from '@components/Button';
 import Filters from '@components/Filters';
 import Header from '@components/Header';
@@ -208,8 +208,10 @@ class ProductsPage extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, transitionStatus } = this.props;
     const { activeFilters, activeSort, showFilters } = this.state;
+
+    console.log(`products: ${transitionStatus}`)
 
     const products =
       Array.isArray(get(data, 'products.edges')) &&
@@ -219,57 +221,74 @@ class ProductsPage extends Component {
       activeFilters.productType
     ).length;
 
+    const variants = {
+      entered: {
+        opacity: 1,
+        transition: { ease: [0.19, 1, 0.22, 1], duration: 1.5 },
+      },
+      exiting: {
+        opacity: 0,
+        transition: { ease: [0.19, 1, 0.22, 1], duration: 1.5 },
+      },
+    };
+
     return (
-      <EntryWrapper>
+      <>
         <Head title="Products" />
-        <Header
-          label={get(data, 'productIndex.frontmatter.pageTitle')}
-          shrinkOnMobile
-          title="Products"
+        <motion.div
+          initial={{ opacity: 0 }}
+          variants={variants}
+          animate={transitionStatus}
         >
-          <Button theme="text" onClick={this.handleOpenFilters}>
-            Sort/Filter
+          <Header
+            label={get(data, 'productIndex.frontmatter.pageTitle')}
+            shrinkOnMobile
+            title="Products"
+          >
+            <Button theme="text" onClick={this.handleOpenFilters}>
+              Sort/Filter
           </Button>
-        </Header>
-        {products.length ? (
-          <ProductGrid
-            filters={activeFilters}
-            onFilter={this.handleFilter}
-            products={products.sort(this.sortProducts).map(({ node }) => ({
-              id: get(node, 'id'),
-              href: `/products/${get(node, 'handle')}`,
-              images: [
-                get(node, 'images[0].localFile.childImageSharp.fluid'),
-                get(node, 'images[1].localFile.childImageSharp.fluid'),
-              ],
-              price: get(node, 'variants[0].price'),
-              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-              title: get(node, 'title'),
-              soldOut: !get(node, 'availableForSale'),
-              onSale:
-                get(node, 'variants[0].compareAtPrice') >
-                get(node, 'variants[0].price'),
-            }))}
-            title={isFiltered ? 'Filtered Results' : 'All Products'}
-          />
-        ) : (
-          <Empty>
-            <Image src={sandal} />
-            <Heading>No products found</Heading>
-            <Body>
-              Try selecting different filters to view more available products.
+          </Header>
+          {products.length ? (
+            <ProductGrid
+              filters={activeFilters}
+              onFilter={this.handleFilter}
+              products={products.sort(this.sortProducts).map(({ node }) => ({
+                id: get(node, 'id'),
+                href: `/products/${get(node, 'handle')}`,
+                images: [
+                  get(node, 'images[0].localFile.childImageSharp.fluid'),
+                  get(node, 'images[1].localFile.childImageSharp.fluid'),
+                ],
+                price: get(node, 'variants[0].price'),
+                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+                title: get(node, 'title'),
+                soldOut: !get(node, 'availableForSale'),
+                onSale:
+                  get(node, 'variants[0].compareAtPrice') >
+                  get(node, 'variants[0].price'),
+              }))}
+              title={isFiltered ? 'Filtered Results' : 'All Products'}
+            />
+          ) : (
+              <Empty>
+                <Image src={sandal} />
+                <Heading>No products found</Heading>
+                <Body>
+                  Try selecting different filters to view more available products.
             </Body>
-          </Empty>
-        )}
-        <Filters
-          activeFilters={activeFilters}
-          activeSort={activeSort}
-          onFilter={this.handleFilter}
-          onClose={this.handleCloseFilters}
-          onSort={this.handleSort}
-          open={showFilters}
-        />
-      </EntryWrapper>
+              </Empty>
+            )}
+          <Filters
+            activeFilters={activeFilters}
+            activeSort={activeSort}
+            onFilter={this.handleFilter}
+            onClose={this.handleCloseFilters}
+            onSort={this.handleSort}
+            open={showFilters}
+          />
+        </motion.div>
+      </>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import get from 'lodash/get';
@@ -297,6 +298,7 @@ class Layout extends React.Component {
                 showStories={get(data, 'stories.edges.length') > 0}
               />
               <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
+              {/* <AnimatePresence>{children}</AnimatePresence> */}
               {children}
               <Footer showStories={get(data, 'stories.edges.length') > 0} />
               <Popup
