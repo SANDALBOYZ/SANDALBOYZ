@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
 import get from 'lodash/get';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import qs from 'querystringify';
 
 import Head from '@utils/seo';
@@ -11,7 +12,6 @@ import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import sandal from '@images/sandal.svg';
-import EntryWrapper from '@components/EntryWrapper';
 import Button from '@components/Button';
 import Filters from '@components/Filters';
 import Header from '@components/Header';
@@ -220,47 +220,61 @@ class ProductsPage extends Component {
     ).length;
 
     return (
-      <EntryWrapper>
+      <>
         <Head title="Products" />
-        <Header
-          label={get(data, 'productIndex.frontmatter.pageTitle')}
-          shrinkOnMobile
-          title="Products"
+        <motion.div
+          initial={{ opacity: 0, y: '-5px', scale: 1.005 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+              ease: [0.19, 1, 0.22, 1],
+              duration: 0.8,
+              delay: 0.5,
+            },
+          }}
         >
-          <Button theme="text" onClick={this.handleOpenFilters}>
-            Sort/Filter
-          </Button>
-        </Header>
-        {products.length ? (
-          <ProductGrid
-            filters={activeFilters}
-            onFilter={this.handleFilter}
-            products={products.sort(this.sortProducts).map(({ node }) => ({
-              id: get(node, 'id'),
-              href: `/products/${get(node, 'handle')}`,
-              images: [
-                get(node, 'images[0].localFile.childImageSharp.fluid'),
-                get(node, 'images[1].localFile.childImageSharp.fluid'),
-              ],
-              price: get(node, 'variants[0].price'),
-              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-              title: get(node, 'title'),
-              soldOut: !get(node, 'availableForSale'),
-              onSale:
-                get(node, 'variants[0].compareAtPrice') >
-                get(node, 'variants[0].price'),
-            }))}
-            title={isFiltered ? 'Filtered Results' : 'All Products'}
-          />
-        ) : (
-          <Empty>
-            <Image src={sandal} />
-            <Heading>No products found</Heading>
-            <Body>
-              Try selecting different filters to view more available products.
-            </Body>
-          </Empty>
-        )}
+          <Header
+            label={get(data, 'productIndex.frontmatter.pageTitle')}
+            shrinkOnMobile
+            title="Products"
+          >
+            <Button theme="text" onClick={this.handleOpenFilters}>
+              Sort/Filter
+            </Button>
+          </Header>
+          {products.length ? (
+            <ProductGrid
+              filters={activeFilters}
+              onFilter={this.handleFilter}
+              products={products.sort(this.sortProducts).map(({ node }) => ({
+                id: get(node, 'id'),
+                href: `/products/${get(node, 'handle')}`,
+                images: [
+                  get(node, 'images[0].localFile.childImageSharp.fluid'),
+                  get(node, 'images[1].localFile.childImageSharp.fluid'),
+                ],
+                price: get(node, 'variants[0].price'),
+                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+                title: get(node, 'title'),
+                soldOut: !get(node, 'availableForSale'),
+                onSale:
+                  get(node, 'variants[0].compareAtPrice') >
+                  get(node, 'variants[0].price'),
+              }))}
+              title={isFiltered ? 'Filtered Results' : 'All Products'}
+            />
+          ) : (
+            <Empty>
+              <Image src={sandal} />
+              <Heading>No products found</Heading>
+              <Body>
+                Try selecting different filters to view more available products.
+              </Body>
+            </Empty>
+          )}
+        </motion.div>
         <Filters
           activeFilters={activeFilters}
           activeSort={activeSort}
@@ -269,7 +283,7 @@ class ProductsPage extends Component {
           onSort={this.handleSort}
           open={showFilters}
         />
-      </EntryWrapper>
+      </>
     );
   }
 }
