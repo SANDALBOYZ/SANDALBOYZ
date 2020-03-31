@@ -22,6 +22,7 @@ class Drawer extends Component {
     onClose: PropTypes.func,
     open: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
+    loading: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -43,11 +44,12 @@ class Drawer extends Component {
   };
 
   render() {
-    const { actions, children, onClose, open, title } = this.props;
+    const { actions, children, onClose, open, title, loading } = this.props;
 
     return (
       <styled.DrawerWrapper open={open} onClick={onClose}>
         <styled.Drawer open={open} onClick={this.handleClick}>
+          {loading && <styled.LoadingBar />}
           <div>
             <styled.H300>{title}</styled.H300>
             {children}
@@ -62,7 +64,7 @@ class Drawer extends Component {
                 {get(actions, 'close.name')}
               </Button>
               <Button
-                disabled={get(actions, 'next.disabled')}
+                disabled={loading || get(actions, 'next.disabled')}
                 external
                 fullWidth
                 href={get(actions, 'next.href')}

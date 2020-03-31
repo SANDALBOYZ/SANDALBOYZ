@@ -6,7 +6,7 @@ import getPrice from '@utils/price';
 import { Body } from '@utils/type';
 import { gtag } from '@utils/seo';
 import StoreContext from '@context/StoreContext';
-import Input from '@components/formElements/Input';
+import Dropdown from '@components/Dropdown';
 import * as styled from './styles';
 
 class LineItem extends Component {
@@ -24,8 +24,8 @@ class LineItem extends Component {
     };
   }
 
-  handleQuantityChange = evt => {
-    this.setState({ quantity: evt.target.value });
+  handleQuantityChange = quantity => {
+    this.setState({ quantity }, this.handleUpdate);
   };
 
   handleRemove = () => {
@@ -82,13 +82,14 @@ class LineItem extends Component {
               {size && <Body>Size {size}</Body>}
               <styled.Remove onClick={this.handleRemove}>Remove</styled.Remove>
             </div>
-            <Input
-              min={1}
-              max={9}
-              name="quantity"
+            <Dropdown
               onChange={this.handleQuantityChange}
-              type="number"
+              options={[...Array(10)].map((_, idx) => ({
+                name: `${idx + 1}`,
+                value: idx + 1,
+              }))}
               value={quantity}
+              showIcon={false}
             />
           </styled.Actions>
         </styled.Info>

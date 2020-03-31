@@ -52,8 +52,9 @@ export const Value = styled.span`
   padding: 0 ${space[1]};
 `;
 
-export const Wrapper = styled.div`
+export const DropdownWrapper = styled.div`
   display: block;
+  cursor: pointer;
   position: relative;
   height: 40px;
   padding: 0 ${space[1]};

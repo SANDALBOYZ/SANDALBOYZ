@@ -52,6 +52,13 @@ class Layout extends React.Component {
       },
       closeMobileMenu: this.handleMenuClose,
       removeLineItem: (client, checkoutID, lineItemID) => {
+        this.setState(state => ({
+          store: {
+            ...state.store,
+            adding: true,
+          },
+        }));
+
         return client.checkout
           .removeLineItems(checkoutID, [lineItemID])
           .then(res => {
@@ -59,6 +66,7 @@ class Layout extends React.Component {
               store: {
                 ...state.store,
                 checkout: res,
+                adding: false,
               },
             }));
           });
@@ -68,6 +76,13 @@ class Layout extends React.Component {
           { id: lineItemID, quantity: parseInt(quantity, 10) },
         ];
 
+        this.setState(state => ({
+          store: {
+            ...state.store,
+            adding: true,
+          },
+        }));
+
         return client.checkout
           .updateLineItems(checkoutID, lineItemsToUpdate)
           .then(res => {
@@ -75,6 +90,7 @@ class Layout extends React.Component {
               store: {
                 ...state.store,
                 checkout: res,
+                adding: false,
               },
             }));
           });

@@ -12,6 +12,7 @@ const Dropdown = ({
   prefix,
   value: currentValue,
   dropUp,
+  showIcon,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +21,7 @@ const Dropdown = ({
   };
 
   return (
-    <styled.Wrapper
+    <styled.DropdownWrapper
       onClick={toggleOpen}
       onBlur={() => {
         setIsOpen(false);
@@ -58,8 +59,8 @@ const Dropdown = ({
           </div>
         </styled.Dropdown>
       )}
-      <Icon name="chevron-down" />
-    </styled.Wrapper>
+      {showIcon && <Icon name="chevron-down" />}
+    </styled.DropdownWrapper>
   );
 };
 
@@ -76,6 +77,11 @@ Dropdown.propTypes = {
   placeholder: PropTypes.string,
   prefix: PropTypes.string,
   dropUp: PropTypes.bool,
+  showIcon: PropTypes.bool,
+};
+
+Dropdown.defaultProps = {
+  showIcon: true,
 };
 
 export default Dropdown;

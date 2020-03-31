@@ -10,6 +10,10 @@ const LaunchButton = styled(Button)`
   margin-top: 80px;
 `;
 
+const DemoContainer = styled.div`
+  padding: 20px;
+`;
+
 export default { title: 'Drawer' };
 
 class Demo extends Component {
@@ -29,7 +33,7 @@ class Demo extends Component {
     const { open } = this.state;
 
     return (
-      <div>
+      <DemoContainer>
         <Navigation />
         <LaunchButton onClick={this.handleOpen}>Open drawer</LaunchButton>
         <Drawer
@@ -45,17 +49,31 @@ class Demo extends Component {
           onClose={this.handleClose}
           open={open}
           title="Your cart"
+          {...this.props}
         />
-      </div>
+      </DemoContainer>
     );
   }
 }
 
 export const Desktop = () => <Demo />;
 
+export const DesktopLoading = () => <Demo loading />;
+
 export const Mobile = () => <Demo />;
 
 Mobile.story = {
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: 'iphone6',
+    },
+  },
+};
+
+export const MobileLoading = () => <Demo loading />;
+
+MobileLoading.story = {
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
