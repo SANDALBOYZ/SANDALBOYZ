@@ -8,6 +8,7 @@ import Head from '@utils/seo';
 import { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
+import { fadeInEntry } from '@utils/animations';
 
 const LandingPage = ({ data }) => {
   return (
@@ -22,19 +23,7 @@ const LandingPage = ({ data }) => {
         />
       )} */}
 
-      <motion.div
-        initial={{ opacity: 0, y: '-5px', scale: 1.005 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          transition: {
-            ease: [0.19, 1, 0.22, 1],
-            duration: 0.8,
-            delay: 0.5,
-          },
-        }}
-      >
+      <motion.div {...fadeInEntry()}>
         {get(data, 'fullHero') && (
           <FullHero
             href="/products"

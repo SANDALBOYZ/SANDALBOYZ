@@ -11,6 +11,7 @@ import { getSortedProductIds } from '@utils/shopify';
 import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
+import { fadeInEntry } from '@utils/animations';
 import sandal from '@images/sandal.svg';
 import Button from '@components/Button';
 import Filters from '@components/Filters';
@@ -230,19 +231,7 @@ class ProductsPage extends Component {
     return (
       <>
         <Head title="Products" />
-        <motion.div
-          initial={{ opacity: 0, y: '-5px', scale: 1.005 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: {
-              ease: [0.19, 1, 0.22, 1],
-              duration: 0.8,
-              delay: 0.5,
-            },
-          }}
-        >
+        <motion.div {...fadeInEntry()}>
           <Header
             label={get(data, 'productIndex.frontmatter.pageTitle')}
             shrinkOnMobile

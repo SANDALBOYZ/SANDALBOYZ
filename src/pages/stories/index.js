@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import get from 'lodash/get';
 
 import Head from '@utils/seo';
+import { fadeInEntry } from '@utils/animations';
 import FeaturedStory from '@components/FeaturedStory';
 import StoriesGrid from '@components/StoriesGrid';
 
@@ -20,19 +21,7 @@ const StoriesPage = ({ data }) => {
   return (
     <>
       <Head title="Stories" />
-      <motion.div
-        initial={{ opacity: 0, y: '-5px', scale: 1.005 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          transition: {
-            ease: [0.19, 1, 0.22, 1],
-            duration: 0.8,
-            delay: 0.5,
-          },
-        }}
-      >
+      <motion.div {...fadeInEntry()}>
         {featured && (
           <FeaturedStory
             href={get(featured, 'fields.slug')}
