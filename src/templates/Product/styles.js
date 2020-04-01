@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { motion } from 'framer-motion';
 
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
@@ -143,7 +144,7 @@ export const Icon = styled(BaseIcon)`
 `;
 
 // Title and price
-export const MobileProductTitle = styled.div`
+export const MobileProductTitle = styled(motion.div)`
   margin-bottom: ${space[3]};
   padding: 0 ${H_PADDING_MOBILE};
 
@@ -153,7 +154,7 @@ export const MobileProductTitle = styled.div`
 `;
 
 // Product description
-export const ProductInfo = styled.div`
+export const ProductInfo = styled(motion.div)`
   align-self: flex-start;
   position: sticky;
   top: calc(80px + 24px);
@@ -203,6 +204,18 @@ export const MobileSelectionsTitleContainer = styled.div`
   width: 100%;
 `;
 
+const slideUp = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 // Sticky bar that holds quantity dropdown/color selection/etc. and buy button
 export const MobileSelections = styled.div`
   position: sticky;
@@ -214,6 +227,9 @@ export const MobileSelections = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: ${space[2]};
+  transition: transform 1.5s ease, opacity 1.5s ease;
+  opacity: 1;
+  animation: ${slideUp} 1.5s ease;
 
   & > span {
     display: inline-block;
@@ -230,7 +246,8 @@ export const MobileSelections = styled.div`
   }
 
   ${mq.gtlg} {
-    display: none;
+    transform: translateY(100%);
+    opacity: 0;
   }
 `;
 

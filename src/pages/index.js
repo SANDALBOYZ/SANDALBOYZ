@@ -1,17 +1,18 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
-import EntryWrapper from '@components/EntryWrapper';
 import Head from '@utils/seo';
 // import BannerLight from '@components/BannerLight';
 import { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
+import { fadeInEntry } from '@utils/animations';
 
 const LandingPage = ({ data }) => {
   return (
-    <EntryWrapper>
+    <>
       <Head title="Home" />
       {/* {get(data, 'hero') && (
         <Hero
@@ -22,80 +23,87 @@ const LandingPage = ({ data }) => {
         />
       )} */}
 
-      {get(data, 'fullHero') && (
-        <FullHero
-          href="/products"
-          desktopImage={get(
-            data,
-            'fullHero.frontmatter.desktopImage.childImageSharp.fluid'
-          )}
-          mobileImage={get(
-            data,
-            'fullHero.frontmatter.mobileImage.childImageSharp.fluid'
-          )}
-          label={get(data, 'fullHero.frontmatter.label')}
-          title={get(data, 'fullHero.frontmatter.title')}
-          callToAction={get(data, 'fullHero.frontmatter.callToAction')}
-        />
-      )}
-
-      {Array.isArray(get(data, 'recommendedPicks.edges')) &&
-        data.recommendedPicks.edges.length > 0 && (
-          <ProductGrid
-            cta="Shop Now / See More"
-            extraPadding={!get(data, 'fullHero')}
-            products={data.recommendedPicks.edges.map(({ node }) => ({
-              id: get(node, 'id'),
-              href: `/products/${get(node, 'handle')}`,
-              images: [
-                get(node, 'images[0].localFile.childImageSharp.fluid'),
-                get(node, 'images[1].localFile.childImageSharp.fluid'),
-              ],
-              price: get(node, 'variants[0].price'),
-              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-              title: get(node, 'title'),
-              soldOut: !get(node, 'availableForSale'),
-              onSale:
-                get(node, 'variants[0].compareAtPrice') >
-                get(node, 'variants[0].price'),
-            }))}
-            title="What's Hot"
-            titleIcon="arrow-right"
+      <motion.div {...fadeInEntry()}>
+        {get(data, 'fullHero') && (
+          <FullHero
+            href="/products"
+            desktopImage={get(
+              data,
+              'fullHero.frontmatter.desktopImage.childImageSharp.fluid'
+            )}
+            mobileImage={get(
+              data,
+              'fullHero.frontmatter.mobileImage.childImageSharp.fluid'
+            )}
+            label={get(data, 'fullHero.frontmatter.label')}
+            title={get(data, 'fullHero.frontmatter.title')}
+            callToAction={get(data, 'fullHero.frontmatter.callToAction')}
           />
         )}
 
-      {Array.isArray(get(data, 'recentStories.edges')) &&
-        data.recentStories.edges.length > 1 && (
-          <RecentStories
-            storyA={{
-              href: get(data, 'recentStories.edges[0].node.fields.slug'),
-              image: get(
-                data,
-                'recentStories.edges[0].node.frontmatter.hero.childImageSharp.fluid'
-              ),
-              title: get(data, 'recentStories.edges[0].node.frontmatter.title'),
-              date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
-              previewText: get(
-                data,
-                'recentStories.edges[0].node.frontmatter.previewText'
-              ),
-            }}
-            storyB={{
-              href: get(data, 'recentStories.edges[1].node.fields.slug'),
-              image: get(
-                data,
-                'recentStories.edges[1].node.frontmatter.hero.childImageSharp.fluid'
-              ),
-              title: get(data, 'recentStories.edges[1].node.frontmatter.title'),
-              date: get(data, 'recentStories.edges[1].node.frontmatter.date'),
-              previewText: get(
-                data,
-                'recentStories.edges[1].node.frontmatter.previewText'
-              ),
-            }}
-          />
-        )}
-      {/* {get(data, 'teaser') && (
+        {Array.isArray(get(data, 'recommendedPicks.edges')) &&
+          data.recommendedPicks.edges.length > 0 && (
+            <ProductGrid
+              cta="Shop Now / See More"
+              extraPadding={!get(data, 'fullHero')}
+              products={data.recommendedPicks.edges.map(({ node }) => ({
+                id: get(node, 'id'),
+                href: `/products/${get(node, 'handle')}`,
+                images: [
+                  get(node, 'images[0].localFile.childImageSharp.fluid'),
+                  get(node, 'images[1].localFile.childImageSharp.fluid'),
+                ],
+                price: get(node, 'variants[0].price'),
+                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+                title: get(node, 'title'),
+                soldOut: !get(node, 'availableForSale'),
+                onSale:
+                  get(node, 'variants[0].compareAtPrice') >
+                  get(node, 'variants[0].price'),
+              }))}
+              title="What's Hot"
+              titleIcon="arrow-right"
+            />
+          )}
+
+        {Array.isArray(get(data, 'recentStories.edges')) &&
+          data.recentStories.edges.length > 1 && (
+            <RecentStories
+              storyA={{
+                href: get(data, 'recentStories.edges[0].node.fields.slug'),
+                image: get(
+                  data,
+                  'recentStories.edges[0].node.frontmatter.hero.childImageSharp.fluid'
+                ),
+                title: get(
+                  data,
+                  'recentStories.edges[0].node.frontmatter.title'
+                ),
+                date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
+                previewText: get(
+                  data,
+                  'recentStories.edges[0].node.frontmatter.previewText'
+                ),
+              }}
+              storyB={{
+                href: get(data, 'recentStories.edges[1].node.fields.slug'),
+                image: get(
+                  data,
+                  'recentStories.edges[1].node.frontmatter.hero.childImageSharp.fluid'
+                ),
+                title: get(
+                  data,
+                  'recentStories.edges[1].node.frontmatter.title'
+                ),
+                date: get(data, 'recentStories.edges[1].node.frontmatter.date'),
+                previewText: get(
+                  data,
+                  'recentStories.edges[1].node.frontmatter.previewText'
+                ),
+              }}
+            />
+          )}
+        {/* {get(data, 'teaser') && (
         <BannerLight
           cta={{
             href: get(data, 'teaser.fields.slug'),
@@ -129,7 +137,8 @@ const LandingPage = ({ data }) => {
             titleIcon="arrow-right"
           />
         )} */}
-    </EntryWrapper>
+      </motion.div>
+    </>
   );
 };
 

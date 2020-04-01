@@ -1,3 +1,4 @@
+// @TODO: DEPRECATION WARNING. WE'RE USING `framer-motion` NOW!
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 

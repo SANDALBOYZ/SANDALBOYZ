@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
 import get from 'lodash/get';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import qs from 'querystringify';
 
 import Head from '@utils/seo';
@@ -10,8 +11,8 @@ import { getSortedProductIds } from '@utils/shopify';
 import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
+import { fadeInEntry } from '@utils/animations';
 import sandal from '@images/sandal.svg';
-import EntryWrapper from '@components/EntryWrapper';
 import Button from '@components/Button';
 import Filters from '@components/Filters';
 import Header from '@components/Header';
@@ -41,8 +42,12 @@ class ProductsPage extends Component {
 
     const search = qs.parse(props.location.search);
     const activeFilters = {
-      collection: get(search, 'collection', '').split(',').filter(Boolean),
-      productType: get(search, 'productType', '').split(',').filter(Boolean),
+      collection: get(search, 'collection', '')
+        .split(',')
+        .filter(Boolean),
+      productType: get(search, 'productType', '')
+        .split(',')
+        .filter(Boolean),
     };
 
     this.state = {
@@ -160,7 +165,11 @@ class ProductsPage extends Component {
       }
 
       navigate(`/products${qs.stringify(query, true)}`);
-      this.setState({ activeFilters: filters, activeSort: sort, showFilters: false });
+      this.setState({
+        activeFilters: filters,
+        activeSort: sort,
+        showFilters: false,
+      });
     } else {
       this.setState({ showFilters: false });
     }
@@ -220,47 +229,49 @@ class ProductsPage extends Component {
     ).length;
 
     return (
-      <EntryWrapper>
+      <>
         <Head title="Products" />
-        <Header
-          label={get(data, 'productIndex.frontmatter.pageTitle')}
-          shrinkOnMobile
-          title="Products"
-        >
-          <Button theme="text" onClick={this.handleOpenFilters}>
-            Sort/Filter
-          </Button>
-        </Header>
-        {products.length ? (
-          <ProductGrid
-            filters={activeFilters}
-            onFilter={this.handleFilter}
-            products={products.sort(this.sortProducts).map(({ node }) => ({
-              id: get(node, 'id'),
-              href: `/products/${get(node, 'handle')}`,
-              images: [
-                get(node, 'images[0].localFile.childImageSharp.fluid'),
-                get(node, 'images[1].localFile.childImageSharp.fluid'),
-              ],
-              price: get(node, 'variants[0].price'),
-              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-              title: get(node, 'title'),
-              soldOut: !get(node, 'availableForSale'),
-              onSale:
-                get(node, 'variants[0].compareAtPrice') >
-                get(node, 'variants[0].price'),
-            }))}
-            title={isFiltered ? 'Filtered Results' : 'All Products'}
-          />
-        ) : (
-          <Empty>
-            <Image src={sandal} />
-            <Heading>No products found</Heading>
-            <Body>
-              Try selecting different filters to view more available products.
-            </Body>
-          </Empty>
-        )}
+        <motion.div {...fadeInEntry()}>
+          <Header
+            label={get(data, 'productIndex.frontmatter.pageTitle')}
+            shrinkOnMobile
+            title="Products"
+          >
+            <Button theme="text" onClick={this.handleOpenFilters}>
+              Sort/Filter
+            </Button>
+          </Header>
+          {products.length ? (
+            <ProductGrid
+              filters={activeFilters}
+              onFilter={this.handleFilter}
+              products={products.sort(this.sortProducts).map(({ node }) => ({
+                id: get(node, 'id'),
+                href: `/products/${get(node, 'handle')}`,
+                images: [
+                  get(node, 'images[0].localFile.childImageSharp.fluid'),
+                  get(node, 'images[1].localFile.childImageSharp.fluid'),
+                ],
+                price: get(node, 'variants[0].price'),
+                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+                title: get(node, 'title'),
+                soldOut: !get(node, 'availableForSale'),
+                onSale:
+                  get(node, 'variants[0].compareAtPrice') >
+                  get(node, 'variants[0].price'),
+              }))}
+              title={isFiltered ? 'Filtered Results' : 'All Products'}
+            />
+          ) : (
+            <Empty>
+              <Image src={sandal} />
+              <Heading>No products found</Heading>
+              <Body>
+                Try selecting different filters to view more available products.
+              </Body>
+            </Empty>
+          )}
+        </motion.div>
         <Filters
           activeFilters={activeFilters}
           activeSort={activeSort}
@@ -269,7 +280,7 @@ class ProductsPage extends Component {
           onSort={this.handleSort}
           open={showFilters}
         />
-      </EntryWrapper>
+      </>
     );
   }
 }

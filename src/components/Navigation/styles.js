@@ -1,4 +1,5 @@
 import Link from 'gatsby-link';
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
@@ -63,7 +64,7 @@ const getNavBackground = props => {
   return 'transparent';
 };
 
-export const Nav = styled.div`
+export const Nav = styled(motion.div)`
   position: fixed;
   top: 0;
   right: 0;
