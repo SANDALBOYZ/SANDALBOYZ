@@ -246,6 +246,7 @@ export const MobileSelections = styled.div`
   }
 
   ${mq.gtlg} {
+    animation: none;
     transform: translateY(100%);
     opacity: 0;
   }
