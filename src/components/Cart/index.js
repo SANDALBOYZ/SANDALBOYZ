@@ -59,7 +59,7 @@ class Cart extends Component {
 
       window.location.href = url;
     }
-  }
+  };
 
   render() {
     const { onClose, open } = this.props;
