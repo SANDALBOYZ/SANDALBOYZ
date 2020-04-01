@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import colors from '@utils/colors';
 import space, { H_PADDING } from '@utils/space';
@@ -116,7 +117,7 @@ export const ImageWrapper = styled.div`
   }
 `;
 
-export const Wrapper = styled.div`
+export const ProductImagesWrapper = styled(motion.div)`
   width: 100%;
 
   ${mq.gtlg} {

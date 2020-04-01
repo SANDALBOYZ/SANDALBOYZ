@@ -55,7 +55,18 @@ class ProductImages extends Component {
             </styled.Button>
           </styled.Modal>
         )}
-        <styled.Wrapper>
+        <styled.ProductImagesWrapper
+          initial={{ opacity: 0, x: '8px' }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            transition: {
+              ease: [0.19, 1, 0.22, 1],
+              duration: 1.5,
+              delay: 0.5,
+            },
+          }}
+        >
           {images.map((image, idx) => (
             <styled.ImageWrapper
               key={idx}
@@ -68,7 +79,7 @@ class ProductImages extends Component {
               />
             </styled.ImageWrapper>
           ))}
-        </styled.Wrapper>
+        </styled.ProductImagesWrapper>
       </>
     );
   }

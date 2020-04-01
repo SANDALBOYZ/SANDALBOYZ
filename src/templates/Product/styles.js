@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
@@ -153,7 +154,7 @@ export const MobileProductTitle = styled.div`
 `;
 
 // Product description
-export const ProductInfo = styled.div`
+export const ProductInfo = styled(motion.div)`
   align-self: flex-start;
   position: sticky;
   top: calc(80px + 24px);

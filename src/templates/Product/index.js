@@ -269,7 +269,18 @@ class Product extends Component {
             )}
           </styled.MobileProductTitle>
           <ProductImages images={product.images} />
-          <styled.ProductInfo>
+          <styled.ProductInfo
+            initial={{ opacity: 0, x: '10px' }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: {
+                ease: [0.19, 1, 0.22, 1],
+                duration: 1.5,
+                delay: 1,
+              },
+            }}
+          >
             <Breakpoint min={breakpoints.lg}>
               <H300>{product.title}</H300>
               <H500>
