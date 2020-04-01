@@ -37,7 +37,14 @@ class Cart extends Component {
       await associateCheckout(checkout.id);
     }
 
-    window.location.href = checkout.webUrl;
+    if (checkout.webUrl) {
+      const url = checkout.webUrl.replace(
+        `${process.env.GATSBY_SHOP_NAME}.myshopify`,
+        'checkout.sandalboyz'
+      );
+
+      window.location.href = url;
+    }
   }
 
   render() {
