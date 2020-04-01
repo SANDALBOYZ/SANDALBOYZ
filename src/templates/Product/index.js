@@ -17,6 +17,19 @@ import ProductImages from '@components/ProductImages';
 import SizeChart from '@components/SizeChart';
 import * as styled from './styles';
 
+const fadeInRight = {
+  initial: { opacity: 0, x: '10px' },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      ease: [0.19, 1, 0.22, 1],
+      duration: 3,
+      delay: 1,
+    },
+  },
+};
+
 class Product extends Component {
   static contextType = StoreContext;
 
@@ -254,7 +267,7 @@ class Product extends Component {
         />
 
         <styled.Container>
-          <styled.MobileProductTitle>
+          <styled.MobileProductTitle {...fadeInRight}>
             <H300M>{product.title}</H300M>
             <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
             {soldOut && (
@@ -269,18 +282,7 @@ class Product extends Component {
             )}
           </styled.MobileProductTitle>
           <ProductImages images={product.images} />
-          <styled.ProductInfo
-            initial={{ opacity: 0, x: '10px' }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              transition: {
-                ease: [0.19, 1, 0.22, 1],
-                duration: 1.5,
-                delay: 1,
-              },
-            }}
-          >
+          <styled.ProductInfo {...fadeInRight}>
             <Breakpoint min={breakpoints.lg}>
               <H300>{product.title}</H300>
               <H500>
