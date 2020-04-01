@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, navigate } from 'gatsby';
+import { motion } from 'framer-motion';
 import get from 'lodash/get';
 
 import Head from '@utils/seo';
@@ -19,27 +20,41 @@ const StoriesPage = ({ data }) => {
   return (
     <>
       <Head title="Stories" />
-      {featured && (
-        <FeaturedStory
-          href={get(featured, 'fields.slug')}
-          image={get(featured, 'frontmatter.hero.childImageSharp.fluid')}
-          label="Featured Story"
-          title={get(featured, 'frontmatter.title')}
-        />
-      )}
-      {Array.isArray(get(data, 'stories.edges')) && (
-        <StoriesGrid
-          stories={get(data, 'stories.edges', []).map(({ node }) => ({
-            id: get(node, 'id'),
-            date: get(node, 'frontmatter.date'),
-            href: get(node, 'fields.slug'),
-            image: get(node, 'frontmatter.hero.childImageSharp.fluid'),
-            lede: get(node, 'frontmatter.lede'),
-            tags: get(node, 'frontmatter.tags', []),
-            title: get(node, 'frontmatter.title'),
-          }))}
-        />
-      )}
+      <motion.div
+        initial={{ opacity: 0, y: '-5px', scale: 1.005 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: {
+            ease: [0.19, 1, 0.22, 1],
+            duration: 0.8,
+            delay: 0.5,
+          },
+        }}
+      >
+        {featured && (
+          <FeaturedStory
+            href={get(featured, 'fields.slug')}
+            image={get(featured, 'frontmatter.hero.childImageSharp.fluid')}
+            label="Featured Story"
+            title={get(featured, 'frontmatter.title')}
+          />
+        )}
+        {Array.isArray(get(data, 'stories.edges')) && (
+          <StoriesGrid
+            stories={get(data, 'stories.edges', []).map(({ node }) => ({
+              id: get(node, 'id'),
+              date: get(node, 'frontmatter.date'),
+              href: get(node, 'fields.slug'),
+              image: get(node, 'frontmatter.hero.childImageSharp.fluid'),
+              lede: get(node, 'frontmatter.lede'),
+              tags: get(node, 'frontmatter.tags', []),
+              title: get(node, 'frontmatter.title'),
+            }))}
+          />
+        )}
+      </motion.div>
     </>
   );
 };

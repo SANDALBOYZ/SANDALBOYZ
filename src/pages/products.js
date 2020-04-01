@@ -41,8 +41,12 @@ class ProductsPage extends Component {
 
     const search = qs.parse(props.location.search);
     const activeFilters = {
-      collection: get(search, 'collection', '').split(',').filter(Boolean),
-      productType: get(search, 'productType', '').split(',').filter(Boolean),
+      collection: get(search, 'collection', '')
+        .split(',')
+        .filter(Boolean),
+      productType: get(search, 'productType', '')
+        .split(',')
+        .filter(Boolean),
     };
 
     this.state = {
@@ -160,7 +164,11 @@ class ProductsPage extends Component {
       }
 
       navigate(`/products${qs.stringify(query, true)}`);
-      this.setState({ activeFilters: filters, activeSort: sort, showFilters: false });
+      this.setState({
+        activeFilters: filters,
+        activeSort: sort,
+        showFilters: false,
+      });
     } else {
       this.setState({ showFilters: false });
     }
