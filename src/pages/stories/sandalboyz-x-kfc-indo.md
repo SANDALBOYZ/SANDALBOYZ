@@ -12,8 +12,9 @@ lede: >-
   We teamed up with KFC Indonesia to bring a family style inspired collection of
   sandals and apparel.
 landingFeatured: false
-storiesFeatured: true
-previewText: We teamed up with KFC Indonesia to bring a family style inspired collection of
+storiesFeatured: false
+previewText: >-
+  We teamed up with KFC Indonesia to bring a family style inspired collection of
   sandals and apparel.
 sections:
   - body: >-
@@ -88,3 +89,4 @@ sections:
       - /assets/kfc-028.jpg
     type: image
 ---
+

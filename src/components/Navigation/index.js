@@ -1,25 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { css, keyframes } from 'styled-components';
 
-import EntryWrapper from '@components/EntryWrapper';
 import MobileMenuToggle from '@components/MobileMenuToggle';
 import * as styled from './styles';
-
-const fade = keyframes`
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-`;
-
-const navigationAnimation = css`
-  animation: ${fade} 500ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  animation-delay: 500ms;
-`;
 
 class Navigation extends Component {
   static propTypes = {
@@ -95,53 +78,57 @@ class Navigation extends Component {
     }
 
     return (
-      <EntryWrapper customAnimation={navigationAnimation} zIndex='9999'>
-        <styled.Nav
-          cartOpen={cartOpen}
-          light={light && !hasScrolled}
-          hasScrolled={hasScrolled}
-        >
-          <styled.Container>
-            <styled.NavSection>
-              <styled.LogoLink to="/" aria-label="SANDALBOYZ">
-                <styled.Logo
-                  cartOpen={cartOpen}
-                  light={light && !hasScrolled}
-                />
-              </styled.LogoLink>
-              <styled.NavLink to="/products" partiallyActive>
-                Products
+      <styled.Nav
+        cartOpen={cartOpen}
+        light={light && !hasScrolled}
+        hasScrolled={hasScrolled}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            ease: [0.55, 0.055, 0.675, 0.19],
+            duration: 0.5,
+            delay: 0.5,
+          },
+        }}
+      >
+        <styled.Container>
+          <styled.NavSection>
+            <styled.LogoLink to="/" aria-label="SANDALBOYZ">
+              <styled.Logo cartOpen={cartOpen} light={light && !hasScrolled} />
+            </styled.LogoLink>
+            <styled.NavLink to="/products" partiallyActive>
+              Products
+            </styled.NavLink>
+            {showStories && (
+              <styled.NavLink to="/stories" partiallyActive>
+                Stories
               </styled.NavLink>
-              {showStories && (
-                <styled.NavLink to="/stories" partiallyActive>
-                  Stories
-                </styled.NavLink>
-              )}
-              <styled.NavLink to="/contact">Contact</styled.NavLink>
-            </styled.NavSection>
-            <styled.NavSection>
-              <styled.NavButton to="/search" alt="Search">
-                <styled.Icon name="search" light={light && !hasScrolled} />
-              </styled.NavButton>
-              {!hideCart && (
-                <styled.MobileNavLink onClick={onCartOpen}>
-                  <styled.Icon name="briefcase" light={light && !hasScrolled} />
-                </styled.MobileNavLink>
-              )}
-              <MobileMenuToggle
-                light={light && !cartOpen && !hasScrolled}
-                open={cartOpen || menuOpen}
-                onClick={toggleFunction}
-              />
-              {authLinks.map(authLink => (
-                <styled.NavLink key={authLink.name} to={authLink.href}>
-                  {authLink.name}
-                </styled.NavLink>
-              ))}
-            </styled.NavSection>
-          </styled.Container>
-        </styled.Nav>
-      </EntryWrapper>
+            )}
+            <styled.NavLink to="/contact">Contact</styled.NavLink>
+          </styled.NavSection>
+          <styled.NavSection>
+            <styled.NavButton to="/search" alt="Search">
+              <styled.Icon name="search" light={light && !hasScrolled} />
+            </styled.NavButton>
+            {!hideCart && (
+              <styled.MobileNavLink onClick={onCartOpen}>
+                <styled.Icon name="briefcase" light={light && !hasScrolled} />
+              </styled.MobileNavLink>
+            )}
+            <MobileMenuToggle
+              light={light && !cartOpen && !hasScrolled}
+              open={cartOpen || menuOpen}
+              onClick={toggleFunction}
+            />
+            {authLinks.map(authLink => (
+              <styled.NavLink key={authLink.name} to={authLink.href}>
+                {authLink.name}
+              </styled.NavLink>
+            ))}
+          </styled.NavSection>
+        </styled.Container>
+      </styled.Nav>
     );
   }
 }

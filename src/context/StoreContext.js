@@ -8,6 +8,7 @@ const client = Client.buildClient({
 
 export const defaultStoreContext = {
   client,
+  // `adding` is actually `cartLoading`
   adding: false,
   checkout: { lineItems: [] },
   customer: null,

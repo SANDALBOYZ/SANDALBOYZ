@@ -51,13 +51,19 @@ class Cart extends Component {
       });
     }
 
-    // Send customer to Shopify
-    window.location.href = checkout.webUrl;
-  };
+    if (checkout.webUrl) {
+      const url = checkout.webUrl.replace(
+        `${process.env.GATSBY_SHOP_NAME}.myshopify`,
+        'checkout.sandalboyz'
+      );
+
+      window.location.href = url;
+    }
+  }
 
   render() {
     const { onClose, open } = this.props;
-    const { checkout } = this.context;
+    const { checkout, adding } = this.context;
 
     return (
       <Drawer
@@ -74,6 +80,7 @@ class Cart extends Component {
         onClose={onClose}
         open={open}
         title="Your cart"
+        loading={adding}
       >
         {checkout.lineItems.map(lineItem => (
           <LineItem key={lineItem.id.toString()} lineItem={lineItem} />
