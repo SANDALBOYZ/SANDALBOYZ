@@ -2,8 +2,8 @@ import React from 'react';
 import Image from 'gatsby-image';
 import styled from 'styled-components';
 
-import colors from '@utils/colors';
-import { H100 as BaseH100, H200 } from '@utils/type';
+import colors, { randomSandalboyzColor } from '@utils/colors';
+import { H100 as BaseH100, H200 as BaseH200, H300 } from '@utils/type';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
 
@@ -27,7 +27,7 @@ const SectionContainer = styled.section`
 // Just a background piece
 const StickyWrapper = styled.div`
   align-self: stretch;
-  background-color: ${colors.SANDALBOYZ_ROSE};
+  background-color: ${colors.SANDALBOYZ_OLIVE};
   margin-bottom: ${space[6]};
 
   ${mq.gtlg} {
@@ -44,12 +44,24 @@ const StickySection = styled.div`
 `;
 
 const ScrollSection = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
   ${mq.gtlg} {
     width: 65%;
   }
 `;
 
-const SectionTile = styled.div``;
+const SectionTile = styled.div`
+  margin-bottom: 30px;
+
+  ${mq.gtlg} {
+    width: calc(50% - 30px);
+    &:nth-child(odd) {
+      margin-right: 30px;
+    }
+  }
+`;
 
 const TileImage = styled(Image)`
   width: 300px;
@@ -57,6 +69,10 @@ const TileImage = styled(Image)`
 
 const H100 = styled(BaseH100)`
   margin-bottom: ${space[6]};
+`;
+
+const H200 = styled(BaseH200)`
+  margin-bottom: ${space[4]};
 `;
 
 export const About = ({ title }) => (
@@ -84,7 +100,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
@@ -117,7 +133,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
@@ -150,7 +166,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
@@ -183,7 +199,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
@@ -221,7 +237,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
@@ -254,7 +270,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
@@ -287,7 +303,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
@@ -320,7 +336,7 @@ export const About = ({ title }) => (
               aspectRatio: 1,
             }}
           />
-          <H200>Header2</H200>
+          <H300>Header2</H300>
           <p>
             Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
             pork chop salami pig buffalo pork belly. Jowl pastrami brisket,

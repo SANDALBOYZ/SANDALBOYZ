@@ -12,6 +12,21 @@ const Container = styled.div`
 
 export const Desktop = () => (
   <Container>
-    <About title='About Us' />
+    <About title="About Us" />
   </Container>
 );
+
+export const Mobile = () => (
+  <Container>
+    <About title="About Us" />
+  </Container>
+);
+
+Mobile.story = {
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: 'iphone6',
+    },
+  },
+};
