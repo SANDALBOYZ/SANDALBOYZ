@@ -26,7 +26,7 @@ Mobile.story = {
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
-      defaultViewport: 'iphone6',
+      defaultViewport: 'iphonex',
     },
   },
 };

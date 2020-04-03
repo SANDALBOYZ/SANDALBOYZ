@@ -3,11 +3,9 @@ import Image from 'gatsby-image';
 import styled from 'styled-components';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
-import { H100 as BaseH100, H200 as BaseH200, H300 } from '@utils/type';
+import { H100 as BaseH100, H200 as BaseH200, H300 as BaseH300 } from '@utils/type';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
-
-const AboutContainer = styled.div``;
 
 const SectionContainer = styled.section`
   display: flex;
@@ -31,7 +29,8 @@ const StickyWrapper = styled.div`
   margin-bottom: ${space[6]};
 
   ${mq.gtlg} {
-    width: 35%;
+    width: 36%;
+    margin-bottom: ${space[10]};
   }
 `;
 
@@ -48,7 +47,7 @@ const ScrollSection = styled.div`
   flex-wrap: wrap;
 
   ${mq.gtlg} {
-    width: 65%;
+    width: 64%;
   }
 `;
 
@@ -64,7 +63,6 @@ const SectionTile = styled.div`
 `;
 
 const TileImage = styled(Image)`
-  width: 300px;
 `;
 
 const H100 = styled(BaseH100)`
@@ -72,6 +70,10 @@ const H100 = styled(BaseH100)`
 `;
 
 const H200 = styled(BaseH200)`
+  margin-bottom: ${space[4]};
+`;
+
+const H300 = styled(BaseH300)`
   margin-bottom: ${space[4]};
 `;
 
