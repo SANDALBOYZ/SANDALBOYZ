@@ -6,7 +6,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "dev": "gatsby develop",
-    "clean": "rimraf build .cache",
+    "clean": "rimraf public build .cache",
     "lint": "eslint src --ext .js",
     "lint:fix": "eslint --fix src --ext .js",
     "format": "prettier --write",
@@ -14,6 +14,7 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^13.4.0",
     "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
     "axios": "^0.19.0",
     "babel-plugin-styled-components": "^1.10.7",
@@ -40,6 +41,7 @@
     "gatsby-remark-copy-linked-files": "^2.1.26",
     "gatsby-remark-images": "^3.1.26",
     "gatsby-remark-relative-images": "^0.2.3",
+    "gatsby-source-contentful": "^2.2.6",
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-source-shopify": "^3.0.24",
     "gatsby-transformer-remark": "^2.6.28",
@@ -77,6 +79,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
+    "faker": "^4.1.0",
     "prettier": "^1.19.1",
     "reset-css": "^4.0.1",
     "rimraf": "^3.0.2"

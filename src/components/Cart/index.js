@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import get from 'lodash/get';
 
+import { gtag } from '@utils/seo';
 import { associateCheckout } from '@utils/shopify';
 import { Body, H300 } from '@utils/type';
 import StoreContext from '@context/StoreContext';
@@ -30,11 +31,24 @@ class Cart extends Component {
     }
   }
 
-  handleCheckout =  async() => {
+  handleCheckout = async () => {
     const { checkout, customer } = this.context;
 
     if (get(customer, 'id')) {
       await associateCheckout(checkout.id);
+    }
+
+    if (get(checkout, 'id') && get(checkout, 'lineItems.length')) {
+      gtag('event', 'begin_checkout', {
+        items: checkout.lineItems.map(lineItem => ({
+          id: lineItem.variant.sku,
+          name: lineItem.title,
+          brand: 'SANDALBOYZ',
+          variant: lineItem.variant.title,
+          quantity: lineItem.quantity,
+          price: lineItem.variant.price,
+        })),
+      });
     }
 
     if (checkout.webUrl) {
@@ -45,7 +59,7 @@ class Cart extends Component {
 
       window.location.href = url;
     }
-  }
+  };
 
   render() {
     const { onClose, open } = this.props;
