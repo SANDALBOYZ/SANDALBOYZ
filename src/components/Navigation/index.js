@@ -105,6 +105,7 @@ class Navigation extends Component {
                 Stories
               </styled.NavLink>
             )}
+            <styled.NavLink to="/about">About</styled.NavLink>
             <styled.NavLink to="/contact">Contact</styled.NavLink>
           </styled.NavSection>
           <styled.NavSection>

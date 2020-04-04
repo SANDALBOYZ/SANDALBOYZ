@@ -1,20 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Image from 'gatsby-image';
 import styled from 'styled-components';
+import get from 'lodash/get';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
-import { H100 as BaseH100, H200 as BaseH200, H300 as BaseH300 } from '@utils/type';
+import {
+  H100 as BaseH100,
+  H200 as BaseH200,
+  H300 as BaseH300,
+} from '@utils/type';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
+
+const STICKY_WRAPPER_COLORS = [
+  colors.SANDALBOYZ_OLIVE,
+  colors.SANDALBOYZ_NATURAL,
+  colors.SANDALBOYZ_ROSE,
+];
 
 const SectionContainer = styled.section`
   display: flex;
   align-items: flex-start;
-  flex-direction: ${props => props.reverse ? 'column-reverse' : 'column'};
+  flex-direction: ${props => (props.reverse ? 'column-reverse' : 'column')};
   margin-bottom: ${space[8]};
 
   ${mq.gtlg} {
-    flex-direction: row;
+    flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
 
     & > div:first-child {
       margin-right: ${space[5]};
@@ -25,7 +38,7 @@ const SectionContainer = styled.section`
 // Just a background piece
 const StickyWrapper = styled.div`
   align-self: stretch;
-  background-color: ${colors.SANDALBOYZ_OLIVE};
+  background-color: ${props => STICKY_WRAPPER_COLORS[(props.index + 1) % 3]};
   margin-bottom: ${space[6]};
 
   ${mq.gtlg} {
@@ -37,7 +50,7 @@ const StickyWrapper = styled.div`
 // Includes header and content
 const StickySection = styled.div`
   position: sticky;
-  top: 0;
+  top: 80px;
   padding: 30px;
   padding-bottom: 40px;
 `;
@@ -45,6 +58,7 @@ const StickySection = styled.div`
 const ScrollSection = styled.div`
   display: flex;
   flex-wrap: wrap;
+  padding: 0 20px;
 
   ${mq.gtlg} {
     width: 64%;
@@ -63,10 +77,17 @@ const SectionTile = styled.div`
 `;
 
 const TileImage = styled(Image)`
+  margin-bottom: ${space[2]};
+
+  ${mq.gtlg} {
+    width: 70%;
+  }
 `;
 
 const H100 = styled(BaseH100)`
-  margin-bottom: ${space[6]};
+  margin-top: ${space[9]};
+  margin-bottom: ${space[9]};
+  text-align: center;
 `;
 
 const H200 = styled(BaseH200)`
@@ -77,304 +98,55 @@ const H300 = styled(BaseH300)`
   margin-bottom: ${space[4]};
 `;
 
-export const About = ({ title }) => (
+const Divider = styled.span`
+  &:before {
+    content: '';
+    width: 5.41667vw;
+    margin-right: 2.91667vw;
+    height: 3px;
+    display: inline-block;
+    position: relative;
+    background: currentColor;
+    vertical-align: middle;
+    top: -1px;
+    margin-bottom: ${space[4]};
+  }
+`;
+
+export const About = ({ title, sections }) => (
   <>
     <H100>{title}</H100>
 
-    <SectionContainer>
-      <StickyWrapper>
-        <StickySection>
-          <H200>Rooted in Good</H200>
-          <p>
-            Bacon ipsum dolor amet tail landjaeger flank, pork kevin short ribs
-            porchetta chuck doner pig. Andouille tenderloin cow short ribs beef
-            bacon.
-          </p>
-        </StickySection>
-      </StickyWrapper>
-      <ScrollSection>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-      </ScrollSection>
-    </SectionContainer>
+    {sections.map((section, index) => {
+      const reverse = index % 2 !== 0;
 
-    <SectionContainer reverse>
-      <ScrollSection>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-        <SectionTile>
-          <TileImage
-            fluid={{
-              src: 'https://source.unsplash.com/random/512x512',
-              srcSet: 'https://source.unsplash.com/random/512x512 512w',
-              sizes: '(max-width: 512px) 100vw, 512px',
-              aspectRatio: 1,
-            }}
-          />
-          <H300>Header2</H300>
-          <p>
-            Frankfurter chicken beef, pancetta brisket venison alcatra pork loin
-            pork chop salami pig buffalo pork belly. Jowl pastrami brisket,
-            landjaeger picanha bresaola tri-tip short ribs. Turkey buffalo tail
-            landjaeger. Venison frankfurter beef, meatball kielbasa bresaola
-            landjaeger ground round tri-tip flank chislic picanha. Drumstick
-            ribeye pig meatloaf pastrami short ribs beef ribs ham hock boudin
-            doner meatball t-bone. Shoulder kielbasa biltong venison tail cupim
-            shankle landjaeger pastrami. Flank pork short ribs, chicken filet
-            mignon shoulder biltong. Hamburger meatball kielbasa sausage short
-            loin. Pork chop kevin beef ribs pastrami, kielbasa drumstick alcatra
-            shankle. Drumstick short loin tail alcatra, biltong cupim kielbasa
-            pastrami landjaeger. Jowl kielbasa sausage pastrami cow t-bone,
-            flank capicola landjaeger tenderloin prosciutto spare ribs jerky
-            cupim. Pastrami leberkas shoulder, tongue alcatra andouille meatball
-            ham hock doner jowl pork chop spare ribs chislic sirloin capicola.
-            Prosciutto andouille tongue brisket sirloin short ribs tail bacon
-            jowl flank t-bone cupim beef ribs kielbasa. Pastrami ribeye bresaola
-            beef ribs hamburger, leberkas burgdoggen turkey ball tip. Salami
-            kevin leberkas biltong spare ribs, brisket landjaeger boudin sirloin
-            prosciutto picanha. Kielbasa buffalo short loin bresaola pork loin.
-          </p>
-        </SectionTile>
-      </ScrollSection>
-      <StickyWrapper>
-        <StickySection>
-          <H200>Rooted in Good</H200>
-          <p>
-            Bacon ipsum dolor amet tail landjaeger flank, pork kevin short ribs
-            porchetta chuck doner pig. Andouille tenderloin cow short ribs beef
-            bacon.
-          </p>
-        </StickySection>
-      </StickyWrapper>
-    </SectionContainer>
+      return (
+        <SectionContainer reverse={reverse} key={index}>
+          <StickyWrapper index={index}>
+            <StickySection>
+              <H200>{get(section, 'node.header')}</H200>
+              {documentToReactComponents(get(section, 'node.description.json'))}
+            </StickySection>
+          </StickyWrapper>
+          <ScrollSection>
+            {section.node.subSections.map((subSection, subSectionIndex) => (
+              <SectionTile key={subSectionIndex}>
+                <TileImage fluid={subSection.image.fluid} />
+                <H300>{subSection.title}</H300>
+                <Divider />
+                {documentToReactComponents(subSection.description.json)}
+              </SectionTile>
+            ))}
+          </ScrollSection>
+        </SectionContainer>
+      );
+    })}
   </>
 );
+
+About.propTypes = {
+  title: PropTypes.string.isRequired,
+  sections: PropTypes.array,
+};
 
 export default About;

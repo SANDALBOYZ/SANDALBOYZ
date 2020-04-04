@@ -1,31 +1,69 @@
 import React from 'react';
-import styled from 'styled-components';
+import { graphql } from 'gatsby';
+import About from '@components/About';
+import get from 'lodash/get';
 
-const AboutContainer = styled.div`
+const AboutPage = ({ data }) => {
+  console.log(data);
+
+  return (
+    <About
+      title={get(data, 'aboutPage.edges[0].node.title')}
+      sections={get(data, 'aboutPageSections.edges')}
+    />
+  );
+};
+
+export default AboutPage;
+
+export const aboutPageQuery = graphql`
+  query AboutPageQuery {
+    aboutPage: allContentfulAboutPage(limit: 1) {
+      edges {
+        node {
+          description {
+            content {
+              content {
+                nodeType
+                value
+              }
+              nodeType
+            }
+            json
+          }
+          title
+        }
+      }
+    }
+    aboutPageSections: allContentfulAboutPageSection {
+      edges {
+        node {
+          header
+          description {
+            content {
+              content {
+                nodeType
+                value
+              }
+              nodeType
+            }
+            json
+          }
+          subSections {
+            title
+            description {
+              json
+            }
+            image {
+              fluid {
+                src
+                srcSet
+                aspectRatio
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `;
-
-const SectionContainer = styled.section`
-  position: relative;
-  display: flex;
-`;
-
-const StickySection = styled.div`
-  position: sticky;
-  top: calc(80px + 24px);
-`;
-
-const ScrollSection = styled.div`
-`;
-
-const About = () => (
-  <div>
-    <StickySection>
-
-    </StickySection>
-    <ScrollSection>
-
-    </ScrollSection>
-  </div>
-);
-
-export default About;
