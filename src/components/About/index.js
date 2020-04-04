@@ -49,6 +49,10 @@ const StickySection = styled.div`
   top: 80px;
   padding: 30px;
   padding-bottom: 40px;
+
+  ${mq.gtlg} {
+    padding: 50px;
+  }
 `;
 
 const ScrollSection = styled.div`
