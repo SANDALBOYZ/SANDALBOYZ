@@ -23,15 +23,11 @@ const STICKY_WRAPPER_COLORS = [
 const SectionContainer = styled.section`
   display: flex;
   align-items: flex-start;
-  flex-direction: ${props => (props.reverse ? 'column-reverse' : 'column')};
+  flex-direction: column;
   margin-bottom: ${space[8]};
 
   ${mq.gtlg} {
     flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
-
-    & > div:first-child {
-      margin-right: ${space[5]};
-    }
   }
 `;
 
@@ -58,7 +54,7 @@ const StickySection = styled.div`
 const ScrollSection = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 0 20px;
+  padding: 0 50px;
 
   ${mq.gtlg} {
     width: 64%;
@@ -74,6 +70,14 @@ const SectionTile = styled.div`
       margin-right: 30px;
     }
   }
+
+  & > p {
+    margin-bottom: ${space[1]};
+  }
+
+  & a {
+    text-decoration: underline;
+  }
 `;
 
 const TileImage = styled(Image)`
@@ -84,10 +88,27 @@ const TileImage = styled(Image)`
   }
 `;
 
-const H100 = styled(BaseH100)`
+const TitleContainer = styled.header`
   margin-top: ${space[9]};
   margin-bottom: ${space[9]};
   text-align: center;
+`;
+
+const H100 = styled(BaseH100)`
+  margin-bottom: ${space[5]};
+`;
+
+const Description = styled.div`
+  padding: 0 ${space[2]};
+  margin: 0 auto;
+
+  & > p {
+    margin-bottom: ${space[2]};
+  }
+
+  ${mq.gtlg} {
+    width: 60%;
+  }
 `;
 
 const H200 = styled(BaseH200)`
@@ -113,9 +134,12 @@ const Divider = styled.span`
   }
 `;
 
-export const About = ({ title, sections }) => (
+export const About = ({ title, description, sections }) => (
   <>
-    <H100>{title}</H100>
+    <TitleContainer>
+      <H100>{title}</H100>
+      <Description>{documentToReactComponents(description)}</Description>
+    </TitleContainer>
 
     {sections.map((section, index) => {
       const reverse = index % 2 !== 0;

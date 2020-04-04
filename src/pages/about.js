@@ -9,6 +9,7 @@ const AboutPage = ({ data }) => {
   return (
     <About
       title={get(data, 'aboutPage.edges[0].node.title')}
+      description={get(data, 'aboutPage.edges[0].node.description.json')}
       sections={get(data, 'aboutPageSections.edges')}
     />
   );
