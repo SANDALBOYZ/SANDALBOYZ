@@ -13,6 +13,7 @@ import {
 } from '@utils/type';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
+import Head from '@utils/seo';
 
 const STICKY_WRAPPER_COLORS = [
   colors.SANDALBOYZ_OLIVE,
@@ -140,6 +141,12 @@ const Divider = styled.span`
 
 export const About = ({ title, description, sections }) => (
   <>
+    <Head
+      title="About Us"
+      description=""
+      // schemaType="AboutPage" // https://schema.org/AboutPage
+    />
+
     <TitleContainer>
       <H100>{title}</H100>
       <Description>{documentToReactComponents(description)}</Description>
