@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'gatsby-image';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import get from 'lodash/get';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-import colors, { randomSandalboyzColor } from '@utils/colors';
+import { fadeInEntry } from '@utils/animations';
+import colors from '@utils/colors';
 import {
   H100 as BaseH100,
   H200 as BaseH200,
   H300 as BaseH300,
 } from '@utils/type';
-import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
+import space from '@utils/space';
 import { mq } from '@utils/styles';
 
 const STICKY_WRAPPER_COLORS = [
@@ -20,7 +22,7 @@ const STICKY_WRAPPER_COLORS = [
   colors.SANDALBOYZ_ROSE,
 ];
 
-const SectionContainer = styled.section`
+const SectionContainer = styled(motion.section)`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -92,7 +94,7 @@ const TileImage = styled(Image)`
   }
 `;
 
-const TitleContainer = styled.header`
+const TitleContainer = styled(motion.header)`
   margin-top: ${space[9]};
   margin-bottom: ${space[9]};
   text-align: center;
@@ -140,7 +142,7 @@ const Divider = styled.span`
 
 export const About = ({ title, description, sections }) => (
   <>
-    <TitleContainer>
+    <TitleContainer {...fadeInEntry()}>
       <H100>{title}</H100>
       <Description>{documentToReactComponents(description)}</Description>
     </TitleContainer>
@@ -149,7 +151,11 @@ export const About = ({ title, description, sections }) => (
       const reverse = index % 2 !== 0;
 
       return (
-        <SectionContainer reverse={reverse} key={index}>
+        <SectionContainer
+          key={index}
+          reverse={reverse}
+          {...fadeInEntry({ delay: 1 })}
+        >
           <StickyWrapper index={index}>
             <StickySection>
               <H200>{get(section, 'node.header')}</H200>
