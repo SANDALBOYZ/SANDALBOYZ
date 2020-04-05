@@ -61,6 +61,9 @@ class MobileMenu extends Component {
               <H300>Stories</H300>
             </styled.NavLink>
           )}
+          <styled.NavLink to="/about" onClick={onMenuClose}>
+            <H300>About</H300>
+          </styled.NavLink>
           <styled.NavLink to="/search" onClick={onMenuClose}>
             <H300>Search</H300>
           </styled.NavLink>
