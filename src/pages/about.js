@@ -1,17 +1,35 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import About from '@components/About';
 import get from 'lodash/get';
 
+import Head from '@utils/seo';
+import About from '@components/About';
+import logo from '@images/logo.jpg';
+
 const AboutPage = ({ data }) => {
-  console.log(data);
+  const additionalSchemaOrg = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    url: 'https://www.sandalboyz.com',
+    logo: logo,
+  };
 
   return (
-    <About
-      title={get(data, 'aboutPage.edges[0].node.title')}
-      description={get(data, 'aboutPage.edges[0].node.description.json')}
-      sections={get(data, 'aboutPageSections.edges')}
-    />
+    <>
+      <Head
+        title="About Us"
+        description={get(
+          data,
+          'aboutPage.edges[0].node.descriptionPlainText.descriptionPlainText'
+        )}
+        additionalSchemaOrg={additionalSchemaOrg}
+      />
+      <About
+        title={get(data, 'aboutPage.edges[0].node.title')}
+        description={get(data, 'aboutPage.edges[0].node.description.json')}
+        sections={get(data, 'aboutPageSections.edges')}
+      />
+    </>
   );
 };
 
@@ -23,16 +41,12 @@ export const aboutPageQuery = graphql`
       edges {
         node {
           description {
-            content {
-              content {
-                nodeType
-                value
-              }
-              nodeType
-            }
             json
           }
           title
+          descriptionPlainText {
+            descriptionPlainText
+          }
         }
       }
     }
@@ -41,13 +55,6 @@ export const aboutPageQuery = graphql`
         node {
           header
           description {
-            content {
-              content {
-                nodeType
-                value
-              }
-              nodeType
-            }
             json
           }
           subSections {
