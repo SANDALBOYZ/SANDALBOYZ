@@ -4,8 +4,16 @@ import get from 'lodash/get';
 
 import Head from '@utils/seo';
 import About from '@components/About';
+import logo from '@images/logo.jpg';
 
 const AboutPage = ({ data }) => {
+  const additionalSchemaOrg = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    url: 'https://www.sandalboyz.com',
+    logo: logo,
+  };
+
   return (
     <>
       <Head
@@ -14,7 +22,7 @@ const AboutPage = ({ data }) => {
           data,
           'aboutPage.edges[0].node.descriptionPlainText.descriptionPlainText'
         )}
-        // schemaType="AboutPage" // https://schema.org/AboutPage
+        additionalSchemaOrg={additionalSchemaOrg}
       />
       <About
         title={get(data, 'aboutPage.edges[0].node.title')}
