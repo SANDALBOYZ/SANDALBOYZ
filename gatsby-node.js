@@ -130,11 +130,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   fmImagesToRelative(node); // convert image paths for gatsby images
 
-  if (
-    node.internal.type === 'MarkdownRemark' &&
-    // @TODO: Figure out where this strange node is coming from!
-    node.id !== '78d4adbd-75d6-5aea-bf6e-7a2608ccf7dd'
-  ) {
+  // @TODO: Figure out `onCreateNode` for Contentful.
+  // `fileAbsolutePath` is missing from Contentful nodes and the following code uses that field.
+  if (node.internal.type === 'MarkdownRemark' && node.fileAbsolutePath) {
     const value = createFilePath({ node, getNode });
 
     if (node.frontmatter.templateKey === 'story') {
