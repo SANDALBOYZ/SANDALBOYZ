@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 // import qs from 'querystringify';
-import remark from 'remark';
-import html from 'remark-html';
 
 import getPrice from '@utils/price';
 import Head, { gtag } from '@utils/seo';
@@ -345,13 +343,8 @@ class Product extends Component {
             </styled.Selections>
 
             <styled.H600>Product Details</styled.H600>
-            <styled.Body
-              dangerouslySetInnerHTML={{
-                __html: remark()
-                  .use(html)
-                  .processSync(product.descriptionHtml)
-                  .toString(),
-              }}
+            <styled.Details
+              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
             <styled.Sizing onClick={this.handleOpenSizeChart}>
               <ContentLabel>View Sizing Chart</ContentLabel>

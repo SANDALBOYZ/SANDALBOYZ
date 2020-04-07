@@ -5,10 +5,14 @@ import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
-import { Body as BaseBody, H600 as BaseH600 } from '@utils/type';
+import { H600 as BaseH600 } from '@utils/type';
 import BaseIcon from '@components/Icon';
 
-export const Body = styled(BaseBody)`
+export const Details = styled.details`
+  font-family: ${fonts.STANDARD};
+  font-size: 15px;
+  font-weight: ${weights.LIGHT};
+  line-height: 28px;
   margin-bottom: ${space[5]};
 
   & a {
