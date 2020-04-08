@@ -8,7 +8,8 @@
 
 - Gatsby
 - React
-- Netlify CMS
+- Netlify CMS (soon to be deprecated)
+- Contentful
 
 ## Developing
 
@@ -18,4 +19,4 @@
 
 ## Deploying
 
-Deployments are done through Netlify!
+Builds are done through Gatsby Cloud and then deployed to Netlify.
