@@ -8,6 +8,7 @@ const slugify = require('slugify');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
+
   return graphql(`
     {
       allShopifyProduct {
