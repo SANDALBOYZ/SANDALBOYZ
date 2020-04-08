@@ -8,7 +8,7 @@ import { mq } from '@utils/styles';
 import { H600 as BaseH600 } from '@utils/type';
 import BaseIcon from '@components/Icon';
 
-export const Details = styled.details`
+export const Details = styled.div`
   font-family: ${fonts.STANDARD};
   font-size: 15px;
   font-weight: ${weights.LIGHT};
