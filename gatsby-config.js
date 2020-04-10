@@ -3,6 +3,7 @@ const netlifyFsAPI = require('netlify-cms-backend-fs/dist/fs');
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://sandalboyz.com',
