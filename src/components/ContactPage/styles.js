@@ -137,7 +137,7 @@ export const HelpText = styled.div`
 export const TalkWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${space[6]};
+  margin-top: ${space[8]};
   margin-bottom: ${space[8]};
   padding: 0 ${H_PADDING_MOBILE};
 
