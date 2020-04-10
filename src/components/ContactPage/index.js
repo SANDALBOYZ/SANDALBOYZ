@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 import { Body } from '@utils/type';
-import Button from '@components/Button';
-import Input from '@components/formElements/Input';
-import Textarea from '@components/formElements/Textarea';
+// import Button from '@components/Button';
+// import Input from '@components/formElements/Input';
+// import Textarea from '@components/formElements/Textarea';
 import * as styled from './styles';
 
 const Contact = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [orderNumber, setOrderNumber] = useState('');
-  const [message, setMessage] = useState('');
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [orderNumber, setOrderNumber] = useState('');
+  // const [message, setMessage] = useState('');
 
   return (
     <>

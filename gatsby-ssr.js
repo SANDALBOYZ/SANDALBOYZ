@@ -13,6 +13,7 @@ const zESettings = {
       },
       subject: true,
       fields: [
+        { id: 'subject', prefill: { '*': 'Order Number (if applicable)' } },
         { id: 'description', prefill: { '*': 'My dog ate my sandal!' } },
         { id: 360038322313, prefill: { '*': 'ABC123' } },
       ],
