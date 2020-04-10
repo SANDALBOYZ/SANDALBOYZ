@@ -94,17 +94,19 @@ const Wrapper = styled.label`
 `;
 
 const Input = React.forwardRef(
-  ({ error, label, name, prefix, size, type, ...rest }, ref) => {
+  ({ error, label, name, prefix, size, type, onChange, ...rest }, ref) => {
     let input = (
       <StyledInput
-        name={name}
+        id={name}
         ref={ref}
         size={size}
         type={type}
         hasPrefix={Boolean(prefix)}
+        onChange={onChange}
         {...rest}
       />
     );
+
     const WrapperComp = prefix ? Wrapper : styled.div``;
 
     if (error) {
@@ -125,11 +127,21 @@ const Input = React.forwardRef(
       );
     }
 
-    return (
-      <WrapperComp>
-        {prefix && <Prefix>{prefix}</Prefix>}
+    if(onChange) {
+      return (
+        <div>
         {input}
-      </WrapperComp>
+        </div>
+      )
+    }
+
+    return (
+      
+        <WrapperComp>
+        {prefix && <Prefix>{prefix}</Prefix>}
+        {input} 
+        </WrapperComp>
+      
     );
   }
 );
@@ -139,6 +151,9 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['large', 'xlarge']),
   type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.any
 };
 
 export default Input;
