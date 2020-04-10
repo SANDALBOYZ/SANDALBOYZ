@@ -25,7 +25,7 @@ const contactFormSettings = `
   window.zESettings = ${JSON.stringify(zESettings)};
 `;
 
-exports.onRenderBody = ({ pathname, setHeadComponents }) => {
+exports.onRenderBody = async ({ pathname, setHeadComponents }) => {
   return setHeadComponents([
     <script
       type="text/javascript"
