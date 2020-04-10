@@ -27,7 +27,7 @@ class SearchForm extends Component {
   };
 
   handleChange = evt => {
-    console.log(evt);
+    console.log('hi'); 
     this.setState({ query: evt.target.value });
   };
 
