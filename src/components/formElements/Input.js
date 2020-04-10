@@ -97,7 +97,7 @@ const Input = React.forwardRef(
   ({ error, label, name, prefix, size, type, onChange, ...rest }, ref) => {
     let input = (
       <StyledInput
-        id={name}
+        name={name}
         ref={ref}
         size={size}
         type={type}
