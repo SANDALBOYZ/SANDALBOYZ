@@ -14,15 +14,14 @@ const Contact = () => {
 
   return (
     <>
-      <styled.Container>
+      {/* <styled.Container>
         <styled.HelpText>
           <styled.H200>I need help with an order!</styled.H200>
           <Body>
-            If you have any questions at all about your order at any point in
-            time, please do not hesitate to use the form to get in touch
-            with a real life human being from SANDALBOYZ. We respond to any and
-            every topic regarding your order within 24 hours. All channels of contact
-            are guaranteed to be robot free.
+            Questions about your order? Please do not hesitate to use our yellow
+            floating help widget to get in touch with a real life human being
+            from SANDALBOYZ. We will respond to any and every topic regarding
+            your order within 24 hours. Guaranteed to be robot free.
           </Body>
         </styled.HelpText>
         <styled.Form data-netlify="true" name="Contact Form" method="POST">
@@ -72,21 +71,38 @@ const Contact = () => {
             </Button>
           </styled.FormActions>
         </styled.Form>
-      </styled.Container>
+      </styled.Container> */}
+
       <styled.TalkWrapper>
         <styled.TextWrapper>
-          <styled.H400>I just wanna talk!</styled.H400>
+          <styled.H200>I need help with an order!</styled.H200>
+          <Body>
+            Questions about your order? Please do not hesitate to use our yellow
+            floating help widget to get in touch with a real life human being
+            from SANDALBOYZ. We will respond to any and every topic regarding
+            your order within 24 hours. Guaranteed to be robot free{' '}
+            <span role="img" aria-label="no">
+              🚫
+            </span>
+            <span role="img" aria-label="robot">
+              🤖
+            </span>
+            .
+          </Body>
+        </styled.TextWrapper>
+        <styled.TextWrapper>
+          <styled.H200>I just wanna talk!</styled.H200>
           <Body>
             Have a non-order related question? Press? Sales? Just need someone
             to talk to? Shoulder to lean on? Please direct all other inquiries
             to our catchall contact email. Emails regarding orders sent to this
-            email address will (unfortunately) be laughed at and not responded to.
-            Just kidding, we respond to everything.
+            email address will (unfortunately) be laughed at and not responded
+            to. Just kidding, we respond to everything.
           </Body>
         </styled.TextWrapper>
         <styled.Emails>
           <styled.Email>
-            <styled.H600>Let's fucking talk!:</styled.H600>
+            <styled.H600>Let's fucking talk:</styled.H600>
             <a href="mailto:contact@sandalboyz.com">
               <Body>contact@sandalboyz.com</Body>
             </a>

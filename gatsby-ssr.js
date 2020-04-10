@@ -4,17 +4,23 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const zESettings = {
+  webWidget: {
+    contactForm: {
+      title: {
+        '*': 'Help',
+      },
+      subject: true,
+      fields: [
+        { id: 'description', prefill: { '*': 'My dog ate my sandal!' } },
+        { id: 360038322313, prefill: { '*': 'ABC123' } },
+      ],
+    },
+  },
+};
+
 const contactFormSettings = `
-  window.zESettings = {
-    webWidget: {
-      contactForm: {
-        fields: [
-          { id: 'description', prefill: { '*': 'I need help with an order!' } },
-          { id: 360038322313, prefill: { '*': 'Order #ABC123' } }
-        ]
-      }
-    }
-  };
+  window.zESettings = ${JSON.stringify(zESettings)};
 `;
 
 exports.onRenderBody = ({ pathname, setHeadComponents }) => {
