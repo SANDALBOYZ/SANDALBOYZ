@@ -151,9 +151,6 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['large', 'xlarge']),
   type: PropTypes.oneOf(['email', 'number', 'password', 'tel', 'text']),
-  placeholder: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.any
 };
 
 export default Input;
