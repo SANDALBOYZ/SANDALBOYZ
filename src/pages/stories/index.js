@@ -22,14 +22,6 @@ const StoriesPage = ({ data }) => {
     <>
       <Head title="Stories" />
       <motion.div {...fadeInEntry()}>
-        {featured && (
-          <FeaturedStory
-            href={get(featured, 'fields.slug')}
-            image={get(featured, 'frontmatter.hero.childImageSharp.fluid')}
-            label="Featured Story"
-            title={get(featured, 'frontmatter.title')}
-          />
-        )}
         {Array.isArray(get(data, 'stories.edges')) && (
           <StoriesGrid
             stories={get(data, 'stories.edges', []).map(({ node }) => ({
