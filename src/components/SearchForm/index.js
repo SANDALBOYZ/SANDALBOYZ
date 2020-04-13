@@ -10,6 +10,8 @@ import Input from '@components/formElements/Input';
 const Form = styled.form`
   position: relative;
   display: flex;
+  width: 100%;
+  justify-content: center;
   margin-bottom: ${space[4]};
 
   ${mq.gtlg} {

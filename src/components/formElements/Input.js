@@ -72,6 +72,10 @@ const StyledInput = styled.input`
   }
 `;
 
+const SearchbarWrapper = styled.div`
+  width: 50vw;
+`;
+
 const Wrapper = styled.label`
   display: flex;
   position: relative;
@@ -129,14 +133,13 @@ const Input = React.forwardRef(
 
     if(onChange) {
       return (
-        <div>
+        <SearchbarWrapper>
         {input}
-        </div>
+        </SearchbarWrapper>
       )
     }
 
     return (
-      
         <WrapperComp>
         {prefix && <Prefix>{prefix}</Prefix>}
         {input} 
