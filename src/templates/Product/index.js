@@ -59,11 +59,11 @@ class Product extends Component {
           brand: 'SANDALBOYZ',
           // @TODO: Make category dynamic.
           // category: 'Sandals',
-          id: selectedVariant.sku,
+          id: get(selectedVariant, 'sku'),
           name: get(product, 'title'),
-          variant: selectedVariant.title,
+          variant: get(selectedVariant, 'title'),
           quantity,
-          price: selectedVariant.price,
+          price: get(selectedVariant, 'price'),
         },
       ],
     });
