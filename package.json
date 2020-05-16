@@ -27,6 +27,7 @@
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-create-client-paths": "^2.1.15",
     "gatsby-plugin-google-gtag": "^1.2.1",
+    "gatsby-plugin-google-tagmanager": "^2.3.1",
     "gatsby-plugin-layout": "^1.1.24",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-netlify": "^2.1.19",
