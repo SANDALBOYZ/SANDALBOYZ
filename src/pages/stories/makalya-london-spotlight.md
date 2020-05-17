@@ -113,16 +113,69 @@ sections:
   - imageType: double
     images:
       - /assets/000301510026.jpg
-      - /assets/000301510017.jpg
+      - /assets/000301520036.jpg
     type: image
   - body: >-
-      Bacon ipsum dolor amet venison andouille short ribs, prosciutto pork loin
-      turducken ground round corned beef boudin chicken. Doner beef ribs
-      prosciutto, leberkas buffalo burgdoggen pig pancetta boudin rump ham hock
-      alcatra. Alcatra beef ribs biltong frankfurter kevin andouille cow. Swine
-      rump chislic, pork belly shoulder meatball ham alcatra sausage hamburger
-      pancetta venison cow boudin pork. T-bone tri-tip fatback sausage filet
-      mignon prosciutto landjaeger tenderloin meatloaf frankfurter salami.
+      **Yeah, a friend of mine told me modeling is “acting in stills.”**
+
+
+      Yes, definitely. When I got into college, I would have to speak in front
+      of classes and stuff. That was really hard for me. Even though I was very
+      comfortable in front of crowds, I never had to talk. So it was a new
+      experience for me. Body language is definitely a different language. When
+      I’m modeling, I have to get in character and pretend in order to evoke a
+      vibe.
+
+
+
+
+      **Can you talk about how you got into modeling? You self started your
+      career, right?**
+
+
+      It’s a crazy story. It kinda happened out of nowhere. I didn’t plan on it.
+      After graduating high school, I got really into watching makeup videos on
+      YouTube and just started making videos to post on Snapchat for my like 50
+      friends. I got so good at it that I started doing it for other people
+      locally. It was my bread on the side. To advertise my skills, I needed to
+      put together a portfolio of looks. I hit up this photographer girl on
+      Instagram, who I’m still friends with today, and went to LA to meet her,
+      which was also my first time in LA. A couple shots in, she said you need
+      to start modeling.
+
+
+
+
+      **She just saw your comfort in front of the camera.**
+
+
+      Yeah, from that day forward, I just started hitting up photographers on
+      Instagram left and right to shoot. I’ve been on billboards, in Sephora,
+      Walgreens, CVS, but I still appreciate the hustle when it comes to young
+      creatives trying to create.
+
+
+
+
+      **So you were a MUA before you were a model.**
+
+
+      Yeah, I always thought I was going to be working on shoots, just not in
+      front of the camera. I naively thought that I needed to be like a 6’2”,
+      100 pound girl to model. Not that there’s anything wrong with that. I just
+      wasn’t that. So, I did see a career in makeup.
+
+
+
+
+      **Were your parents always supportive of modelling?**
+
+
+      To be honest, they were confused at first. Meeting up with people that you
+      meet on Instagram was a foreign concept to them. So they were skeptical at
+      first of me spending what little gas money I had to bust out to LA to do
+      photoshoots with strangers. Although they were always supportive, they
+      really wanted me to just finish college.
     type: text
   - imageType: fullHeight
     images:
