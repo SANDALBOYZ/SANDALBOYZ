@@ -22,7 +22,14 @@ sections:
       to spread positivity. Her pursuit of individuality started at a young age,
       partly inspired by her exposure to dance and sports. Makayla shares that
       she still has two vintage Hot Topic rap tees that she bought when she was
-      13 years old – a Death Row Records shirt and Notorious B.I.G. shirt.
+      13 years old – a Death Row Records shirt and Notorious B.I.G. shirt – two
+      shirts that were the direct result of that very pursuit of uniqueness.
+
+
+      We find Makayla unique in the sea the modern day influencer culture in
+      that she strongly embraces her unique and – as she describes it – goofy
+      self. While her platform is never preachy, it often inspires a "be
+      yourself" and "have fun" message.
 
 
       See the full conversation below.
