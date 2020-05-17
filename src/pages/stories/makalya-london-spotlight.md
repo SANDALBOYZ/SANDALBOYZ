@@ -181,5 +181,128 @@ sections:
     images:
       - /assets/makayla-000301510018-wide.jpg
     type: image
+  - body: >-
+      **How much of the discipline that you fostered in the earlier life helped
+      you become successful as a model?**
+
+
+      I was just having a conversation with someone about this. It honestly set
+      the foundation for what I do nowadays. Both dance and soccer are team
+      activities, and they taught me that a team helps you go further. I also
+      learned to play to my strengths as opposed to trying to do everything. 
+
+
+
+
+      \---
+
+
+
+
+      Makayla shares a story with me about her auditioning for a Yeezy show in
+      September 2015. She flies, for her first time, to New York to audition and
+      comes back home to California on a red eye. Having found accomplishment
+      and fulfillment just in her in earnest efforts at auditioning, she chills
+      out in Los Angeles not expecting too highly to hear back. A few days after
+      the audition, at 10pm Los Angeles time, she receives an email asking her
+      to be in New York at 7am the next day – which is 4am Los Angeles time. The
+      logistics didn’t quite work out, but it was a pivotal point in her career.
+      The fruits of her hard work were starting to show.
+
+
+
+
+
+
+      \---
+
+
+
+
+      **So makeup, self-taught, model, self-taught, and music, self-taught.**
+
+
+      Haha, I never think of it that way. 
+
+
+
+
+      **And now clothing. Do you design it yourself?**
+
+
+      Yeah. I’m not in front of the computer putting it together on Illustrator,
+      but everything is from my head. The recent collection was inspired by
+      those typical “thank you” bags you get from stores. Anyone who knows me
+      knows that I’ll be in sweats all day which is why I made the sweatpants. I
+      wanted to be political but not too polarizing with it which is how I came
+      up with “War Is Lame.” It rolls off the tongue and it’s something that a
+      majority of people can get behind.
+
+
+
+
+      **The cozy vibe is the SANDALBOYZ vibe.**
+
+
+      Yes, haha.
+
+
+
+
+      **I think it goes without saying that being in an industry that makes such
+      an emphasis on appearance can be taxing. Especially with Instagram being
+      such a strong vehicle for that industry. How do you stay grounded and
+      balanced?**
+
+
+      I try to be myself as much as I can. I’m a goofy person, and I love
+      laughing. So, I try to embrace that. I have a solid group of friends
+      outside of my industry that provide support for me. I also try to go home
+      as much as I can. When you go back to the place where you grew up, it
+      really brings you the fuck down. When I’m at my mom and daddy’s, they keep
+      me in check.
+
+
+
+
+      **Beyond the friends and family, what else do you do?**
+
+
+      I like to journal. I have a relationship with God. I don’t see myself as
+      religious, but I have a one on one relationship with God, and it’s my own.
+      I write down my prayers. I put down on pen and paper what I’m thankful
+      for. It helps me visualize what I have. I also write down what I am
+      reaching for. Flipping back through the pages – that shit will literally
+      make me cry. Stuff that I wrote down before, I have now. I take the time
+      to get emotionally vulnerable with myself. Working out also helps out a
+      lot.
+
+
+
+
+      **We definitely need more of that.**
+
+
+      We need more of that. People aren’t vulnerable enough.
+
+
+
+
+      **What’s in store for the future?**
+
+
+      More mvkgear stuff in the pipeline. Hoping for good things to come from my
+      agency. And, more music! I’ll be spinning more.
+
+
+
+
+      \---
+
+
+
+
+      You can find out more about Makayla on her Instagram @mvkdre.
+    type: text
 ---
 
