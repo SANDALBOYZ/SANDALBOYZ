@@ -44,7 +44,7 @@ class Search extends Component {
       {
         query,
         results: this.index
-          .search(query, {})
+          .search(query, { expand: true })
           .map(({ ref }) => this.index.documentStore.getDoc(ref)),
       },
       () => {
