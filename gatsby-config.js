@@ -94,7 +94,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: 'GTM-K3CPKWQ',
+        id: process.env.GTM_CONTAINER_ID,
 
         // Include GTM in development.
         // Defaults to false meaning GTM will only be loaded in production.
@@ -106,9 +106,9 @@ module.exports = {
         defaultDataLayer: { platform: 'gatsby' },
 
         // Specify optional GTM environment details.
-        gtmAuth: 'elcQPK-jioOg22ZAaUSJww',
-        gtmPreview: 'env-1',
-        dataLayerName: 'dataLayer',
+        gtmAuth: process.env.GTM_AUTH,
+        gtmPreview: process.env.GTM_PREVIEW || 'env-1',
+        dataLayerName: process.env.GTM_DATA_LAYER_NAME || 'dataLayer',
       },
     },
     {
