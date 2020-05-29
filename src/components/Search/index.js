@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import { Index } from 'elasticlunr';
 import get from 'lodash/get';
@@ -23,7 +24,7 @@ class Search extends Component {
     this.state = {
       query,
       results: this.index
-        .search(query, {})
+        .search(query, { expand: true })
         .map(({ ref }) => this.index.documentStore.getDoc(ref)),
     };
   }
@@ -43,7 +44,7 @@ class Search extends Component {
       {
         query,
         results: this.index
-          .search(query, {})
+          .search(query, { expand: true })
           .map(({ ref }) => this.index.documentStore.getDoc(ref)),
       },
       () => {
@@ -90,5 +91,11 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  index: PropTypes.any,
+  location: PropTypes.any,
+  products: PropTypes.array,
+};
 
 export default Search;

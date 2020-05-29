@@ -72,6 +72,10 @@ const StyledInput = styled.input`
   }
 `;
 
+const SearchBarWrapper = styled.div`
+  width: 50vw;
+`;
+
 const Wrapper = styled.label`
   display: flex;
   position: relative;
@@ -94,7 +98,7 @@ const Wrapper = styled.label`
 `;
 
 const Input = React.forwardRef(
-  ({ error, label, name, prefix, size, type, ...rest }, ref) => {
+  ({ error, label, name, prefix, size, type, onChange, ...rest }, ref) => {
     let input = (
       <StyledInput
         name={name}
@@ -102,9 +106,11 @@ const Input = React.forwardRef(
         size={size}
         type={type}
         hasPrefix={Boolean(prefix)}
+        onChange={onChange}
         {...rest}
       />
     );
+
     const WrapperComp = prefix ? Wrapper : styled.div``;
 
     if (error) {
@@ -123,6 +129,10 @@ const Input = React.forwardRef(
           {input}
         </Label>
       );
+    }
+
+    if (onChange) {
+      return <SearchBarWrapper>{input}</SearchBarWrapper>;
     }
 
     return (
