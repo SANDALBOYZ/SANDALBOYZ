@@ -72,7 +72,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const SearchbarWrapper = styled.div`
+const SearchBarWrapper = styled.div`
   width: 50vw;
 `;
 
@@ -131,20 +131,15 @@ const Input = React.forwardRef(
       );
     }
 
-    if(onChange) {
-      return (
-        <SearchbarWrapper>
-        {input}
-        </SearchbarWrapper>
-      )
+    if (onChange) {
+      return <SearchBarWrapper>{input}</SearchBarWrapper>;
     }
 
     return (
-        <WrapperComp>
+      <WrapperComp>
         {prefix && <Prefix>{prefix}</Prefix>}
-        {input} 
-        </WrapperComp>
-      
+        {input}
+      </WrapperComp>
     );
   }
 );
