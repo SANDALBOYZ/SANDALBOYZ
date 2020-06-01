@@ -81,6 +81,13 @@ export const Sections = styled.div`
     letter-spacing: -0.01em;
     line-height: 40px;
     text-transform: uppercase;
+    margin: ${space[4]} auto;
+    padding: 0 ${H_PADDING_MOBILE};
+    max-width: ${space[15]};
+
+    ${mq.gtlg} {
+      padding: 0;
+    }
   }
 
   & h2 {
