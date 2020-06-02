@@ -30,6 +30,18 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulArticle {
+        edges {
+          node {
+            author
+            title
+            body {
+              json
+            }
+            slug
+          }
+        }
+      }
     }
   `).then(result => {
     // Create product pages
@@ -52,6 +64,26 @@ exports.createPages = ({ graphql, actions }) => {
         component: path.resolve('./src/templates/Story/index.js'),
         context: {
           id: node.id,
+        },
+      });
+    });
+
+    result.data.allContentfulArticle.edges.forEach(({ node }) => {
+      console.log('\n\ncontentful testing');
+      console.log(node);
+
+      const assetContentfulIds = node.body.json.content
+        .filter(c => c.nodeType === 'embedded-asset-block')
+        .map(c => c.data.target.sys.contentful_id);
+
+      console.log(assetContentfulIds);
+
+      createPage({
+        path: `contentful-stories/${node.slug}`,
+        component: path.resolve('./src/templates/ContentfulTest/index.js'),
+        context: {
+          slug: node.slug,
+          assetContentfulIds,
         },
       });
     });
