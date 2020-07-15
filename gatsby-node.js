@@ -68,6 +68,7 @@ exports.createPages = ({ graphql, actions }) => {
       });
     });
 
+    // Create story pages from Contentful
     result.data.allContentfulArticle.edges.forEach(({ node }) => {
       console.log('\n\ncontentful testing');
       console.log(node);
