@@ -214,5 +214,6 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST || 'preview.contentful.com',
       },
     },
+    'gatsby-plugin-remove-trailing-slashes',
   ],
 };
