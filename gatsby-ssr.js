@@ -23,6 +23,8 @@ const contactFormSettings = `
   window.zESettings = ${JSON.stringify(zESettings)};
 `;
 
+const FACEBOOK_PIXEL_ID = process.env.FACEBOOK_PIXEL_ID || '2359259647497093';
+
 exports.onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
   if (process.env.NODE_ENV === 'production') {
     setHeadComponents([
@@ -38,7 +40,10 @@ exports.onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${process.env.FACEBOOK_PIXEL_ID || '2359259647497093'}');
+
+            // See https://developers.facebook.com/docs/marketing-apis/data-processing-options
+            fbq('dataProcessingOptions', ['LDU'], 0, 0);
+            fbq('init', '${FACEBOOK_PIXEL_ID}');
             fbq('track', 'PageView');
           `,
         }}
