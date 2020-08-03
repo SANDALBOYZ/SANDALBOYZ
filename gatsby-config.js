@@ -92,6 +92,26 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: process.env.GTM_CONTAINER_ID,
+
+        // Include GTM in development.
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: false,
+
+        // datalayer to be set before GTM is loaded
+        // should be an object or a function that is executed in the browser
+        // Defaults to null
+        defaultDataLayer: { platform: 'gatsby' },
+
+        // Specify optional GTM environment details.
+        gtmAuth: process.env.GTM_AUTH,
+        gtmPreview: process.env.GTM_PREVIEW || 'env-1',
+        dataLayerName: process.env.GTM_DATA_LAYER_NAME || 'dataLayer',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         short_name: 'SANDALBOYZ',
@@ -194,5 +214,6 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST || 'preview.contentful.com',
       },
     },
+    'gatsby-plugin-remove-trailing-slashes',
   ],
 };
