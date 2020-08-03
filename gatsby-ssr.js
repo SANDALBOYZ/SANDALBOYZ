@@ -38,7 +38,7 @@ exports.onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${process.env.FACEBOOK_PIXEL_ID}');
+            fbq('init', '${process.env.FACEBOOK_PIXEL_ID || '2359259647497093'}');
             fbq('track', 'PageView');
           `,
         }}
