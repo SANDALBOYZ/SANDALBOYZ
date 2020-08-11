@@ -80,15 +80,13 @@ class ProductImages extends Component {
               />
             </styled.ImageWrapper>
           ))}
-          {videos.map((video, idx) => {
-            return (
-              <styled.ImageWrapper key={video.id}>
-                <styled.Video autoPlay loop>
-                  <source src={video.file.url} />
-                </styled.Video>
-              </styled.ImageWrapper>
-            );
-          })}
+          {videos.map(video => (
+            <styled.ImageWrapper key={video.id}>
+              <styled.Video autoPlay loop>
+                <source src={video.file.url} />
+              </styled.Video>
+            </styled.ImageWrapper>
+          ))}
         </styled.ProductImagesWrapper>
       </>
     );
