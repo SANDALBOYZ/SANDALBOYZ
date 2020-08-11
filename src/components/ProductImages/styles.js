@@ -124,3 +124,7 @@ export const ProductImagesWrapper = styled(motion.div)`
     width: 60%;
   }
 `;
+
+export const Video = styled.video`
+  width: 100%;
+`;

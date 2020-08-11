@@ -7,6 +7,7 @@ import * as styled from './styles';
 class ProductImages extends Component {
   static propTypes = {
     images: PropTypes.arrayOf(PropTypes.object),
+    videos: PropTypes.arrayOf(PropTypes.object),
   };
 
   state = {
@@ -30,7 +31,7 @@ class ProductImages extends Component {
   };
 
   render() {
-    const { images } = this.props;
+    const { images, videos } = this.props;
     const { activeIndex, showModal } = this.state;
 
     return (
@@ -79,6 +80,15 @@ class ProductImages extends Component {
               />
             </styled.ImageWrapper>
           ))}
+          {videos.map((video, idx) => {
+            return (
+              <styled.ImageWrapper key={video.id}>
+                <styled.Video autoPlay loop>
+                  <source src={video.file.url} />
+                </styled.Video>
+              </styled.ImageWrapper>
+            );
+          })}
         </styled.ProductImagesWrapper>
       </>
     );
