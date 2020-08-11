@@ -279,7 +279,10 @@ class Product extends Component {
               </styled.Status>
             )}
           </styled.MobileProductTitle>
-          <ProductImages images={product.images} />
+          <ProductImages
+            images={product.images}
+            videos={get(data, 'contentfulProduct.videos', [])}
+          />
           <styled.ProductInfo {...fadeInRight}>
             <Breakpoint min={breakpoints.lg}>
               <H300>{product.title}</H300>
@@ -494,6 +497,15 @@ export const query = graphql`
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
+        }
+      }
+    }
+    contentfulProduct(handle: { eq: $handle }) {
+      videos {
+        id
+        description
+        file {
+          url
         }
       }
     }
