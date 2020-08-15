@@ -82,7 +82,7 @@ class ProductImages extends Component {
           ))}
           {videos.map(video => (
             <styled.ImageWrapper key={video.id}>
-              <styled.Video autoPlay loop>
+              <styled.Video autoBuffer autoPlay loop muted playsInline>
                 <source src={video.file.url} />
               </styled.Video>
             </styled.ImageWrapper>
