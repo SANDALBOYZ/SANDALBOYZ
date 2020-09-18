@@ -64,35 +64,55 @@ const storyRendererOptions = {
 };
 
 export const StoryTemplate = ({ data }) => {
-  const story = {};
-
   console.log(data);
-  const article = data.articles.edges[0].node;
+  const article = data.contentfulArticle;
+
+  const schemaOrg = {
+    author: {
+      '@type': 'Person',
+      name: article.author[0],
+    },
+    image: article.heroImage.fluid.src,
+    datePublished: article.createdAt,
+    headline: article.previewText.previewText || article.title,
+    publisher: {
+      '@type': 'Organization',
+      name: 'SANDALBOYZ',
+      logo: {
+        '@type': 'ImageObject',
+        // @TODO: Make this `siteUrl` dynamic. No hardcode!
+        url: `https://sandalboyz.com${shareImage}`,
+      },
+    },
+  };
 
   return (
     <>
+      <Head
+        title={article.title}
+        description={article.previewText.previewText}
+        schemaType="Article" // https://schema.org/Article
+        ogType="article" // https://ogp.me/#type_article
+        image={article.heroImage.fluid.src}
+        slug={article.slug}
+        additionalSchemaOrg={schemaOrg}
+      />
       <styled.Hero>
         <styled.Background>
-          <AbsoluteImg
-            fluid={get(story, 'frontmatter.hero.childImageSharp.fluid')}
-          />
+          <AbsoluteImg fluid={article.heroImage.fluid} />
         </styled.Background>
         <styled.Box>
-          <H100>{get(story, 'frontmatter.title')}</H100>
+          <H100>{article.title}</H100>
         </styled.Box>
-        {get(story, 'frontmatter.authors.length') > 0 && (
-          <styled.Authors>
-            {story.frontmatter.authors.map(author => (
-              <styled.ContentLabel key={author}>{author}</styled.ContentLabel>
-            ))}
-          </styled.Authors>
-        )}
+        <styled.Authors>
+          {article.author.map(auth => (
+            <styled.ContentLabel key={auth}>{auth}</styled.ContentLabel>
+          ))}
+        </styled.Authors>
       </styled.Hero>
-      {get(story, 'frontmatter.lede') && (
-        <styled.Lede>
-          <H200>{story.frontmatter.lede}</H200>
-        </styled.Lede>
-      )}
+      <styled.Lede>
+        <H200>{article.previewText.previewText}</H200>
+      </styled.Lede>
       <styled.Sections>
         {documentToReactComponents(
           get(article, 'body.json'),
@@ -103,57 +123,31 @@ export const StoryTemplate = ({ data }) => {
   );
 };
 
-class Story extends Component {
-  render() {
-    const { data } = this.props;
-
-    // https://developers.google.com/search/docs/data-types/article
-    const schemaOrg = {
-      author: {
-        '@type': 'Person',
-        name: get(data, 'story.frontmatter.authors[0]'),
-      },
-      image: get(data, 'story.frontmatter.hero.childImageSharp.fluid.src'),
-      datePublished: get(data, 'story.frontmatter.date'),
-      headline:
-        get(data, 'story.frontmatter.lede') ||
-        get(data, 'story.frontmatter.title'),
-      publisher: {
-        '@type': 'Organization',
-        name: 'SANDALBOYZ',
-        logo: {
-          '@type': 'ImageObject',
-          // @TODO: Make this `siteUrl` dynamic. No hardcode!
-          url: `https://sandalboyz.com${shareImage}`,
-        },
-      },
-    };
-
-    return (
-      <>
-        <Head
-          title={get(data, 'story.frontmatter.title')}
-          description={get(data, 'story.frontmatter.lede')}
-          schemaType="Article" // https://schema.org/Article
-          ogType="article" // https://ogp.me/#type_article
-          image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
-          slug={get(data, 'story.fields.slug')}
-          additionalSchemaOrg={schemaOrg}
-        />
-        <StoryTemplate story={data.story} />
-      </>
-    );
-  }
-}
-
-export default Story;
+export default StoryTemplate;
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query MyQuery($slug: String) {
     contentfulArticle(slug: { eq: $slug }) {
+      slug
+      createdAt
+      title
       author
       body {
         json
+      }
+      heroImage {
+        fluid {
+          aspectRatio
+          sizes
+          src
+          srcSet
+        }
+      }
+      previewText {
+        previewText
+        childMarkdownRemark {
+          rawMarkdownBody
+        }
       }
     }
   }

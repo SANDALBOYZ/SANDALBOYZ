@@ -1,3 +1,4 @@
+// https://gist.github.com/daydream05/b5befd50f9c9001fb094f331f98a3ec5
 import _ from 'lodash';
 import qs from 'qs';
 // @see https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&-cropping/specify-width-&-height
@@ -47,8 +48,6 @@ const createUrl = (imgUrl, options = {}) => {
 
 export const getFluidGatsbyImage = (image, options) => {
   if (!isImage(image)) return null;
-
-  console.log(image);
 
   const { baseUrl, width, aspectRatio } = getBasicImageProps(image, options);
 
