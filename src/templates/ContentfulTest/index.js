@@ -29,8 +29,6 @@ const ARTICLE_FULL_WIDTH_IMAGE = 'articleFullWidthImage';
 const storyRendererOptions = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: node => {
-      console.log('embedded block entry');
-      console.log(node);
       const contentType = node.data.target.sys.contentType.sys['contentful_id'];
 
       const gatsbyFluidImages = get(

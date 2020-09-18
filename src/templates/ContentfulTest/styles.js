@@ -149,6 +149,10 @@ export const Sections = styled.div`
     font-weight: ${weights.BOLD};
   }
 
+  & b {
+    font-weight: ${weights.BOLD};
+  }
+
   & p {
     font-family: ${fonts.STANDARD};
     font-size: 15px;
