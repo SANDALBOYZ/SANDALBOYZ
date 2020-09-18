@@ -58,6 +58,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
 
     // Create story pages
+    // DEPRECATION WARNING! We will deprecate using `allMarkdownRemark` (which is Netlify CMS)
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
         path: node.fields.slug,
@@ -68,24 +69,16 @@ exports.createPages = ({ graphql, actions }) => {
       });
     });
 
-    // TODO: Finish pulling stories from Contentful!
     // Create story pages from Contentful
     result.data.allContentfulArticle.edges.forEach(({ node }) => {
-      console.log('\n\ncontentful testing');
-      console.log(node);
-
-      const assetContentfulIds = node.body.json.content
-        .filter(c => c.nodeType === 'embedded-asset-block')
-        .map(c => c.data.target.sys.contentful_id);
-
-      console.log(assetContentfulIds);
+      console.log('Creating story page from Contentful!');
 
       createPage({
+        // TODO: Change this path!
         path: `contentful-stories/${node.slug}`,
         component: path.resolve('./src/templates/ContentfulTest/index.js'),
         context: {
           slug: node.slug,
-          assetContentfulIds,
         },
       });
     });
