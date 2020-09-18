@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 import styled from 'styled-components';
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { getFluidGatsbyImage } from '@utils/getFluidGatsbyImage';
@@ -32,7 +32,29 @@ const ContentfulTestPage = ({ data }) => {
 
   const storyRendererOptions = {
     renderNode: {
+      [INLINES.EMBEDDED_ENTRY]: node => {
+        console.log('embedded inline entry');
+        console.log(node);
+        const contentType =
+          node.data.target.sys.contentType.sys['contentful_id'];
+
+        const gatsbyFluidImages = get(
+          node,
+          "data.target.fields.images['en-US']",
+          []
+        ).map(image => {
+          const imageFile = {
+            file: image.fields.file['en-US'],
+          };
+
+          return getFluidGatsbyImage(imageFile, { maxWidth: 1080 });
+        });
+
+        return <span>inline entry</span>
+      },
       [BLOCKS.EMBEDDED_ENTRY]: node => {
+        console.log('embedded block entry');
+        console.log(node);
         const contentType =
           node.data.target.sys.contentType.sys['contentful_id'];
 
