@@ -156,7 +156,7 @@ module.exports = {
         // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
         verbose: true,
-        apiVersion: '2020-01',
+        apiVersion: process.env.GATSBY_SHOPIFY_API_VERSION || '2020-07',
         paginationSize: 250,
       },
     },
