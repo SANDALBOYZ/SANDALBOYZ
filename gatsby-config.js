@@ -150,8 +150,6 @@ module.exports = {
     {
       resolve: 'gatsby-source-shopify',
       options: {
-        // Example: 'gatsby-source-shopify-test-shop' if your Shopify address is
-        // 'gatsby-source-shopify-test-shop.myshopify.com'.
         shopName: process.env.GATSBY_SHOP_NAME,
         // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,

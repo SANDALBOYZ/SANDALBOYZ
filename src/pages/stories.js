@@ -17,9 +17,9 @@ const StoriesPage = ({ data }) => {
       <motion.div {...fadeInEntry()}>
         {featured && (
           <FeaturedStory
+            label="Featured Story"
             href={get(featured, 'fields.slug')}
             image={get(featured, 'frontmatter.hero.childImageSharp.fluid')}
-            label="Featured Story"
             title={get(featured, 'frontmatter.title')}
           />
         )}
@@ -27,7 +27,7 @@ const StoriesPage = ({ data }) => {
           <StoriesGrid
             stories={get(data, 'articles.edges', []).map(({ node }) => ({
               id: get(node, 'id'),
-              date: get(node, 'createdAt'),
+              date: get(node, 'publishDate'),
               href: get(node, 'slug'),
               image: get(node, 'heroImage.fluid'),
               lede: get(node, 'previewText.previewText'),
@@ -45,7 +45,7 @@ export default StoriesPage;
 
 export const query = graphql`
   query StoriesPageQuery {
-    articles: allContentfulArticle(sort: { order: DESC, fields: createdAt }) {
+    articles: allContentfulArticle(sort: { order: DESC, fields: publishDate }) {
       edges {
         node {
           id
@@ -57,6 +57,7 @@ export const query = graphql`
             previewText
           }
           createdAt
+          publishDate
           heroImage {
             fluid {
               sizes
