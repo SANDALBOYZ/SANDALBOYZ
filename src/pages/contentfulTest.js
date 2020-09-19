@@ -1,123 +1,69 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { motion } from 'framer-motion';
 import get from 'lodash/get';
-import styled from 'styled-components';
-import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-import { getFluidGatsbyImage } from '@utils/getFluidGatsbyImage';
 import Head from '@utils/seo';
-import {
-  DoubleImage,
-  FullHeightImage,
-  FullWidthImage,
-  OffsetGridImage,
-  SplitImage,
-} from '@components/StoryImage';
+import { fadeInEntry } from '@utils/animations';
+import FeaturedStory from '@components/FeaturedStory';
+import StoriesGrid from '@components/StoriesGrid';
 
-// These `CONTENT TYPE ID` fields match the ones in Contentful.
-const ARTICLE_DOUBLE_IMAGE = 'articleDoubleImage';
-const ARTICLE_DOUBLE_SPLIT_IMAGE = 'articleDoubleSplitImage';
-const ARTICLE_FULL_HEIGHT_IMAGE = 'articleFullHeightImage';
-const ARTICLE_OFFSET_GRID_IMAGE = 'articleOffsetGridImage';
-const ARTICLE_FULL_WIDTH_IMAGE = 'articleFullWidthImage';
-
-const Container = styled.div`
-  margin-top: 100px;
-`;
-
-const ContentfulTestPage = ({ data }) => {
-  console.log(data);
-  const article = data.articles.edges[0].node;
-
-  const storyRendererOptions = {
-    renderNode: {
-      [INLINES.EMBEDDED_ENTRY]: node => {
-        console.log('embedded inline entry');
-        console.log(node);
-        const contentType =
-          node.data.target.sys.contentType.sys['contentful_id'];
-
-        const gatsbyFluidImages = get(
-          node,
-          "data.target.fields.images['en-US']",
-          []
-        ).map(image => {
-          const imageFile = {
-            file: image.fields.file['en-US'],
-          };
-
-          return getFluidGatsbyImage(imageFile, { maxWidth: 1080 });
-        });
-
-        return <span>inline entry</span>
-      },
-      [BLOCKS.EMBEDDED_ENTRY]: node => {
-        console.log('embedded block entry');
-        console.log(node);
-        const contentType =
-          node.data.target.sys.contentType.sys['contentful_id'];
-
-        const gatsbyFluidImages = get(
-          node,
-          "data.target.fields.images['en-US']",
-          []
-        ).map(image => {
-          const imageFile = {
-            file: image.fields.file['en-US'],
-          };
-
-          return getFluidGatsbyImage(imageFile, { maxWidth: 1080 });
-        });
-
-        switch (contentType) {
-          case ARTICLE_DOUBLE_IMAGE:
-            return <DoubleImage images={gatsbyFluidImages} />;
-          case ARTICLE_DOUBLE_SPLIT_IMAGE:
-            return <SplitImage images={gatsbyFluidImages} />;
-          case ARTICLE_FULL_HEIGHT_IMAGE:
-            return <FullHeightImage image={gatsbyFluidImages[0]} />;
-          case ARTICLE_OFFSET_GRID_IMAGE:
-            return <OffsetGridImage images={gatsbyFluidImages} />;
-          case ARTICLE_FULL_WIDTH_IMAGE:
-            return <FullWidthImage image={gatsbyFluidImages[0]} />;
-          default:
-            return <div />;
-        }
-      },
-      [BLOCKS.EMBEDDED_ASSET]: node => {
-        console.log('embedded asset!!!!');
-        console.log(node);
-
-        return <div>embedded asset like an image</div>;
-      },
-    },
-  };
+const StoriesPage = ({ data }) => {
+  const featured = null;
 
   return (
-    <Container>
-      <div>Hi</div>
-      <div>
-        {get(article, 'author[0]')}
-        {documentToReactComponents(
-          get(article, 'body.json'),
-          storyRendererOptions
+    <>
+      <Head title="Stories" />
+      <motion.div {...fadeInEntry()}>
+        {featured && (
+          <FeaturedStory
+            href={get(featured, 'fields.slug')}
+            image={get(featured, 'frontmatter.hero.childImageSharp.fluid')}
+            label="Featured Story"
+            title={get(featured, 'frontmatter.title')}
+          />
         )}
-      </div>
-    </Container>
+        {Array.isArray(get(data, 'articles.edges')) && (
+          <StoriesGrid
+            stories={get(data, 'articles.edges', []).map(({ node }) => ({
+              id: get(node, 'id'),
+              date: get(node, 'createdAt'),
+              href: get(node, 'slug'),
+              image: get(node, 'heroImage.fluid'),
+              lede: get(node, 'previewText.previewText'),
+              tags: get(node, 'articleCategories', []),
+              title: get(node, 'title'),
+            }))}
+          />
+        )}
+      </motion.div>
+    </>
   );
 };
 
-export default ContentfulTestPage;
+export default StoriesPage;
 
 export const contentfulTestPageQuery = graphql`
   query ContentfulTestPageQuery {
-    articles: allContentfulArticle {
+    articles: allContentfulArticle(sort: {order: DESC, fields: createdAt}) {
       edges {
         node {
+          id
           author
-          body {
-            json
+          title
+          photographer
+          slug
+          previewText {
+            previewText
+          }
+          createdAt
+          heroImage {
+            fluid {
+              sizes
+              src
+              srcSet
+              aspectRatio
+            }
           }
         }
       }
