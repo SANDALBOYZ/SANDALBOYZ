@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import shareImage from '@images/shareImage.jpg';
 import Head from '@utils/seo';
 import { AbsoluteImg } from '@utils/styles';
 import { H100, H200 } from '@utils/type';
+import { getFluidGatsbyImage } from '@utils/getFluidGatsbyImage';
 import {
   DoubleImage,
   FullHeightImage,
@@ -16,141 +19,133 @@ import {
 } from '@components/StoryImage';
 import * as styled from './styles';
 
-export const StoryTemplate = ({ story }) => {
-  const renderSection = (section, idx) => {
-    if (section.type === 'image') {
-      const { caption, imageType } = section;
-      const images = get(section, 'images', []).map(image =>
-        get(image, 'childImageSharp.fluid')
-      );
+// These `CONTENT TYPE ID` fields match the ones in Contentful.
+const ARTICLE_DOUBLE_IMAGE = 'articleDoubleImage';
+const ARTICLE_DOUBLE_SPLIT_IMAGE = 'articleDoubleSplitImage';
+const ARTICLE_FULL_HEIGHT_IMAGE = 'articleFullHeightImage';
+const ARTICLE_OFFSET_GRID_IMAGE = 'articleOffsetGridImage';
+const ARTICLE_FULL_WIDTH_IMAGE = 'articleFullWidthStretchImage';
 
-      switch (imageType) {
-        case 'double':
-          return <DoubleImage images={images} />;
-        case 'fullHeight':
-          return <FullHeightImage image={images[0]} />;
-        case 'fullWidth':
-          return <FullWidthImage image={images[0]} />;
-        case 'offsetGrid':
-          return <OffsetGridImage images={images} />;
-        case 'split':
-          return <SplitImage caption={caption} images={images} />;
-        case 'twoThirds':
-          return <TwoThirdsImage image={images[0]} />;
+const storyRendererOptions = {
+  renderNode: {
+    [BLOCKS.EMBEDDED_ENTRY]: node => {
+      const contentType = node.data.target.sys.contentType.sys['contentful_id'];
 
-        default: // no default
+      const gatsbyFluidImages = get(
+        node,
+        "data.target.fields.images['en-US']",
+        []
+      ).map(image => {
+        const imageFile = {
+          file: image.fields.file['en-US'],
+        };
+
+        return getFluidGatsbyImage(imageFile, { maxWidth: 1080 });
+      });
+
+      switch (contentType) {
+        case ARTICLE_DOUBLE_IMAGE:
+          return <DoubleImage images={gatsbyFluidImages} />;
+        case ARTICLE_DOUBLE_SPLIT_IMAGE:
+          return <SplitImage images={gatsbyFluidImages} />;
+        case ARTICLE_FULL_HEIGHT_IMAGE:
+          return <FullHeightImage image={gatsbyFluidImages[0]} />;
+        case ARTICLE_OFFSET_GRID_IMAGE:
+          return <OffsetGridImage images={gatsbyFluidImages} />;
+        case ARTICLE_FULL_WIDTH_IMAGE:
+          return <FullWidthImage image={gatsbyFluidImages[0]} />;
+        default:
+          return <div />;
       }
-    }
+    },
+  },
+};
 
-    return <div key={idx} dangerouslySetInnerHTML={{ __html: section.html }} />;
+export const StoryTemplate = ({ data }) => {
+  console.log(data);
+  const article = data.contentfulArticle;
+
+  const schemaOrg = {
+    author: {
+      '@type': 'Person',
+      name: article.author[0],
+    },
+    image: article.heroImage.fluid.src,
+    datePublished: article.createdAt,
+    headline: article.previewText.previewText || article.title,
+    publisher: {
+      '@type': 'Organization',
+      name: 'SANDALBOYZ',
+      logo: {
+        '@type': 'ImageObject',
+        // @TODO: Make this `siteUrl` dynamic. No hardcode!
+        url: `https://sandalboyz.com${shareImage}`,
+      },
+    },
   };
 
   return (
     <>
+      <Head
+        title={article.title}
+        description={article.previewText.previewText}
+        schemaType="Article" // https://schema.org/Article
+        ogType="article" // https://ogp.me/#type_article
+        image={article.heroImage.fluid.src}
+        slug={article.slug}
+        additionalSchemaOrg={schemaOrg}
+      />
       <styled.Hero>
         <styled.Background>
-          <AbsoluteImg
-            fluid={get(story, 'frontmatter.hero.childImageSharp.fluid')}
-          />
+          <AbsoluteImg fluid={article.heroImage.fluid} />
         </styled.Background>
         <styled.Box>
-          <H100>{get(story, 'frontmatter.title')}</H100>
+          <H100>{article.title}</H100>
         </styled.Box>
-        {get(story, 'frontmatter.authors.length') > 0 && (
-          <styled.Authors>
-            {story.frontmatter.authors.map(author => (
-              <styled.ContentLabel key={author}>{author}</styled.ContentLabel>
-            ))}
-          </styled.Authors>
-        )}
+        <styled.Authors>
+          {article.author.map(auth => (
+            <styled.ContentLabel key={auth}>{auth}</styled.ContentLabel>
+          ))}
+        </styled.Authors>
       </styled.Hero>
-      {get(story, 'frontmatter.lede') && (
-        <styled.Lede>
-          <H200>{story.frontmatter.lede}</H200>
-        </styled.Lede>
-      )}
+      <styled.Lede>
+        <H200>{article.previewText.previewText}</H200>
+      </styled.Lede>
       <styled.Sections>
-        {get(story, 'fields.sections', []).map(renderSection)}
+        {documentToReactComponents(
+          get(article, 'body.json'),
+          storyRendererOptions
+        )}
       </styled.Sections>
     </>
   );
 };
 
-class Story extends Component {
-  render() {
-    const { data } = this.props;
+export default StoryTemplate;
 
-    // https://developers.google.com/search/docs/data-types/article
-    const schemaOrg = {
-      author: {
-        '@type': 'Person',
-        name: get(data, 'story.frontmatter.authors[0]'),
-      },
-      image: get(data, 'story.frontmatter.hero.childImageSharp.fluid.src'),
-      datePublished: get(data, 'story.frontmatter.date'),
-      headline: get(data, 'story.frontmatter.lede') || get(data, 'story.frontmatter.title'),
-      publisher: {
-        '@type': 'Organization',
-        name: 'SANDALBOYZ',
-        logo: {
-          '@type': 'ImageObject',
-          // @TODO: Make this `siteUrl` dynamic. No hardcode!
-          url: `https://sandalboyz.com${shareImage}`,
-        },
-      },
-    };
-
-    return (
-      <>
-        <Head
-          title={get(data, 'story.frontmatter.title')}
-          description={get(data, 'story.frontmatter.lede')}
-          schemaType="Article" // https://schema.org/Article
-          ogType="article" // https://ogp.me/#type_article
-          image={get(data, 'story.frontmatter.hero.childImageSharp.fluid.src')}
-          slug={get(data, 'story.fields.slug')}
-          additionalSchemaOrg={schemaOrg}
-        />
-        <StoryTemplate story={data.story} />
-      </>
-    );
-  }
-}
-
-export default Story;
-
-export const pageQuery = graphql`
-  query StoryById($id: String!) {
-    story: markdownRemark(id: { eq: $id }) {
-      id
-      fields {
-        sections {
-          caption
-          html
-          imageType
-          images {
-            childImageSharp {
-              fluid(maxWidth: 2048, quality: 90) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
-            }
-          }
-          type
-        }
-        slug
+export const query = graphql`
+  query StoryTemplateQuery($slug: String) {
+    contentfulArticle(slug: { eq: $slug }) {
+      slug
+      createdAt
+      title
+      author
+      body {
+        json
       }
-      frontmatter {
-        authors
-        hero {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 90) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+      heroImage {
+        fluid {
+          aspectRatio
+          sizes
+          src
+          srcSet
         }
-        lede
-        title
-        date
+      }
+      previewText {
+        previewText
+        childMarkdownRemark {
+          rawMarkdownBody
+        }
       }
     }
   }

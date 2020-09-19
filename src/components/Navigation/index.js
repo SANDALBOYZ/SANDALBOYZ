@@ -100,11 +100,9 @@ class Navigation extends Component {
             <styled.NavLink to="/products" partiallyActive>
               Products
             </styled.NavLink>
-            {showStories && (
-              <styled.NavLink to="/stories" partiallyActive>
-                Stories
-              </styled.NavLink>
-            )}
+            <styled.NavLink to="/stories" partiallyActive>
+              Stories
+            </styled.NavLink>
             <styled.NavLink to="/about">About</styled.NavLink>
             <styled.NavLink to="/contact">Contact</styled.NavLink>
           </styled.NavSection>

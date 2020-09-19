@@ -61,7 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
     // DEPRECATION WARNING! We will deprecate using `allMarkdownRemark` (which is Netlify CMS)
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
-        path: node.fields.slug,
+        path: `legacy-stories/${node.fields.slug}`,
         component: path.resolve('./src/templates/Story/index.js'),
         context: {
           id: node.id,
@@ -75,8 +75,8 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         // TODO: Change this path!
-        path: `contentful-stories/${node.slug}`,
-        component: path.resolve('./src/templates/ContentfulTest/index.js'),
+        path: `stories/${node.slug}`,
+        component: path.resolve('./src/templates/Story/index.js'),
         context: {
           slug: node.slug,
         },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, navigate } from 'gatsby';
+import { graphql } from 'gatsby';
 import { motion } from 'framer-motion';
 import get from 'lodash/get';
 
@@ -9,14 +9,7 @@ import FeaturedStory from '@components/FeaturedStory';
 import StoriesGrid from '@components/StoriesGrid';
 
 const StoriesPage = ({ data }) => {
-  if (!get(data, 'stories.edges.length')) {
-    navigate('/');
-  }
-
-  let featured = get(data, 'featured');
-  if (!featured) {
-    featured = get(data, 'stories.edges[0].node');
-  }
+  const featured = null;
 
   return (
     <>
@@ -30,16 +23,16 @@ const StoriesPage = ({ data }) => {
             title={get(featured, 'frontmatter.title')}
           />
         )}
-        {Array.isArray(get(data, 'stories.edges')) && (
+        {Array.isArray(get(data, 'articles.edges')) && (
           <StoriesGrid
-            stories={get(data, 'stories.edges', []).map(({ node }) => ({
+            stories={get(data, 'articles.edges', []).map(({ node }) => ({
               id: get(node, 'id'),
-              date: get(node, 'frontmatter.date'),
-              href: get(node, 'fields.slug'),
-              image: get(node, 'frontmatter.hero.childImageSharp.fluid'),
-              lede: get(node, 'frontmatter.lede'),
-              tags: get(node, 'frontmatter.tags', []),
-              title: get(node, 'frontmatter.title'),
+              date: get(node, 'createdAt'),
+              href: get(node, 'slug'),
+              image: get(node, 'heroImage.fluid'),
+              lede: get(node, 'previewText.previewText'),
+              tags: get(node, 'articleCategories', []),
+              title: get(node, 'title'),
             }))}
           />
         )}
@@ -50,45 +43,27 @@ const StoriesPage = ({ data }) => {
 
 export default StoriesPage;
 
-export const storiesPageQuery = graphql`
+export const query = graphql`
   query StoriesPageQuery {
-    featured: markdownRemark(frontmatter: { storiesFeatured: { eq: true } }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        hero {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 90) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        title
-      }
-    }
-    stories: allMarkdownRemark(
-      filter: { frontmatter: { templateKey: { eq: "story" } } }
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
+    articles: allContentfulArticle(sort: { order: DESC, fields: createdAt }) {
       edges {
         node {
           id
-          fields {
-            slug
+          author
+          title
+          photographer
+          slug
+          previewText {
+            previewText
           }
-          frontmatter {
-            hero {
-              childImageSharp {
-                fluid(maxWidth: 2048, quality: 90) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          createdAt
+          heroImage {
+            fluid {
+              sizes
+              src
+              srcSet
+              aspectRatio
             }
-            lede
-            tags
-            date
-            title
           }
         }
       }

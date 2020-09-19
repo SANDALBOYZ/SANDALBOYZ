@@ -284,7 +284,6 @@ export const landingPageQuery = graphql`
             }
             title
             date
-            previewText
           }
         }
       }
