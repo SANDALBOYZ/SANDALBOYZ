@@ -62,7 +62,6 @@ const storyRendererOptions = {
 };
 
 export const StoryTemplate = ({ data }) => {
-  console.log(data);
   const article = data.contentfulArticle;
 
   const schemaOrg = {
@@ -72,7 +71,7 @@ export const StoryTemplate = ({ data }) => {
     },
     image: article.heroImage.fluid.src,
     datePublished: article.createdAt,
-    headline: article.previewText.previewText || article.title,
+    headline: get(article, 'previewText.previewText') || article.title,
     publisher: {
       '@type': 'Organization',
       name: 'SANDALBOYZ',
@@ -88,7 +87,7 @@ export const StoryTemplate = ({ data }) => {
     <>
       <Head
         title={article.title}
-        description={article.previewText.previewText}
+        description={get(article, 'previewText.previewText')}
         schemaType="Article" // https://schema.org/Article
         ogType="article" // https://ogp.me/#type_article
         image={article.heroImage.fluid.src}
@@ -103,13 +102,20 @@ export const StoryTemplate = ({ data }) => {
           <H100>{article.title}</H100>
         </styled.Box>
         <styled.Authors>
+          <div>Words</div>
           {article.author.map(auth => (
             <styled.ContentLabel key={auth}>{auth}</styled.ContentLabel>
           ))}
         </styled.Authors>
+        <styled.Authors>
+          <div>Photos</div>
+          {article.photographer.map(photog => (
+            <styled.ContentLabel key={photog}>{photog}</styled.ContentLabel>
+          ))}
+        </styled.Authors>
       </styled.Hero>
       <styled.Lede>
-        <H200>{article.previewText.previewText}</H200>
+        <H200>{get(article, 'previewText.previewText')}</H200>
       </styled.Lede>
       <styled.Sections>
         {documentToReactComponents(
@@ -130,6 +136,7 @@ export const query = graphql`
       createdAt
       title
       author
+      photographer
       body {
         json
       }
