@@ -47,7 +47,7 @@
     "gatsby-remark-relative-images": "^0.2.3",
     "gatsby-source-contentful": "^2.3.41",
     "gatsby-source-filesystem": "^2.0.8",
-    "gatsby-source-shopify": "^3.2.20",
+    "gatsby-source-shopify": "^3.2.32",
     "gatsby-transformer-remark": "^2.6.28",
     "gatsby-transformer-sharp": "^2.1.8",
     "js-cookie": "^2.2.1",
