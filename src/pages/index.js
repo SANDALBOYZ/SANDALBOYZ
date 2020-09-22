@@ -201,7 +201,7 @@ export const landingPageQuery = graphql`
         }
         mobileImage {
           childImageSharp {
-            fluid(maxWidth: 768, quality: 90) {
+            fluid(maxWidth: 1080, quality: 90) {
               ...GatsbyImageSharpFluid_noBase64
             }
           }
