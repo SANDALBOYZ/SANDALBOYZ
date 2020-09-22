@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
-import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { parseISO, format } from 'date-fns';
 
 import shareImage from '@images/shareImage.jpg';
 import Head from '@utils/seo';
@@ -15,7 +16,6 @@ import {
   FullWidthImage,
   OffsetGridImage,
   SplitImage,
-  TwoThirdsImage,
 } from '@components/StoryImage';
 import * as styled from './styles';
 
@@ -40,7 +40,7 @@ const storyRendererOptions = {
           file: image.fields.file['en-US'],
         };
 
-        return getFluidGatsbyImage(imageFile, { maxWidth: 1080 });
+        return getFluidGatsbyImage(imageFile, { maxWidth: 1200 });
       });
 
       switch (contentType) {
@@ -70,14 +70,13 @@ export const StoryTemplate = ({ data }) => {
       name: article.author[0],
     },
     image: article.heroImage.fluid.src,
-    datePublished: article.createdAt,
+    datePublished: article.publishDate,
     headline: get(article, 'previewText.previewText') || article.title,
     publisher: {
       '@type': 'Organization',
       name: 'SANDALBOYZ',
       logo: {
         '@type': 'ImageObject',
-        // @TODO: Make this `siteUrl` dynamic. No hardcode!
         url: `https://sandalboyz.com${shareImage}`,
       },
     },
@@ -102,16 +101,21 @@ export const StoryTemplate = ({ data }) => {
           <H100>{article.title}</H100>
         </styled.Box>
         <styled.Authors>
-          <div>Words</div>
-          {article.author.map(auth => (
-            <styled.ContentLabel key={auth}>{auth}</styled.ContentLabel>
-          ))}
-        </styled.Authors>
-        <styled.Authors>
-          <div>Photos</div>
-          {article.photographer.map(photog => (
-            <styled.ContentLabel key={photog}>{photog}</styled.ContentLabel>
-          ))}
+          <styled.DateBox>
+            {format(parseISO(article.publishDate), 'LLL d, yyyy')}
+          </styled.DateBox>
+          <styled.AuthorBox>
+            <styled.ContentLabel>Words</styled.ContentLabel>
+            {article.author.map(auth => (
+              <styled.ContentLabel key={auth}>{auth}</styled.ContentLabel>
+            ))}
+          </styled.AuthorBox>
+          <styled.AuthorBox>
+            <styled.ContentLabel>Photos</styled.ContentLabel>
+            {article.photographer.map(photog => (
+              <styled.ContentLabel key={photog}>{photog}</styled.ContentLabel>
+            ))}
+          </styled.AuthorBox>
         </styled.Authors>
       </styled.Hero>
       <styled.Lede>
@@ -134,6 +138,7 @@ export const query = graphql`
     contentfulArticle(slug: { eq: $slug }) {
       slug
       createdAt
+      publishDate
       title
       author
       photographer
