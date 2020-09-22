@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { mq } from '@utils/styles';
 import colors from '@utils/colors';
 import space from '@utils/space';
 import { Body, H400 as BaseH400, H600 as BaseH600 } from '@utils/type';
@@ -16,6 +17,11 @@ export const Inner = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   margin-top: ${space[1]};
+  padding: 0 15px;
+
+  ${mq.gtmd} {
+    padding: 0;
+  }
 `;
 
 export const ImageWrapper = styled.div`

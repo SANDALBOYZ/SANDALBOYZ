@@ -113,9 +113,8 @@ export const FullHero = ({
       <Image
         fluid={sources}
         backgroundColor={randomSandalboyzColor()}
-        // TODO: This is a little hacky – need to dig into `gatsby-image` and the `fluid` prop more.
         style={{
-          maxHeight: 'calc(100vh + 30px)',
+          height: '100%',
         }}
       />
       <Link to={href}>

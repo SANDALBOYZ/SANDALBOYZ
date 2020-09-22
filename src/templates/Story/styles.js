@@ -6,6 +6,11 @@ import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq, Container as BaseContainer } from '@utils/styles';
 import { ContentLabel as BaseContentLabel } from '@utils/type';
 
+export const DateLabel = styled(BaseContentLabel)`
+  color: black;
+  margin-bottom: 10px;
+`;
+
 export const Authors = styled.div`
   margin: 0 0 ${space[6]};
   padding-left: ${H_PADDING_MOBILE};
@@ -16,6 +21,10 @@ export const Authors = styled.div`
     left: ${H_PADDING};
     padding-left: 0;
   }
+`;
+
+export const AuthorBox = styled.div`
+  margin-right: 20px;
 `;
 
 export const Background = styled.div`
@@ -146,6 +155,10 @@ export const Sections = styled.div`
   }
 
   & strong {
+    font-weight: ${weights.BOLD};
+  }
+
+  & b {
     font-weight: ${weights.BOLD};
   }
 

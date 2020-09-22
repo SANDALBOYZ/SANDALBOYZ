@@ -18,18 +18,6 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-      allMarkdownRemark(
-        filter: { frontmatter: { templateKey: { eq: "story" } } }
-      ) {
-        edges {
-          node {
-            id
-            fields {
-              slug
-            }
-          }
-        }
-      }
       allContentfulArticle {
         edges {
           node {
@@ -58,37 +46,30 @@ exports.createPages = ({ graphql, actions }) => {
     });
 
     // Create story pages
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      createPage({
-        path: node.fields.slug,
-        component: path.resolve('./src/templates/Story/index.js'),
-        context: {
-          id: node.id,
-        },
-      });
-    });
-
-    // TODO: Finish pulling stories from Contentful!
-    // Create story pages from Contentful
-    // result.data.allContentfulArticle.edges.forEach(({ node }) => {
-    //   console.log('\n\ncontentful testing');
-    //   console.log(node);
-
-    //   const assetContentfulIds = node.body.json.content
-    //     .filter(c => c.nodeType === 'embedded-asset-block')
-    //     .map(c => c.data.target.sys.contentful_id);
-
-    //   console.log(assetContentfulIds);
-
+    // DEPRECATION WARNING! We will deprecate using `allMarkdownRemark` (which is Netlify CMS)
+    // result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     //   createPage({
-    //     path: `contentful-stories/${node.slug}`,
-    //     component: path.resolve('./src/templates/ContentfulTest/index.js'),
+    //     path: `legacy-stories/${node.fields.slug}`,
+    //     component: path.resolve('./src/templates/Story/index.js'),
     //     context: {
-    //       slug: node.slug,
-    //       assetContentfulIds,
+    //       id: node.id,
     //     },
     //   });
     // });
+
+    // Create story pages from Contentful
+    result.data.allContentfulArticle.edges.forEach(({ node }) => {
+      console.log(`Creating story page from Contentful! ${node.slug}`);
+
+      createPage({
+        // TODO: Change this path!
+        path: `stories/${node.slug}`,
+        component: path.resolve('./src/templates/Story/index.js'),
+        context: {
+          slug: node.slug,
+        },
+      });
+    });
   });
 };
 

@@ -203,8 +203,8 @@ class Layout extends React.Component {
       '/register/',
       '/reset',
       '/reset/',
-      '/stories',
-      '/stories/',
+      // '/stories',
+      // '/stories/',
     ];
 
     return lightPaths.includes(location.pathname);

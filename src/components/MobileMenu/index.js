@@ -38,7 +38,6 @@ class MobileMenu extends Component {
       onMenuClose,
       onMenuOpen,
       open,
-      showStories,
     } = this.props;
 
     return (
@@ -56,11 +55,9 @@ class MobileMenu extends Component {
           <styled.NavLink to="/products" onClick={onMenuClose} partiallyActive>
             <H300>Products</H300>
           </styled.NavLink>
-          {showStories && (
-            <styled.NavLink to="/stories" onClick={onMenuClose} partiallyActive>
-              <H300>Stories</H300>
-            </styled.NavLink>
-          )}
+          <styled.NavLink to="/stories" onClick={onMenuClose} partiallyActive>
+            <H300>Stories</H300>
+          </styled.NavLink>
           <styled.NavLink to="/about" onClick={onMenuClose}>
             <H300>About</H300>
           </styled.NavLink>

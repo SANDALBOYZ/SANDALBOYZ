@@ -14,14 +14,6 @@ const LandingPage = ({ data }) => {
   return (
     <>
       <Head title="Home" />
-      {/* {get(data, 'hero') && (
-        <Hero
-          href={get(data, 'hero.fields.slug')}
-          image={get(data, 'hero.frontmatter.hero.childImageSharp.fluid')}
-          label="Featured Story"
-          title={get(data, 'hero.frontmatter.title')}
-        />
-      )} */}
 
       <motion.div {...fadeInEntry()}>
         {get(data, 'fullHero') && (
@@ -70,35 +62,23 @@ const LandingPage = ({ data }) => {
           data.recentStories.edges.length > 1 && (
             <RecentStories
               storyA={{
-                href: get(data, 'recentStories.edges[0].node.fields.slug'),
-                image: get(
-                  data,
-                  'recentStories.edges[0].node.frontmatter.hero.childImageSharp.fluid'
-                ),
-                title: get(
-                  data,
-                  'recentStories.edges[0].node.frontmatter.title'
-                ),
-                date: get(data, 'recentStories.edges[0].node.frontmatter.date'),
+                href: `/stories/${data.recentStories.edges[0].node.slug}`,
+                image: get(data, 'recentStories.edges[0].node.heroImage.fluid'),
+                title: get(data, 'recentStories.edges[0].node.title'),
+                date: get(data, 'recentStories.edges[0].node.publishDate'),
                 previewText: get(
                   data,
-                  'recentStories.edges[0].node.frontmatter.previewText'
+                  'recentStories.edges[0].node.previewText.previewText'
                 ),
               }}
               storyB={{
-                href: get(data, 'recentStories.edges[1].node.fields.slug'),
-                image: get(
-                  data,
-                  'recentStories.edges[1].node.frontmatter.hero.childImageSharp.fluid'
-                ),
-                title: get(
-                  data,
-                  'recentStories.edges[1].node.frontmatter.title'
-                ),
-                date: get(data, 'recentStories.edges[1].node.frontmatter.date'),
+                href: `/stories/${data.recentStories.edges[1].node.slug}`,
+                image: get(data, 'recentStories.edges[1].node.heroImage.fluid'),
+                title: get(data, 'recentStories.edges[1].node.title'),
+                date: get(data, 'recentStories.edges[1].node.publishDate'),
                 previewText: get(
                   data,
-                  'recentStories.edges[1].node.frontmatter.previewText'
+                  'recentStories.edges[1].node.previewText.previewText'
                 ),
               }}
             />
@@ -221,7 +201,7 @@ export const landingPageQuery = graphql`
         }
         mobileImage {
           childImageSharp {
-            fluid(maxWidth: 768, quality: 90) {
+            fluid(maxWidth: 1080, quality: 90) {
               ...GatsbyImageSharpFluid_noBase64
             }
           }
@@ -261,30 +241,26 @@ export const landingPageQuery = graphql`
         }
       }
     }
-    recentStories: allMarkdownRemark(
-      filter: {
-        frontmatter: { title: { nin: "" }, templateKey: { eq: "story" } }
-      }
+    recentStories: allContentfulArticle(
+      sort: { order: DESC, fields: publishDate }
       limit: 2
-      sort: { fields: frontmatter___date, order: DESC }
     ) {
       edges {
         node {
           id
-          fields {
-            slug
-          }
-          frontmatter {
-            hero {
-              childImageSharp {
-                fluid(maxWidth: 2048, quality: 90) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            title
-            date
+          slug
+          title
+          publishDate
+          previewText {
             previewText
+          }
+          heroImage {
+            fluid {
+              sizes
+              src
+              srcSet
+              aspectRatio
+            }
           }
         }
       }
