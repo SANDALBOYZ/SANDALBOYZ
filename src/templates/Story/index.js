@@ -101,9 +101,9 @@ export const StoryTemplate = ({ data }) => {
           <H100>{article.title}</H100>
         </styled.Box>
         <styled.Authors>
-          <styled.DateBox>
+          <styled.DateLabel>
             {format(parseISO(article.publishDate), 'LLL d, yyyy')}
-          </styled.DateBox>
+          </styled.DateLabel>
           <styled.AuthorBox>
             <styled.ContentLabel>Words</styled.ContentLabel>
             {article.author.map(auth => (

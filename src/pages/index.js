@@ -11,7 +11,6 @@ import RecentStories from '@components/RecentStories';
 import { fadeInEntry } from '@utils/animations';
 
 const LandingPage = ({ data }) => {
-  console.log(data.recentStories);
   return (
     <>
       <Head title="Home" />
@@ -251,8 +250,6 @@ export const landingPageQuery = graphql`
           id
           slug
           title
-          author
-          photographer
           publishDate
           previewText {
             previewText
