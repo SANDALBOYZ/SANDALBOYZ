@@ -142,6 +142,34 @@ export const NavLink = styled(Link).attrs({
   }
 `;
 
+export const RegularLink = styled.a`
+  ${navLinkStyles}
+  display: none;
+
+  &:after {
+    content: "";
+    border-bottom: 1px solid;
+    display: block;
+    transform: scaleX(0) translateY(4px);
+    transition: transform 500ms cubic-bezier(0.645, 0.045, 0.345, 1) 0ms;
+    transform-origin: top left;
+  }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1) translateY(4px);
+      transition: transform 500ms cubic-bezier(0.645, 0.045, 0.345, 1) 0ms;
+      transform-origin: top left;
+    }
+  }
+
+  &:not(:first-child).${activeClassName} {
+    &::after {
+      transform: scaleX(1) translateY(4px);
+    }
+  }
+`;
+
 // Buttons do need the underline animation.
 export const NavButton = styled(Link)`
   ${navLinkStyles}
