@@ -52,6 +52,13 @@ class MobileMenu extends Component {
           onMenuOpen={onMenuOpen}
         />
         <styled.Links>
+          <styled.NavLink
+            to="/products?collection=Sale"
+            onClick={onMenuClose}
+            partiallyActive
+          >
+            <H300>SALE</H300>
+          </styled.NavLink>
           <styled.NavLink to="/products" onClick={onMenuClose} partiallyActive>
             <H300>Products</H300>
           </styled.NavLink>
