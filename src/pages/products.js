@@ -78,9 +78,9 @@ class ProductsPage extends Component {
     let matchesProductType = true;
 
     if (activeFilters.collection.length) {
-      matchesCollection = activeFilters.collection.includes(
-        this.getCollection(product)
-      );
+      matchesCollection = activeFilters.collection.filter(activeFilter =>
+        this.getCollections(product).includes(activeFilter)
+      ).length > 0;
     }
 
     if (activeFilters.productType.length) {
@@ -92,16 +92,16 @@ class ProductsPage extends Component {
     return matchesCollection && matchesProductType;
   };
 
-  getCollection = product => {
-    const collectionTag = get(product, 'tags', []).find(tag =>
+  getCollections = product => {
+    const collectionTags = get(product, 'tags', []).filter(tag =>
       tag.includes('collection')
     );
 
-    if (!collectionTag) {
+    if (collectionTags.length === 0) {
       return '';
     }
 
-    return collectionTag.split(':')[1];
+    return collectionTags.map(collectionTag => collectionTag.split(':')[1]);
   };
 
   handleFilter = filters => {
