@@ -257,8 +257,8 @@ class ProductsPage extends Component {
                 title: get(node, 'title'),
                 soldOut: !get(node, 'availableForSale'),
                 onSale:
-                  get(node, 'variants[0].compareAtPrice') >
-                  get(node, 'variants[0].price'),
+                  Number(get(node, 'variants[0].compareAtPrice')) >
+                  Number(get(node, 'variants[0].price')),
               }))}
               title={isFiltered ? 'Filtered Results' : 'All Products'}
             />
