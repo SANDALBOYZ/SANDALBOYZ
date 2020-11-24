@@ -122,6 +122,14 @@ class Filters extends Component {
             >
               <Body>Signature Series</Body>
             </styled.Option>
+            <styled.Option
+              selected={activeFilters.collection.includes('Sale')}
+              onClick={() =>
+                this.handleFilterSelect('collection', 'Sale')
+              }
+            >
+              <Body>SALE</Body>
+            </styled.Option>
           </styled.Filter>
         </styled.Filters>
         <Select
