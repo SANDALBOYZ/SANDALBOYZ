@@ -1,6 +1,6 @@
 ---
 templateKey: popup
-enabled: true
+enabled: false
 label: SANDALBOYZ
 title: Black Friday / Cyber Monday
 description: >-
