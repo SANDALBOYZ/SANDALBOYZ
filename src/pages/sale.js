@@ -248,7 +248,7 @@ class SalePage extends Component {
               onFilter={this.handleFilter}
               products={products.sort(this.sortProducts).map(({ node }) => ({
                 id: get(node, 'id'),
-                href: `${PAGE_URL}/${get(node, 'handle')}`,
+                href: `/products/${get(node, 'handle')}`,
                 images: [
                   get(node, 'images[0].localFile.childImageSharp.fluid'),
                   get(node, 'images[1].localFile.childImageSharp.fluid'),
