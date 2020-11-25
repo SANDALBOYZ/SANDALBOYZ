@@ -36,6 +36,7 @@ const Image = styled.img`
   margin-bottom: ${space[5]};
 `;
 
+const PAGE_URL = '/sale';
 class SalePage extends Component {
   constructor(props) {
     super(props);
@@ -129,7 +130,7 @@ class SalePage extends Component {
       }
     }
 
-    navigate(`/products${qs.stringify(query, true)}`);
+    navigate(`${PAGE_URL}${qs.stringify(query, true)}`);
     this.setState({ activeFilters: filters });
   };
 
@@ -164,7 +165,7 @@ class SalePage extends Component {
         }
       }
 
-      navigate(`/products${qs.stringify(query, true)}`);
+      navigate(`${PAGE_URL}${qs.stringify(query, true)}`);
       this.setState({
         activeFilters: filters,
         activeSort: sort,
@@ -230,12 +231,12 @@ class SalePage extends Component {
 
     return (
       <>
-        <Head title="Sale" />
+        <Head title="Black Friday Sale" />
         <motion.div {...fadeInEntry()}>
           <Header
-            label={get(data, 'productIndex.frontmatter.pageTitle')}
+            label="Black Friday / Cyber Monday"
             shrinkOnMobile
-            title="Products"
+            title="Sale"
           >
             <Button theme="text" onClick={this.handleOpenFilters}>
               Sort/Filter
@@ -247,7 +248,7 @@ class SalePage extends Component {
               onFilter={this.handleFilter}
               products={products.sort(this.sortProducts).map(({ node }) => ({
                 id: get(node, 'id'),
-                href: `/products/${get(node, 'handle')}`,
+                href: `${PAGE_URL}/${get(node, 'handle')}`,
                 images: [
                   get(node, 'images[0].localFile.childImageSharp.fluid'),
                   get(node, 'images[1].localFile.childImageSharp.fluid'),
