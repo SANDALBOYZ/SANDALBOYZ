@@ -1,9 +1,8 @@
 ---
 templateKey: fullHero
 label: ''
-title: Reflective Pack
-callToAction: Shop Now
-desktopImage: /assets/ez8a6505-square.jpg
-mobileImage: /assets/ez8a6469-copy-1-.jpg
+title: Permanent Collection
+callToAction: Available Now
+desktopImage: /assets/2T8A4001.jpg
+mobileImage: /assets/2T8A3598.jpg
 ---
-
