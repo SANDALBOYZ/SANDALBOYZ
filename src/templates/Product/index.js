@@ -267,7 +267,12 @@ class Product extends Component {
         <styled.Container>
           <styled.MobileProductTitle {...fadeInRight}>
             <H300M>{product.title}</H300M>
-            <H500>{getPrice(get(product, 'variants[0].price'))}</H500>
+            <H500>
+              {getPrice(
+                get(product, 'variants[0].price'),
+                get(product, 'variants[0].compareAtPrice')
+              )}
+            </H500>
             {soldOut && (
               <styled.Status>
                 <Badge>Sold out</Badge>

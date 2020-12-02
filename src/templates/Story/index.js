@@ -33,7 +33,7 @@ const storyRendererOptions = {
 
       const gatsbyFluidImages = get(
         node,
-        "data.target.fields.images['en-US']",
+        'data.target.fields.images[\'en-US\']',
         []
       ).map(image => {
         const imageFile = {
