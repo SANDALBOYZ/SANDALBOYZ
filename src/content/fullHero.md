@@ -3,6 +3,6 @@ templateKey: fullHero
 label: ''
 title: Permanent Collection
 callToAction: Available Now
-desktopImage: /assets/2T8A4001.jpg
-mobileImage: /assets/2T8A3598.jpg
+desktopImage: /assets/upscale_hero_desktop.jpg.jpg
+mobileImage: /assets/upscale_hero_mobile.jpg
 ---
