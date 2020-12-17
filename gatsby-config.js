@@ -1,5 +1,3 @@
-const netlifyFsAPI = require('netlify-cms-backend-fs/dist/fs');
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -11,7 +9,6 @@ module.exports = {
     description:
       'SANDALBOYZ is a movement and lifestyle, existing to bridge the gap between sophistication and comfort.',
   },
-  developMiddleware: netlifyFsAPI,
   plugins: [
     'gatsby-plugin-layout',
     {
@@ -204,6 +201,9 @@ module.exports = {
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
         manualInit: true,
+        enableIdentityWidget: false,
+        htmlTitle: 'SANDALBOYZ Netlify CMS',
+        publicPath: 'cmsAdmin',
       },
     },
     {

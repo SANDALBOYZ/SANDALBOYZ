@@ -1,5 +1,11 @@
 # backend is defined in src/cms/cms.js
 
+backend:
+  name: git-gateway
+  branch: master
+
+local_backend: true
+
 media_folder: static/assets
 
 public_folder: /assets
@@ -60,7 +66,6 @@ collections:
                 widget: string
                 required: false
                 hint: Only displayed for the Split Image Block
-
   - label: Site Info
     name: siteInfo
     files:
@@ -110,9 +115,9 @@ collections:
             min: 1
             max: 365
             hint: Enter value in number of days (i.e. 2 for 2 days, etc.)
-      - label: Full Hero
-        name: fullHero
-        file: src/content/fullHero.md
+      - label: 'Full Hero'
+        name: 'fullHero'
+        file: 'src/content/fullHero.md'
         fields:
           - { label: Template Key, name: templateKey, widget: hidden, default: fullHero }
           - label: Label

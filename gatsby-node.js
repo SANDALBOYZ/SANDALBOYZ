@@ -5,6 +5,7 @@ const get = require('lodash/get');
 const remark = require('remark');
 const html = require('remark-html');
 const slugify = require('slugify');
+const webpack = require('webpack');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -180,4 +181,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       })),
     });
   }
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^netlify-identity-widget$/,
+      }),
+    ],
+  });
 };
