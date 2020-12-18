@@ -1,71 +1,12 @@
-# backend is defined in src/cms/cms.js
-
 backend:
   name: git-gateway
-  branch: master
 
 local_backend: true
 
 media_folder: static/assets
-
 public_folder: /assets
 
 collections:
-  - label: Stories
-    name: stories
-    folder: src/pages/stories
-    create: true
-    slug: "{{fields.slug}}"
-    fields:
-      - { label: Template Key, name: templateKey, widget: hidden, default: story }
-      - { label: Title, name: title }
-      - { label: Slug, name: slug, hint: Avoid changing this after the story is published. }
-      - label: Author(s)
-        name: authors
-        widget: list
-        field: { label: Author, name: author }
-      - { label: Publish Date, name: date, widget: datetime }
-      - { label: Hero Image, name: hero, widget: image }
-      - { label: Lede, name: lede, widget: text, required: false }
-      - { label: Feature on Landing Page Hero, name: landingFeatured, widget: boolean, required: false }
-      - { label: Feature on Stories Page Hero, name: storiesFeatured, widget: boolean, required: false }
-      - { label: Tags, name: tags, widget: list, required: false }
-      - label: Preview Text
-        name: previewText
-        widget: text
-      - label: Sections
-        name: sections
-        widget: list
-        types:
-          - label: Text Block
-            name: text
-            widget: object
-            fields:
-              - { label: Body, name: body, widget: markdown }
-          - label: Image Block
-            name: image
-            widget: object
-            fields:
-              - label: Image Type
-                name: imageType
-                widget: select
-                options:
-                  - { label: Double Image, value: double }
-                  - { label: Full-Height Image, value: fullHeight }
-                  - { label: Full-Width Image, value: fullWidth }
-                  - { label: Split Image, value: split }
-                  - { label: Two-Thirds Image, value: twoThirds }
-                  - { label: Offset Grid Image, value: offsetGrid }
-              - label: Images
-                name: images
-                widget: list
-                hint: Add one (1) image for Fullwidth and Two-Thirds Image Blocks, two (2) images for the Double Image Block & Split Image Block, and four (4) images for the Offset Grid Block
-                field: { label: Image, name: image, widget: image }
-              - label: Caption
-                name: caption
-                widget: string
-                required: false
-                hint: Only displayed for the Split Image Block
   - label: Site Info
     name: siteInfo
     files:
@@ -78,16 +19,7 @@ collections:
             name: about
             hint: Say something about SANDALBOYZ
             widget: text
-      - label: Product Index
-        name: productIndex
-        file: src/content/productIndex.md
-        fields:
-          - { label: Template Key, name: templateKey, widget: hidden, default: productIndex }
-          - label: Product Index Page Title
-            name: pageTitle
-            widget: string
-            required: false
-      - label: Popup
+      - label: Pop Up
         name: popup
         file: src/content/popup.md
         fields:
@@ -98,15 +30,19 @@ collections:
           - label: Label
             name: label
             widget: string
+            required: false
           - label: Title
             name: title
             widget: string
+            required: false
           - label: Description
             name: description
             widget: markdown
+            required: false
           - label: Image
             name: image
             widget: image
+            required: false
           - label: Popup Expiration Time
             name: expires
             widget: number
@@ -115,9 +51,9 @@ collections:
             min: 1
             max: 365
             hint: Enter value in number of days (i.e. 2 for 2 days, etc.)
-      - label: 'Full Hero'
-        name: 'fullHero'
-        file: 'src/content/fullHero.md'
+      - label: Landing Page Hero
+        name: fullHero
+        file: src/content/fullHero.md
         fields:
           - { label: Template Key, name: templateKey, widget: hidden, default: fullHero }
           - label: Label

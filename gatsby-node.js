@@ -183,12 +183,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    plugins: [
-      new webpack.IgnorePlugin({
-        resourceRegExp: /^netlify-identity-widget$/,
-      }),
-    ],
-  });
-};
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     plugins: [
+//       new webpack.IgnorePlugin({
+//         resourceRegExp: /^netlify-identity-widget$/,
+//       }),
+//     ],
+//   });
+// };

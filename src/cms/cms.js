@@ -3,7 +3,6 @@ import CMS from 'netlify-cms-app';
 
 import StylesheetInjector from '@utils/stylesheetInjector';
 import PopupPreview from './preview-templates/PopupPreview';
-import StoryPreview from './preview-templates/StoryPreview';
 
 // Register preview styles
 CMS.registerPreviewStyle('https://use.typekit.net/bmy0pxx.css');
@@ -12,11 +11,6 @@ CMS.registerPreviewStyle('https://use.typekit.net/bmy0pxx.css');
 CMS.registerPreviewTemplate('popup', props => (
   <StylesheetInjector>
     <PopupPreview {...props} />
-  </StylesheetInjector>
-));
-CMS.registerPreviewTemplate('stories', props => (
-  <StylesheetInjector>
-    <StoryPreview {...props} />
   </StylesheetInjector>
 ));
 

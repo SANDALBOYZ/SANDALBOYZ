@@ -196,16 +196,17 @@ module.exports = {
     },
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-        manualInit: true,
-        enableIdentityWidget: false,
-        htmlTitle: 'SANDALBOYZ Netlify CMS',
-        publicPath: 'cmsAdmin',
-      },
-    },
+    'gatsby-plugin-netlify-cms',
+    // {
+    //   resolve: 'gatsby-plugin-netlify-cms',
+    //   options: {
+    //     modulePath: `${__dirname}/src/cms/cms.js`,
+    //     manualInit: true,
+    //     enableIdentityWidget: false,
+    //     htmlTitle: 'SANDALBOYZ Netlify CMS',
+    //     publicPath: 'cmsAdmin',
+    //   },
+    // },
     {
       resolve: 'gatsby-source-contentful',
       options: {
