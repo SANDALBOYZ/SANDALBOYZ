@@ -290,3 +290,7 @@ export const Social = styled.div`
     margin-right: ${space[4]};
   }
 `;
+
+export const MobilePriceContainer = styled.div`
+  display: flex;
+`;

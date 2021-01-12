@@ -273,6 +273,14 @@ class Product extends Component {
                 get(product, 'variants[0].compareAtPrice')
               )}
             </H500>
+            <afterpay-placement
+              data-locale="en_US"
+              data-currency="USD"
+              data-amount={get(product, 'variants[0].price')}
+              data-badge-theme="mint-on-black"
+              data-size="xs"
+              style={{ margin: 0 }}
+            ></afterpay-placement>
             {soldOut && (
               <styled.Status>
                 <Badge>Sold out</Badge>
@@ -297,6 +305,13 @@ class Product extends Component {
                   get(product, 'variants[0].compareAtPrice')
                 )}
               </H500>
+              <afterpay-placement
+                data-locale="en_US"
+                data-currency="USD"
+                data-amount={get(product, 'variants[0].price')}
+                data-badge-theme="mint-on-black"
+                data-size="xs"
+              ></afterpay-placement>
               {soldOut && (
                 <styled.Status>
                   <Badge>Sold out</Badge>
