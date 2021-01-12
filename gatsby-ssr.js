@@ -51,6 +51,14 @@ exports.onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
     ]);
   }
 
+  setHeadComponents([
+    <script
+      type="text/javascript"
+      src="https://js.afterpay.com/afterpay-1.x.js"
+      async
+    ></script>,
+  ]);
+
   return setPostBodyComponents([
     <script
       type="text/javascript"
