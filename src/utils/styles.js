@@ -136,6 +136,10 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: ${fonts.CONDENSED};
   }
+
+  afterpay-placement {
+    --logo-badge-width: 65px;
+  }
 `;
 
 export const Group = styled.div`
