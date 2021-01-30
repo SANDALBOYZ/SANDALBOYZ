@@ -1,8 +1,8 @@
 ---
 templateKey: fullHero
 label: ''
-title: Upscale Vandal
-callToAction: Available Now
-desktopImage: /assets/upscale_hero_desktop.jpg
-mobileImage: /assets/upscale_hero_mobile.jpg
+title: ''
+callToAction: ''
+desktopImage: /assets/pc_black_by_pool_square.jpg
+mobileImage: /assets/2T8A3598.jpg
 ---
