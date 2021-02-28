@@ -89,13 +89,11 @@ export const NavSection = styled.div`
 
 const navLinkStyles = css`
   color: ${colors.N900};
-  font-family: ${fonts.NIMBUS_CONDENSED};
-  font-size: 15px;
-  // font-style: italic;
-  font-weight: ${weights.LIGHT};
+  font-family: ${fonts.NIMBUS};
+  font-size: 16px;
+  font-weight: ${weights.REGULAR};
   letter-spacing: 0px;
   line-height: 1;
-  // text-transform: uppercase;
   cursor: pointer;
 
   &:not(:last-child) {
