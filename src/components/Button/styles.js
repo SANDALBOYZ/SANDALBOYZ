@@ -30,6 +30,7 @@ export const baseButton = css`
     color: ${colors.N300};
     background-color: ${colors.N400};
     pointer-events: none;
+    cursor: not-allowed;
   }
 
   &:hover {

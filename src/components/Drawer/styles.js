@@ -42,8 +42,8 @@ export const Drawer = styled.div`
   bottom: 0;
   width: 100%;
   max-width: 100%;
-  padding: ${H_PADDING_MOBILE};
-  background-color: ${colors.N0};
+  padding: 80px ${H_PADDING_MOBILE} ${H_PADDING_MOBILE};
+  background-color: ${colors.WINTER_WHITE};
   transition: transform 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
   overflow-y: auto;
@@ -86,18 +86,14 @@ export const LoadingBar = styled.div`
 
 export const DrawerWrapper = styled.div`
   position: fixed;
-  top: 48px;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 9999;
-  background-color: ${props => (props.open ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)')};;
+  background-color: ${props => (props.open ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)')};
   transition: background-color 400ms ease-in;
   transition-delay: 250ms;
   opacity: 1;
   pointer-events: ${props => (props.open ? 'auto' : 'none')};
-
-  ${mq.gtlg} {
-    top: 0;
-  }
 `;

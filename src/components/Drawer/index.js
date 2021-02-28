@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import Button from '@components/Button';
 import * as styled from './styles';
 
-export function Drawer({ actions, children, onClose, open, title, loading }) {
+export function Drawer({ actions, children, onClose, open, title, loading, backgroundColor }) {
   const handleKeyDown = event => {
     if (event.keyCode === 27 && open) {
       onClose();
@@ -28,10 +28,8 @@ export function Drawer({ actions, children, onClose, open, title, loading }) {
     <styled.DrawerWrapper open={open} onClick={onClose}>
       <styled.Drawer open={open} onClick={handleClick}>
         {loading && <styled.LoadingBar />}
-        <div>
           <styled.H3>{title}</styled.H3>
           {children}
-        </div>
         {actions && (
           <styled.Actions>
             <Button
