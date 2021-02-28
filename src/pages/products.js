@@ -9,11 +9,12 @@ import qs from 'querystringify';
 
 import Head from '@utils/seo';
 import { getSortedProductIds } from '@utils/shopify';
-import space from '@utils/space';
-import { Container } from '@utils/styles';
+import space, { H_PADDING_MOBILE } from '@utils/space';
+import { mq, Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
 import { fonts, weights } from '@utils/fonts';
+
 import sandal from '@images/sandal.svg';
 // import Button from '@components/Button';
 import Filters from '@components/Filters';
@@ -40,7 +41,11 @@ const Image = styled.img`
 
 const Header = styled.div`
   margin-top: 80px;
-  padding: 0 20px;
+  padding: 0 ${H_PADDING_MOBILE} ${space[2]};
+
+  ${mq.gtmd} {
+    padding: 0;
+  }
 `;
 
 const H1 = styled.h1`
@@ -265,17 +270,6 @@ class ProductsPage extends Component {
       <>
         <Head title="Products" />
         <motion.div {...fadeInEntry()}>
-          <Header>
-            <H1>Products</H1>
-            <Description>
-              Among the coziest this planet has to offer. Explore our new
-              Permanent Collection, which features timeless aesthetic and
-              uncompromising durability.
-            </Description>
-            <SortFilter onClick={this.handleOpenFilters}>
-              Sort / Filter
-            </SortFilter>
-          </Header>
           {products.length ? (
             <ProductGrid
               filters={activeFilters}
@@ -296,7 +290,10 @@ class ProductsPage extends Component {
                   Number(get(node, 'variants[0].compareAtPrice')) >
                   Number(get(node, 'variants[0].price')),
               }))}
-              title=""
+              title="Products"
+              description="Among the coziest this planet has to offer. Explore our new
+              Permanent Collection, which features timeless aesthetic and
+              uncompromising durability."
             />
           ) : (
             <Empty>

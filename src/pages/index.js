@@ -48,13 +48,15 @@ const LandingPage = ({ data }) => {
                 price: get(node, 'variants[0].price'),
                 compareAtPrice: get(node, 'variants[0].compareAtPrice'),
                 title: get(node, 'title'),
+                productType: get(node, 'productType'),
                 soldOut: !get(node, 'availableForSale'),
                 onSale:
                   get(node, 'variants[0].compareAtPrice') >
                   get(node, 'variants[0].price'),
               }))}
-              title="What's Hot"
-              titleIcon="arrow-right"
+              title="What's New"
+              description="The latest and greatest in the world of SANDALBOYZ."
+              ctaIcon="arrow-right"
             />
           )}
 
@@ -83,40 +85,6 @@ const LandingPage = ({ data }) => {
               }}
             />
           )}
-        {/* {get(data, 'teaser') && (
-        <BannerLight
-          cta={{
-            href: get(data, 'teaser.fields.slug'),
-            name: 'View blog',
-          }}
-          image={get(data, 'teaser.frontmatter.hero.childImageSharp.fluid')}
-          label="Featured Story"
-          title={get(data, 'teaser.frontmatter.title')}
-        />
-      )}
-      {Array.isArray(get(data, 'recentProducts.edges')) &&
-        data.recentProducts.edges.length > 0 && (
-          <ProductGrid
-            cta="Shop Now / See More"
-            products={data.recentProducts.edges.map(({ node }) => ({
-              id: get(node, 'id'),
-              href: `/products/${get(node, 'handle')}`,
-              images: [
-                get(node, 'images[0].localFile.childImageSharp.fluid'),
-                get(node, 'images[1].localFile.childImageSharp.fluid'),
-              ],
-              price: get(node, 'variants[0].price'),
-              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-              title: get(node, 'title'),
-              soldOut: !get(node, 'availableForSale'),
-              onSale:
-                get(node, 'variants[0].compareAtPrice') >
-                get(node, 'variants[0].price'),
-            }))}
-            title="Recent Products"
-            titleIcon="arrow-right"
-          />
-        )} */}
       </motion.div>
     </>
   );
@@ -221,6 +189,7 @@ export const landingPageQuery = graphql`
           id
           availableForSale
           title
+          productType
           handle
           createdAt
           images {
