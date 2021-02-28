@@ -79,7 +79,7 @@ class Cart extends Component {
         }}
         onClose={onClose}
         open={open}
-        title="Your cart"
+        title="Bag"
         loading={adding}
       >
         {checkout.lineItems.map(lineItem => (

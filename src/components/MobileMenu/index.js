@@ -44,7 +44,6 @@ class MobileMenu extends Component {
       <styled.MobileMenuWrapper open={open}>
         <Navigation
           hideCart
-          light
           menuOpen={open}
           onCartClose={onCartClose}
           onCartOpen={onCartOpen}
@@ -56,28 +55,29 @@ class MobileMenu extends Component {
             <H300>SALE</H300>
           </styled.NavLink> */}
           <styled.NavLink to="/products" onClick={onMenuClose} partiallyActive>
-            <H300>Products</H300>
+            Products
           </styled.NavLink>
           <styled.NavLink to="/stories" onClick={onMenuClose} partiallyActive>
-            <H300>Stories</H300>
+            Stories
           </styled.NavLink>
           <styled.NavLink to="/about" onClick={onMenuClose}>
-            <H300>About</H300>
+            About
           </styled.NavLink>
           <styled.NavLink to="/search" onClick={onMenuClose}>
-            <H300>Search</H300>
+            Search
           </styled.NavLink>
           <styled.NavLink to="/contact" onClick={onMenuClose}>
-            <H300>Contact</H300>
+            Contact
           </styled.NavLink>
         </styled.Links>
-        <styled.Footer>
+
+        {/* <styled.Footer>
           {authLinks.map(authLink => (
             <Link key={authLink.name} to={authLink.href} onClick={onMenuClose}>
               <H500>{authLink.name}</H500>
             </Link>
           ))}
-        </styled.Footer>
+        </styled.Footer> */}
       </styled.MobileMenuWrapper>
     );
   }
