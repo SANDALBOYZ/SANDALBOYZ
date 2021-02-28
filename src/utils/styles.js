@@ -133,6 +133,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   afterpay-placement {
+    margin-top: 0;
     --logo-badge-width: 65px;
   }
 `;

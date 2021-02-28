@@ -15,6 +15,7 @@ import BaseLogo from '@components/Logo';
 
 export const Container = styled(BaseContainer)`
   background-color: ${colors.EMPIRE_YELLOW};
+  border-top: 1px solid #333;
 `;
 
 export const About = styled.div`

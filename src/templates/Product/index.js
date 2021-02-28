@@ -301,14 +301,6 @@ class Product extends Component {
         <oldStyled.Container>
           <oldStyled.MobileProductTitle {...fadeInRight}>
             <Title>{product.title}</Title>
-            <afterpay-placement
-              data-locale="en_US"
-              data-currency="USD"
-              data-amount={get(product, 'variants[0].price')}
-              data-badge-theme="mint-on-black"
-              data-size="xs"
-              style={{ margin: 0 }}
-            ></afterpay-placement>
             {soldOut && (
               <oldStyled.Status>
                 <Badge>Sold out</Badge>
@@ -326,15 +318,7 @@ class Product extends Component {
           />
           <oldStyled.ProductInfo {...fadeInRight}>
             <Breakpoint min={breakpoints.lg}>
-              <H300>{product.title}</H300>
-              <H500>{price}</H500>
-              <afterpay-placement
-                data-locale="en_US"
-                data-currency="USD"
-                data-amount={get(product, 'variants[0].price')}
-                data-badge-theme="mint-on-black"
-                data-size="xs"
-              ></afterpay-placement>
+              <Title>{product.title}</Title>
               {soldOut && (
                 <oldStyled.Status>
                   <Badge>Sold out</Badge>
@@ -388,6 +372,14 @@ class Product extends Component {
               </Button>
             </oldStyled.Selections>
 
+            <afterpay-placement
+              data-locale="en_US"
+              data-currency="USD"
+              data-amount={get(product, 'variants[0].price')}
+              data-badge-theme="mint-on-black"
+              data-size="xs"
+              data-intro-text="Pay in"
+            ></afterpay-placement>
             <H2>Details</H2>
             <oldStyled.Details
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
@@ -396,45 +388,6 @@ class Product extends Component {
               <ContentLabel>View Sizing Chart</ContentLabel>
               <oldStyled.Icon name="clipboard" />
             </oldStyled.Sizing>
-
-            {/* <styled.Social>
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(
-                  {
-                    u: `${get(
-                      data,
-                      'site.siteMetadata.siteUrl'
-                    )}/products/${product.handle}`,
-                  }
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <styled.Icon name="facebook" />
-              </a>
-              <a
-                href={`https://twitter.com/intent/tweet?${qs.stringify({
-                  url: `${get(
-                    data,
-                    'site.siteMetadata.siteUrl'
-                  )}/products/${product.handle}`,
-                  text: product.title,
-                })}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <styled.Icon name="twitter" />
-              </a>
-              <a
-                href={get(product, 'images[0].originalSrc')}
-                download={`${product.title}.jpg`}
-                title={product.title}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <styled.Icon name="instagram" />
-              </a>
-            </styled.Social> */}
           </oldStyled.ProductInfo>
         </oldStyled.Container>
 
