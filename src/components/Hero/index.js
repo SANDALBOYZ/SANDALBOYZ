@@ -7,7 +7,8 @@ import Link from 'gatsby-link';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
 import { AbsoluteImg, Breakpoint, breakpoints, mq } from '@utils/styles';
-import { H100 as BaseH100, H500 as BaseH500 } from '@utils/type';
+import { H500 as BaseH500 } from '@utils/type';
+import { fonts, weights } from '@utils/fonts';
 import * as styles from './styles';
 
 export const Hero = ({ href, image, label, title }) => (
@@ -45,6 +46,7 @@ const FullHeroWrapper = styled.div`
   width: 100vw;
   overflow: hidden;
   margin-bottom: 30px;
+  color: ${colors.WINTER_WHITE};
 `;
 
 const TextWrapper = styled.div`
@@ -53,23 +55,38 @@ const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  bottom: 15%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
   color: ${colors.N0};
 
   ${mq.gtmd} {
-    bottom: 10%;
+    top: 45%;
   }
 `;
 
-const FullHeroH100 = styled(BaseH100)`
-  margin-bottom: 15px;
+const H1 = styled.h1`
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  font-size: 1.8rem;
+  color: ${colors.WINTER_WHITE};
+  margin-bottom: 10px;
+`;
+
+const Detail = styled.div`
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.LIGHT};
+  font-size: 1.1rem;
+  color: ${colors.WINTER_WHITE};
+  margin-bottom: 12px;
 `;
 
 const CallToAction = styled.div`
-  color: ${colors.N0};
-  font-weight: bold;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.REGULAR};
+  color: ${colors.WINTER_WHITE};
+  text-transform: uppercase;
+  font-size: 0.8rem;
 
   &:after {
     content: '';
@@ -119,8 +136,8 @@ export const FullHero = ({
       />
       <Link to={href}>
         <TextWrapper>
-          {label && <BaseH500>{label}</BaseH500>}
-          <FullHeroH100>{title}</FullHeroH100>
+          <H1>{title}</H1>
+          {label && <Detail>{label}</Detail>}
           <CallToAction>{callToAction}</CallToAction>
         </TextWrapper>
       </Link>
