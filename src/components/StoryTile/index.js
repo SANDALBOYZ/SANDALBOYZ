@@ -15,8 +15,8 @@ const StoryTile = ({ category, date, href, image, lede, title }) => (
         {image && <AbsoluteImg fluid={image} />}
       </styled.ImageWrapper>
       <styled.Inner>
-        {category && <styled.H600>{category}</styled.H600>}
-        <styled.H400>{title}</styled.H400>
+        {category && <styled.Tag>{category}</styled.Tag>}
+        <styled.H3>{title}</styled.H3>
         <Body>{format(new Date(date), 'MMMM d, yyyy')}</Body>
         <styled.Lede>{truncate(lede, { length: 124 })}</styled.Lede>
       </styled.Inner>

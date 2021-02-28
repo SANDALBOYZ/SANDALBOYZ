@@ -12,10 +12,10 @@ export const Badge = styled.span`
 `;
 
 export const Body = styled.p`
-  font-family: ${fonts.NIMBUS_STANDARD};
-  font-size: 15px;
+  font-family: ${fonts.NIMBUS};
+  font-size: 14px;
   font-weight: ${weights.LIGHT};
-  line-height: 28px;
+  line-height: 1.5;
 `;
 
 export const ContentLabel = styled.p`

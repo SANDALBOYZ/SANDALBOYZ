@@ -4,6 +4,8 @@ import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq, Container as BaseContainer } from '@utils/styles';
 import { H300, H500 } from '@utils/type';
+import { fonts, weights } from '@utils/fonts';
+
 import BaseIcon from '@components/Icon';
 
 const AUTO_GRID_MIN_SIZE = '20rem';
@@ -67,8 +69,12 @@ export const Empty = styled(BaseContainer)`
 
 export const Filter = styled.a`
   display: block;
-  font-size: 18px;
+  font-size: 15px;
   text-decoration: ${props => props.active ? 'underline' : 'none'};
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Filters = styled.div`
@@ -80,8 +86,12 @@ export const Filters = styled.div`
   }
 `;
 
-export const FilterTitle = styled(H500)`
-  margin-top: ${space[4]};
+export const FilterTitle = styled.h3`
+  font-size: 14px;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.REGULAR};
+  text-transform: uppercase;
+  margin: ${space[4]} 0 ${space[1]};
 `;
 
 export const Header = styled.div`
@@ -119,7 +129,10 @@ export const Image = styled.img`
   margin-bottom: ${space[5]};
 `;
 
-export const SidebarTitle = styled(H300)`
+export const SidebarTitle = styled.h2`
+  font-size: 2rem;
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
   margin-bottom: ${space[4]};
 `;
 

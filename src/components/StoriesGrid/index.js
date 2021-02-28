@@ -64,7 +64,7 @@ const StoriesGrid = ({ stories }) => {
 
   const storyYears = [
     ...new Set(stories.map(story => new Date(story.date).getFullYear())),
-  ].sort();
+  ].sort().reverse();
   const storyTags = [...new Set(stories.map(story => story.tags).flat())]
     .filter(Boolean)
     .sort();
