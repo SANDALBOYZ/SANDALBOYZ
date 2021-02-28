@@ -7,12 +7,8 @@ import get from 'lodash/get';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { fadeInEntry } from '@utils/animations';
+import { fonts, weights } from '@utils/fonts';
 import colors from '@utils/colors';
-import {
-  H100 as BaseH100,
-  H200 as BaseH200,
-  H300 as BaseH300,
-} from '@utils/type';
 import space from '@utils/space';
 import { mq } from '@utils/styles';
 
@@ -100,7 +96,10 @@ const TitleContainer = styled(motion.header)`
   text-align: center;
 `;
 
-const H100 = styled(BaseH100)`
+const H1 = styled.h1`
+  font-family: ${fonts.GRANVILLE};
+  font-size: 2rem;
+  font-weight: ${weights.REGULAR};
   margin-bottom: ${space[5]};
 `;
 
@@ -117,12 +116,18 @@ const Description = styled.div`
   }
 `;
 
-const H200 = styled(BaseH200)`
-  margin-bottom: ${space[4]};
+const H2 = styled.h2`
+  font-family: ${fonts.GRANVILLE};
+  font-size: 2rem;
+  font-weight: ${weights.REGULAR};
+  margin-bottom: ${space[5]};
 `;
 
-const H300 = styled(BaseH300)`
-  margin-bottom: ${space[4]};
+const H3 = styled.h3`
+  font-family: ${fonts.GRANVILLE};
+  font-size: 2rem;
+  font-weight: ${weights.REGULAR};
+  margin-bottom: ${space[5]};
 `;
 
 const Divider = styled.span`
@@ -143,7 +148,7 @@ const Divider = styled.span`
 export const About = ({ title, description, sections }) => (
   <>
     <TitleContainer {...fadeInEntry()}>
-      <H100>{title}</H100>
+      <H1>{title}</H1>
       <Description>{documentToReactComponents(description)}</Description>
     </TitleContainer>
 
@@ -158,7 +163,7 @@ export const About = ({ title, description, sections }) => (
         >
           <StickyWrapper index={index}>
             <StickySection>
-              <H200>{get(section, 'node.header')}</H200>
+              <H2>{get(section, 'node.header')}</H2>
               {documentToReactComponents(get(section, 'node.description.json'))}
             </StickySection>
           </StickyWrapper>
@@ -166,7 +171,7 @@ export const About = ({ title, description, sections }) => (
             {section.node.subSections.map((subSection, subSectionIndex) => (
               <SectionTile key={subSectionIndex}>
                 <TileImage fluid={subSection.image.fluid} />
-                <H300>{subSection.title}</H300>
+                <H3>{subSection.title}</H3>
                 <Divider />
                 {documentToReactComponents(subSection.description.json)}
               </SectionTile>

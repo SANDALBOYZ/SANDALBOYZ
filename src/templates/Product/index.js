@@ -50,6 +50,13 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const H2 = styled.h2`
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.LIGHT};
+  font-size: 12px;
+  text-transform: uppercase;
+`;
+
 class Product extends Component {
   static contextType = StoreContext;
 
@@ -381,7 +388,7 @@ class Product extends Component {
               </Button>
             </oldStyled.Selections>
 
-            <oldStyled.H600>Product Details</oldStyled.H600>
+            <H2>Details</H2>
             <oldStyled.Details
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />

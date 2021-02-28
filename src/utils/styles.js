@@ -4,16 +4,10 @@ import styled, { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
 import colors from '@utils/colors';
-import fonts, { weights } from '@utils/fonts';
+import { fonts, weights } from '@utils/fonts';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 
-export const Z_INDEX = [
-  9,
-  99,
-  999,
-  9999,
-  99999,
-];
+export const Z_INDEX = [9, 99, 999, 9999, 99999];
 
 export const breakpoints = {
   xxs: 320,
@@ -111,10 +105,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     color: ${colors.N900};
-    font-family: ${fonts.STANDARD};
-    font-size: 15px;
+    font-family: ${fonts.NIMBUS};
+    font-size: 14px;
     font-weight: ${weights.LIGHT};
-    line-height: 1.6;
+    line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -134,7 +128,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: ${fonts.CONDENSED};
+    font-family: ${fonts.NIMBUS};
+    font-weight: ${weights.REGULAR};
   }
 
   afterpay-placement {

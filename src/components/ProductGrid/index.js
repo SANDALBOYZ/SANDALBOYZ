@@ -124,6 +124,10 @@ export const ProductGridWrapper = styled.div`
 const TitleContainer = styled.div`
   margin-top: 80px;
   margin-bottom: 20px;
+
+  ${mq.gtmd} {
+    margin-top: 100px;
+  }
 `;
 
 const H1 = styled.h1`
@@ -146,6 +150,7 @@ const CallToAction = styled(Link)`
   display: inline-flex;
   align-items: center;
   font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.REGULAR};
   font-size: 12px;
   text-transform: uppercase;
   cursor: pointer;
