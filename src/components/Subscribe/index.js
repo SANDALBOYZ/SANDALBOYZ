@@ -12,16 +12,17 @@ export const SubscribeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: ${space[2]} 0 ${space[7]};
+  margin: ${space[2]} 0 ${space[3]};
   text-align: center;
 
   ${mq.gtmd} {
-    margin-top: ${space[6]};
+    margin: ${space[6]} auto;
+    max-width: ${space[13]};
   }
 
   ${mq.gtlg} {
-    margin-top: ${space[10]};
-    margin-bottom: ${space[8]};
+    margin-top: ${space[8]};
+    margin-bottom: ${space[6]};
   }
 `;
 
@@ -45,11 +46,8 @@ export const Form = styled.form`
 
   ${mq.gtmd} {
     flex-direction: row;
-    width: ${space[13]};
-    margin-top: ${space[6]};
 
     & > :first-child {
-      margin-right: ${space[1]};
       margin-bottom: 0;
     }
   }
@@ -62,7 +60,7 @@ export const EmailInput = styled.input`
   font-family: ${fonts.NIMBUS};
   font-weight: ${weights.LIGHT};
   font-size: 12px;
-  background-color: ${colors.N0};
+  background: 0;
   border: 1px solid #333;
   border-radius: 0;
   appearance: none;
