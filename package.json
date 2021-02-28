@@ -20,6 +20,7 @@
     "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
     "axios": "^0.19.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "babel-preset-gatsby": "^0.12.2",
     "body-scroll-lock": "^2.6.4",
     "classnames": "^2.2.6",
     "date-fns": "^2.11.0",
@@ -87,26 +88,5 @@
     "prettier": "^1.19.1",
     "reset-css": "^4.0.1",
     "rimraf": "^3.0.2"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "prettier",
-      "prettier/react"
-    ],
-    "rules": {
-      "comma-dangle": [
-        1,
-        "always-multiline"
-      ],
-      "quotes": [
-        1,
-        "single"
-      ],
-      "semi": [
-        1,
-        "always"
-      ]
-    }
   }
 }

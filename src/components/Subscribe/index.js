@@ -26,7 +26,7 @@ export const SubscribeWrapper = styled.div`
   }
 `;
 
-export const Title = styled.caption`
+export const Title = styled.div`
   align-self: flex-start;
   font-family: ${fonts.NIMBUS_CONDENSED};
   font-size: 12px;

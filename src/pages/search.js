@@ -9,7 +9,6 @@ import Search from '@components/Search';
 const SearchPage = ({ location }) => (
   <>
     <Head title="Search" />
-    <Header shrinkOnMobile title="Search Products" />
     <StaticQuery
       query={graphql`
         query SearchIndexQuery {
