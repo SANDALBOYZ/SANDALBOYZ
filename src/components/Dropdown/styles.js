@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import colors from '@utils/colors';
-import fonts, { weights } from '@utils/fonts';
+import { fonts, weights } from '@utils/fonts';
 import space from '@utils/space';
 
 export const Dropdown = styled.div`
@@ -9,11 +9,9 @@ export const Dropdown = styled.div`
   right: -1px;
   left: -1px;
   z-index: 10;
-  background-color: ${colors.N0};
-  border: 1px solid ${colors.N200};
-  border-right-color: ${colors.N500};
-  border-bottom-color: ${colors.N500};
-  border-left-color: ${colors.N500};
+  outline: 0;
+  background-color: ${colors.WINTER_WHITE};
+  border: 1px solid #333;
   max-height: 380px;
   overflow: scroll;
 
@@ -22,12 +20,10 @@ export const Dropdown = styled.div`
       if (props.optionsLength > 10) {
         return css`
           top: -380px;
-          border-top-color: ${colors.N500};
         `;
       } else {
         return css`
           top: calc(-38px * ${props.optionsLength});
-          border-top-color: ${colors.N500};
         `;
       }
     }
@@ -58,19 +54,17 @@ export const DropdownWrapper = styled.div`
   position: relative;
   height: 40px;
   padding: 0 ${space[1]};
-  background-color: ${colors.N0};
-  border: 1px solid ${colors.N200};
+  background-color: ${colors.WINTER_WHITE};
+  outline: 0;
+  border: 1px solid #333;
   border-radius: 0;
-  font-family: ${fonts.STANDARD};
+  color: #333;
+  font-family: ${fonts.NIMBUS_CONDENSED};
   font-weight: ${weights.LIGHT};
-  font-size: 16px;
+  font-size: 14px;
+  text-transform: uppercase;
   line-height: 40px;
   text-align: left;
-
-  &:focus {
-    outline: 0;
-    border-color: ${colors.N500};
-  }
 
   & svg {
     position: absolute;

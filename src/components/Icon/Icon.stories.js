@@ -32,3 +32,5 @@ export const plus = () => <StyledIcon name="plus" />;
 export const search = () => <StyledIcon name="search" />;
 
 export const twitter = () => <StyledIcon name="twitter" />;
+
+export const caretDown = () => <StyledIcon name="caret-down" />;

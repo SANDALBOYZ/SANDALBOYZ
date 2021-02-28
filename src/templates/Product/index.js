@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
 // import qs from 'querystringify';
+import styled from 'styled-components';
 
 import getPrice from '@utils/price';
 import Head, { gtag } from '@utils/seo';
 import { Breakpoint, breakpoints } from '@utils/styles';
 import { Badge, ContentLabel, H300, H300M, H500 } from '@utils/type';
+import colors from '@utils/colors';
+import { fonts, weights } from '@utils/fonts';
 import StoreContext from '@context/StoreContext';
-import Button from '@components/Button';
+// import Button from '@components/Button';
 import Dropdown from '@components/Dropdown';
 import Input from '@components/formElements/Input';
 import ProductImages from '@components/ProductImages';
 import SizeChart from '@components/SizeChart';
-import * as styled from './styles';
+
+import * as oldStyled from './styles';
 
 const fadeInRight = {
   initial: { opacity: 0, x: '10px' },
@@ -27,6 +31,24 @@ const fadeInRight = {
     },
   },
 };
+
+const Title = styled.h1`
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.REGULAR};
+  font-size: 20px;
+`;
+
+const Button = styled.button`
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.LIGHT};
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: #333;
+  color: ${colors.LIGHT_GRAY};
+  height: 50px;
+  border: 0;
+  cursor: pointer;
+`;
 
 class Product extends Component {
   static contextType = StoreContext;
@@ -210,7 +232,7 @@ class Product extends Component {
 
     const product = data.shopifyProduct;
     const sizes = this.getSizes();
-    const colors = this.getColors();
+    const productColors = this.getColors();
     const soldOut = !product.availableForSale;
 
     // https://developers.google.com/search/docs/data-types/product
@@ -242,6 +264,11 @@ class Product extends Component {
       },
     };
 
+    const price = getPrice(
+      get(product, 'variants[0].price'),
+      get(product, 'variants[0].compareAtPrice')
+    );
+
     return (
       <>
         <Head
@@ -264,15 +291,9 @@ class Product extends Component {
           gtagData={gtagData}
         />
 
-        <styled.Container>
-          <styled.MobileProductTitle {...fadeInRight}>
-            <H300M>{product.title}</H300M>
-            <H500>
-              {getPrice(
-                get(product, 'variants[0].price'),
-                get(product, 'variants[0].compareAtPrice')
-              )}
-            </H500>
+        <oldStyled.Container>
+          <oldStyled.MobileProductTitle {...fadeInRight}>
+            <Title>{product.title}</Title>
             <afterpay-placement
               data-locale="en_US"
               data-currency="USD"
@@ -282,29 +303,24 @@ class Product extends Component {
               style={{ margin: 0 }}
             ></afterpay-placement>
             {soldOut && (
-              <styled.Status>
+              <oldStyled.Status>
                 <Badge>Sold out</Badge>
-              </styled.Status>
+              </oldStyled.Status>
             )}
             {!soldOut && onSale && (
-              <styled.Status>
+              <oldStyled.Status>
                 <Badge>Sale</Badge>
-              </styled.Status>
+              </oldStyled.Status>
             )}
-          </styled.MobileProductTitle>
+          </oldStyled.MobileProductTitle>
           <ProductImages
             images={product.images}
             videos={get(data, 'contentfulProduct.videos', [])}
           />
-          <styled.ProductInfo {...fadeInRight}>
+          <oldStyled.ProductInfo {...fadeInRight}>
             <Breakpoint min={breakpoints.lg}>
               <H300>{product.title}</H300>
-              <H500>
-                {getPrice(
-                  get(product, 'variants[0].price'),
-                  get(product, 'variants[0].compareAtPrice')
-                )}
-              </H500>
+              <H500>{price}</H500>
               <afterpay-placement
                 data-locale="en_US"
                 data-currency="USD"
@@ -313,17 +329,17 @@ class Product extends Component {
                 data-size="xs"
               ></afterpay-placement>
               {soldOut && (
-                <styled.Status>
+                <oldStyled.Status>
                   <Badge>Sold out</Badge>
-                </styled.Status>
+                </oldStyled.Status>
               )}
               {!soldOut && onSale && (
-                <styled.Status>
+                <oldStyled.Status>
                   <Badge>Sale</Badge>
-                </styled.Status>
+                </oldStyled.Status>
               )}
             </Breakpoint>
-            <styled.Selections>
+            <oldStyled.Selections>
               {sizes.length > 1 && (
                 <span>
                   <Dropdown
@@ -331,15 +347,15 @@ class Product extends Component {
                     options={sizes}
                     value={sizeShopifyId}
                     placeholder="Size"
-                    prefix="Size:"
+                    prefix="Size"
                   />
                 </span>
               )}
-              {colors.length > 1 && (
+              {productColors.length > 1 && (
                 <span>
                   <Dropdown
                     onChange={this.handleColorChange}
-                    options={colors}
+                    options={productColors}
                     value={color}
                     placeholder="Color"
                   />
@@ -353,7 +369,7 @@ class Product extends Component {
                     value: idx + 1,
                   }))}
                   value={quantity}
-                  prefix="Quantity:"
+                  prefix="Quantity"
                 />
               </span>
               <Button
@@ -361,18 +377,18 @@ class Product extends Component {
                 onClick={this.handleAddToCart}
                 disabled={soldOut}
               >
-                Add to bag
+                Add to bag — {price}
               </Button>
-            </styled.Selections>
+            </oldStyled.Selections>
 
-            <styled.H600>Product Details</styled.H600>
-            <styled.Details
+            <oldStyled.H600>Product Details</oldStyled.H600>
+            <oldStyled.Details
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
-            <styled.Sizing onClick={this.handleOpenSizeChart}>
+            <oldStyled.Sizing onClick={this.handleOpenSizeChart}>
               <ContentLabel>View Sizing Chart</ContentLabel>
-              <styled.Icon name="clipboard" />
-            </styled.Sizing>
+              <oldStyled.Icon name="clipboard" />
+            </oldStyled.Sizing>
 
             {/* <styled.Social>
               <a
@@ -412,19 +428,10 @@ class Product extends Component {
                 <styled.Icon name="instagram" />
               </a>
             </styled.Social> */}
-          </styled.ProductInfo>
-        </styled.Container>
+          </oldStyled.ProductInfo>
+        </oldStyled.Container>
 
-        <styled.MobileSelections>
-          <styled.MobileSelectionsTitleContainer>
-            <H300M>{product.title}</H300M>
-            <H500>
-              {getPrice(
-                get(product, 'variants[0].price'),
-                get(product, 'variants[0].compareAtPrice')
-              )}
-            </H500>
-          </styled.MobileSelectionsTitleContainer>
+        <oldStyled.MobileSelections>
           {sizes.length > 1 && (
             <span>
               <Dropdown
@@ -433,30 +440,31 @@ class Product extends Component {
                 options={sizes}
                 value={sizeShopifyId}
                 placeholder="Size"
-                prefix="Size:"
+                prefix="Size"
               />
             </span>
           )}
-          {colors.length > 1 && (
+          {productColors.length > 1 && (
             <span>
               <Dropdown
                 dropUp
                 onChange={this.handleColorChange}
-                options={colors}
+                options={productColors}
                 value={color}
                 placeholder="Color"
               />
             </span>
           )}
           <span>
-            <Input
-              min={1}
-              max={9}
-              name="quantity"
-              type="number"
-              value={quantity}
+            <Dropdown
+              dropUp
               onChange={this.handleQuantityChange}
-              prefix="Pairs:"
+              options={[...Array(10)].map((_, idx) => ({
+                name: `${idx + 1}`,
+                value: idx + 1,
+              }))}
+              value={quantity}
+              prefix="Quantity"
             />
           </span>
           <Button
@@ -464,9 +472,9 @@ class Product extends Component {
             onClick={this.handleAddToCart}
             disabled={soldOut}
           >
-            Add to bag
+            Add to bag — {price}
           </Button>
-        </styled.MobileSelections>
+        </oldStyled.MobileSelections>
 
         <SizeChart open={sizeChartOpen} onClose={this.handleCloseSizeChart} />
       </>

@@ -66,6 +66,7 @@ const SortFilter = styled.button`
   border: 0;
   padding: 0;
   background: none;
+  cursor: pointer;
 `;
 
 class ProductsPage extends Component {

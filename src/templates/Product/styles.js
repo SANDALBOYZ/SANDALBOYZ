@@ -227,10 +227,12 @@ export const MobileSelections = styled.div`
   width: 100vw;
   margin-bottom: ${space[8]};
   z-index: 9998;
-  background-color: ${colors.N0};
+  background-color: ${colors.WINTER_WHITE};
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
   display: flex;
   flex-wrap: wrap;
-  padding: ${space[2]};
+  padding: ${space[3]} ${space[5]};
   transition: transform 1.5s ease, opacity 1.5s ease;
   opacity: 1;
   animation: ${slideUp} 1.5s ease;
