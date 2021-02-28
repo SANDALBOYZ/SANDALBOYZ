@@ -69,7 +69,7 @@ export const Nav = styled(motion.div)`
   top: 0;
   right: 0;
   left: 0;
-  z-index: 9998;
+  z-index: 10000;
   background-color: ${getNavBackground};
   transition: background-color 600ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 
