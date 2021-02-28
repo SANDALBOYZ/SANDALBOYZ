@@ -1,33 +1,30 @@
 import { css } from 'styled-components';
 
 import colors from '@utils/colors';
-import fonts, { weights } from '@utils/fonts';
+import { fonts, weights } from '@utils/fonts';
 import space from '@utils/space';
 import { mq } from '@utils/styles';
 
 export const baseButton = css`
   display: inline-block;
   position: relative;
-  height: 45px;
-  padding: 0 ${space[5]};
-  color: ${colors.N0};
-  font-family: ${fonts.CONDENSED};
-  font-size: 15px;
-  font-weight: ${weights.BOLD};
-  letter-spacing: 1px;
-  line-height: 43px;
+  height: 40px;
+  padding: 0 ${space[4]};
+  color: ${colors.WINTER_WHITE};
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-size: 14px;
+  font-weight: ${weights.REGULAR};
+  line-height: 40px;
   text-align: center;
-  text-indent: 2px;
   text-transform: uppercase;
   white-space: nowrap;
-  background-color: ${colors.N700};
-  border: none;
-  outline: none;
+  background-color: #333;
+  border: 0;
+  outline: 0;
   user-select: none;
   appearance: none;
   cursor: pointer;
-  transition: background-color linear 100ms, color linear 100ms,
-    fill linear 100ms;
+  transition: background-color linear 100ms, color linear 100ms, fill linear 100ms;
 
   &:disabled {
     color: ${colors.N300};

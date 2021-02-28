@@ -29,7 +29,7 @@ export function Drawer({ actions, children, onClose, open, title, loading }) {
       <styled.Drawer open={open} onClick={handleClick}>
         {loading && <styled.LoadingBar />}
         <div>
-          <styled.H300>{title}</styled.H300>
+          <styled.H3>{title}</styled.H3>
           {children}
         </div>
         {actions && (

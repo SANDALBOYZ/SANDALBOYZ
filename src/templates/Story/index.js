@@ -8,7 +8,6 @@ import { parseISO, format } from 'date-fns';
 import shareImage from '@images/shareImage.jpg';
 import Head from '@utils/seo';
 import { AbsoluteImg } from '@utils/styles';
-import { H100, H200 } from '@utils/type';
 import { getFluidGatsbyImage } from '@utils/getFluidGatsbyImage';
 import {
   DoubleImage,
@@ -33,7 +32,7 @@ const storyRendererOptions = {
 
       const gatsbyFluidImages = get(
         node,
-        'data.target.fields.images[\'en-US\']',
+        "data.target.fields.images['en-US']",
         []
       ).map(image => {
         const imageFile = {
@@ -98,29 +97,27 @@ export const StoryTemplate = ({ data }) => {
           <AbsoluteImg fluid={article.heroImage.fluid} />
         </styled.Background>
         <styled.Box>
-          <H100>{article.title}</H100>
+          <styled.H1>{article.title}</styled.H1>
+          <styled.DateLabel>
+            {format(parseISO(article.publishDate), 'MMMM d, yyyy')}
+          </styled.DateLabel>
         </styled.Box>
         <styled.Authors>
-          <styled.DateLabel>
-            {format(parseISO(article.publishDate), 'LLL d, yyyy')}
-          </styled.DateLabel>
           <styled.AuthorBox>
             <styled.ContentLabel>Words</styled.ContentLabel>
-            {article.author.map(auth => (
-              <styled.ContentLabel key={auth}>{auth}</styled.ContentLabel>
+            {article.author.map(a => (
+              <styled.AuthorLabel key={a}>{a}</styled.AuthorLabel>
             ))}
           </styled.AuthorBox>
           <styled.AuthorBox>
             <styled.ContentLabel>Photos</styled.ContentLabel>
-            {article.photographer.map(photog => (
-              <styled.ContentLabel key={photog}>{photog}</styled.ContentLabel>
+            {article.photographer.map(p => (
+              <styled.AuthorLabel key={p}>{p}</styled.AuthorLabel>
             ))}
           </styled.AuthorBox>
         </styled.Authors>
       </styled.Hero>
-      <styled.Lede>
-        <H200>{get(article, 'previewText.previewText')}</H200>
-      </styled.Lede>
+      <styled.Lede>{get(article, 'previewText.previewText')}</styled.Lede>
       <styled.Sections>
         {documentToReactComponents(
           get(article, 'body.json'),

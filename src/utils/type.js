@@ -7,7 +7,6 @@ export const Badge = styled.span`
   font-family: ${fonts.NIMBUS_CONDENSED};
   font-size: 12px;
   font-weight: ${weights.BOLD};
-  letter-spacing: 1px;
   text-transform: uppercase;
 `;
 
@@ -20,20 +19,19 @@ export const Body = styled.p`
 
 export const ContentLabel = styled.p`
   font-family: ${fonts.NIMBUS_CONDENSED};
-  font-weight: ${weights.BOLD};
-  letter-spacing: 1px;
+  font-weight: ${weights.REGULAR};
   text-transform: uppercase;
 
   ${fluidSize('font-size', {
-    minSize: 12,
-    maxSize: 15,
+    minSize: 10,
+    maxSize: 13,
     minScreenSize: breakpoints.xxs,
     maxScreenSize: breakpoints.xl,
   })}
 
   ${fluidSize('line-height', {
-    minSize: 13,
-    maxSize: 16,
+    minSize: 10,
+    maxSize: 13,
     minScreenSize: breakpoints.xxs,
     maxScreenSize: breakpoints.xl,
   })}

@@ -1,9 +1,16 @@
 import styled, { keyframes } from 'styled-components';
 
 import colors from '@utils/colors';
+import { fonts, weights } from '@utils/fonts';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
-import { H300 as BaseH300 } from '@utils/type';
+
+export const H3 = styled.h3`
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  font-size: 1.4rem;
+  margin-bottom: ${space[3]};
+`;
 
 export const Actions = styled.div`
   display: flex;
@@ -75,10 +82,6 @@ export const LoadingBar = styled.div`
   height: 0.5em;
   background-color: ${colors.SANDALBOYZ_ROSE};
   animation: ${loading} 1s infinite linear;
-`;
-
-export const H300 = styled(BaseH300)`
-  margin-bottom: ${space[4]};
 `;
 
 export const DrawerWrapper = styled.div`

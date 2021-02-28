@@ -4,7 +4,7 @@ import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 import { Container, mq } from '@utils/styles';
-import { H300 as BaseH300, H500 as BaseH500 } from '@utils/type';
+import { H300 as BaseH300 } from '@utils/type';
 
 export const Actions = styled.div`
   display: flex;
@@ -43,21 +43,20 @@ export const H300 = styled(BaseH300)`
   margin-bottom: ${space[3]};
 `;
 
-export const H500 = styled(BaseH500)`
-  display: flex;
-  justify-content: space-between;
-  line-height: 18px;
-
-  & span:last-child {
-    white-space: nowrap;
-  }
-`;
-
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
+`;
+
+export const ProductDetailsContainer = styled.div`
+`;
+
+export const ProductDetailLine = styled.p`
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.LIGHT};
+  font-size: 0.9rem;
 `;
 
 export const Image = styled.img`

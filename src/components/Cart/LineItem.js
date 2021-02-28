@@ -62,6 +62,9 @@ class LineItem extends Component {
     const { lineItem } = this.props;
     const { quantity } = this.state;
 
+    console.log('\n\n\nlineItem.variant.product')
+    console.log(lineItem.variant.product.productType)
+
     const size = get(
       get(lineItem, 'variant.selectedOptions', []).find(
         option => option.name === 'Size'
@@ -73,10 +76,11 @@ class LineItem extends Component {
       <styled.LineItem key={lineItem.id.toString()}>
         <styled.LineItemImage image={get(lineItem, 'variant.image.src')} />
         <styled.Info>
-          <styled.H500>
-            <span>{get(lineItem, 'title')}</span>
-            <span>{getPrice(get(lineItem, 'variant.price'))}</span>
-          </styled.H500>
+          <styled.ProductDetailsContainer>
+            <styled.ProductDetailLine>{get(lineItem, 'title')}</styled.ProductDetailLine>
+            <styled.ProductDetailLine>{get(lineItem, 'variant.product.productType')}</styled.ProductDetailLine>
+            <styled.ProductDetailLine>{getPrice(get(lineItem, 'variant.price'))}</styled.ProductDetailLine>
+          </styled.ProductDetailsContainer>
           <styled.Actions>
             <div>
               {size && <Body>Size {size}</Body>}

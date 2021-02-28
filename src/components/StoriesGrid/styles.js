@@ -22,10 +22,6 @@ export const ActiveFilter = styled.div`
   white-space: nowrap;
 `;
 
-export const ActiveFilters = styled.div`
-
-`;
-
 export const ClearFilter = styled.button`
   background: transparent;
   border: 0;
@@ -77,7 +73,7 @@ export const Filter = styled.a`
   }
 `;
 
-export const Filters = styled.div`
+export const FiltersAside = styled.aside`
   display: none;
   width: 280px;
 
@@ -95,9 +91,6 @@ export const FilterTitle = styled.h3`
 `;
 
 export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: ${space[3]} ${H_PADDING_MOBILE};
 
   ${mq.gtmd} {
@@ -113,10 +106,6 @@ export const Header = styled.div`
   }
 `;
 
-export const Heading = styled(H300)`
-  margin-bottom: ${space[2]};
-`;
-
 export const Icon = styled(BaseIcon)`
   height: 16px;
   fill: ${colors.N0};
@@ -129,11 +118,11 @@ export const Image = styled.img`
   margin-bottom: ${space[5]};
 `;
 
-export const SidebarTitle = styled.h2`
-  font-size: 2rem;
+export const Title = styled.h2`
+  font-size: 1.6rem;
   font-family: ${fonts.GRANVILLE};
   font-weight: ${weights.REGULAR};
-  margin-bottom: ${space[4]};
+  margin-bottom: ${space[1]};
 `;
 
 export const Stories = styled.div`
@@ -154,4 +143,13 @@ export const Wrapper = styled.div`
   ${mq.gtlg} {
     margin: ${space[8]} 0;
   }
+`;
+
+export const Description = styled.p`
+  font-family: ${fonts.NIMBUS};
+  font-size: 0.9rem;
+  font-weight: ${weights.LIGHT};
+  line-height: 1.1rem;
+  width: 80%;
+  margin-bottom: 10px;
 `;
