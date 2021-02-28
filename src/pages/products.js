@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
@@ -12,10 +13,11 @@ import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
+import { fonts, weights } from '@utils/fonts';
 import sandal from '@images/sandal.svg';
-import Button from '@components/Button';
+// import Button from '@components/Button';
 import Filters from '@components/Filters';
-import Header from '@components/Header';
+// import Header from '@components/Header';
 import ProductGrid from '@components/ProductGrid';
 
 const Empty = styled(Container)`
@@ -34,6 +36,36 @@ const Heading = styled(H300)`
 const Image = styled.img`
   height: 64px;
   margin-bottom: ${space[5]};
+`;
+
+const Header = styled.div`
+  margin-top: 80px;
+  padding: 0 20px;
+`;
+
+const H1 = styled.h1`
+  font-family: ${fonts.GRANVILLE};
+  font-size: 1.5rem;
+  font-weight: ${weights.REGULAR};
+  margin-bottom: 5px;
+`;
+
+const Description = styled.p`
+  font-family: ${fonts.NIMBUS};
+  font-size: 0.8rem;
+  font-weight: ${weights.LIGHT};
+  line-height: 1.1rem;
+  width: 80%;
+  margin-bottom: 10px;
+`;
+
+const SortFilter = styled.button`
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-size: 12px;
+  text-transform: uppercase;
+  border: 0;
+  padding: 0;
+  background: none;
 `;
 
 class ProductsPage extends Component {
@@ -232,14 +264,16 @@ class ProductsPage extends Component {
       <>
         <Head title="Products" />
         <motion.div {...fadeInEntry()}>
-          <Header
-            label={get(data, 'productIndex.frontmatter.pageTitle')}
-            shrinkOnMobile
-            title="Products"
-          >
-            <Button theme="text" onClick={this.handleOpenFilters}>
-              Sort/Filter
-            </Button>
+          <Header>
+            <H1>Products</H1>
+            <Description>
+              Among the coziest this planet has to offer. Explore our new
+              Permanent Collection, which features timeless aesthetic and
+              uncompromising durability.
+            </Description>
+            <SortFilter onClick={this.handleOpenFilters}>
+              Sort / Filter
+            </SortFilter>
           </Header>
           {products.length ? (
             <ProductGrid
@@ -255,12 +289,13 @@ class ProductsPage extends Component {
                 price: get(node, 'variants[0].price'),
                 compareAtPrice: get(node, 'variants[0].compareAtPrice'),
                 title: get(node, 'title'),
+                productType: get(node, 'productType'),
                 soldOut: !get(node, 'availableForSale'),
                 onSale:
                   Number(get(node, 'variants[0].compareAtPrice')) >
                   Number(get(node, 'variants[0].price')),
               }))}
-              title={isFiltered ? 'Filtered Results' : 'All Products'}
+              title=""
             />
           ) : (
             <Empty>

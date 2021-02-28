@@ -2,6 +2,7 @@ export const weights = {
   BLACK: 800,
   BOLD: 700,
   NORMAL: 400,
+  REGULAR: 400,
   LIGHT: 300,
 };
 
