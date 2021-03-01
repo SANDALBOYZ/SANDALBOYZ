@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Button from '@components/Button';
 import StoryFilters from '@components/StoryFilters';
 import StoryTile from '@components/StoryTile';
 import sandal from '@images/sandal.svg';

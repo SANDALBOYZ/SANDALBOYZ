@@ -22,10 +22,12 @@ export function useHideZeWidget(open) {
     }
 
     if (open) {
+      // eslint-disable-next-line no-undef
       zE('webWidget', 'hide');
     }
 
     return () => {
+      // eslint-disable-next-line no-undef
       zE('webWidget', 'show');
     };
   }, [open]);

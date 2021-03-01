@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq, Container as BaseContainer } from '@utils/styles';
-import { H300, H500 } from '@utils/type';
 import { fonts, weights } from '@utils/fonts';
 
 import BaseIcon from '@components/Icon';
