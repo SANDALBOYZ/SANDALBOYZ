@@ -28,7 +28,7 @@ export const baseButton = css`
 
   &:disabled {
     color: ${colors.N300};
-    background-color: ${colors.N400};
+    background-color: #dadada;
     pointer-events: none;
     cursor: not-allowed;
   }
@@ -69,10 +69,9 @@ export const sizes = {
 
 const textThemeStyles = css`
   padding: 0;
-  font-family: ${fonts.CONDENSED};
-  font-size: 15px;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-size: 14px;
   font-weight: ${weights.BOLD};
-  letter-spacing: 1px;
   text-transform: uppercase;
   background: transparent;
   border: none;
