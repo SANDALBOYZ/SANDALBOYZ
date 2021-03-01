@@ -94,7 +94,7 @@ class Navigation extends Component {
       >
         <styled.Container>
           <styled.NavSection>
-            <styled.LogoLink to="/" aria-label="SANDALBOYZ">
+            <styled.LogoLink to="/" aria-label="SANDALBOYZ link to home">
               <styled.Logo cartOpen={cartOpen} light={light && !hasScrolled} />
             </styled.LogoLink>
             <styled.NavLink to="/products" partiallyActive>
@@ -120,6 +120,7 @@ class Navigation extends Component {
               light={light && !cartOpen && !hasScrolled}
               open={cartOpen || menuOpen}
               onClick={toggleFunction}
+              aria-label="Open mobile navigation menu"
             />
             {authLinks.map(authLink => (
               <styled.NavLink key={authLink.name} to={authLink.href}>

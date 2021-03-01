@@ -8,24 +8,34 @@ import { Body, Detail } from '@utils/type';
 import Subscribe from '@components/Subscribe';
 import colors from '@utils/colors';
 import space from '@utils/space';
-import { H600 as BaseH600 } from '@utils/type';
-import { fonts, weights } from '@utils/fonts';
+import { weights } from '@utils/fonts';
 
 import BaseLogo from '@components/Logo';
+import Icon from '@components/Icon';
 
-export const Container = styled(BaseContainer)`
+const Container = styled(BaseContainer)`
   background-color: ${colors.EMPIRE_YELLOW};
   border-top: 1px solid #333;
 `;
 
-export const About = styled.div`
+const About = styled.div`
   ${mq.gtlg} {
     max-width: ${space[13]};
     margin-right: ${space[8]};
   }
 `;
 
-export const FooterWrapper = styled.footer`
+const SocialContainer = styled.div`
+  margin-top: 10px;
+`;
+
+const StyledIcon = styled(Icon)`
+  height: 21px;
+  width: 21px;
+  margin-right: 8px;
+`;
+
+const FooterWrapper = styled.footer`
   padding-top: ${space[4]};
   padding-bottom: ${space[4]};
 
@@ -34,11 +44,7 @@ export const FooterWrapper = styled.footer`
   }
 `;
 
-export const H600 = styled(BaseH600)`
-  margin-bottom: ${space[3]};
-`;
-
-export const Info = styled.div`
+const Info = styled.div`
   display: flex;
   flex-direction: column;
   padding: ${space[6]} 0;
@@ -50,13 +56,13 @@ export const Info = styled.div`
   }
 `;
 
-export const Legal = styled.div`
+const Legal = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const Links = styled.div`
+const Links = styled.div`
   font-weight: ${weights.REGULAR};
   display: flex;
   flex-direction: row;
@@ -69,7 +75,7 @@ export const Links = styled.div`
   }
 `;
 
-export const Logo = styled(BaseLogo)`
+const Logo = styled(BaseLogo)`
   height: 12px;
 
   ${mq.gtlg} {
@@ -77,7 +83,7 @@ export const Logo = styled(BaseLogo)`
   }
 `;
 
-export const Section = styled.div`
+const Section = styled.div`
   width: 50%;
   margin-bottom: ${space[6]};
 
@@ -118,35 +124,25 @@ const Footer = ({ about, showStories }) => {
           </Links>
           <About>
             <Body>{about}</Body>
+            <SocialContainer>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.instagram.com/sandalboyz"
+                aria-label="SANDALBOYZ Instagram"
+              >
+                <StyledIcon name="instagram" />
+              </a>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.twitter.com/sandalboyz"
+                aria-label="SANDALBOYZ Twitter"
+              >
+                <StyledIcon name="twitter" />
+              </a>
+            </SocialContainer>
           </About>
-          {/* <Links>
-            {links.map(linkSection => (
-              <Section key={linkSection.title}>
-                <H600>{linkSection.title}</H600>
-                <ul>
-                  {linkSection.links.map(link => {
-                    return (
-                      <li key={link.name}>
-                        {link.external ? (
-                          <a
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Body>{link.name}</Body>
-                          </a>
-                        ) : (
-                          <Link to={link.href}>
-                            <Body>{link.name}</Body>
-                          </Link>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </Section>
-            ))}
-          </Links> */}
         </Info>
         <Legal>
           <Logo />
