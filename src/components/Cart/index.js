@@ -16,14 +16,12 @@ import * as styled from './styles';
 function Cart({ open, onClose }) {
   const context = useContext(StoreContext);
 
-  const { checkout, adding } = context;
+  const { checkout, adding, customer } = context;
 
   useBodyScrollLock(open);
   useHideZeWidget(open);
 
   const handleCheckout = async () => {
-    const { checkout, customer } = this.context;
-
     if (get(customer, 'id')) {
       await associateCheckout(checkout.id);
     }
