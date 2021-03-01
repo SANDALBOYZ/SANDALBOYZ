@@ -88,6 +88,7 @@ export const StyledBody = styled(Body)`
 const Contact = () => {
   const openForm = () => {
     if (typeof zE === 'function') {
+      // eslint-disable-next-line no-undef
       zE('webWidget', 'open');
     }
   };

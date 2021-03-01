@@ -5,8 +5,8 @@ import get from 'lodash/get';
 import styled from 'styled-components';
 
 import getPrice from '@utils/price';
-import { AbsoluteImg, Breakpoint, breakpoints, mq } from '@utils/styles';
-import { Badge, H300M, H400, H600 } from '@utils/type';
+import { AbsoluteImg, mq } from '@utils/styles';
+import { Badge } from '@utils/type';
 import colors, { randomSandalboyzColor } from '@utils/colors';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 import { fonts, weights } from '@utils/fonts';
