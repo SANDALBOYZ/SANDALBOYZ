@@ -185,7 +185,7 @@ export const NarrowTextContainer = styled.div`
   }
 
   & p {
-    font-family: ${fonts.STANDARD};
+    font-family: ${fonts.NIMBUS};
     font-size: 15px;
     font-weight: ${weights.LIGHT};
     line-height: 28px;
@@ -198,7 +198,7 @@ export const NarrowTextContainer = styled.div`
   }
 
   & h3 {
-    font-family: ${fonts.CONDENSED};
+    font-family: ${fonts.NIMBUS_CONDENSED};
     font-size: 18px;
     font-weight: ${weights.BOLD};
     line-height: 36px;
@@ -212,7 +212,7 @@ export const NarrowTextContainer = styled.div`
 
   & h4 {
     margin-top: ${space[4]};
-    font-family: ${fonts.CONDENSED};
+    font-family: ${fonts.NIMBUS_CONDENSED};
     font-size: 15px;
     font-weight: ${weights.BOLD};
     letter-spacing: 1px;
