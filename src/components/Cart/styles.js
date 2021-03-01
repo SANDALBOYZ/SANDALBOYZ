@@ -6,21 +6,6 @@ import space, { H_PADDING_MOBILE } from '@utils/space';
 import { Container, mq } from '@utils/styles';
 import { Body } from '@utils/type';
 
-export const Actions = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  & > div {
-    display: flex;
-    align-items: center;
-  }
-
-  & > input {
-    width: auto;
-  }
-`;
-
 export const Empty = styled(Container)`
   display: flex;
   flex-direction: column;
@@ -101,30 +86,52 @@ export const Left = styled.div`
   justify-content: space-between;
 `;
 
-export const SubtotalContainer = styled.div`
+export const CartContainer = styled.div`
+  padding-top: 80px;
+  padding-bottom: 40px;
+  overflow-y: scroll;
+  max-height: calc(100% - 150px);
+`;
+
+export const H3 = styled.h3`
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  font-size: 1.4rem;
+  margin-bottom: ${space[3]};
+`;
+
+export const Actions = styled.div`
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #333;
   position: absolute;
-  right: ${H_PADDING_MOBILE};
-  bottom: calc(${H_PADDING_MOBILE} + 90px + ${space[5]});
-  left: ${H_PADDING_MOBILE};
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: ${H_PADDING_MOBILE};
+  background-color: ${colors.WINTER_WHITE};
+`;
 
-  & > * {
-    line-height: 1;
-  }
+export const CheckoutText = styled(Body)`
+  align-self: flex-start;
+  margin-bottom: ${space[2]};
+  font-size: 11px;
+`;
 
-  ${mq.gtlg} {
-    right: ${space[5]};
-    bottom: calc(${space[5]} + 50px + ${space[5]});
-    left: ${space[5]};
-  }
+export const SubtotalContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: ${space[2]};
 `;
 
 export const Subtotal = styled(Body)`
-  font-size: 1.2rem;
+  font-weight: ${weights.REGULAR};
+  font-size: 1.1rem;
 `;
 
 export const Price = styled(Body)`
+  font-weight: ${weights.REGULAR};
   font-size: 1.3rem;
 `;

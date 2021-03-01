@@ -62,7 +62,7 @@ function LineItem({ lineItem }) {
         </styled.Left>
         <Dropdown
           onChange={quantity => setQuantity(quantity)}
-          options={[...Array(10)].map((_, idx) => ({
+          options={[...Array(5)].map((_, idx) => ({
             name: `${idx + 1}`,
             value: idx + 1,
           }))}

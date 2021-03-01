@@ -8,6 +8,7 @@ import { gtag } from '@utils/seo';
 import { associateCheckout } from '@utils/shopify';
 import { Body } from '@utils/type';
 
+import Button from '@components/Button';
 import Drawer from '@components/Drawer';
 import LineItem from './LineItem';
 import * as styled from './styles';
@@ -58,36 +59,36 @@ function Cart({ open, onClose }) {
   };
 
   return (
-    <Drawer
-      actions={{
-        close: {
-          name: 'Continue shopping',
-        },
-        next: {
-          disabled: !checkout.lineItems.length,
-          name: 'Proceed to checkout',
-          onClick: handleCheckout,
-        },
-      }}
-      onClose={onClose}
-      open={open}
-      title="Bag"
-      loading={adding}
-    >
-      {checkout.lineItems.map(lineItem => (
-        <LineItem key={lineItem.id.toString()} lineItem={lineItem} />
-      ))}
-      {checkout.lineItems.length ? (
+    <Drawer onClose={onClose} open={open} loading={adding}>
+      <styled.CartContainer>
+        <styled.H3>Bag</styled.H3>
+        {checkout.lineItems.map(lineItem => (
+          <LineItem key={lineItem.id.toString()} lineItem={lineItem} />
+        ))}
+        {checkout.lineItems.length === 0 && (
+          <styled.Empty>
+            <Body>Your bag is empty.</Body>
+            <Body>Add some sandals so we can send you something nice.</Body>
+          </styled.Empty>
+        )}
+      </styled.CartContainer>
+      <styled.Actions>
+        <styled.CheckoutText>
+          Free standard shipping and returns on all United States orders.
+        </styled.CheckoutText>
         <styled.SubtotalContainer>
           <styled.Subtotal>Subtotal</styled.Subtotal>
           <styled.Price>${checkout.subtotalPrice}</styled.Price>
         </styled.SubtotalContainer>
-      ) : (
-        <styled.Empty>
-          <Body>Your bag is empty.</Body>
-          <Body>Add some sandals so we can send you something nice.</Body>
-        </styled.Empty>
-      )}
+        <Button
+          disabled={adding || checkout.lineItems.length === 0}
+          external
+          fullWidth
+          onClick={handleCheckout}
+        >
+          Checkout
+        </Button>
+      </styled.Actions>
     </Drawer>
   );
 }

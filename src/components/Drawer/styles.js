@@ -35,14 +35,13 @@ export const Actions = styled.div`
 export const Drawer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   max-width: 100%;
-  padding: 80px ${H_PADDING_MOBILE} ${H_PADDING_MOBILE};
+  padding: 0 ${H_PADDING_MOBILE};
   background-color: ${colors.WINTER_WHITE};
   transition: transform 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
