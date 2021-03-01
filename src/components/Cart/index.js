@@ -6,7 +6,7 @@ import StoreContext from '@context/StoreContext';
 import { gtag } from '@utils/seo';
 import { associateCheckout } from '@utils/shopify';
 import { Body } from '@utils/type';
-import { useBodyScrollLock } from '@utils/hooks';
+import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
 
 import Button from '@components/Button';
 import Drawer from '@components/Drawer';
@@ -19,6 +19,7 @@ function Cart({ open, onClose }) {
   const { checkout, adding } = context;
 
   useBodyScrollLock(open);
+  useHideZeWidget(open);
 
   const handleCheckout = async () => {
     const { checkout, customer } = this.context;

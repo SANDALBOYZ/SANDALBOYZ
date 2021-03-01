@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Body, ContentLabel } from '@utils/type';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
-import { fonts } from '@utils/fonts';
+import { fonts, weights } from '@utils/fonts';
 
 export const H2 = styled.h2`
   font-family: ${fonts.GRANVILLE};
@@ -72,7 +72,26 @@ export const Email = styled.div`
   }
 `;
 
+export const HereButton = styled.button`
+  border: 0;
+  outline: 0;
+  background: 0;
+  padding: 0;
+  font-weight: ${weights.BOLD};
+  cursor: pointer;
+`;
+
+export const StyledBody = styled(Body)`
+  margin-top: 10px;
+`;
+
 const Contact = () => {
+  const openForm = () => {
+    if (typeof zE === 'function') {
+      zE('webWidget', 'open');
+    }
+  };
+
   return (
     <>
       <TalkWrapper>
@@ -91,6 +110,9 @@ const Contact = () => {
             </span>
             .
           </Body>
+          <StyledBody>
+            Can't find the widget? Click <HereButton onClick={openForm}>here</HereButton> to open our contact form.
+          </StyledBody>
         </TextWrapper>
         <TextWrapper>
           <H2>I just wanna talk!</H2>
@@ -104,7 +126,7 @@ const Contact = () => {
         </TextWrapper>
         <Emails>
           <Email>
-            <ContentLabel>Let's fucking talk:</ContentLabel>
+            <ContentLabel>Let's talk:</ContentLabel>
             <a href="mailto:contact@sandalboyz.com">
               <Body>contact@sandalboyz.com</Body>
             </a>
