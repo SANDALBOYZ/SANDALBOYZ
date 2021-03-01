@@ -6,7 +6,7 @@ require('dotenv').config({
 
 const zESettings = {
   webWidget: {
-    zIndex: 10000,
+    zIndex: 8000,
     contactForm: {
       title: {
         '*': 'Help',
