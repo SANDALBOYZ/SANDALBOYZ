@@ -4,22 +4,7 @@ import colors from '@utils/colors';
 import fonts, { weights } from '@utils/fonts';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 import { Container, mq } from '@utils/styles';
-import { H300 as BaseH300, H500 as BaseH500 } from '@utils/type';
-
-export const Actions = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  & > div {
-    display: flex;
-    align-items: center;
-  }
-
-  & > input {
-    width: auto;
-  }
-`;
+import { Body } from '@utils/type';
 
 export const Empty = styled(Container)`
   display: flex;
@@ -39,25 +24,21 @@ export const Empty = styled(Container)`
   }
 `;
 
-export const H300 = styled(BaseH300)`
-  margin-bottom: ${space[3]};
-`;
-
-export const H500 = styled(BaseH500)`
-  display: flex;
-  justify-content: space-between;
-  line-height: 18px;
-
-  & span:last-child {
-    white-space: nowrap;
-  }
-`;
-
 export const Info = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   flex: 1;
+`;
+
+export const ProductDetailsContainer = styled.div`
+`;
+
+export const ProductDetailLine = styled.p`
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.LIGHT};
+  font-size: 0.8rem;
+  line-height: 1.2;
 `;
 
 export const Image = styled.img`
@@ -74,8 +55,8 @@ export const LineItem = styled.div`
 `;
 
 export const LineItemImage = styled.div`
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   margin-right: ${space[3]};
   background-color: ${colors.N100};
   background-image: url(${props => props.image});
@@ -83,36 +64,78 @@ export const LineItemImage = styled.div`
   background-size: cover;
 `;
 
-export const Remove = styled.a`
-  color: ${colors.NEGATIVE};
-  font-family: ${fonts.CONDENSED};
-  font-weight: ${weights.BOLD};
-  font-size: 15px;
-  letter-spacing: 1px;
+export const Remove = styled.button`
+  border: 0;
+  outline: 0;
+  background: 0;
+  padding: 0;
+  margin: 0;
+  display: inherit;
+  color: #333;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.LIGHT};
+  font-size: 12px;
   text-transform: uppercase;
   cursor: pointer;
+`;
 
-  &:not(:first-child) {
-    margin-left: ${space[3]};
+export const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const CartContainer = styled.div`
+  padding-top: 80px;
+  padding-bottom: 40px;
+  overflow-y: auto;
+  height: calc(100% - 150px);
+
+  ${mq.gtmd} {
+    padding-top: 40px;
   }
 `;
 
-export const Subtotal = styled.div`
+export const H3 = styled.h3`
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  font-size: 1.4rem;
+  margin-bottom: ${space[3]};
+`;
+
+export const Actions = styled.div`
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #333;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: ${H_PADDING_MOBILE};
+  background-color: ${colors.WINTER_WHITE};
+`;
+
+export const CheckoutText = styled(Body)`
+  align-self: flex-start;
+  margin-bottom: ${space[2]};
+  font-size: 11px;
+`;
+
+export const SubtotalContainer = styled.div`
+  width: 100%;
+  display: flex;
   justify-content: space-between;
-  position: absolute;
-  right: ${H_PADDING_MOBILE};
-  bottom: calc(${H_PADDING_MOBILE} + 90px + ${space[5]});
-  left: ${H_PADDING_MOBILE};
+  margin-bottom: ${space[2]};
+`;
 
-  & > * {
-    line-height: 1;
-  }
+export const Subtotal = styled(Body)`
+  font-weight: ${weights.REGULAR};
+  font-size: 1.1rem;
+`;
 
-  ${mq.gtlg} {
-    right: ${space[5]};
-    bottom: calc(${space[5]} + 50px + ${space[5]});
-    left: ${space[5]};
-  }
+export const Price = styled(Body)`
+  font-weight: ${weights.REGULAR};
+  font-size: 1.3rem;
 `;

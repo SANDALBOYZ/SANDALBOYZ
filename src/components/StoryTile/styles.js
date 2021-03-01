@@ -3,13 +3,20 @@ import styled from 'styled-components';
 import { mq } from '@utils/styles';
 import colors from '@utils/colors';
 import space from '@utils/space';
-import { Body, H400 as BaseH400, H600 as BaseH600 } from '@utils/type';
+import { fonts, weights } from '@utils/fonts';
+import { Body } from '@utils/type';
 
-export const H400 = styled(BaseH400)`
+export const H3 = styled.h3`
+  font-size: 1.2rem;
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.REGULAR};
 `;
 
-export const H600 = styled(BaseH600)`
-  margin-bottom: ${space[1]};
+export const Tag = styled.span`
+  font-size: 0.7rem;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.REGULAR};
+  text-transform: uppercase;
 `;
 
 export const Inner = styled.div`

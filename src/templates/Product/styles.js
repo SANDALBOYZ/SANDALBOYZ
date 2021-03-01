@@ -2,17 +2,17 @@ import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 
 import colors from '@utils/colors';
-import fonts, { weights } from '@utils/fonts';
+import { fonts, weights } from '@utils/fonts';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq } from '@utils/styles';
 import { H600 as BaseH600 } from '@utils/type';
 import BaseIcon from '@components/Icon';
 
 export const Details = styled.div`
-  font-family: ${fonts.STANDARD};
-  font-size: 15px;
+  font-family: ${fonts.NIMBUS};
+  font-size: 14px;
+  line-height: 1.3;
   font-weight: ${weights.LIGHT};
-  line-height: 28px;
   margin-bottom: ${space[5]};
 
   & a {
@@ -94,12 +94,7 @@ export const Details = styled.div`
   }
 
   & p {
-    font-family: ${fonts.STANDARD};
-    font-size: 15px;
-    font-weight: ${weights.LIGHT};
-    line-height: 28px;
-    max-width: ${space[15]};
-    margin: ${space[2]} auto;
+    margin: ${space[1]} auto;
     padding: 0;
   }
 
@@ -163,7 +158,7 @@ export const ProductInfo = styled(motion.div)`
   position: sticky;
   top: calc(80px + 24px);
   height: auto;
-  margin-bottom: ${space[4]};
+  margin: ${space[4]} 0;
   padding: 0 ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {
@@ -226,11 +221,13 @@ export const MobileSelections = styled.div`
   bottom: 0;
   width: 100vw;
   margin-bottom: ${space[8]};
-  z-index: 9998;
-  background-color: ${colors.N0};
+  z-index: 8000;
+  background-color: ${colors.WINTER_WHITE};
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
   display: flex;
   flex-wrap: wrap;
-  padding: ${space[2]};
+  padding: ${space[3]} ${space[5]};
   transition: transform 1.5s ease, opacity 1.5s ease;
   opacity: 1;
   animation: ${slideUp} 1.5s ease;

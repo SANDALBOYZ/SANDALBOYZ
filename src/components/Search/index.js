@@ -4,11 +4,31 @@ import { navigate } from 'gatsby';
 import { Index } from 'elasticlunr';
 import get from 'lodash/get';
 import qs from 'querystringify';
+import styled from 'styled-components';
 
 import { H400 } from '@utils/type';
+import { fonts, weights } from '@utils/fonts';
+import space from '@utils/space';
+import { TextContainer } from '@utils/styles';
+
 import SearchForm from '@components/SearchForm';
 import SearchResult from '@components/SearchResult';
-import * as styled from './styles';
+
+export const NoResults = styled.div`
+  padding: ${space[8]} 0 0;
+`;
+
+export const Wrapper = styled(TextContainer)`
+  margin-top: ${space[10]};
+  margin-bottom: ${space[8]};
+`;
+
+const H1 = styled.h1`
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  font-size: 2rem;
+  margin-bottom: ${space[2]};
+`;
 
 class Search extends Component {
   constructor(props) {
@@ -48,7 +68,7 @@ class Search extends Component {
           .map(({ ref }) => this.index.documentStore.getDoc(ref)),
       },
       () => {
-        navigate(`${location.pathname}/?${qs.stringify({ search: query })}`);
+        navigate(`${location.pathname}?${qs.stringify({ search: query })}`);
       }
     );
   };
@@ -58,12 +78,13 @@ class Search extends Component {
     const { results, query } = this.state;
 
     return (
-      <styled.Wrapper>
+      <Wrapper>
+        <H1>Look for Stuff</H1>
         <SearchForm onSearch={this.handleSearch} query={query} />
         {query && !results.length ? (
-          <styled.NoResults>
+          <NoResults>
             <H400>No results</H400>
-          </styled.NoResults>
+          </NoResults>
         ) : (
           <div>
             {results.map(result => {
@@ -87,7 +108,7 @@ class Search extends Component {
             })}
           </div>
         )}
-      </styled.Wrapper>
+      </Wrapper>
     );
   }
 }

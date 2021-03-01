@@ -1,17 +1,25 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import fonts, { weights } from '@utils/fonts';
+import { fonts, weights } from '@utils/fonts';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq, Container as BaseContainer } from '@utils/styles';
 import { ContentLabel as BaseContentLabel } from '@utils/type';
 
-export const DateLabel = styled(BaseContentLabel)`
-  color: black;
+export const H1 = styled.h1`
+  font-family: ${fonts.GRANVILLE};
+  font-size: 1.8rem;
+  font-weight: ${weights.REGULAR};
+`;
+
+export const DateLabel = styled.div`
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.LIGHT};
   margin-bottom: 10px;
 `;
 
 export const Authors = styled.div`
+  display: flex;
   margin: 0 0 ${space[6]};
   padding-left: ${H_PADDING_MOBILE};
 
@@ -54,7 +62,13 @@ export const Box = styled.div`
 `;
 
 export const ContentLabel = styled(BaseContentLabel)`
-  color: ${colors.N500};
+  font-size: 10px;
+`;
+
+export const AuthorLabel = styled.div`
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.LIGHT};
+  font-size: 1rem;
 `;
 
 export const Hero = styled.div`
@@ -70,9 +84,14 @@ export const Hero = styled.div`
 
 export const Lede = styled(BaseContainer)`
   margin-bottom: ${space[6]};
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${weights.REGULAR};
+  font-size: 1.5rem;
 `;
 
-export const Sections = styled.div`
+export const Sections = styled.article`
+  margin-bottom: ${space[8]};
+
   & a {
     text-decoration: underline;
   }
@@ -163,10 +182,10 @@ export const Sections = styled.div`
   }
 
   & p {
-    font-family: ${fonts.STANDARD};
+    font-family: ${fonts.NIMBUS};
     font-size: 15px;
     font-weight: ${weights.LIGHT};
-    line-height: 28px;
+    line-height: 25px;
     max-width: ${space[15]};
     margin: ${space[4]} auto;
     padding: 0 ${H_PADDING_MOBILE};

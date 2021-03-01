@@ -3,13 +3,11 @@ import { graphql, StaticQuery } from 'gatsby';
 import get from 'lodash/get';
 
 import Head from '@utils/seo';
-import Header from '@components/Header';
 import Search from '@components/Search';
 
 const SearchPage = ({ location }) => (
   <>
     <Head title="Search" />
-    <Header shrinkOnMobile title="Search Products" />
     <StaticQuery
       query={graphql`
         query SearchIndexQuery {

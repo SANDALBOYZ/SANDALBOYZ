@@ -15,7 +15,6 @@ export const About = styled.div`
 `;
 
 export const Footer = styled.footer`
-  border-top: 1px solid ${colors.N200};
   padding-bottom: ${space[4]};
 
   ${mq.gtlg} {

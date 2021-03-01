@@ -82,19 +82,19 @@ class Navigation extends Component {
         cartOpen={cartOpen}
         light={light && !hasScrolled}
         hasScrolled={hasScrolled}
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: {
-            ease: [0.55, 0.055, 0.675, 0.19],
-            duration: 0.5,
-            delay: 0.5,
-          },
-        }}
+        // initial={{ opacity: 0 }}
+        // animate={{
+        //   opacity: 1,
+        //   transition: {
+        //     ease: [0.55, 0.055, 0.675, 0.19],
+        //     duration: 0.5,
+        //     delay: 0.5,
+        //   },
+        // }}
       >
         <styled.Container>
           <styled.NavSection>
-            <styled.LogoLink to="/" aria-label="SANDALBOYZ">
+            <styled.LogoLink to="/" aria-label="SANDALBOYZ link to home">
               <styled.Logo cartOpen={cartOpen} light={light && !hasScrolled} />
             </styled.LogoLink>
             <styled.NavLink to="/products" partiallyActive>
@@ -120,6 +120,7 @@ class Navigation extends Component {
               light={light && !cartOpen && !hasScrolled}
               open={cartOpen || menuOpen}
               onClick={toggleFunction}
+              aria-label="Open mobile navigation menu"
             />
             {authLinks.map(authLink => (
               <styled.NavLink key={authLink.name} to={authLink.href}>

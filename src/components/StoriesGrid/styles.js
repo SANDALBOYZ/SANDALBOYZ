@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import colors from '@utils/colors';
 import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { mq, Container as BaseContainer } from '@utils/styles';
-import { H300, H500 } from '@utils/type';
+import { fonts, weights } from '@utils/fonts';
+
 import BaseIcon from '@components/Icon';
 
 const AUTO_GRID_MIN_SIZE = '20rem';
@@ -18,10 +19,6 @@ export const ActiveFilter = styled.div`
   color: ${colors.N0};
   background-color: ${colors.N700};
   white-space: nowrap;
-`;
-
-export const ActiveFilters = styled.div`
-
 `;
 
 export const ClearFilter = styled.button`
@@ -67,11 +64,15 @@ export const Empty = styled(BaseContainer)`
 
 export const Filter = styled.a`
   display: block;
-  font-size: 18px;
+  font-size: 15px;
   text-decoration: ${props => props.active ? 'underline' : 'none'};
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
-export const Filters = styled.div`
+export const FiltersAside = styled.aside`
   display: none;
   width: 280px;
 
@@ -80,14 +81,15 @@ export const Filters = styled.div`
   }
 `;
 
-export const FilterTitle = styled(H500)`
-  margin-top: ${space[4]};
+export const FilterTitle = styled.h3`
+  font-size: 14px;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.REGULAR};
+  text-transform: uppercase;
+  margin: ${space[4]} 0 ${space[1]};
 `;
 
 export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: ${space[3]} ${H_PADDING_MOBILE};
 
   ${mq.gtmd} {
@@ -103,10 +105,6 @@ export const Header = styled.div`
   }
 `;
 
-export const Heading = styled(H300)`
-  margin-bottom: ${space[2]};
-`;
-
 export const Icon = styled(BaseIcon)`
   height: 16px;
   fill: ${colors.N0};
@@ -119,8 +117,11 @@ export const Image = styled.img`
   margin-bottom: ${space[5]};
 `;
 
-export const SidebarTitle = styled(H300)`
-  margin-bottom: ${space[4]};
+export const Title = styled.h2`
+  font-size: 1.6rem;
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  margin-bottom: ${space[1]};
 `;
 
 export const Stories = styled.div`
@@ -141,4 +142,13 @@ export const Wrapper = styled.div`
   ${mq.gtlg} {
     margin: ${space[8]} 0;
   }
+`;
+
+export const Description = styled.p`
+  font-family: ${fonts.NIMBUS};
+  font-size: 0.9rem;
+  font-weight: ${weights.LIGHT};
+  line-height: 1.1rem;
+  width: 80%;
+  margin-bottom: 10px;
 `;

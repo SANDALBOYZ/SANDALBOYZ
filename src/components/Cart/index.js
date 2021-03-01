@@ -1,39 +1,27 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import get from 'lodash/get';
 
+import StoreContext from '@context/StoreContext';
 import { gtag } from '@utils/seo';
 import { associateCheckout } from '@utils/shopify';
-import { Body, H300 } from '@utils/type';
-import StoreContext from '@context/StoreContext';
-import sandal from '@images/sandal.svg';
+import { Body } from '@utils/type';
+import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
+
+import Button from '@components/Button';
 import Drawer from '@components/Drawer';
 import LineItem from './LineItem';
-
 import * as styled from './styles';
 
-class Cart extends Component {
-  static propTypes = {
-    onClose: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-  };
+function Cart({ open, onClose }) {
+  const context = useContext(StoreContext);
 
-  static contextType = StoreContext;
+  const { checkout, adding, customer } = context;
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.open !== this.props.open) {
-      if (this.props.open) {
-        disableBodyScroll();
-      } else {
-        enableBodyScroll();
-      }
-    }
-  }
+  useBodyScrollLock(open);
+  useHideZeWidget(open);
 
-  handleCheckout = async () => {
-    const { checkout, customer } = this.context;
-
+  const handleCheckout = async () => {
     if (get(customer, 'id')) {
       await associateCheckout(checkout.id);
     }
@@ -61,45 +49,44 @@ class Cart extends Component {
     }
   };
 
-  render() {
-    const { onClose, open } = this.props;
-    const { checkout, adding } = this.context;
-
-    return (
-      <Drawer
-        actions={{
-          close: {
-            name: 'Continue shopping',
-          },
-          next: {
-            disabled: !checkout.lineItems.length,
-            name: 'Proceed to checkout',
-            onClick: this.handleCheckout,
-          },
-        }}
-        onClose={onClose}
-        open={open}
-        title="Your cart"
-        loading={adding}
-      >
+  return (
+    <Drawer onClose={onClose} open={open} loading={adding}>
+      <styled.CartContainer>
+        <styled.H3>Bag</styled.H3>
         {checkout.lineItems.map(lineItem => (
           <LineItem key={lineItem.id.toString()} lineItem={lineItem} />
         ))}
-        {checkout.lineItems.length ? (
-          <styled.Subtotal>
-            <Body>Subtotal</Body>
-            <H300>${checkout.subtotalPrice}</H300>
-          </styled.Subtotal>
-        ) : (
+        {checkout.lineItems.length === 0 && (
           <styled.Empty>
-            <styled.Image src={sandal} />
-            <styled.H300>Your cart is empty!</styled.H300>
-            <Body>Go add some sandals so we can ship them to you!</Body>
+            <Body>Your bag is empty.</Body>
+            <Body>Add some sandals so we can send you something nice.</Body>
           </styled.Empty>
         )}
-      </Drawer>
-    );
-  }
+      </styled.CartContainer>
+      <styled.Actions>
+        <styled.CheckoutText>
+          Free standard shipping and returns on all United States orders.
+        </styled.CheckoutText>
+        <styled.SubtotalContainer>
+          <styled.Subtotal>Subtotal</styled.Subtotal>
+          <styled.Price>${checkout.subtotalPrice}</styled.Price>
+        </styled.SubtotalContainer>
+        <Button
+          disabled={adding || checkout.lineItems.length === 0}
+          external
+          fullWidth
+          onClick={handleCheckout}
+        >
+          Checkout
+        </Button>
+      </styled.Actions>
+    </Drawer>
+  );
 }
+
+Cart.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
 
 export default Cart;

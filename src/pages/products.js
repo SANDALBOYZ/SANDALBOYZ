@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
@@ -12,10 +13,9 @@ import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
+
 import sandal from '@images/sandal.svg';
-import Button from '@components/Button';
 import Filters from '@components/Filters';
-import Header from '@components/Header';
 import ProductGrid from '@components/ProductGrid';
 
 const Empty = styled(Container)`
@@ -232,15 +232,6 @@ class ProductsPage extends Component {
       <>
         <Head title="Products" />
         <motion.div {...fadeInEntry()}>
-          <Header
-            label={get(data, 'productIndex.frontmatter.pageTitle')}
-            shrinkOnMobile
-            title="Products"
-          >
-            <Button theme="text" onClick={this.handleOpenFilters}>
-              Sort/Filter
-            </Button>
-          </Header>
           {products.length ? (
             <ProductGrid
               filters={activeFilters}
@@ -255,12 +246,16 @@ class ProductsPage extends Component {
                 price: get(node, 'variants[0].price'),
                 compareAtPrice: get(node, 'variants[0].compareAtPrice'),
                 title: get(node, 'title'),
+                productType: get(node, 'productType'),
                 soldOut: !get(node, 'availableForSale'),
                 onSale:
                   Number(get(node, 'variants[0].compareAtPrice')) >
                   Number(get(node, 'variants[0].price')),
               }))}
-              title={isFiltered ? 'Filtered Results' : 'All Products'}
+              title="Products"
+              description="Among the coziest this planet has to offer. Explore our new
+              Permanent Collection, which features timeless aesthetic and
+              uncompromising durability."
             />
           ) : (
             <Empty>

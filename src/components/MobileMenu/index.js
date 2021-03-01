@@ -1,86 +1,116 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import styled from 'styled-components';
 
-import { H300, H500 } from '@utils/type';
-import Navigation from '@components/Navigation';
-import * as styled from './styles';
+import colors from '@utils/colors';
+import { fonts, weights } from '@utils/fonts';
+import space, { H_PADDING_MOBILE } from '@utils/space';
+import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
 
-class MobileMenu extends Component {
-  static propTypes = {
-    authLinks: PropTypes.array,
-    onCartOpen: PropTypes.func.isRequired,
-    onMenuClose: PropTypes.func.isRequired,
-    onMenuOpen: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-  };
+export const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 48px;
+  padding: 0 ${H_PADDING_MOBILE};
 
-  static defaultProps = {
-    authLinks: [],
-  };
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.open !== this.props.open) {
-      if (this.props.open) {
-        disableBodyScroll();
-      } else {
-        enableBodyScroll();
-      }
-    }
+  & > a {
+    color: ${colors.N0};
   }
+`;
 
-  render() {
-    const {
-      authLinks,
-      onCartClose,
-      onCartOpen,
-      onMenuClose,
-      onMenuOpen,
-      open,
-    } = this.props;
+const activeClassName = 'active';
 
-    return (
-      <styled.MobileMenuWrapper open={open}>
-        <Navigation
-          hideCart
-          light
-          menuOpen={open}
-          onCartClose={onCartClose}
-          onCartOpen={onCartOpen}
-          onMenuClose={onMenuClose}
-          onMenuOpen={onMenuOpen}
-        />
-        <styled.Links>
-          {/* <styled.NavLink to="/sale" onClick={onMenuClose} partiallyActive>
+export const NavLink = styled(Link).attrs({ activeClassName })`
+  display: block;
+  color: ${colors.BLACK_6_C};
+  font-family: ${fonts.NIMBUS};
+  font-size: 20px;
+  font-weight: ${weights.NORMAL};
+
+  &:not(:last-child) {
+    margin-bottom: ${space[2]};
+  }
+`;
+
+export const Links = styled.div`
+  margin-top: 100px;
+  padding: 0 20px;
+`;
+
+export const MobileMenuWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9000;
+  background-color: ${colors.BONE_WHITE};
+  opacity: ${props => (props.open ? 1 : 0)};
+  pointer-events: ${props => (props.open ? 'auto' : 'none')};
+  transition: opacity 250ms ease-in;
+`;
+
+export function MobileMenu({
+  authLinks,
+  onCartClose,
+  onCartOpen,
+  onMenuClose,
+  onMenuOpen,
+  open,
+}) {
+  useBodyScrollLock(open);
+  useHideZeWidget(open);
+
+  return (
+    <MobileMenuWrapper open={open}>
+      <Links>
+        {/* <NavLink to="/sale" onClick={onMenuClose} partiallyActive>
             <H300>SALE</H300>
-          </styled.NavLink> */}
-          <styled.NavLink to="/products" onClick={onMenuClose} partiallyActive>
-            <H300>Products</H300>
-          </styled.NavLink>
-          <styled.NavLink to="/stories" onClick={onMenuClose} partiallyActive>
-            <H300>Stories</H300>
-          </styled.NavLink>
-          <styled.NavLink to="/about" onClick={onMenuClose}>
-            <H300>About</H300>
-          </styled.NavLink>
-          <styled.NavLink to="/search" onClick={onMenuClose}>
-            <H300>Search</H300>
-          </styled.NavLink>
-          <styled.NavLink to="/contact" onClick={onMenuClose}>
-            <H300>Contact</H300>
-          </styled.NavLink>
-        </styled.Links>
-        <styled.Footer>
+          </NavLink> */}
+        <NavLink to="/products" onClick={onMenuClose} partiallyActive>
+          Products
+        </NavLink>
+        <NavLink to="/stories" onClick={onMenuClose} partiallyActive>
+          Stories
+        </NavLink>
+        <NavLink to="/about" onClick={onMenuClose}>
+          About
+        </NavLink>
+        <NavLink to="/search" onClick={onMenuClose}>
+          Search
+        </NavLink>
+        <NavLink to="/contact" onClick={onMenuClose}>
+          Contact
+        </NavLink>
+      </Links>
+
+      {/* <Footer>
           {authLinks.map(authLink => (
             <Link key={authLink.name} to={authLink.href} onClick={onMenuClose}>
               <H500>{authLink.name}</H500>
             </Link>
           ))}
-        </styled.Footer>
-      </styled.MobileMenuWrapper>
-    );
-  }
+        </Footer> */}
+    </MobileMenuWrapper>
+  );
 }
+
+MobileMenu.propTypes = {
+  authLinks: PropTypes.array,
+  onCartOpen: PropTypes.func.isRequired,
+  onMenuClose: PropTypes.func.isRequired,
+  onMenuOpen: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
+
+MobileMenu.defaultProps = {
+  authLinks: [],
+};
 
 export default MobileMenu;

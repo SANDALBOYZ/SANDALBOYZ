@@ -69,8 +69,8 @@ export const Nav = styled(motion.div)`
   top: 0;
   right: 0;
   left: 0;
-  z-index: 9998;
-  background-color: ${getNavBackground};
+  z-index: 10000;
+  background-color: transparent;
   transition: background-color 600ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 
   ${props =>
@@ -89,13 +89,11 @@ export const NavSection = styled.div`
 
 const navLinkStyles = css`
   color: ${colors.N900};
-  font-family: ${fonts.NIMBUS_CONDENSED};
-  font-size: 15px;
-  // font-style: italic;
-  font-weight: ${weights.LIGHT};
+  font-family: ${fonts.NIMBUS};
+  font-size: 16px;
+  font-weight: ${weights.REGULAR};
   letter-spacing: 0px;
   line-height: 1;
-  // text-transform: uppercase;
   cursor: pointer;
 
   &:not(:last-child) {

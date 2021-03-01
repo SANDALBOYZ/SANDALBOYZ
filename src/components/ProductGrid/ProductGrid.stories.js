@@ -8,6 +8,7 @@ export default { title: 'Product Grid' };
 const products = [...Array(10)].map((_, idx) => ({
   price: 65,
   title: `Product ${idx + 1}`,
+  productType: `Product Type ${idx + 1}`,
   soldOut: idx === 7,
 }));
 
@@ -16,7 +17,7 @@ export const Desktop = () => (
     cta="Shop Now / See More"
     products={products}
     title="Recommended Picks"
-    titleIcon="arrow-right"
+    ctaIcon="arrow-right"
   />
 );
 

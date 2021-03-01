@@ -26,10 +26,10 @@ const DoubleWrapper = styled.div`
   position: relative;
   background-color: ${colors.N100};
   display: flex;
-  margin: ${space[7]} ${H_PADDING_MOBILE};
+  margin: ${space[6]} ${H_PADDING_MOBILE};
 
   ${mq.gtlg} {
-    margin: ${space[9]} ${H_PADDING};
+    margin: ${space[8]} ${H_PADDING};
   }
 `;
 

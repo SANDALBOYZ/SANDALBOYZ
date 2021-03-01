@@ -10,6 +10,8 @@ export const themeOutline = () => <Button theme="outline">Cancel</Button>;
 
 export const themeLight = () => <Button theme="light">Add address</Button>;
 
+export const disabled = () => <Button disabled>Subscribe</Button>;
+
 export const layoutFullWidth = () => <Button fullWidth>Sign in</Button>;
 
 export const sizeSmall = () => <Button size="small">Add to cart</Button>;

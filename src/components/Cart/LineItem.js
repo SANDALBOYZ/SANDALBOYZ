@@ -1,37 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState, useEffect } from 'react';
 import get from 'lodash/get';
 
-import getPrice from '@utils/price';
-import { Body } from '@utils/type';
-import { gtag } from '@utils/seo';
 import StoreContext from '@context/StoreContext';
+import getPrice from '@utils/price';
+import { gtag } from '@utils/seo';
+
 import Dropdown from '@components/Dropdown';
+
 import * as styled from './styles';
 
-class LineItem extends Component {
-  static propTypes = {
-    lineItem: PropTypes.object.isRequired,
-  };
+function LineItem({ lineItem }) {
+  const { checkout, client, updateLineItem, removeLineItem } = useContext(
+    StoreContext
+  );
 
-  static contextType = StoreContext;
+  const [quantity, setQuantity] = useState(lineItem.quantity);
 
-  constructor(props) {
-    super(props);
+  useEffect(() => {
+    updateLineItem(client, checkout.id, lineItem.id, quantity);
+  }, [quantity]);
 
-    this.state = {
-      quantity: props.lineItem.quantity,
-    };
-  }
+  const selectedOptionName = get(lineItem, 'variant.selectedOptions[0].name');
+  const selectedOptionValue = get(lineItem, 'variant.selectedOptions[0].value');
 
-  handleQuantityChange = quantity => {
-    this.setState({ quantity }, this.handleUpdate);
-  };
-
-  handleRemove = () => {
-    const { checkout, client, removeLineItem } = this.context;
-    const { lineItem } = this.props;
-
+  const handleRemove = () => {
     gtag('event', 'remove_from_cart', {
       items: [
         {
@@ -50,52 +42,36 @@ class LineItem extends Component {
     removeLineItem(client, checkout.id, lineItem.id);
   };
 
-  handleUpdate = () => {
-    const { quantity } = this.state;
-    const { checkout, client, updateLineItem } = this.context;
-    const { id } = this.props.lineItem;
-
-    updateLineItem(client, checkout.id, id, quantity);
-  };
-
-  render() {
-    const { lineItem } = this.props;
-    const { quantity } = this.state;
-
-    const size = get(
-      get(lineItem, 'variant.selectedOptions', []).find(
-        option => option.name === 'Size'
-      ),
-      'value'
-    );
-
-    return (
-      <styled.LineItem key={lineItem.id.toString()}>
-        <styled.LineItemImage image={get(lineItem, 'variant.image.src')} />
-        <styled.Info>
-          <styled.H500>
-            <span>{get(lineItem, 'title')}</span>
-            <span>{getPrice(get(lineItem, 'variant.price'))}</span>
-          </styled.H500>
-          <styled.Actions>
-            <div>
-              {size && <Body>Size {size}</Body>}
-              <styled.Remove onClick={this.handleRemove}>Remove</styled.Remove>
-            </div>
-            <Dropdown
-              onChange={this.handleQuantityChange}
-              options={[...Array(10)].map((_, idx) => ({
-                name: `${idx + 1}`,
-                value: idx + 1,
-              }))}
-              value={quantity}
-              showIcon={false}
-            />
-          </styled.Actions>
-        </styled.Info>
-      </styled.LineItem>
-    );
-  }
+  return (
+    <styled.LineItem key={lineItem.id.toString()}>
+      <styled.LineItemImage image={get(lineItem, 'variant.image.src')} />
+      <styled.Info>
+        <styled.Left>
+          <styled.ProductDetailsContainer>
+            <styled.ProductDetailLine>
+              {get(lineItem, 'title')}
+            </styled.ProductDetailLine>
+            <styled.ProductDetailLine>
+              {selectedOptionName} {selectedOptionValue}
+            </styled.ProductDetailLine>
+            <styled.ProductDetailLine>
+              {getPrice(get(lineItem, 'variant.price'))}
+            </styled.ProductDetailLine>
+          </styled.ProductDetailsContainer>
+          <styled.Remove onClick={handleRemove}>Remove</styled.Remove>
+        </styled.Left>
+        <Dropdown
+          onChange={quantity => setQuantity(quantity)}
+          options={[...Array(5)].map((_, idx) => ({
+            name: `${idx + 1}`,
+            value: idx + 1,
+          }))}
+          value={quantity}
+          showIcon={false}
+        />
+      </styled.Info>
+    </styled.LineItem>
+  );
 }
 
 export default LineItem;

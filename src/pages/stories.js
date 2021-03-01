@@ -5,24 +5,13 @@ import get from 'lodash/get';
 
 import Head from '@utils/seo';
 import { fadeInEntry } from '@utils/animations';
-import FeaturedStory from '@components/FeaturedStory';
 import StoriesGrid from '@components/StoriesGrid';
 
 const StoriesPage = ({ data }) => {
-  const featured = null;
-
   return (
     <>
       <Head title="Stories" />
       <motion.div {...fadeInEntry()}>
-        {featured && (
-          <FeaturedStory
-            label="Featured Story"
-            href={get(featured, 'fields.slug')}
-            image={get(featured, 'frontmatter.hero.childImageSharp.fluid')}
-            title={get(featured, 'frontmatter.title')}
-          />
-        )}
         {Array.isArray(get(data, 'articles.edges')) && (
           <StoriesGrid
             stories={get(data, 'articles.edges', []).map(({ node }) => ({

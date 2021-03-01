@@ -5,6 +5,11 @@ require('dotenv').config({
 });
 
 module.exports = {
+  // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
+  flags: {
+    DEV_SSR: false,
+    FAST_REFRESH: true,
+  },
   siteMetadata: {
     siteUrl: 'https://sandalboyz.com',
     title: 'SANDALBOYZ',
@@ -139,11 +144,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        // typekit: {
-        //   id: 'bmy0pxx',
-        // },
         typekit: {
-          id: process.env.TYPEKIT_ID || 'csw3kla',
+          id: process.env.TYPEKIT_ID,
         },
       },
     },
@@ -154,7 +156,7 @@ module.exports = {
         // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
         verbose: true,
-        apiVersion: process.env.GATSBY_SHOPIFY_API_VERSION || '2020-07',
+        apiVersion: process.env.GATSBY_SHOPIFY_API_VERSION || '2021-01',
         paginationSize: 250,
       },
     },

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Button from '@components/Button';
 import StoryFilters from '@components/StoryFilters';
 import StoryTile from '@components/StoryTile';
 import sandal from '@images/sandal.svg';
@@ -64,7 +63,7 @@ const StoriesGrid = ({ stories }) => {
 
   const storyYears = [
     ...new Set(stories.map(story => new Date(story.date).getFullYear())),
-  ].sort();
+  ].sort().reverse();
   const storyTags = [...new Set(stories.map(story => story.tags).flat())]
     .filter(Boolean)
     .sort();
@@ -98,15 +97,11 @@ const StoriesGrid = ({ stories }) => {
     <styled.Wrapper>
       <styled.Container>
         <styled.Header>
-          <styled.ActiveFilters>
-            {activeTagFilters}{activeYearFilters}
-          </styled.ActiveFilters>
-          <Button theme="text" onClick={handleOpenFilters}>
-            Filter
-          </Button>
+          <styled.Title>Stories</styled.Title>
+          <styled.Description>A collection of our editorials, lookbooks, and more.</styled.Description>
         </styled.Header>
-        <styled.Filters>
-          <styled.SidebarTitle>Stories</styled.SidebarTitle>
+        <styled.FiltersAside>
+          <styled.Title>Stories</styled.Title>
           {storyTags.length > 0 && (
             <>
               <styled.FilterTitle>Tags</styled.FilterTitle>
@@ -139,7 +134,7 @@ const StoriesGrid = ({ stories }) => {
               ))}
             </>
           )}
-        </styled.Filters>
+        </styled.FiltersAside>
         {getFilteredStories().length ? (
           <styled.Stories>
             {getFilteredStories().map(story => (
@@ -149,10 +144,8 @@ const StoriesGrid = ({ stories }) => {
         ) : (
           <styled.Empty>
             <styled.Image src={sandal} />
-            <styled.Heading>No stories found</styled.Heading>
-            <Body>
-              Try selecting different filters to view more stories.
-            </Body>
+            <styled.Title>No stories found</styled.Title>
+            <Body>Try selecting different filters to view more stories.</Body>
           </styled.Empty>
         )}
       </styled.Container>
