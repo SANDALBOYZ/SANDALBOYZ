@@ -8,6 +8,7 @@ module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
   flags: {
     DEV_SSR: false,
+    FAST_REFRESH: true,
   },
   siteMetadata: {
     siteUrl: 'https://sandalboyz.com',

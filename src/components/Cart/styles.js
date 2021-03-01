@@ -90,7 +90,7 @@ export const CartContainer = styled.div`
   padding-top: 80px;
   padding-bottom: 40px;
   overflow-y: auto;
-  max-height: calc(100% - 150px);
+  height: calc(100% - 150px);
 
   ${mq.gtmd} {
     padding-top: 40px;

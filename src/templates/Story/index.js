@@ -60,7 +60,7 @@ const storyRendererOptions = {
   },
 };
 
-export const StoryTemplate = ({ data }) => {
+const StoryTemplate = ({ data }) => {
   const article = data.contentfulArticle;
 
   const schemaOrg = {
