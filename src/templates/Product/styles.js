@@ -221,7 +221,7 @@ export const MobileSelections = styled.div`
   bottom: 0;
   width: 100vw;
   margin-bottom: ${space[8]};
-  z-index: 9998;
+  z-index: 8000;
   background-color: ${colors.WINTER_WHITE};
   border-top: 1px solid #333;
   border-bottom: 1px solid #333;

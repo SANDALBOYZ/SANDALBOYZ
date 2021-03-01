@@ -89,10 +89,14 @@ export const DrawerWrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 9000;
   background-color: ${props => (props.open ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)')};
   transition: background-color 400ms ease-in;
   transition-delay: 250ms;
   opacity: 1;
   pointer-events: ${props => (props.open ? 'auto' : 'none')};
+
+  ${mq.gtmd} {
+    z-index: 10000;
+  }
 `;

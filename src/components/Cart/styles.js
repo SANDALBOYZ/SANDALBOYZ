@@ -89,8 +89,12 @@ export const Left = styled.div`
 export const CartContainer = styled.div`
   padding-top: 80px;
   padding-bottom: 40px;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: calc(100% - 150px);
+
+  ${mq.gtmd} {
+    padding-top: 40px;
+  }
 `;
 
 export const H3 = styled.h3`
@@ -105,7 +109,7 @@ export const Actions = styled.div`
   flex-direction: column;
   align-items: center;
   border-top: 1px solid #333;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
