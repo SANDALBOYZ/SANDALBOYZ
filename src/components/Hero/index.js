@@ -7,7 +7,6 @@ import Link from 'gatsby-link';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
 import { AbsoluteImg, Breakpoint, breakpoints, mq } from '@utils/styles';
-import { H500 as BaseH500 } from '@utils/type';
 import { fonts, weights } from '@utils/fonts';
 import * as styles from './styles';
 

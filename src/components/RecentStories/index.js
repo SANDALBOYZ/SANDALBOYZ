@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { AbsoluteImg } from '@utils/styles';
 import { fonts, weights } from '@utils/fonts';
 import colors from '@utils/colors';
-import space, { H_PADDING, V_PADDING, H_PADDING_MOBILE } from '@utils/space';
+import space, { H_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { Container as BaseContainer, mq } from '@utils/styles';
 
 export const ImageWrapper = styled.div`

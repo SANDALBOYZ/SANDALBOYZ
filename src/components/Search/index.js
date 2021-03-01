@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { H400 } from '@utils/type';
 import { fonts, weights } from '@utils/fonts';
 import space from '@utils/space';
-import { mq, TextContainer } from '@utils/styles';
+import { TextContainer } from '@utils/styles';
 
 import SearchForm from '@components/SearchForm';
 import SearchResult from '@components/SearchResult';
