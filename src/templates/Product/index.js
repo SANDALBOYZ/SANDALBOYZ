@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import get from 'lodash/get';
-// import qs from 'querystringify';
 import styled from 'styled-components';
 
 import getPrice from '@utils/price';
 import Head, { gtag } from '@utils/seo';
 import { Breakpoint, breakpoints } from '@utils/styles';
-import { Badge, ContentLabel, H300, H300M, H500 } from '@utils/type';
+import { Badge, ContentLabel } from '@utils/type';
 import colors from '@utils/colors';
 import { fonts, weights } from '@utils/fonts';
 import StoreContext from '@context/StoreContext';
-// import Button from '@components/Button';
 import Dropdown from '@components/Dropdown';
-import Input from '@components/formElements/Input';
 import ProductImages from '@components/ProductImages';
 import SizeChart from '@components/SizeChart';
 
