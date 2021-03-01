@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
 import { fonts, weights } from '@utils/fonts';
 import space, { H_PADDING_MOBILE } from '@utils/space';
+import { useBodyScrollLock } from '@utils/hooks';
 
 export const Footer = styled.div`
   display: flex;
@@ -64,15 +64,7 @@ export function MobileMenu({
   onMenuOpen,
   open,
 }) {
-  useEffect(() => {
-    if (open) {
-      disableBodyScroll();
-    }
-
-    return () => {
-      enableBodyScroll();
-    };
-  });
+  useBodyScrollLock(open);
 
   return (
     <MobileMenuWrapper open={open}>

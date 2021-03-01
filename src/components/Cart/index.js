@@ -1,12 +1,12 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import get from 'lodash/get';
 
 import StoreContext from '@context/StoreContext';
 import { gtag } from '@utils/seo';
 import { associateCheckout } from '@utils/shopify';
 import { Body } from '@utils/type';
+import { useBodyScrollLock } from '@utils/hooks';
 
 import Button from '@components/Button';
 import Drawer from '@components/Drawer';
@@ -18,15 +18,7 @@ function Cart({ open, onClose }) {
 
   const { checkout, adding } = context;
 
-  useEffect(() => {
-    if (open) {
-      disableBodyScroll();
-    }
-
-    return () => {
-      enableBodyScroll();
-    };
-  });
+  useBodyScrollLock(open);
 
   const handleCheckout = async () => {
     const { checkout, customer } = this.context;

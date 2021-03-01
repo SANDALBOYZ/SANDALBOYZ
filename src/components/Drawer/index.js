@@ -70,7 +70,7 @@ Drawer.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   loading: PropTypes.bool,
 };
 
