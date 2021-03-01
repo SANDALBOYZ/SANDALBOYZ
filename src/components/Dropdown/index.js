@@ -68,7 +68,7 @@ export const DropdownWrapper = styled.div`
   color: #333;
   font-family: ${fonts.NIMBUS_CONDENSED};
   font-weight: ${weights.LIGHT};
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
   line-height: 40px;
   text-align: left;
