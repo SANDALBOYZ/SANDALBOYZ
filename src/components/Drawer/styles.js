@@ -46,6 +46,7 @@ export const Drawer = styled.div`
   transition: transform 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
   transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
   overflow-y: auto;
+  cursor: auto;
 
   ${mq.gtmd} {
     width: 470px;
@@ -95,6 +96,7 @@ export const DrawerWrapper = styled.div`
   transition-delay: 250ms;
   opacity: 1;
   pointer-events: ${props => (props.open ? 'auto' : 'none')};
+  cursor: url(${props => props.cursorIcon}) 16 16, auto;
 
   ${mq.gtmd} {
     z-index: 10000;

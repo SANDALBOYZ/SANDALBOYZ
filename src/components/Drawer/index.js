@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
 import Button from '@components/Button';
+import X from '@images/X.svg';
 import * as styled from './styles';
 
 export function Drawer({ actions, children, onClose, open, title, loading, backgroundColor }) {
@@ -25,7 +26,7 @@ export function Drawer({ actions, children, onClose, open, title, loading, backg
   });
 
   return (
-    <styled.DrawerWrapper open={open} onClick={onClose}>
+    <styled.DrawerWrapper open={open} onClick={onClose} cursorIcon={X}>
       <styled.Drawer open={open} onClick={handleClick}>
         {loading && <styled.LoadingBar />}
           {title && <styled.H3>{title}</styled.H3>}
