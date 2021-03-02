@@ -88,8 +88,10 @@ export const StyledBody = styled(Body)`
 const Contact = () => {
   const openForm = () => {
     if (typeof zE === 'function') {
-      // eslint-disable-next-line no-undef
+      /* eslint-disable no-undef */
+      zE('webWidget', 'show');
       zE('webWidget', 'open');
+      /* eslint-enable no-undef */
     }
   };
 

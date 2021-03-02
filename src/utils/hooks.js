@@ -1,4 +1,5 @@
 import { useLayoutEffect, useEffect } from 'react';
+import { useLocation } from '@reach/router';
 
 export function useBodyScrollLock(open) {
   useLayoutEffect(() => {
@@ -16,6 +17,8 @@ export function useBodyScrollLock(open) {
 
 // Used to hide the Zendesk widget when opening menus/carts/filters.
 export function useHideZeWidget(open) {
+  const location = useLocation();
+
   useEffect(() => {
     if (typeof zE !== 'function') {
       return;
@@ -26,9 +29,14 @@ export function useHideZeWidget(open) {
       zE('webWidget', 'hide');
     }
 
+    // Leave Zendesk widget hidden on product page. It obstructs the `Add to Cart` on mobile.
+    if (location.pathname.includes('/products')) {
+      return;
+    }
+
     return () => {
       // eslint-disable-next-line no-undef
       zE('webWidget', 'show');
     };
-  }, [open]);
+  }, [open, location]);
 }

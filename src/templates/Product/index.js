@@ -69,6 +69,11 @@ class Product extends Component {
     };
   }
 
+  componentDidMount() {
+    // eslint-disable-next-line no-undef
+    zE('webWidget', 'hide');
+  }
+
   handleAddToCart = () => {
     const { data } = this.props;
     const { color, quantity, sizeShopifyId } = this.state;
