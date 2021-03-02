@@ -109,7 +109,7 @@ export const ImageWrapper = styled.div`
   appearance: none;
   outline: 0;
   cursor: pointer;
-  pointer-events: none;
+  pointer-events: none; // Disables ghost modal opens on mobile.
 
   &:not(:last-child) {
     margin-bottom: ${space[3]};
