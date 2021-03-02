@@ -109,9 +109,14 @@ export const ImageWrapper = styled.div`
   appearance: none;
   outline: 0;
   cursor: pointer;
+  pointer-events: none;
 
   &:not(:last-child) {
     margin-bottom: ${space[3]};
+  }
+
+  ${mq.gtmd} {
+    pointer-events: auto;
   }
 `;
 
