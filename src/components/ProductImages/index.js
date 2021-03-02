@@ -43,17 +43,11 @@ class ProductImages extends Component {
                 alt=""
                 src={get(
                   images[activeIndex],
-                  'localFile.childImageSharp.fluid.src'
+                  'originalSrc'
                 )}
                 onClick={this.handleModalClick}
               />
             </styled.ModalImage>
-            <styled.Button onClick={this.handlePreviousImage}>
-              <styled.Icon name="chevron-left" />
-            </styled.Button>
-            <styled.Button onClick={this.handleNextImage}>
-              <styled.Icon name="chevron-right" />
-            </styled.Button>
           </styled.Modal>
         )}
         <styled.ProductImagesWrapper

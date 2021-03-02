@@ -63,12 +63,15 @@ export const Modal = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 10000;
   background-color: rgba(0, 0, 0, 0.5);
   cursor: zoom-out;
+  padding: 20px;
 
   ${mq.gtlg} {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   & ${Button} {
@@ -81,15 +84,10 @@ export const ModalImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: ${H_PADDING};
-  right: ${H_PADDING};
-  bottom: ${H_PADDING};
-  left: ${H_PADDING};
   cursor: zoom-out;
+  max-height: 100%;
 
   & img {
-    max-height: 100%;
     cursor: default;
   }
 `;
