@@ -29,8 +29,8 @@ export function useHideZeWidget(open) {
       zE('webWidget', 'hide');
     }
 
-    // Leave Zendesk widget hidden on product page. It obstructs the `Add to Cart` on mobile.
-    if (location.pathname.includes('/products')) {
+    // Leave Zendesk widget hidden on a product's page. It obstructs the `Add to Cart` on mobile.
+    if (location.pathname.includes('/products/')) {
       return;
     }
 
