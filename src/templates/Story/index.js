@@ -28,6 +28,11 @@ const ARTICLE_FULL_WIDTH_IMAGE = 'articleFullWidthStretchImage';
 const storyRendererOptions = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: node => {
+      console.log('\n\nryan')
+      console.log(node)
+
+      return null;
+
       const contentType = node.data.target.sys.contentType.sys['contentful_id'];
 
       const gatsbyFluidImages = get(
@@ -120,7 +125,7 @@ const StoryTemplate = ({ data }) => {
       <styled.Lede>{get(article, 'previewText.previewText')}</styled.Lede>
       <styled.Sections>
         {documentToReactComponents(
-          get(article, 'body.json'),
+          JSON.parse(get(article, 'body.raw')),
           storyRendererOptions
         )}
       </styled.Sections>
@@ -140,7 +145,7 @@ export const query = graphql`
       author
       photographer
       body {
-        json
+        raw
       }
       heroImage {
         fluid {

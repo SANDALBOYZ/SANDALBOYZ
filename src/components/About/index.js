@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import get from 'lodash/get';
@@ -82,7 +82,7 @@ const SectionTile = styled.div`
   }
 `;
 
-const TileImage = styled(Image)`
+const TileImage = styled(GatsbyImage)`
   margin-bottom: ${space[2]};
 
   ${mq.gtlg} {

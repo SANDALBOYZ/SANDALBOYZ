@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import get from 'lodash/get';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
@@ -37,12 +37,12 @@ export const DoubleImage = ({ images }) => (
   <DoubleWrapper>
     <DoubleImageOne>
       {get(images, '0') && (
-        <Image fluid={images[0]} backgroundColor={randomSandalboyzColor()} />
+        <GatsbyImage fluid={images[0]} backgroundColor={randomSandalboyzColor()} />
       )}
     </DoubleImageOne>
     <DoubleImageTwo>
       {get(images, '1') && (
-        <Image fluid={images[1]} backgroundColor={randomSandalboyzColor()} />
+        <GatsbyImage fluid={images[1]} backgroundColor={randomSandalboyzColor()} />
       )}
     </DoubleImageTwo>
   </DoubleWrapper>
@@ -60,7 +60,7 @@ const FullHeightImageWrapper = styled.div`
 
 export const FullHeightImage = ({ image }) => (
   <FullHeightImageWrapper>
-    {image && <Image fluid={image} backgroundColor={randomSandalboyzColor()} />}
+    {image && <GatsbyImage fluid={image} backgroundColor={randomSandalboyzColor()} />}
   </FullHeightImageWrapper>
 );
 
@@ -114,7 +114,7 @@ export const OffsetGridImage = props => (
         .slice(0, 4)
         .map((image, idx) => (
           <OffsetGridImg key={idx}>
-            {image && <Image fluid={image} backgroundColor={randomSandalboyzColor()} />}
+            {image && <GatsbyImage fluid={image} backgroundColor={randomSandalboyzColor()} />}
           </OffsetGridImg>
         ))}
     </OffsetGridContainer>

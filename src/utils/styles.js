@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
@@ -146,7 +146,7 @@ export const Group = styled.div`
   }
 `;
 
-export const Img = styled(Image)`
+export const Img = styled(GatsbyImage)`
   max-width: 100%;
   margin-left: 0;
   margin-right: 0;
@@ -157,7 +157,7 @@ export const Img = styled(Image)`
   padding-top: 0;
 `;
 
-export const AbsoluteImg = styled(Image)`
+export const AbsoluteImg = styled(GatsbyImage)`
   position: absolute !important;
   top: 0;
   right: 0;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import styled from 'styled-components';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Link from 'gatsby-link';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
@@ -126,7 +126,7 @@ export const FullHero = ({
 
   return (
     <FullHeroWrapper>
-      <Image
+      <GatsbyImage
         fluid={sources}
         backgroundColor={randomSandalboyzColor()}
         style={{
