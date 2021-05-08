@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import styled from 'styled-components';
 
-import StoreContext from '@context/StoreContext';
+import ProductsContext from '@context/ProductsContext';
 import { gtag } from '@utils/seo';
 import { associateCheckout } from '@utils/shopify';
 import { Body } from '@utils/type';
@@ -16,14 +16,11 @@ import Button from '@components/Button';
 import Drawer from '@components/Drawer';
 import Dropdown from '@components/Dropdown';
 
-const Container = styled.div`
+const FilterListsContainer = styled.div`
   padding-top: 80px;
   padding-bottom: 40px;
   overflow-y: auto;
-  height: calc(100% - 150px);
-`;
-
-const FilterListsContainer = styled.div`
+  // height: calc(100% - 150px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
@@ -48,6 +45,7 @@ const FilterItem = styled.button`
   padding: 0;
   display: block;
   font-family: ${fonts.NIMBUS};
+  font-weight: ${props => (props.active ? weights.BOLD : weights.NORMAL)};
 
   & ~ & {
     padding-top: 15px;
@@ -67,13 +65,28 @@ export const Actions = styled.div`
 `;
 
 const PRODUCT_TYPE_FILTERS = [
+  { label: 'Slides', value: 'Court Slide' },
+  { label: 'Socks', value: 'Sock' },
+  { label: 'Shorts', value: 'Shorts' },
+];
 
-]
+const COLLECTION_FILTERS = [
+  { label: 'Permanent', value: 'Permanent' },
+  { label: 'Inline', value: 'Inline' },
+  { label: 'Special', value: 'Special Projects' },
+];
 
 function Filters({ open, onClose }) {
-  const [productTypeFilters, setProductTypeFilters] = useState([]);
-  const [collectionFilters, setCollectionFilters] = useState([]);
-  // const context = useContext(StoreContext);
+  const context = useContext(ProductsContext);
+
+  console.log('\n\n\nfilters!');
+  console.log(context);
+
+  const {
+    activeFilters: { collection, productType },
+    handleFilterSelect,
+    clearFilters,
+  } = context;
 
   // const { checkout, adding, customer } = context;
 
@@ -82,31 +95,47 @@ function Filters({ open, onClose }) {
 
   return (
     <Drawer onClose={onClose} open={open}>
-      <Container>
-        <FilterListsContainer>
-          <FilterLists>
-            <FilterTitle>Product Type</FilterTitle>
-            <FilterItem>Slides</FilterItem>
-            <FilterItem>Socks</FilterItem>
-            <FilterItem>Shorts</FilterItem>
-          </FilterLists>
-          <FilterLists>
-            <FilterTitle>Collection</FilterTitle>
-            <FilterItem>Permanent</FilterItem>
-            <FilterItem>Inline</FilterItem>
-            <FilterItem>Special</FilterItem>
-          </FilterLists>
-          <FilterLists>
-            <FilterTitle>Sort</FilterTitle>
-            <Dropdown />
-          </FilterLists>
-        </FilterListsContainer>
-      </Container>
+      <FilterListsContainer>
+        <FilterLists>
+          <FilterTitle>Product Type</FilterTitle>
+          {PRODUCT_TYPE_FILTERS.map(filter => (
+            <FilterItem
+              onClick={() => handleFilterSelect('productType', filter.value)}
+              active={productType.includes(filter.value)}
+              key={filter.value}
+            >
+              {filter.label}
+            </FilterItem>
+          ))}
+        </FilterLists>
+        <FilterLists>
+          <FilterTitle>Collection</FilterTitle>
+          {COLLECTION_FILTERS.map(filter => (
+            <FilterItem
+              onClick={() => handleFilterSelect('collection', filter.value)}
+              active={collection.includes(filter.value)}
+              key={filter.value}
+            >
+              {filter.label}
+            </FilterItem>
+          ))}
+        </FilterLists>
+        <FilterLists>
+          <FilterTitle>Sort</FilterTitle>
+          <Dropdown />
+        </FilterLists>
+      </FilterListsContainer>
       <Actions>
-        <Button theme="outline" onClick={onClose}>
-          Cancel
+        <Button
+          theme="outline"
+          onClick={() => {
+            clearFilters();
+            onClose();
+          }}
+        >
+          Clear
         </Button>
-        <Button>Apply</Button>
+        <Button onClick={onClose}>Apply</Button>
       </Actions>
     </Drawer>
   );

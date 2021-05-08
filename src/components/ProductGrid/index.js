@@ -10,6 +10,7 @@ import { fonts, weights } from '@utils/fonts';
 
 import ProductTile from '@components/ProductTile';
 import BaseIcon from '@components/Icon';
+import Button from '@components/Button';
 
 export const ClearFilter = styled.button`
   background: transparent;
@@ -170,8 +171,6 @@ export const CtaIcon = styled(BaseIcon)`
   }
 `;
 
-export const FilterButton = styled.button``;
-
 const ProductGrid = ({
   cta,
   filters,
@@ -207,9 +206,9 @@ const ProductGrid = ({
             )}
           </TitleContainer>
           {openFilters && (
-            <FilterButton onClick={openFilters}>Sort + Filter</FilterButton>
+            <Button onClick={openFilters} theme='text'>Sort / Filter</Button>
           )}
-          {filters &&
+          {/* {filters &&
             Object.keys(filters).map(key =>
               filters[key].map(filter => (
                 <Filter key={filter}>
@@ -223,7 +222,7 @@ const ProductGrid = ({
                   </ClearFilter>
                 </Filter>
               ))
-            )}
+            )} */}
         </Header>
         <Products>
           {products.map(product => (

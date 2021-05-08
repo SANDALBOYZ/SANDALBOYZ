@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
@@ -14,6 +13,7 @@ import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
 
+import ProductsContext from '@context/ProductsContext';
 import sandal from '@images/sandal.svg';
 import Filters from '@components/Filters';
 import ProductGrid from '@components/ProductGrid';
@@ -55,6 +55,8 @@ class ProductsPage extends Component {
       activeSort: search.sort || 'CREATED_AT',
       showFilters: false,
       sortedProductIds: [],
+      handleFilterSelect: this.handleFilterSelect,
+      clearFilters: this.clearFilters,
     };
   }
 
@@ -72,15 +74,34 @@ class ProductsPage extends Component {
     }
   }
 
+  handleFilterSelect = (key, value) => {
+    const { activeFilters } = this.state;
+    const existing = activeFilters[key];
+    const currentPos = existing.indexOf(value);
+
+    if (currentPos > -1) {
+      existing.splice(currentPos, 1);
+    } else {
+      existing.push(value);
+    }
+
+    this.setState({ activeFilters: { ...activeFilters, [key]: existing } });
+  };
+
+  clearFilters = () => {
+    this.setState({ activeFilters: { collection: [], productType: [] } });
+  };
+
   filterProducts = ({ node: product }) => {
     const { activeFilters } = this.state;
     let matchesCollection = true;
     let matchesProductType = true;
 
     if (activeFilters.collection.length) {
-      matchesCollection = activeFilters.collection.filter(activeFilter =>
-        this.getCollections(product).includes(activeFilter)
-      ).length > 0;
+      matchesCollection =
+        activeFilters.collection.filter(activeFilter =>
+          this.getCollections(product).includes(activeFilter)
+        ).length > 0;
     }
 
     if (activeFilters.productType.length) {
@@ -229,7 +250,7 @@ class ProductsPage extends Component {
     ).length;
 
     return (
-      <>
+      <ProductsContext.Provider value={this.state}>
         <Head title="Products" />
         <motion.div {...fadeInEntry()}>
           {products.length ? (
@@ -276,7 +297,7 @@ class ProductsPage extends Component {
           onSort={this.handleSort}
           open={showFilters}
         />
-      </>
+      </ProductsContext.Provider>
     );
   }
 }

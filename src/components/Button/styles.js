@@ -70,8 +70,8 @@ export const sizes = {
 const textThemeStyles = css`
   padding: 0;
   font-family: ${fonts.NIMBUS_CONDENSED};
-  font-size: 14px;
-  font-weight: ${weights.BOLD};
+  font-size: 12px;
+  font-weight: ${weights.NORMAL};
   text-transform: uppercase;
   background: transparent;
   border: none;
