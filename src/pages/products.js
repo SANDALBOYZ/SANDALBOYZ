@@ -227,7 +227,7 @@ class ProductsPage extends Component {
 
   render() {
     const { data } = this.props;
-    const { activeFilters, activeSort, showFilters } = this.state;
+    const { activeFilters, showFilters } = this.state;
 
     const products =
       Array.isArray(get(data, 'products.edges')) &&
