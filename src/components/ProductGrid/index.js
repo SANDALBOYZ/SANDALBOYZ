@@ -171,27 +171,24 @@ export const CtaIcon = styled(BaseIcon)`
   }
 `;
 
+const FilterButton = styled(Button)`
+  &:after {
+    content: '${props => (props.filtersLength ? props.filtersLength : '')}';
+    vertical-align: super;
+    padding-left: 2px;
+  }
+`;
+
 const ProductGrid = ({
   cta,
   filters,
   extraPadding,
-  onFilter,
   products,
   title,
   description,
   ctaIcon,
   openFilters,
 }) => {
-  const clearFilter = (key, filter) => {
-    const newFilters = { collection: [], productType: [] };
-
-    Object.keys(filters).forEach(key => {
-      newFilters[key] = filters[key].filter(f => f !== filter);
-    });
-
-    onFilter(newFilters);
-  };
-
   return (
     <ProductGridWrapper extraPadding={extraPadding}>
       <Container>
@@ -206,7 +203,13 @@ const ProductGrid = ({
             )}
           </TitleContainer>
           {openFilters && (
-            <Button onClick={openFilters} theme='text'>Sort / Filter</Button>
+            <FilterButton
+              onClick={openFilters}
+              theme="text"
+              filtersLength={filters.collection.length + filters.productType.length}
+            >
+              Sort / Filter
+            </FilterButton>
           )}
           {/* {filters &&
             Object.keys(filters).map(key =>
