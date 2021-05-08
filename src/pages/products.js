@@ -10,15 +10,16 @@ import Head from '@utils/seo';
 import { getSortedProductIds } from '@utils/shopify';
 import space from '@utils/space';
 import { Container } from '@utils/styles';
-import { Body, H300 } from '@utils/type';
+import { Body } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
 
 import ProductsContext from '@context/ProductsContext';
-import sandal from '@images/sandal.svg';
 import Filters from '@components/Filters';
 import ProductGrid from '@components/ProductGrid';
 
 const Empty = styled(Container)`
+  margin-top: 120px;
+  margin-bottom: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +28,7 @@ const Empty = styled(Container)`
   padding: ${space[8]} 0;
 `;
 
-const Heading = styled(H300)`
+const Heading = styled.h3`
   margin-bottom: ${space[2]};
 `;
 
@@ -57,21 +58,8 @@ class ProductsPage extends Component {
       sortedProductIds: [],
       handleFilterSelect: this.handleFilterSelect,
       clearFilters: this.clearFilters,
+      handleSort: this.handleSort,
     };
-  }
-
-  componentDidMount() {
-    const { location } = this.props;
-    const search = qs.parse(location.search);
-    this.handleSort(search.sort);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.activeSort !== this.state.activeSort) {
-      const { location } = this.props;
-      const search = qs.parse(location.search);
-      this.handleSort(search.sort);
-    }
   }
 
   handleFilterSelect = (key, value) => {
@@ -245,10 +233,6 @@ class ProductsPage extends Component {
       Array.isArray(get(data, 'products.edges')) &&
       data.products.edges.filter(this.filterProducts);
 
-    const isFiltered = activeFilters.collection.concat(
-      activeFilters.productType
-    ).length;
-
     return (
       <ProductsContext.Provider value={this.state}>
         <Head title="Products" />
@@ -281,7 +265,6 @@ class ProductsPage extends Component {
             />
           ) : (
             <Empty>
-              <Image src={sandal} />
               <Heading>No products found</Heading>
               <Body>
                 Try selecting different filters to view more available products.

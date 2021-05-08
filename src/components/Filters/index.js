@@ -23,14 +23,16 @@ const Title = styled.h2`
 const FilterListsContainer = styled.div`
   padding-bottom: 40px;
   overflow-y: auto;
-  // height: calc(100% - 150px);
+  height: calc(100% - 150px);
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content;
   column-gap: 20px;
 `;
 
 const FilterLists = styled.div`
   margin-bottom: 20px;
+  height: 100%;
 `;
 
 const FilterTitle = styled.h3`
@@ -49,6 +51,7 @@ const FilterItem = styled.button`
   display: block;
   font-family: ${fonts.NIMBUS};
   font-weight: ${props => (props.active ? weights.BOLD : weights.NORMAL)};
+  cursor: pointer;
 
   & ~ & {
     padding-top: 15px;
@@ -86,6 +89,8 @@ function Filters({ open, onClose }) {
     activeFilters: { collection, productType },
     handleFilterSelect,
     clearFilters,
+    activeSort,
+    handleSort,
   } = context;
 
   useBodyScrollLock(open);
@@ -121,7 +126,19 @@ function Filters({ open, onClose }) {
         </FilterLists>
         <FilterLists>
           <FilterTitle>Sort</FilterTitle>
-          <Dropdown />
+          <Dropdown
+            label="Sort"
+            name="sortKey"
+            options={[
+              { name: 'Newest', value: 'CREATED_AT' },
+              { name: 'Price Ascending', value: 'PRICE_ASC' },
+              { name: 'Price Descending', value: 'PRICE_DESC' },
+              { name: 'Best Selling', value: 'BEST_SELLING' },
+              { name: 'Product Type', value: 'PRODUCT_TYPE' },
+            ]}
+            value={activeSort}
+            onChange={handleSort}
+          />
         </FilterLists>
       </FilterListsContainer>
       <Actions>
