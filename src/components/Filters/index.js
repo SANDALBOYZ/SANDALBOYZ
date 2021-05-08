@@ -1,12 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
 import styled from 'styled-components';
 
 import ProductsContext from '@context/ProductsContext';
-import { gtag } from '@utils/seo';
-import { associateCheckout } from '@utils/shopify';
-import { Body } from '@utils/type';
 import space, { H_PADDING_MOBILE } from '@utils/space';
 import { fonts, weights } from '@utils/fonts';
 import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
@@ -91,8 +87,6 @@ function Filters({ open, onClose }) {
     handleFilterSelect,
     clearFilters,
   } = context;
-
-  // const { checkout, adding, customer } = context;
 
   useBodyScrollLock(open);
   useHideZeWidget(open);
