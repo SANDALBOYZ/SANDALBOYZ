@@ -231,7 +231,25 @@ class ProductsPage extends Component {
 
     const products =
       Array.isArray(get(data, 'products.edges')) &&
-      data.products.edges.filter(this.filterProducts);
+      data.products.edges
+        .filter(this.filterProducts)
+        .sort(this.sortProducts)
+        .map(({ node }) => ({
+          id: get(node, 'id'),
+          href: `/products/${get(node, 'handle')}`,
+          images: [
+            get(node, 'images[0].localFile.childImageSharp.fluid'),
+            get(node, 'images[1].localFile.childImageSharp.fluid'),
+          ],
+          price: get(node, 'variants[0].price'),
+          compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+          title: get(node, 'title'),
+          productType: get(node, 'productType'),
+          soldOut: !get(node, 'availableForSale'),
+          onSale:
+            Number(get(node, 'variants[0].compareAtPrice')) >
+            Number(get(node, 'variants[0].price')),
+        }));
 
     return (
       <ProductsContext.Provider value={this.state}>
@@ -239,26 +257,10 @@ class ProductsPage extends Component {
         <motion.div {...fadeInEntry()}>
           {products.length ? (
             <ProductGrid
+              title="Products"
+              products={products}
               filters={activeFilters}
               openFilters={this.handleOpenFilters}
-              onFilter={this.handleFilter}
-              products={products.sort(this.sortProducts).map(({ node }) => ({
-                id: get(node, 'id'),
-                href: `/products/${get(node, 'handle')}`,
-                images: [
-                  get(node, 'images[0].localFile.childImageSharp.fluid'),
-                  get(node, 'images[1].localFile.childImageSharp.fluid'),
-                ],
-                price: get(node, 'variants[0].price'),
-                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-                title: get(node, 'title'),
-                productType: get(node, 'productType'),
-                soldOut: !get(node, 'availableForSale'),
-                onSale:
-                  Number(get(node, 'variants[0].compareAtPrice')) >
-                  Number(get(node, 'variants[0].price')),
-              }))}
-              title="Products"
               description="Among the coziest this planet has to offer. Explore our new
               Permanent Collection, which features timeless aesthetic and
               uncompromising durability."
@@ -272,14 +274,7 @@ class ProductsPage extends Component {
             </Empty>
           )}
         </motion.div>
-        <Filters
-          activeFilters={activeFilters}
-          activeSort={activeSort}
-          onFilter={this.handleFilter}
-          onClose={this.handleCloseFilters}
-          onSort={this.handleSort}
-          open={showFilters}
-        />
+        <Filters onClose={this.handleCloseFilters} open={showFilters} />
       </ProductsContext.Provider>
     );
   }

@@ -211,21 +211,6 @@ const ProductGrid = ({
               Sort / Filter
             </FilterButton>
           )}
-          {/* {filters &&
-            Object.keys(filters).map(key =>
-              filters[key].map(filter => (
-                <Filter key={filter}>
-                  {filter}
-                  <ClearFilter
-                    onClick={() => {
-                      clearFilter(key, filter);
-                    }}
-                  >
-                    <CtaIcon name="x" />
-                  </ClearFilter>
-                </Filter>
-              ))
-            )} */}
         </Header>
         <Products>
           {products.map(product => (
@@ -243,7 +228,6 @@ ProductGrid.propTypes = {
     productType: PropTypes.array,
   }),
   extraPadding: PropTypes.bool,
-  onFilter: PropTypes.func,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       images: PropTypes.arrayOf(PropTypes.object),
