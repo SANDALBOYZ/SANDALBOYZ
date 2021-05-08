@@ -16,8 +16,15 @@ import Button from '@components/Button';
 import Drawer from '@components/Drawer';
 import Dropdown from '@components/Dropdown';
 
+const Title = styled.h2`
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  font-size: 1.4rem;
+  margin-top: 60px;
+  margin-bottom: ${space[4]};
+`;
+
 const FilterListsContainer = styled.div`
-  padding-top: 80px;
   padding-bottom: 40px;
   overflow-y: auto;
   // height: calc(100% - 150px);
@@ -95,6 +102,7 @@ function Filters({ open, onClose }) {
 
   return (
     <Drawer onClose={onClose} open={open}>
+      <Title>Sort / Filter</Title>
       <FilterListsContainer>
         <FilterLists>
           <FilterTitle>Product Type</FilterTitle>
