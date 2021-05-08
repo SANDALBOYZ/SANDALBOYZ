@@ -86,9 +86,6 @@ const COLLECTION_FILTERS = [
 function Filters({ open, onClose }) {
   const context = useContext(ProductsContext);
 
-  console.log('\n\n\nfilters!');
-  console.log(context);
-
   const {
     activeFilters: { collection, productType },
     handleFilterSelect,
