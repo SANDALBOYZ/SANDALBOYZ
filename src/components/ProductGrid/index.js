@@ -179,6 +179,21 @@ const FilterButton = styled(Button)`
   }
 `;
 
+const Empty = styled(Container)`
+  margin-top: 120px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: ${space[8]} 0;
+`;
+
+const Heading = styled.h3`
+  margin-bottom: ${space[2]};
+`;
+
 const ProductGrid = ({
   cta,
   filters,
@@ -206,17 +221,28 @@ const ProductGrid = ({
             <FilterButton
               onClick={openFilters}
               theme="text"
-              filtersLength={filters.collection.length + filters.productType.length}
+              filtersLength={
+                filters.collection.length + filters.productType.length
+              }
             >
               Sort / Filter
             </FilterButton>
           )}
         </Header>
-        <Products>
-          {products.map(product => (
-            <ProductTile key={product.id} {...product} />
-          ))}
-        </Products>
+        {products.length > 0 ? (
+          <Products>
+            {products.map(product => (
+              <ProductTile key={product.id} {...product} />
+            ))}
+          </Products>
+        ) : (
+          <Empty>
+            <Heading>No products found</Heading>
+            <div>
+              Try selecting different filters to view more available products.
+            </div>
+          </Empty>
+        )}
       </Container>
     </ProductGridWrapper>
   );

@@ -1,7 +1,15 @@
 import React from 'react';
 
-export const ProductsContext = React.createContext({
-  foo: 'bar',
-});
+export const defaultProductsContext = {
+  activeFilters: {
+    collection: [],
+    productType: [],
+  },
+  activeSort: 'CREATED_AT',
+  showFilters: false,
+  sortedProductIds: [],
+};
+
+export const ProductsContext = React.createContext(defaultProductsContext);
 
 export default ProductsContext;

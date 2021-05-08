@@ -8,35 +8,11 @@ import qs from 'querystringify';
 
 import Head from '@utils/seo';
 import { getSortedProductIds } from '@utils/shopify';
-import space from '@utils/space';
-import { Container } from '@utils/styles';
-import { Body } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
 
 import ProductsContext from '@context/ProductsContext';
 import Filters from '@components/Filters';
 import ProductGrid from '@components/ProductGrid';
-
-const Empty = styled(Container)`
-  margin-top: 120px;
-  margin-bottom: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: ${space[8]} 0;
-`;
-
-const Heading = styled.h3`
-  margin-bottom: ${space[2]};
-`;
-
-const Image = styled.img`
-  height: 64px;
-  margin-bottom: ${space[5]};
-`;
-
 class ProductsPage extends Component {
   constructor(props) {
     super(props);
@@ -255,24 +231,15 @@ class ProductsPage extends Component {
       <ProductsContext.Provider value={this.state}>
         <Head title="Products" />
         <motion.div {...fadeInEntry()}>
-          {products.length ? (
-            <ProductGrid
-              title="Products"
-              products={products}
-              filters={activeFilters}
-              openFilters={this.handleOpenFilters}
-              description="Among the coziest this planet has to offer. Explore our new
+          <ProductGrid
+            title="Products"
+            products={products}
+            filters={activeFilters}
+            openFilters={this.handleOpenFilters}
+            description="Among the coziest this planet has to offer. Explore our new
               Permanent Collection, which features timeless aesthetic and
               uncompromising durability."
-            />
-          ) : (
-            <Empty>
-              <Heading>No products found</Heading>
-              <Body>
-                Try selecting different filters to view more available products.
-              </Body>
-            </Empty>
-          )}
+          />
         </motion.div>
         <Filters onClose={this.handleCloseFilters} open={showFilters} />
       </ProductsContext.Provider>
