@@ -235,6 +235,7 @@ class ProductsPage extends Component {
           {products.length ? (
             <ProductGrid
               filters={activeFilters}
+              openFilters={this.handleOpenFilters}
               onFilter={this.handleFilter}
               products={products.sort(this.sortProducts).map(({ node }) => ({
                 id: get(node, 'id'),

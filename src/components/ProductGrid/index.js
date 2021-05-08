@@ -170,6 +170,8 @@ export const CtaIcon = styled(BaseIcon)`
   }
 `;
 
+export const FilterButton = styled.button``;
+
 const ProductGrid = ({
   cta,
   filters,
@@ -179,6 +181,7 @@ const ProductGrid = ({
   title,
   description,
   ctaIcon,
+  openFilters,
 }) => {
   const clearFilter = (key, filter) => {
     const newFilters = { collection: [], productType: [] };
@@ -203,6 +206,9 @@ const ProductGrid = ({
               </CallToAction>
             )}
           </TitleContainer>
+          {openFilters && (
+            <FilterButton onClick={openFilters}>Sort + Filter</FilterButton>
+          )}
           {filters &&
             Object.keys(filters).map(key =>
               filters[key].map(filter => (
