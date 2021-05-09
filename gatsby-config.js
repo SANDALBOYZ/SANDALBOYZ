@@ -57,9 +57,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-netlify',
-    // Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline'
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-alias-imports',
