@@ -128,6 +128,7 @@ export const FullHero = ({
         style={{
           height: '100%',
         }}
+        alt="Hero Image"
       />
       <Link to={href}>
         <TextWrapper>

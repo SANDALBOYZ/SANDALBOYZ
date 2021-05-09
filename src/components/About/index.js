@@ -149,7 +149,9 @@ export const About = ({ title, description, sections }) => (
   <>
     <TitleContainer {...fadeInEntry()}>
       <H1>{title}</H1>
-      <Description>{documentToReactComponents(description)}</Description>
+      <Description>
+        {documentToReactComponents(JSON.parse(description))}
+      </Description>
     </TitleContainer>
 
     {sections.map((section, index) => {
@@ -164,16 +166,20 @@ export const About = ({ title, description, sections }) => (
           <StickyWrapper index={index}>
             <StickySection>
               <H2>{get(section, 'node.header')}</H2>
-              {documentToReactComponents(get(section, 'node.description.json'))}
+              {documentToReactComponents(
+                JSON.parse(get(section, 'node.description.raw'))
+              )}
             </StickySection>
           </StickyWrapper>
           <ScrollSection>
             {section.node.subSections.map((subSection, subSectionIndex) => (
               <SectionTile key={subSectionIndex}>
-                <TileImage fluid={subSection.image.fluid} />
+                <TileImage image={subSection.image.gatsbyImageData} />
                 <H3>{subSection.title}</H3>
                 <Divider />
-                {documentToReactComponents(subSection.description.json)}
+                {documentToReactComponents(
+                  JSON.parse(get(subSection, 'description.raw'))
+                )}
               </SectionTile>
             ))}
           </ScrollSection>

@@ -63,6 +63,7 @@ export const aboutPageQuery = graphql`
               raw
             }
             image {
+              gatsbyImageData
               fluid {
                 src
                 srcSet
