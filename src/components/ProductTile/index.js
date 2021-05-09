@@ -138,13 +138,13 @@ const ProductTile = ({
         <ImageWrapper>
           {get(images, '0') && (
             <AbsoluteImg
-              fluid={images[0]}
+              image={images[0]}
               backgroundColor={randomSandalboyzColor()}
             />
           )}
           {get(images, '1') && (
             <AbsoluteImg
-              fluid={images[1]}
+              image={images[1]}
               backgroundColor={randomSandalboyzColor()}
             />
           )}
