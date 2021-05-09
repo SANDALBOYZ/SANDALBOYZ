@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import styled from 'styled-components';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, withArtDirection } from 'gatsby-plugin-image';
 import Link from 'gatsby-link';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
@@ -113,21 +113,17 @@ export const FullHero = ({
   title,
   callToAction,
 }) => {
-  const sources = [
+  const images = withArtDirection(desktopImage, [
     {
-      ...mobileImage,
       media: '(max-width: 916px)',
+      image: mobileImage,
     },
-    {
-      ...desktopImage,
-      media: '(min-width: 916px)',
-    },
-  ];
+  ]);
 
   return (
     <FullHeroWrapper>
       <GatsbyImage
-        fluid={sources}
+        image={images}
         backgroundColor={randomSandalboyzColor()}
         style={{
           height: '100%',

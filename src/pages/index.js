@@ -21,11 +21,11 @@ const LandingPage = ({ data }) => {
             href="/products"
             desktopImage={get(
               data,
-              'fullHero.frontmatter.desktopImage.childImageSharp.fluid'
+              'fullHero.frontmatter.desktopImage.childImageSharp.gatsbyImageData'
             )}
             mobileImage={get(
               data,
-              'fullHero.frontmatter.mobileImage.childImageSharp.fluid'
+              'fullHero.frontmatter.mobileImage.childImageSharp.gatsbyImageData'
             )}
             label={get(data, 'fullHero.frontmatter.label')}
             title={get(data, 'fullHero.frontmatter.title')}
@@ -42,8 +42,8 @@ const LandingPage = ({ data }) => {
                 id: get(node, 'id'),
                 href: `/products/${get(node, 'handle')}`,
                 images: [
-                  get(node, 'images[0].localFile.childImageSharp.fluid'),
-                  get(node, 'images[1].localFile.childImageSharp.fluid'),
+                  get(node, 'images[0].localFile.childImageSharp.gatsbyImageData'),
+                  get(node, 'images[1].localFile.childImageSharp.gatsbyImageData'),
                 ],
                 price: get(node, 'variants[0].price'),
                 compareAtPrice: get(node, 'variants[0].compareAtPrice'),
@@ -65,7 +65,7 @@ const LandingPage = ({ data }) => {
             <RecentStories
               storyA={{
                 href: `/stories/${data.recentStories.edges[0].node.slug}`,
-                image: get(data, 'recentStories.edges[0].node.heroImage.fluid'),
+                image: get(data, 'recentStories.edges[0].node.heroImage.gatsbyImageData'),
                 title: get(data, 'recentStories.edges[0].node.title'),
                 date: get(data, 'recentStories.edges[0].node.publishDate'),
                 previewText: get(
@@ -75,7 +75,7 @@ const LandingPage = ({ data }) => {
               }}
               storyB={{
                 href: `/stories/${data.recentStories.edges[1].node.slug}`,
-                image: get(data, 'recentStories.edges[1].node.heroImage.fluid'),
+                image: get(data, 'recentStories.edges[1].node.heroImage.gatsbyImageData'),
                 title: get(data, 'recentStories.edges[1].node.title'),
                 date: get(data, 'recentStories.edges[1].node.publishDate'),
                 previewText: get(
@@ -162,6 +162,7 @@ export const landingPageQuery = graphql`
       frontmatter {
         desktopImage {
           childImageSharp {
+            gatsbyImageData
             fluid(maxWidth: 2048, quality: 90) {
               ...GatsbyImageSharpFluid_noBase64
             }
@@ -169,6 +170,7 @@ export const landingPageQuery = graphql`
         }
         mobileImage {
           childImageSharp {
+            gatsbyImageData
             fluid(maxWidth: 1080, quality: 90) {
               ...GatsbyImageSharpFluid_noBase64
             }
@@ -197,6 +199,7 @@ export const landingPageQuery = graphql`
             originalSrc
             localFile {
               childImageSharp {
+                gatsbyImageData
                 fluid(maxWidth: 360) {
                   ...GatsbyImageSharpFluid
                 }
@@ -224,6 +227,7 @@ export const landingPageQuery = graphql`
             previewText
           }
           heroImage {
+            gatsbyImageData
             fluid {
               sizes
               src

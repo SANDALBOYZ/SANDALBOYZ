@@ -214,8 +214,8 @@ class ProductsPage extends Component {
           id: get(node, 'id'),
           href: `/products/${get(node, 'handle')}`,
           images: [
-            get(node, 'images[0].localFile.gatsbyImageData'),
-            get(node, 'images[1].localFile.gatsbyImageData'),
+            get(node, 'images[0].localFile.childImageSharp.gatsbyImageData'),
+            get(node, 'images[1].localFile.childImageSharp.gatsbyImageData'),
           ],
           price: get(node, 'variants[0].price'),
           compareAtPrice: get(node, 'variants[0].compareAtPrice'),
