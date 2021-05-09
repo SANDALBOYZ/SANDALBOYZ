@@ -8,7 +8,6 @@
 
 - Gatsby
 - React
-- Netlify CMS (soon to be deprecated)
 - Contentful
 
 ## Developing

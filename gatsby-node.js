@@ -41,18 +41,6 @@ exports.createPages = ({ graphql, actions }) => {
       });
     });
 
-    // Create story pages
-    // DEPRECATION WARNING! We will deprecate using `allMarkdownRemark` (which is Netlify CMS)
-    // result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    //   createPage({
-    //     path: `legacy-stories/${node.fields.slug}`,
-    //     component: path.resolve('./src/templates/Story/index.js'),
-    //     context: {
-    //       id: node.id,
-    //     },
-    //   });
-    // });
-
     // Create story pages from Contentful
     result.data.allContentfulArticle.edges.forEach(({ node }) => {
       console.log(`Creating story page from Contentful! ${node.slug}`);
