@@ -1,6 +1,5 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
-const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 const get = require('lodash/get');
 const remark = require('remark');
 const html = require('remark-html');
@@ -141,7 +140,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  fmImagesToRelative(node); // convert image paths for gatsby images
 
   // @TODO: Figure out `onCreateNode` for Contentful.
   // `fileAbsolutePath` is missing from Contentful nodes and the following code uses that field.
