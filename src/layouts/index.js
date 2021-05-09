@@ -261,15 +261,6 @@ class Layout extends React.Component {
                   contentDigest
                 }
               }
-              stories: allMarkdownRemark(
-                filter: { frontmatter: { templateKey: { eq: "story" } } }
-              ) {
-                edges {
-                  node {
-                    id
-                  }
-                }
-              }
             }
           `}
           render={data => (
@@ -285,7 +276,6 @@ class Layout extends React.Component {
                 onCartOpen={this.handleCartOpen}
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}
-                showStories={get(data, 'stories.edges.length') > 0}
               />
               <MobileMenu
                 authLinks={this.getNavAuthLinks()}

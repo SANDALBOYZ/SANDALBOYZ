@@ -292,14 +292,6 @@ export default SalePage;
 
 export const salePageQuery = graphql`
   query SalePageQuery {
-    productIndex: markdownRemark(
-      frontmatter: { templateKey: { eq: "productIndex" } }
-    ) {
-      id
-      frontmatter {
-        pageTitle
-      }
-    }
     products: allShopifyProduct(
       sort: { fields: [createdAt], order: DESC },
       filter: { tags: { in: "collection:Sale" } }

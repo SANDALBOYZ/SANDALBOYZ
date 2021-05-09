@@ -251,14 +251,6 @@ export default ProductsPage;
 
 export const productsPageQuery = graphql`
   query ProductsPageQuery {
-    productIndex: markdownRemark(
-      frontmatter: { templateKey: { eq: "productIndex" } }
-    ) {
-      id
-      frontmatter {
-        pageTitle
-      }
-    }
     products: allShopifyProduct(sort: { fields: [createdAt], order: DESC }) {
       edges {
         node {
