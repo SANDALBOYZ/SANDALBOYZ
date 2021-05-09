@@ -232,43 +232,31 @@ class Layout extends React.Component {
     return (
       <StoreContext.Provider value={this.state.store}>
         <GlobalStyle />
-        <StaticQuery
-          query={graphql`
-            query SiteTitleQuery {
-              site: site {
-                siteMetadata {
-                  siteUrl
-                  title
-                }
-              }
-            }
-          `}
-          render={data => (
-            <>
-              <Navigation
-                animate
-                authLinks={this.getNavAuthLinks()}
-                cartOpen={this.state.cartOpen}
-                hideCart={this.state.cartOpen}
-                light={this.getNavLight()}
-                menuOpen={this.state.menuOpen}
-                onCartClose={this.handleCartClose}
-                onCartOpen={this.handleCartOpen}
-                onMenuClose={this.handleMenuClose}
-                onMenuOpen={this.handleMenuOpen}
-              />
-              <MobileMenu
-                authLinks={this.getNavAuthLinks()}
-                onCartClose={this.handleCartClose}
-                onCartOpen={this.handleCartOpen}
-                onMenuClose={this.handleMenuClose}
-                onMenuOpen={this.handleMenuOpen}
-                open={this.state.menuOpen}
-              />
-              <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
-              {children}
-              <Footer showStories={get(data, 'stories.edges.length') > 0} />
-              <Popup
+        <>
+          <Navigation
+            animate
+            authLinks={this.getNavAuthLinks()}
+            cartOpen={this.state.cartOpen}
+            hideCart={this.state.cartOpen}
+            light={this.getNavLight()}
+            menuOpen={this.state.menuOpen}
+            onCartClose={this.handleCartClose}
+            onCartOpen={this.handleCartOpen}
+            onMenuClose={this.handleMenuClose}
+            onMenuOpen={this.handleMenuOpen}
+          />
+          <MobileMenu
+            authLinks={this.getNavAuthLinks()}
+            onCartClose={this.handleCartClose}
+            onCartOpen={this.handleCartOpen}
+            onMenuClose={this.handleMenuClose}
+            onMenuOpen={this.handleMenuOpen}
+            open={this.state.menuOpen}
+          />
+          <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
+          {children}
+          <Footer />
+          {/* <Popup
                 contentDigest={get(data, 'popup.internal.contentDigest')}
                 enabled={get(data, 'popup.frontmatter.enabled')}
                 description={get(data, 'popup.frontmatter.description')}
@@ -277,10 +265,8 @@ class Layout extends React.Component {
                 label={get(data, 'popup.frontmatter.label')}
                 siteUrl={get(data, 'site.siteMetadata.siteUrl')}
                 title={get(data, 'popup.frontmatter.title')}
-              />
-            </>
-          )}
-        />
+              /> */}
+        </>
       </StoreContext.Provider>
     );
   }
