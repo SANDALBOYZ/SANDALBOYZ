@@ -25,8 +25,6 @@ const ARTICLE_OFFSET_GRID_IMAGE = 'ContentfulArticleOffsetGridImage';
 const ARTICLE_FULL_WIDTH_IMAGE = 'ContentfulArticleFullWidthStretchImage';
 
 const storyRendererOptions = (references) => {
-  console.log('references');
-  console.log(references);
   return {
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: node => {

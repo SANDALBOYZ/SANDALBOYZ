@@ -7,8 +7,9 @@ require('dotenv').config({
 module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
   flags: {
+    FAST_DEV: true,
     DEV_SSR: false,
-    FAST_REFRESH: true,
+    PRESERVE_WEBPACK_CACHE: true,
   },
   siteMetadata: {
     siteUrl: 'https://sandalboyz.com',
