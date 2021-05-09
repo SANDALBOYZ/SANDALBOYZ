@@ -10,7 +10,6 @@ import { fonts, weights } from '@utils/fonts';
 
 import ProductTile from '@components/ProductTile';
 import BaseIcon from '@components/Icon';
-import Button from '@components/Button';
 
 export const ClearFilter = styled.button`
   background: transparent;
@@ -171,7 +170,19 @@ export const CtaIcon = styled(BaseIcon)`
   }
 `;
 
-const FilterButton = styled(Button)`
+const FilterButton = styled.button`
+  padding: 0;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-size: 12px;
+  font-weight: ${weights.NORMAL};
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  outline: none;
+  user-select: none;
+  appearance: none;
+  cursor: pointer;
+
   &:after {
     content: '${props => (props.filtersLength ? props.filtersLength : '')}';
     vertical-align: super;
