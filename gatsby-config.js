@@ -13,7 +13,7 @@ module.exports = {
     siteUrl: 'https://sandalboyz.com',
     title: 'SANDALBOYZ',
     description:
-      'SANDALBOYZ is a movement and lifestyle, existing to bridge the gap between sophistication and comfort.',
+      'SANDALBOYZ is a movement and lifestyle bridging the gap between sophistication and comfort.',
   },
   plugins: [
     'gatsby-plugin-layout',
