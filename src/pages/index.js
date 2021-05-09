@@ -4,7 +4,6 @@ import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
 import Head from '@utils/seo';
-// import BannerLight from '@components/BannerLight';
 import { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
@@ -98,69 +97,6 @@ const LandingPage = ({ data }) => {
 };
 
 export default LandingPage;
-
-// REMOVED QUERIES BELOW. LEAVING HERE JUST IN CASE I NEED THEM BACK LATER! - Ryan
-//
-// hero: markdownRemark(frontmatter: { landingFeatured: { eq: true } }) {
-//   fields {
-//     slug
-//   }
-//   frontmatter {
-//     hero {
-//       childImageSharp {
-//         fluid(maxWidth: 2048, quality: 90) {
-//           ...GatsbyImageSharpFluid_noBase64
-//         }
-//       }
-//     }
-//     title
-//   }
-// }
-// recentProducts: allShopifyProduct(
-//   filter: { tags: { in: "featured:secondary" } }
-//       limit: 6
-//       sort: { fields: [createdAt], order: DESC }
-// ) {
-//   edges {
-//     node {
-//       id
-//       availableForSale
-//       title
-//       handle
-//       createdAt
-//       images {
-//         id
-//         originalSrc
-//         localFile {
-//           childImageSharp {
-//             fluid(maxWidth: 360) {
-//               ...GatsbyImageSharpFluid
-//             }
-//           }
-//         }
-//       }
-//       variants {
-//         price
-//         compareAtPrice
-//       }
-//     }
-//   }
-// }
-// teaser: markdownRemark(frontmatter: { storiesFeatured: { eq: true } }) {
-//   fields {
-//     slug
-//   }
-//   frontmatter {
-//     hero {
-//       childImageSharp {
-//         fluid(maxWidth: 2048, quality: 90) {
-//           ...GatsbyImageSharpFluid
-//         }
-//       }
-//     }
-//     title
-//   }
-// }
 
 export const landingPageQuery = graphql`
   query LandingPageQuery {
