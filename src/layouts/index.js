@@ -241,35 +241,6 @@ class Layout extends React.Component {
                   title
                 }
               }
-              popup: markdownRemark(frontmatter: { templateKey: { eq: "popup" } }) {
-                id
-                frontmatter {
-                  description
-                  enabled
-                  expires
-                  image {
-                    childImageSharp {
-                      fluid(maxWidth: 2048, quality: 90) {
-                        ...GatsbyImageSharpFluid
-                      }
-                    }
-                  }
-                  label
-                  title
-                }
-                internal {
-                  contentDigest
-                }
-              }
-              stories: allMarkdownRemark(
-                filter: { frontmatter: { templateKey: { eq: "story" } } }
-              ) {
-                edges {
-                  node {
-                    id
-                  }
-                }
-              }
             }
           `}
           render={data => (
@@ -285,7 +256,6 @@ class Layout extends React.Component {
                 onCartOpen={this.handleCartOpen}
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}
-                showStories={get(data, 'stories.edges.length') > 0}
               />
               <MobileMenu
                 authLinks={this.getNavAuthLinks()}
@@ -294,7 +264,6 @@ class Layout extends React.Component {
                 onMenuClose={this.handleMenuClose}
                 onMenuOpen={this.handleMenuOpen}
                 open={this.state.menuOpen}
-                showStories={get(data, 'stories.edges.length') > 0}
               />
               <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
               {children}

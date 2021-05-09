@@ -1,153 +1,165 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import isEqual from 'react-fast-compare';
+import styled from 'styled-components';
 
-import { Body, H600 } from '@utils/type';
+import ProductsContext from '@context/ProductsContext';
+import space, { H_PADDING_MOBILE } from '@utils/space';
+import { fonts, weights } from '@utils/fonts';
+import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
+import colors from '@utils/colors';
+
+import Button from '@components/Button';
 import Drawer from '@components/Drawer';
-import Select from '@components/formElements/Select';
+import Dropdown from '@components/Dropdown';
 
-import * as styled from './styles';
+const Title = styled.h2`
+  font-family: ${fonts.GRANVILLE};
+  font-weight: ${weights.REGULAR};
+  font-size: 1.4rem;
+  margin-top: 60px;
+  margin-bottom: ${space[4]};
+`;
 
-class Filters extends Component {
-  static propTypes = {
-    activeFilters: PropTypes.shape({
-      collection: PropTypes.array,
-      productType: PropTypes.array,
-    }).isRequired,
-    activeSort: PropTypes.string,
-    onClose: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-  };
+const FilterListsContainer = styled.div`
+  padding-bottom: 40px;
+  overflow-y: auto;
+  height: calc(100% - 150px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content;
+  column-gap: 20px;
+`;
 
-  state = {
-    activeFilters: this.props.activeFilters,
-    activeSort: this.props.activeSort,
-  };
+const FilterLists = styled.div`
+  margin-bottom: 20px;
+  height: 100%;
+`;
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.open !== this.props.open) {
-      if (this.props.open) {
-        disableBodyScroll(this.target);
-      } else {
-        enableBodyScroll(this.target);
-      }
-    }
+const FilterTitle = styled.h3`
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.LIGHT};
+  text-transform: uppercase;
+  font-size: 10px;
+  margin-bottom: 15px;
+`;
 
-    if (!isEqual(this.props.activeFilters, prevProps.activeFilters)) {
-      this.setState({ activeFilters: this.props.activeFilters });
-    }
+const FilterItem = styled.button`
+  background: 0;
+  outline: 0;
+  border: 0;
+  padding: 0;
+  display: block;
+  font-family: ${fonts.NIMBUS};
+  font-weight: ${props => (props.active ? weights.BOLD : weights.NORMAL)};
+  cursor: pointer;
+
+  & ~ & {
+    padding-top: 15px;
   }
+`;
 
-  handleFilterSelect = (key, value) => {
-    const { activeFilters } = this.state;
-    const existing = activeFilters[key];
-    const currentPos = existing.indexOf(value);
+export const Actions = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: ${H_PADDING_MOBILE};
+  background-color: ${colors.WINTER_WHITE};
+`;
 
-    if (currentPos > -1) {
-      existing.splice(currentPos, 1);
-    } else {
-      existing.push(value);
-    }
+const PRODUCT_TYPE_FILTERS = [
+  { label: 'Slides', value: 'Court Slide' },
+  { label: 'Socks', value: 'Sock' },
+  { label: 'Shorts', value: 'Shorts' },
+];
 
-    this.setState({ activeFilters: { ...activeFilters, [key]: existing } });
-  };
+const COLLECTION_FILTERS = [
+  { label: 'Permanent', value: 'Permanent' },
+  { label: 'Inline', value: 'Inline' },
+  { label: 'Special', value: 'Special Projects' },
+];
 
-  handleSort = (evt) => {
-    this.setState({ activeSort: evt.target.value });
-  };
+function Filters({ open, onClose }) {
+  const context = useContext(ProductsContext);
 
-  handleSubmit = () => {
-    const { activeFilters, activeSort } = this.state;
-    this.props.onClose(activeFilters, activeSort);
-  };
+  const {
+    activeFilters: { collection, productType },
+    handleFilterSelect,
+    clearFilters,
+    activeSort,
+    handleSort,
+  } = context;
 
-  render() {
-    const { activeFilters, onClose, open } = this.props;
+  useBodyScrollLock(open);
+  useHideZeWidget(open);
 
-    return (
-      <Drawer
-        actions={{
-          close: {
-            name: 'Cancel',
-          },
-          next: {
-            name: 'Apply',
-            onClick: this.handleSubmit,
-          },
-        }}
-        onClose={onClose}
-        open={open}
-        title="Sort/Filter"
-      >
-        <styled.Filters>
-          <styled.Filter>
-            <H600>Product Type</H600>
-            <styled.Option
-              selected={activeFilters.productType.includes('Court Slide')}
-              onClick={() =>
-                this.handleFilterSelect('productType', 'Court Slide')
-              }
+  return (
+    <Drawer onClose={onClose} open={open}>
+      <Title>Sort / Filter</Title>
+      <FilterListsContainer>
+        <FilterLists>
+          <FilterTitle>Product Type</FilterTitle>
+          {PRODUCT_TYPE_FILTERS.map(filter => (
+            <FilterItem
+              onClick={() => handleFilterSelect('productType', filter.value)}
+              active={productType.includes(filter.value)}
+              key={filter.value}
             >
-              <Body>Court Slide</Body>
-            </styled.Option>
-            <styled.Option
-              selected={activeFilters.productType.includes('Sock')}
-              onClick={() => this.handleFilterSelect('productType', 'Sock')}
+              {filter.label}
+            </FilterItem>
+          ))}
+        </FilterLists>
+        <FilterLists>
+          <FilterTitle>Collection</FilterTitle>
+          {COLLECTION_FILTERS.map(filter => (
+            <FilterItem
+              onClick={() => handleFilterSelect('collection', filter.value)}
+              active={collection.includes(filter.value)}
+              key={filter.value}
             >
-              <Body>Sock</Body>
-            </styled.Option>
-          </styled.Filter>
-          <styled.Filter>
-            <H600>Collection</H600>
-            <styled.Option
-              selected={activeFilters.collection.includes('Inline')}
-              onClick={() => this.handleFilterSelect('collection', 'Inline')}
-            >
-              <Body>Inline</Body>
-            </styled.Option>
-            <styled.Option
-              selected={activeFilters.collection.includes('Special Projects')}
-              onClick={() =>
-                this.handleFilterSelect('collection', 'Special Projects')
-              }
-            >
-              <Body>Special Projects</Body>
-            </styled.Option>
-            <styled.Option
-              selected={activeFilters.collection.includes('Signature Series')}
-              onClick={() =>
-                this.handleFilterSelect('collection', 'Signature Series')
-              }
-            >
-              <Body>Signature Series</Body>
-            </styled.Option>
-            <styled.Option
-              selected={activeFilters.collection.includes('Sale')}
-              onClick={() =>
-                this.handleFilterSelect('collection', 'Sale')
-              }
-            >
-              <Body>SALE</Body>
-            </styled.Option>
-          </styled.Filter>
-        </styled.Filters>
-        <Select
-          label="Sort By"
-          name="sortKey"
-          options={[
-            { name: 'Default', value: 'CREATED_AT' },
-            { name: 'Price Ascending', value: 'PRICE_ASC' },
-            { name: 'Price Descending', value: 'PRICE_DESC' },
-            { name: 'Best Selling', value: 'BEST_SELLING' },
-            { name: 'Product Type', value: 'PRODUCT_TYPE' },
-          ]}
-          value={this.state.activeSort}
-          onChange={this.handleSort}
-        />
-      </Drawer>
-    );
-  }
+              {filter.label}
+            </FilterItem>
+          ))}
+        </FilterLists>
+        <FilterLists>
+          <FilterTitle>Sort</FilterTitle>
+          <Dropdown
+            label="Sort"
+            name="sortKey"
+            options={[
+              { name: 'Newest', value: 'CREATED_AT' },
+              { name: 'Price Ascending', value: 'PRICE_ASC' },
+              { name: 'Price Descending', value: 'PRICE_DESC' },
+              { name: 'Best Selling', value: 'BEST_SELLING' },
+              { name: 'Product Type', value: 'PRODUCT_TYPE' },
+            ]}
+            value={activeSort}
+            onChange={handleSort}
+          />
+        </FilterLists>
+      </FilterListsContainer>
+      <Actions>
+        <Button
+          theme="outline"
+          onClick={() => {
+            clearFilters();
+            onClose();
+          }}
+        >
+          Clear
+        </Button>
+        <Button onClick={onClose}>Apply</Button>
+      </Actions>
+    </Drawer>
+  );
 }
+
+Filters.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
 
 export default Filters;

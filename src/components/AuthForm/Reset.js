@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { navigate } from 'gatsby';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import get from 'lodash/get';
 import Cookies from 'js-cookie';
 

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
@@ -9,33 +8,11 @@ import qs from 'querystringify';
 
 import Head from '@utils/seo';
 import { getSortedProductIds } from '@utils/shopify';
-import space from '@utils/space';
-import { Container } from '@utils/styles';
-import { Body, H300 } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
 
-import sandal from '@images/sandal.svg';
+import ProductsContext from '@context/ProductsContext';
 import Filters from '@components/Filters';
 import ProductGrid from '@components/ProductGrid';
-
-const Empty = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: ${space[8]} 0;
-`;
-
-const Heading = styled(H300)`
-  margin-bottom: ${space[2]};
-`;
-
-const Image = styled.img`
-  height: 64px;
-  margin-bottom: ${space[5]};
-`;
-
 class ProductsPage extends Component {
   constructor(props) {
     super(props);
@@ -55,22 +32,29 @@ class ProductsPage extends Component {
       activeSort: search.sort || 'CREATED_AT',
       showFilters: false,
       sortedProductIds: [],
+      handleFilterSelect: this.handleFilterSelect,
+      clearFilters: this.clearFilters,
+      handleSort: this.handleSort,
     };
   }
 
-  componentDidMount() {
-    const { location } = this.props;
-    const search = qs.parse(location.search);
-    this.handleSort(search.sort);
-  }
+  handleFilterSelect = (key, value) => {
+    const { activeFilters } = this.state;
+    const existing = activeFilters[key];
+    const currentPos = existing.indexOf(value);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.activeSort !== this.state.activeSort) {
-      const { location } = this.props;
-      const search = qs.parse(location.search);
-      this.handleSort(search.sort);
+    if (currentPos > -1) {
+      existing.splice(currentPos, 1);
+    } else {
+      existing.push(value);
     }
-  }
+
+    this.setState({ activeFilters: { ...activeFilters, [key]: existing } });
+  };
+
+  clearFilters = () => {
+    this.setState({ activeFilters: { collection: [], productType: [] } });
+  };
 
   filterProducts = ({ node: product }) => {
     const { activeFilters } = this.state;
@@ -78,9 +62,10 @@ class ProductsPage extends Component {
     let matchesProductType = true;
 
     if (activeFilters.collection.length) {
-      matchesCollection = activeFilters.collection.filter(activeFilter =>
-        this.getCollections(product).includes(activeFilter)
-      ).length > 0;
+      matchesCollection =
+        activeFilters.collection.filter(activeFilter =>
+          this.getCollections(product).includes(activeFilter)
+        ).length > 0;
     }
 
     if (activeFilters.productType.length) {
@@ -218,64 +203,46 @@ class ProductsPage extends Component {
 
   render() {
     const { data } = this.props;
-    const { activeFilters, activeSort, showFilters } = this.state;
+    const { activeFilters, showFilters } = this.state;
 
     const products =
       Array.isArray(get(data, 'products.edges')) &&
-      data.products.edges.filter(this.filterProducts);
-
-    const isFiltered = activeFilters.collection.concat(
-      activeFilters.productType
-    ).length;
+      data.products.edges
+        .filter(this.filterProducts)
+        .sort(this.sortProducts)
+        .map(({ node }) => ({
+          id: get(node, 'id'),
+          href: `/products/${get(node, 'handle')}`,
+          images: [
+            get(node, 'images[0].localFile.childImageSharp.gatsbyImageData'),
+            get(node, 'images[1].localFile.childImageSharp.gatsbyImageData'),
+          ],
+          price: get(node, 'variants[0].price'),
+          compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+          title: get(node, 'title'),
+          productType: get(node, 'productType'),
+          soldOut: !get(node, 'availableForSale'),
+          onSale:
+            Number(get(node, 'variants[0].compareAtPrice')) >
+            Number(get(node, 'variants[0].price')),
+        }));
 
     return (
-      <>
+      <ProductsContext.Provider value={this.state}>
         <Head title="Products" />
         <motion.div {...fadeInEntry()}>
-          {products.length ? (
-            <ProductGrid
-              filters={activeFilters}
-              onFilter={this.handleFilter}
-              products={products.sort(this.sortProducts).map(({ node }) => ({
-                id: get(node, 'id'),
-                href: `/products/${get(node, 'handle')}`,
-                images: [
-                  get(node, 'images[0].localFile.childImageSharp.fluid'),
-                  get(node, 'images[1].localFile.childImageSharp.fluid'),
-                ],
-                price: get(node, 'variants[0].price'),
-                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-                title: get(node, 'title'),
-                productType: get(node, 'productType'),
-                soldOut: !get(node, 'availableForSale'),
-                onSale:
-                  Number(get(node, 'variants[0].compareAtPrice')) >
-                  Number(get(node, 'variants[0].price')),
-              }))}
-              title="Products"
-              description="Among the coziest this planet has to offer. Explore our new
+          <ProductGrid
+            title="Products"
+            products={products}
+            filters={activeFilters}
+            openFilters={this.handleOpenFilters}
+            description="Among the coziest this planet has to offer. Explore our new
               Permanent Collection, which features timeless aesthetic and
               uncompromising durability."
-            />
-          ) : (
-            <Empty>
-              <Image src={sandal} />
-              <Heading>No products found</Heading>
-              <Body>
-                Try selecting different filters to view more available products.
-              </Body>
-            </Empty>
-          )}
+          />
         </motion.div>
-        <Filters
-          activeFilters={activeFilters}
-          activeSort={activeSort}
-          onFilter={this.handleFilter}
-          onClose={this.handleCloseFilters}
-          onSort={this.handleSort}
-          open={showFilters}
-        />
-      </>
+        <Filters onClose={this.handleCloseFilters} open={showFilters} />
+      </ProductsContext.Provider>
     );
   }
 }
@@ -284,14 +251,6 @@ export default ProductsPage;
 
 export const productsPageQuery = graphql`
   query ProductsPageQuery {
-    productIndex: markdownRemark(
-      frontmatter: { templateKey: { eq: "productIndex" } }
-    ) {
-      id
-      frontmatter {
-        pageTitle
-      }
-    }
     products: allShopifyProduct(sort: { fields: [createdAt], order: DESC }) {
       edges {
         node {
@@ -307,6 +266,7 @@ export const productsPageQuery = graphql`
             originalSrc
             localFile {
               childImageSharp {
+                gatsbyImageData
                 fluid(maxWidth: 910) {
                   ...GatsbyImageSharpFluid_noBase64
                 }

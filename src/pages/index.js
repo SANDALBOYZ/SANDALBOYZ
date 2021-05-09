@@ -4,7 +4,6 @@ import { graphql } from 'gatsby';
 import get from 'lodash/get';
 
 import Head from '@utils/seo';
-// import BannerLight from '@components/BannerLight';
 import { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
@@ -16,22 +15,17 @@ const LandingPage = ({ data }) => {
       <Head title="Home" />
 
       <motion.div {...fadeInEntry()}>
-        {get(data, 'fullHero') && (
-          <FullHero
-            href="/products"
-            desktopImage={get(
-              data,
-              'fullHero.frontmatter.desktopImage.childImageSharp.fluid'
-            )}
-            mobileImage={get(
-              data,
-              'fullHero.frontmatter.mobileImage.childImageSharp.fluid'
-            )}
-            label={get(data, 'fullHero.frontmatter.label')}
-            title={get(data, 'fullHero.frontmatter.title')}
-            callToAction={get(data, 'fullHero.frontmatter.callToAction')}
-          />
-        )}
+        <FullHero
+          href="/products"
+          desktopImage={get(
+            data,
+            'desktopHero.childImageSharp.gatsbyImageData'
+          )}
+          mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
+          label="Limited sizes remaining."
+          title="The Permanent Collection"
+          callToAction="Shop Now"
+        />
 
         {Array.isArray(get(data, 'recommendedPicks.edges')) &&
           data.recommendedPicks.edges.length > 0 && (
@@ -42,8 +36,14 @@ const LandingPage = ({ data }) => {
                 id: get(node, 'id'),
                 href: `/products/${get(node, 'handle')}`,
                 images: [
-                  get(node, 'images[0].localFile.childImageSharp.fluid'),
-                  get(node, 'images[1].localFile.childImageSharp.fluid'),
+                  get(
+                    node,
+                    'images[0].localFile.childImageSharp.gatsbyImageData'
+                  ),
+                  get(
+                    node,
+                    'images[1].localFile.childImageSharp.gatsbyImageData'
+                  ),
                 ],
                 price: get(node, 'variants[0].price'),
                 compareAtPrice: get(node, 'variants[0].compareAtPrice'),
@@ -65,7 +65,10 @@ const LandingPage = ({ data }) => {
             <RecentStories
               storyA={{
                 href: `/stories/${data.recentStories.edges[0].node.slug}`,
-                image: get(data, 'recentStories.edges[0].node.heroImage.fluid'),
+                image: get(
+                  data,
+                  'recentStories.edges[0].node.heroImage.gatsbyImageData'
+                ),
                 title: get(data, 'recentStories.edges[0].node.title'),
                 date: get(data, 'recentStories.edges[0].node.publishDate'),
                 previewText: get(
@@ -75,7 +78,10 @@ const LandingPage = ({ data }) => {
               }}
               storyB={{
                 href: `/stories/${data.recentStories.edges[1].node.slug}`,
-                image: get(data, 'recentStories.edges[1].node.heroImage.fluid'),
+                image: get(
+                  data,
+                  'recentStories.edges[1].node.heroImage.gatsbyImageData'
+                ),
                 title: get(data, 'recentStories.edges[1].node.title'),
                 date: get(data, 'recentStories.edges[1].node.publishDate'),
                 previewText: get(
@@ -92,91 +98,18 @@ const LandingPage = ({ data }) => {
 
 export default LandingPage;
 
-// REMOVED QUERIES BELOW. LEAVING HERE JUST IN CASE I NEED THEM BACK LATER! - Ryan
-//
-// hero: markdownRemark(frontmatter: { landingFeatured: { eq: true } }) {
-//   fields {
-//     slug
-//   }
-//   frontmatter {
-//     hero {
-//       childImageSharp {
-//         fluid(maxWidth: 2048, quality: 90) {
-//           ...GatsbyImageSharpFluid_noBase64
-//         }
-//       }
-//     }
-//     title
-//   }
-// }
-// recentProducts: allShopifyProduct(
-//   filter: { tags: { in: "featured:secondary" } }
-//       limit: 6
-//       sort: { fields: [createdAt], order: DESC }
-// ) {
-//   edges {
-//     node {
-//       id
-//       availableForSale
-//       title
-//       handle
-//       createdAt
-//       images {
-//         id
-//         originalSrc
-//         localFile {
-//           childImageSharp {
-//             fluid(maxWidth: 360) {
-//               ...GatsbyImageSharpFluid
-//             }
-//           }
-//         }
-//       }
-//       variants {
-//         price
-//         compareAtPrice
-//       }
-//     }
-//   }
-// }
-// teaser: markdownRemark(frontmatter: { storiesFeatured: { eq: true } }) {
-//   fields {
-//     slug
-//   }
-//   frontmatter {
-//     hero {
-//       childImageSharp {
-//         fluid(maxWidth: 2048, quality: 90) {
-//           ...GatsbyImageSharpFluid
-//         }
-//       }
-//     }
-//     title
-//   }
-// }
-
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    fullHero: markdownRemark(frontmatter: { templateKey: { eq: "fullHero" } }) {
+    desktopHero: file(relativePath: { eq: "pc_black_by_pool_square.jpg" }) {
       id
-      frontmatter {
-        desktopImage {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 90) {
-              ...GatsbyImageSharpFluid_noBase64
-            }
-          }
-        }
-        mobileImage {
-          childImageSharp {
-            fluid(maxWidth: 1080, quality: 90) {
-              ...GatsbyImageSharpFluid_noBase64
-            }
-          }
-        }
-        label
-        title
-        callToAction
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    mobileHero: file(relativePath: { eq: "2T8A3598.jpg" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
       }
     }
     recommendedPicks: allShopifyProduct(
@@ -197,6 +130,7 @@ export const landingPageQuery = graphql`
             originalSrc
             localFile {
               childImageSharp {
+                gatsbyImageData
                 fluid(maxWidth: 360) {
                   ...GatsbyImageSharpFluid
                 }
@@ -224,6 +158,7 @@ export const landingPageQuery = graphql`
             previewText
           }
           heroImage {
+            gatsbyImageData
             fluid {
               sizes
               src

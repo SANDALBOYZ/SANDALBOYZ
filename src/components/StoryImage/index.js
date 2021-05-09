@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import get from 'lodash/get';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
@@ -37,12 +37,18 @@ export const DoubleImage = ({ images }) => (
   <DoubleWrapper>
     <DoubleImageOne>
       {get(images, '0') && (
-        <Image fluid={images[0]} backgroundColor={randomSandalboyzColor()} />
+        <GatsbyImage
+          image={images[0].gatsbyImageData}
+          backgroundColor={randomSandalboyzColor()}
+        />
       )}
     </DoubleImageOne>
     <DoubleImageTwo>
       {get(images, '1') && (
-        <Image fluid={images[1]} backgroundColor={randomSandalboyzColor()} />
+        <GatsbyImage
+          image={images[1].gatsbyImageData}
+          backgroundColor={randomSandalboyzColor()}
+        />
       )}
     </DoubleImageTwo>
   </DoubleWrapper>
@@ -60,7 +66,9 @@ const FullHeightImageWrapper = styled.div`
 
 export const FullHeightImage = ({ image }) => (
   <FullHeightImageWrapper>
-    {image && <Image fluid={image} backgroundColor={randomSandalboyzColor()} />}
+    {image && (
+      <GatsbyImage image={image.gatsbyImageData} backgroundColor={randomSandalboyzColor()} />
+    )}
   </FullHeightImageWrapper>
 );
 
@@ -78,7 +86,9 @@ const FullWidthImageWrapper = styled.div`
 
 export const FullWidthImage = ({ image }) => (
   <FullWidthImageWrapper>
-    {image && <AbsoluteImg fluid={image} backgroundColor={randomSandalboyzColor()} />}
+    {image && (
+      <AbsoluteImg image={image.gatsbyImageData} backgroundColor={randomSandalboyzColor()} />
+    )}
   </FullWidthImageWrapper>
 );
 
@@ -114,7 +124,12 @@ export const OffsetGridImage = props => (
         .slice(0, 4)
         .map((image, idx) => (
           <OffsetGridImg key={idx}>
-            {image && <Image fluid={image} backgroundColor={randomSandalboyzColor()} />}
+            {image && (
+              <GatsbyImage
+                image={image.gatsbyImageData}
+                backgroundColor={randomSandalboyzColor()}
+              />
+            )}
           </OffsetGridImg>
         ))}
     </OffsetGridContainer>
@@ -176,14 +191,20 @@ export const SplitImage = ({ caption, images }) => (
     <SplitLeft>
       <SplitImageOne>
         {get(images, '0') && (
-          <AbsoluteImg fluid={images[0]} backgroundColor={randomSandalboyzColor()} />
+          <AbsoluteImg
+            image={images[0].gatsbyImageData}
+            backgroundColor={randomSandalboyzColor()}
+          />
         )}
       </SplitImageOne>
       {caption && <SplitCaption>{caption}</SplitCaption>}
     </SplitLeft>
     <SplitImageTwo>
       {get(images, '1') && (
-        <AbsoluteImg fluid={images[1]} backgroundColor={randomSandalboyzColor()} />
+        <AbsoluteImg
+          image={images[1].gatsbyImageData}
+          backgroundColor={randomSandalboyzColor()}
+        />
       )}
     </SplitImageTwo>
   </SplitWrapper>
@@ -216,7 +237,9 @@ const TwoThirdsWrapper = styled.div`
 export const TwoThirdsImage = ({ image }) => (
   <TwoThirdsWrapper>
     <TwoThirdsBackground>
-      {image && <AbsoluteImg fluid={image} backgroundColor={randomSandalboyzColor()} />}
+      {image && (
+        <AbsoluteImg fluid={image} backgroundColor={randomSandalboyzColor()} />
+      )}
     </TwoThirdsBackground>
   </TwoThirdsWrapper>
 );

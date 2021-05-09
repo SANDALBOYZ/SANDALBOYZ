@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import get from 'lodash/get';
 
 import { forgot } from '@utils/shopify';
@@ -28,7 +28,7 @@ const ForgotForm = () => {
           const errors = {};
 
           if (err.code && err.code === 'UNIDENTIFIED_CUSTOMER') {
-            errors.general = 'We couldn\'t find an account matching that email.';
+            errors.general = "We couldn't find an account matching that email.";
           }
 
           setErrors(errors);
@@ -50,9 +50,7 @@ const ForgotForm = () => {
       <styled.Box>
         {showConfirmation ? (
           <>
-            <styled.H400>
-              Success
-            </styled.H400>
+            <styled.H400>Success</styled.H400>
             <styled.Body>
               Please check your email to reset your password
             </styled.Body>

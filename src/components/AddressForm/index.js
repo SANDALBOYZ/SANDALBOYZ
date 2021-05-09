@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import get from 'lodash/get';

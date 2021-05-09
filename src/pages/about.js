@@ -26,7 +26,7 @@ const AboutPage = ({ data }) => {
       />
       <About
         title={get(data, 'aboutPage.edges[0].node.title')}
-        description={get(data, 'aboutPage.edges[0].node.description.json')}
+        description={get(data, 'aboutPage.edges[0].node.description.raw')}
         sections={get(data, 'aboutPageSections.edges')}
       />
     </>
@@ -41,7 +41,7 @@ export const aboutPageQuery = graphql`
       edges {
         node {
           description {
-            json
+            raw
           }
           title
           descriptionPlainText {
@@ -55,14 +55,15 @@ export const aboutPageQuery = graphql`
         node {
           header
           description {
-            json
+            raw
           }
           subSections {
             title
             description {
-              json
+              raw
             }
             image {
+              gatsbyImageData
               fluid {
                 src
                 srcSet

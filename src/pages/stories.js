@@ -18,7 +18,7 @@ const StoriesPage = ({ data }) => {
               id: get(node, 'id'),
               date: get(node, 'publishDate'),
               href: get(node, 'slug'),
-              image: get(node, 'heroImage.fluid'),
+              image: get(node, 'heroImage.gatsbyImageData'),
               lede: get(node, 'previewText.previewText'),
               tags: get(node, 'articleCategories', []),
               title: get(node, 'title'),
@@ -48,6 +48,7 @@ export const query = graphql`
           createdAt
           publishDate
           heroImage {
+            gatsbyImageData
             fluid {
               sizes
               src

@@ -8,6 +8,7 @@ module.exports = async ({ config }) => {
     '@layouts': path.resolve(__dirname, '../src/layouts'),
     '@templates': path.resolve(__dirname, '../src/templates'),
     '@utils': path.resolve(__dirname, '../src/utils'),
+    'src': path.resolve(__dirname, '../src'),
   }
 
   return config;

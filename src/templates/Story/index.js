@@ -8,7 +8,6 @@ import { parseISO, format } from 'date-fns';
 import shareImage from '@images/shareImage.jpg';
 import Head from '@utils/seo';
 import { AbsoluteImg } from '@utils/styles';
-import { getFluidGatsbyImage } from '@utils/getFluidGatsbyImage';
 import {
   DoubleImage,
   FullHeightImage,
@@ -19,45 +18,43 @@ import {
 import * as styled from './styles';
 
 // These `CONTENT TYPE ID` fields match the ones in Contentful.
-const ARTICLE_DOUBLE_IMAGE = 'articleDoubleImage';
-const ARTICLE_DOUBLE_SPLIT_IMAGE = 'articleDoubleSplitImage';
-const ARTICLE_FULL_HEIGHT_IMAGE = 'articleFullHeightImage';
-const ARTICLE_OFFSET_GRID_IMAGE = 'articleOffsetGridImage';
-const ARTICLE_FULL_WIDTH_IMAGE = 'articleFullWidthStretchImage';
+const ARTICLE_DOUBLE_IMAGE = 'ContentfulArticleDoubleImage';
+const ARTICLE_DOUBLE_SPLIT_IMAGE = 'ContentfulArticleDoubleSplitImage';
+const ARTICLE_FULL_HEIGHT_IMAGE = 'ContentfulArticleFullHeightImage';
+const ARTICLE_OFFSET_GRID_IMAGE = 'ContentfulArticleOffsetGridImage';
+const ARTICLE_FULL_WIDTH_IMAGE = 'ContentfulArticleFullWidthStretchImage';
 
-const storyRendererOptions = {
-  renderNode: {
-    [BLOCKS.EMBEDDED_ENTRY]: node => {
-      const contentType = node.data.target.sys.contentType.sys['contentful_id'];
+const storyRendererOptions = (references) => {
+  return {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ENTRY]: node => {
+        const contentfulId =
+          node.data.target.sys.id;
 
-      const gatsbyFluidImages = get(
-        node,
-        "data.target.fields.images['en-US']",
-        []
-      ).map(image => {
-        const imageFile = {
-          file: image.fields.file['en-US'],
-        };
+        const reference = references.find(
+          ref => (ref.contentful_id === contentfulId)
+        );
 
-        return getFluidGatsbyImage(imageFile, { maxWidth: 1200 });
-      });
+        const contentType = reference.internal.type;
+        const images = reference.images;
 
-      switch (contentType) {
-        case ARTICLE_DOUBLE_IMAGE:
-          return <DoubleImage images={gatsbyFluidImages} />;
-        case ARTICLE_DOUBLE_SPLIT_IMAGE:
-          return <SplitImage images={gatsbyFluidImages} />;
-        case ARTICLE_FULL_HEIGHT_IMAGE:
-          return <FullHeightImage image={gatsbyFluidImages[0]} />;
-        case ARTICLE_OFFSET_GRID_IMAGE:
-          return <OffsetGridImage images={gatsbyFluidImages} />;
-        case ARTICLE_FULL_WIDTH_IMAGE:
-          return <FullWidthImage image={gatsbyFluidImages[0]} />;
-        default:
-          return <div />;
-      }
+        switch (contentType) {
+          case ARTICLE_DOUBLE_IMAGE:
+            return <DoubleImage images={images} />;
+          case ARTICLE_DOUBLE_SPLIT_IMAGE:
+            return <SplitImage images={images} />;
+          case ARTICLE_FULL_HEIGHT_IMAGE:
+            return <FullHeightImage image={images[0]} />;
+          case ARTICLE_OFFSET_GRID_IMAGE:
+            return <OffsetGridImage images={images} />;
+          case ARTICLE_FULL_WIDTH_IMAGE:
+            return <FullWidthImage image={images[0]} />;
+          default:
+            return <div />;
+        }
+      },
     },
-  },
+  };
 };
 
 const StoryTemplate = ({ data }) => {
@@ -94,7 +91,7 @@ const StoryTemplate = ({ data }) => {
       />
       <styled.Hero>
         <styled.Background>
-          <AbsoluteImg fluid={article.heroImage.fluid} />
+          <AbsoluteImg image={article.heroImage.gatsbyImageData} />
         </styled.Background>
         <styled.Box>
           <styled.H1>{article.title}</styled.H1>
@@ -120,8 +117,8 @@ const StoryTemplate = ({ data }) => {
       <styled.Lede>{get(article, 'previewText.previewText')}</styled.Lede>
       <styled.Sections>
         {documentToReactComponents(
-          get(article, 'body.json'),
-          storyRendererOptions
+          JSON.parse(get(article, 'body.raw')),
+          storyRendererOptions(get(article, 'body.references'))
         )}
       </styled.Sections>
     </>
@@ -140,14 +137,64 @@ export const query = graphql`
       author
       photographer
       body {
-        json
+        raw
+        references {
+          ... on ContentfulArticleDoubleImage {
+            contentful_id
+            id
+            internal {
+              type
+            }
+            images {
+              gatsbyImageData
+            }
+          }
+          ... on ContentfulArticleDoubleSplitImage {
+            contentful_id
+            id
+            internal {
+              type
+            }
+            images {
+              gatsbyImageData
+            }
+          }
+          ... on ContentfulArticleFullHeightImage {
+            contentful_id
+            id
+            internal {
+              type
+            }
+            images {
+              gatsbyImageData
+            }
+          }
+          ... on ContentfulArticleFullWidthStretchImage {
+            contentful_id
+            id
+            internal {
+              type
+            }
+            images {
+              gatsbyImageData
+            }
+          }
+          ... on ContentfulArticleOffsetGridImage {
+            contentful_id
+            id
+            internal {
+              type
+            }
+            images {
+              gatsbyImageData
+            }
+          }
+        }
       }
       heroImage {
+        gatsbyImageData
         fluid {
-          aspectRatio
-          sizes
           src
-          srcSet
         }
       }
       previewText {

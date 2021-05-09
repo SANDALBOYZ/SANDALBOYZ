@@ -229,60 +229,62 @@ class SalePage extends Component {
       activeFilters.productType
     ).length;
 
-    return (
-      <>
-        <Head title="Black Friday Sale" />
-        <motion.div {...fadeInEntry()}>
-          <Header
-            label="Black Friday / Cyber Monday"
-            shrinkOnMobile
-            title="Sale"
-          >
-            <Button theme="text" onClick={this.handleOpenFilters}>
-              Sort/Filter
-            </Button>
-          </Header>
-          {products.length ? (
-            <ProductGrid
-              filters={activeFilters}
-              onFilter={this.handleFilter}
-              products={products.sort(this.sortProducts).map(({ node }) => ({
-                id: get(node, 'id'),
-                href: `/products/${get(node, 'handle')}`,
-                images: [
-                  get(node, 'images[0].localFile.childImageSharp.fluid'),
-                  get(node, 'images[1].localFile.childImageSharp.fluid'),
-                ],
-                price: get(node, 'variants[0].price'),
-                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-                title: get(node, 'title'),
-                soldOut: !get(node, 'availableForSale'),
-                onSale:
-                  Number(get(node, 'variants[0].compareAtPrice')) >
-                  Number(get(node, 'variants[0].price')),
-              }))}
-              title={isFiltered ? 'Filtered Results' : 'All Products'}
-            />
-          ) : (
-            <Empty>
-              <Image src={sandal} />
-              <Heading>No products found</Heading>
-              <Body>
-                Try selecting different filters to view more available products.
-              </Body>
-            </Empty>
-          )}
-        </motion.div>
-        <Filters
-          activeFilters={activeFilters}
-          activeSort={activeSort}
-          onFilter={this.handleFilter}
-          onClose={this.handleCloseFilters}
-          onSort={this.handleSort}
-          open={showFilters}
-        />
-      </>
-    );
+    // return (
+    //   <>
+    //     <Head title="Black Friday Sale" />
+    //     <motion.div {...fadeInEntry()}>
+    //       <Header
+    //         label="Black Friday / Cyber Monday"
+    //         shrinkOnMobile
+    //         title="Sale"
+    //       >
+    //         <Button theme="text" onClick={this.handleOpenFilters}>
+    //           Sort/Filter
+    //         </Button>
+    //       </Header>
+    //       {products.length ? (
+    //         <ProductGrid
+    //           filters={activeFilters}
+    //           onFilter={this.handleFilter}
+    //           products={products.sort(this.sortProducts).map(({ node }) => ({
+    //             id: get(node, 'id'),
+    //             href: `/products/${get(node, 'handle')}`,
+    //             images: [
+    //               get(node, 'images[0].localFile.childImageSharp.fluid'),
+    //               get(node, 'images[1].localFile.childImageSharp.fluid'),
+    //             ],
+    //             price: get(node, 'variants[0].price'),
+    //             compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+    //             title: get(node, 'title'),
+    //             soldOut: !get(node, 'availableForSale'),
+    //             onSale:
+    //               Number(get(node, 'variants[0].compareAtPrice')) >
+    //               Number(get(node, 'variants[0].price')),
+    //           }))}
+    //           title={isFiltered ? 'Filtered Results' : 'All Products'}
+    //         />
+    //       ) : (
+    //         <Empty>
+    //           <Image src={sandal} />
+    //           <Heading>No products found</Heading>
+    //           <Body>
+    //             Try selecting different filters to view more available products.
+    //           </Body>
+    //         </Empty>
+    //       )}
+    //     </motion.div>
+    //     <Filters
+    //       activeFilters={activeFilters}
+    //       activeSort={activeSort}
+    //       onFilter={this.handleFilter}
+    //       onClose={this.handleCloseFilters}
+    //       onSort={this.handleSort}
+    //       open={showFilters}
+    //     />
+    //   </>
+    // );
+
+    return null;
   }
 }
 
@@ -290,14 +292,6 @@ export default SalePage;
 
 export const salePageQuery = graphql`
   query SalePageQuery {
-    productIndex: markdownRemark(
-      frontmatter: { templateKey: { eq: "productIndex" } }
-    ) {
-      id
-      frontmatter {
-        pageTitle
-      }
-    }
     products: allShopifyProduct(
       sort: { fields: [createdAt], order: DESC },
       filter: { tags: { in: "collection:Sale" } }

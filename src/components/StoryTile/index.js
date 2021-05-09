@@ -12,7 +12,7 @@ const StoryTile = ({ category, date, href, image, lede, title }) => (
   <styled.Wrapper>
     <Link to={href}>
       <styled.ImageWrapper>
-        {image && <AbsoluteImg fluid={image} />}
+        {image && <AbsoluteImg image={image} />}
       </styled.ImageWrapper>
       <styled.Inner>
         {category && <styled.Tag>{category}</styled.Tag>}

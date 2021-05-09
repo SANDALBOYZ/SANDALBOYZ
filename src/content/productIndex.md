@@ -1,5 +1,0 @@
----
-templateKey: productIndex
-pageTitle: ''
----
-

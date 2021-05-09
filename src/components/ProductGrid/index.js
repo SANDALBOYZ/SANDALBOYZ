@@ -170,26 +170,51 @@ export const CtaIcon = styled(BaseIcon)`
   }
 `;
 
+const FilterButton = styled.button`
+  padding: 0;
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-size: 12px;
+  font-weight: ${weights.NORMAL};
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  outline: none;
+  user-select: none;
+  appearance: none;
+  cursor: pointer;
+
+  &:after {
+    content: '${props => (props.filtersLength ? props.filtersLength : '')}';
+    vertical-align: super;
+    padding-left: 2px;
+  }
+`;
+
+const Empty = styled(Container)`
+  margin-top: 120px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: ${space[8]} 0;
+`;
+
+const Heading = styled.h3`
+  margin-bottom: ${space[2]};
+`;
+
 const ProductGrid = ({
   cta,
   filters,
   extraPadding,
-  onFilter,
   products,
   title,
   description,
   ctaIcon,
+  openFilters,
 }) => {
-  const clearFilter = (key, filter) => {
-    const newFilters = { collection: [], productType: [] };
-
-    Object.keys(filters).forEach(key => {
-      newFilters[key] = filters[key].filter(f => f !== filter);
-    });
-
-    onFilter(newFilters);
-  };
-
   return (
     <ProductGridWrapper extraPadding={extraPadding}>
       <Container>
@@ -203,27 +228,32 @@ const ProductGrid = ({
               </CallToAction>
             )}
           </TitleContainer>
-          {filters &&
-            Object.keys(filters).map(key =>
-              filters[key].map(filter => (
-                <Filter key={filter}>
-                  {filter}
-                  <ClearFilter
-                    onClick={() => {
-                      clearFilter(key, filter);
-                    }}
-                  >
-                    <CtaIcon name="x" />
-                  </ClearFilter>
-                </Filter>
-              ))
-            )}
+          {openFilters && (
+            <FilterButton
+              onClick={openFilters}
+              theme="text"
+              filtersLength={
+                filters.collection.length + filters.productType.length
+              }
+            >
+              Sort / Filter
+            </FilterButton>
+          )}
         </Header>
-        <Products>
-          {products.map(product => (
-            <ProductTile key={product.id} {...product} />
-          ))}
-        </Products>
+        {products.length > 0 ? (
+          <Products>
+            {products.map(product => (
+              <ProductTile key={product.id} {...product} />
+            ))}
+          </Products>
+        ) : (
+          <Empty>
+            <Heading>No products found</Heading>
+            <div>
+              Try selecting different filters to view more available products.
+            </div>
+          </Empty>
+        )}
       </Container>
     </ProductGridWrapper>
   );
@@ -235,7 +265,6 @@ ProductGrid.propTypes = {
     productType: PropTypes.array,
   }),
   extraPadding: PropTypes.bool,
-  onFilter: PropTypes.func,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       images: PropTypes.arrayOf(PropTypes.object),

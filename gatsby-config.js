@@ -1,5 +1,3 @@
-const netlifyFsAPI = require('netlify-cms-backend-fs/dist/fs');
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -7,8 +5,9 @@ require('dotenv').config({
 module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
   flags: {
+    FAST_DEV: true,
     DEV_SSR: false,
-    FAST_REFRESH: true,
+    PRESERVE_WEBPACK_CACHE: true,
   },
   siteMetadata: {
     siteUrl: 'https://sandalboyz.com',
@@ -16,7 +15,6 @@ module.exports = {
     description:
       'SANDALBOYZ is a movement and lifestyle, existing to bridge the gap between sophistication and comfort.',
   },
-  developMiddleware: netlifyFsAPI,
   plugins: [
     'gatsby-plugin-layout',
     {
@@ -55,6 +53,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-netlify',
@@ -165,12 +164,6 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
-            options: {
-              name: 'uploads',
-            },
-          },
-          {
             resolve: 'gatsby-remark-images',
             options: {
               // It's important to specify the maxWidth (in pixels) of
@@ -199,15 +192,7 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-        manualInit: true,
-      },
-    },
     {
       resolve: 'gatsby-source-contentful',
       options: {

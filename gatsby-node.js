@@ -1,6 +1,5 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
-const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 const get = require('lodash/get');
 const remark = require('remark');
 const html = require('remark-html');
@@ -23,9 +22,6 @@ exports.createPages = ({ graphql, actions }) => {
           node {
             author
             title
-            body {
-              json
-            }
             slug
           }
         }
@@ -44,18 +40,6 @@ exports.createPages = ({ graphql, actions }) => {
         },
       });
     });
-
-    // Create story pages
-    // DEPRECATION WARNING! We will deprecate using `allMarkdownRemark` (which is Netlify CMS)
-    // result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    //   createPage({
-    //     path: `legacy-stories/${node.fields.slug}`,
-    //     component: path.resolve('./src/templates/Story/index.js'),
-    //     context: {
-    //       id: node.id,
-    //     },
-    //   });
-    // });
 
     // Create story pages from Contentful
     result.data.allContentfulArticle.edges.forEach(({ node }) => {
@@ -144,7 +128,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  fmImagesToRelative(node); // convert image paths for gatsby images
 
   // @TODO: Figure out `onCreateNode` for Contentful.
   // `fileAbsolutePath` is missing from Contentful nodes and the following code uses that field.
