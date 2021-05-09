@@ -16,22 +16,17 @@ const LandingPage = ({ data }) => {
       <Head title="Home" />
 
       <motion.div {...fadeInEntry()}>
-        {get(data, 'fullHero') && (
-          <FullHero
-            href="/products"
-            desktopImage={get(
-              data,
-              'fullHero.frontmatter.desktopImage.childImageSharp.gatsbyImageData'
-            )}
-            mobileImage={get(
-              data,
-              'fullHero.frontmatter.mobileImage.childImageSharp.gatsbyImageData'
-            )}
-            label={get(data, 'fullHero.frontmatter.label')}
-            title={get(data, 'fullHero.frontmatter.title')}
-            callToAction={get(data, 'fullHero.frontmatter.callToAction')}
-          />
-        )}
+        <FullHero
+          href="/products"
+          desktopImage={get(
+            data,
+            'desktopHero.childImageSharp.gatsbyImageData'
+          )}
+          mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
+          label="Limited sizes remaining."
+          title="The Permanent Collection"
+          callToAction="Shop Now"
+        />
 
         {Array.isArray(get(data, 'recommendedPicks.edges')) &&
           data.recommendedPicks.edges.length > 0 && (
@@ -42,8 +37,14 @@ const LandingPage = ({ data }) => {
                 id: get(node, 'id'),
                 href: `/products/${get(node, 'handle')}`,
                 images: [
-                  get(node, 'images[0].localFile.childImageSharp.gatsbyImageData'),
-                  get(node, 'images[1].localFile.childImageSharp.gatsbyImageData'),
+                  get(
+                    node,
+                    'images[0].localFile.childImageSharp.gatsbyImageData'
+                  ),
+                  get(
+                    node,
+                    'images[1].localFile.childImageSharp.gatsbyImageData'
+                  ),
                 ],
                 price: get(node, 'variants[0].price'),
                 compareAtPrice: get(node, 'variants[0].compareAtPrice'),
@@ -65,7 +66,10 @@ const LandingPage = ({ data }) => {
             <RecentStories
               storyA={{
                 href: `/stories/${data.recentStories.edges[0].node.slug}`,
-                image: get(data, 'recentStories.edges[0].node.heroImage.gatsbyImageData'),
+                image: get(
+                  data,
+                  'recentStories.edges[0].node.heroImage.gatsbyImageData'
+                ),
                 title: get(data, 'recentStories.edges[0].node.title'),
                 date: get(data, 'recentStories.edges[0].node.publishDate'),
                 previewText: get(
@@ -75,7 +79,10 @@ const LandingPage = ({ data }) => {
               }}
               storyB={{
                 href: `/stories/${data.recentStories.edges[1].node.slug}`,
-                image: get(data, 'recentStories.edges[1].node.heroImage.gatsbyImageData'),
+                image: get(
+                  data,
+                  'recentStories.edges[1].node.heroImage.gatsbyImageData'
+                ),
                 title: get(data, 'recentStories.edges[1].node.title'),
                 date: get(data, 'recentStories.edges[1].node.publishDate'),
                 previewText: get(
@@ -157,28 +164,16 @@ export default LandingPage;
 
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    fullHero: markdownRemark(frontmatter: { templateKey: { eq: "fullHero" } }) {
+    desktopHero: file(relativePath: { eq: "pc_black_by_pool_square.jpg" }) {
       id
-      frontmatter {
-        desktopImage {
-          childImageSharp {
-            gatsbyImageData
-            fluid(maxWidth: 2048, quality: 90) {
-              ...GatsbyImageSharpFluid_noBase64
-            }
-          }
-        }
-        mobileImage {
-          childImageSharp {
-            gatsbyImageData
-            fluid(maxWidth: 1080, quality: 90) {
-              ...GatsbyImageSharpFluid_noBase64
-            }
-          }
-        }
-        label
-        title
-        callToAction
+      childImageSharp {
+        gatsbyImageData
+      }
+    }
+    mobileHero: file(relativePath: { eq: "2T8A3598.jpg" }) {
+      id
+      childImageSharp {
+        gatsbyImageData
       }
     }
     recommendedPicks: allShopifyProduct(

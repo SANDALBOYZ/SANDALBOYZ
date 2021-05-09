@@ -1,5 +1,3 @@
-const netlifyFsAPI = require('netlify-cms-backend-fs/dist/fs');
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -17,7 +15,6 @@ module.exports = {
     description:
       'SANDALBOYZ is a movement and lifestyle, existing to bridge the gap between sophistication and comfort.',
   },
-  developMiddleware: netlifyFsAPI,
   plugins: [
     'gatsby-plugin-layout',
     {
@@ -167,12 +164,6 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
-            options: {
-              name: 'uploads',
-            },
-          },
-          {
             resolve: 'gatsby-remark-images',
             options: {
               // It's important to specify the maxWidth (in pixels) of
@@ -201,15 +192,7 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-        manualInit: true,
-      },
-    },
     {
       resolve: 'gatsby-source-contentful',
       options: {
