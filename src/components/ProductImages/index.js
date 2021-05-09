@@ -174,7 +174,7 @@ function ProductImages({ images, videos }) {
               handleZoom(idx);
             }}
           >
-            <Image fluid={get(image, 'localFile.childImageSharp.fluid')} />
+            <Image image={get(image, 'localFile.childImageSharp.gatsbyImageData')} />
           </ImageWrapper>
         ))}
         {videos.map(video => (
