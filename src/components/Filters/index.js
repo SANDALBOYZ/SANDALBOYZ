@@ -8,7 +8,6 @@ import { fonts, weights } from '@utils/fonts';
 import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
 import colors from '@utils/colors';
 
-import Button from '@components/Button';
 import Button2 from '@components/Button2';
 import Drawer from '@components/Drawer';
 import Dropdown from '@components/Dropdown';
