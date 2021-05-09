@@ -113,12 +113,6 @@ export const FullHero = ({
   title,
   callToAction,
 }) => {
-
-  console.log('desktopImage')
-  console.log(desktopImage)
-  console.log('mobileImage')
-  console.log(mobileImage)
-
   const images = withArtDirection(desktopImage, [
     {
       media: '(max-width: 916px)',
