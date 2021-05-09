@@ -39,6 +39,7 @@ const colors = {
   ALMOST_APRICOT,
   RESEDA,
 
+  // BLACK
   N900: '#000000',
   N800: '#111111',
   N700: '#262626',
@@ -48,6 +49,7 @@ const colors = {
   N200: '#E2E4EB',
   N100: '#F2F4FA',
   N0: '#FFF',
+  // WHITE
 
   CAUTION: '#FEC25A',
   NEGATIVE: '#F22E2E',

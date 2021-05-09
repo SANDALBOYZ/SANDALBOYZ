@@ -8,7 +8,7 @@ import { associateCheckout } from '@utils/shopify';
 import { Body } from '@utils/type';
 import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
 
-import Button from '@components/Button';
+import Button from '@components/Button2';
 import Drawer from '@components/Drawer';
 import LineItem from './LineItem';
 import * as styled from './styles';
