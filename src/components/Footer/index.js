@@ -109,7 +109,7 @@ const links = [
   { name: 'Privacy', href: '/privacy' },
 ];
 
-const Footer = ({ about, showStories }) => {
+const Footer = ({ about }) => {
   return (
     <Container>
       <FooterWrapper>

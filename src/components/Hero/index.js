@@ -54,7 +54,7 @@ const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 15%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
   color: ${colors.N0};
@@ -134,7 +134,7 @@ export const FullHero = ({
         <TextWrapper>
           <H1>{title}</H1>
           {label && <Detail>{label}</Detail>}
-          <CallToAction>{callToAction}</CallToAction>
+          {callToAction && <CallToAction>{callToAction}</CallToAction>}
         </TextWrapper>
       </Link>
     </FullHeroWrapper>

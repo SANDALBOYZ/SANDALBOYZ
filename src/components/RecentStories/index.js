@@ -127,7 +127,12 @@ const RecentStories = ({ storyA, storyB }) => (
       <Wrapper>
         <Link to={storyA.href}>
           <ImageWrapper>
-            {storyA.image && <AbsoluteImg image={storyA.image} />}
+            {storyA.image && (
+              <AbsoluteImg
+                image={storyA.image}
+                alt={`Story: ${storyA.title} hero image`}
+              />
+            )}
           </ImageWrapper>
           <Info>
             <H3>{storyA.title}</H3>
@@ -139,7 +144,12 @@ const RecentStories = ({ storyA, storyB }) => (
       <Wrapper>
         <Link to={storyB.href}>
           <ImageWrapper>
-            {storyB.image && <AbsoluteImg image={storyB.image} />}
+            {storyB.image && (
+              <AbsoluteImg
+                image={storyB.image}
+                alt={`Story: ${storyB.title} hero image`}
+              />
+            )}
           </ImageWrapper>
           <Info>
             <H3>{storyB.title}</H3>

@@ -8,7 +8,7 @@ import { associateCheckout } from '@utils/shopify';
 import { Body } from '@utils/type';
 import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
 
-import Button from '@components/Button';
+import Button2 from '@components/Button2';
 import Drawer from '@components/Drawer';
 import LineItem from './LineItem';
 import * as styled from './styles';
@@ -71,14 +71,14 @@ function Cart({ open, onClose }) {
           <styled.Subtotal>Subtotal</styled.Subtotal>
           <styled.Price>${checkout.subtotalPrice}</styled.Price>
         </styled.SubtotalContainer>
-        <Button
+        <Button2
           disabled={adding || checkout.lineItems.length === 0}
           external
           fullWidth
           onClick={handleCheckout}
         >
           Checkout
-        </Button>
+        </Button2>
       </styled.Actions>
     </Drawer>
   );

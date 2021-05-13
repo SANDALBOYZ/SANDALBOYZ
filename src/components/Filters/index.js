@@ -8,7 +8,7 @@ import { fonts, weights } from '@utils/fonts';
 import { useBodyScrollLock, useHideZeWidget } from '@utils/hooks';
 import colors from '@utils/colors';
 
-import Button from '@components/Button';
+import Button2 from '@components/Button2';
 import Drawer from '@components/Drawer';
 import Dropdown from '@components/Dropdown';
 
@@ -142,7 +142,7 @@ function Filters({ open, onClose }) {
         </FilterLists>
       </FilterListsContainer>
       <Actions>
-        <Button
+        <Button2
           theme="outline"
           onClick={() => {
             clearFilters();
@@ -150,8 +150,8 @@ function Filters({ open, onClose }) {
           }}
         >
           Clear
-        </Button>
-        <Button onClick={onClose}>Apply</Button>
+        </Button2>
+        <Button2 onClick={onClose}>Apply</Button2>
       </Actions>
     </Drawer>
   );

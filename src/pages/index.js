@@ -22,9 +22,9 @@ const LandingPage = ({ data }) => {
             'desktopHero.childImageSharp.gatsbyImageData'
           )}
           mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
-          label="Limited sizes remaining."
-          title="The Permanent Collection"
-          callToAction="Shop Now"
+          label="Coming Soon"
+          title="Midnight Black"
+          // callToAction="Shop Now"
         />
 
         {Array.isArray(get(data, 'recommendedPicks.edges')) &&
@@ -100,13 +100,13 @@ export default LandingPage;
 
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    desktopHero: file(relativePath: { eq: "pc_black_by_pool_square.jpg" }) {
+    desktopHero: file(relativePath: { eq: "DSC05937.jpg" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    mobileHero: file(relativePath: { eq: "2T8A3598.jpg" }) {
+    mobileHero: file(relativePath: { eq: "DSC05942-mobile.jpg" }) {
       id
       childImageSharp {
         gatsbyImageData
