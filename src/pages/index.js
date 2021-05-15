@@ -22,9 +22,9 @@ const LandingPage = ({ data }) => {
             'desktopHero.childImageSharp.gatsbyImageData'
           )}
           mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
-          label="Coming Soon"
+          label="Shorts, sandals, and socks."
           title="Midnight Black"
-          // callToAction="Shop Now"
+          callToAction="Shop Now"
         />
 
         {Array.isArray(get(data, 'recommendedPicks.edges')) &&
