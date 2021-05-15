@@ -22,7 +22,7 @@ const LandingPage = ({ data }) => {
             'desktopHero.childImageSharp.gatsbyImageData'
           )}
           mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
-          label="Shorts, sandals, and socks."
+          label="Sandals, shorts, and socks."
           title="Midnight Black"
           callToAction="Shop Now"
         />
