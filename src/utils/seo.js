@@ -27,6 +27,8 @@ export const fbq = (command, eventName, eventParams) => {
     process.env.NODE_ENV === 'production'
   ) {
     window.fbq(command, eventName, eventParams);
+    console.log('prod test fbq');
+    console.log(eventParams);
   }
 
   if (process.env.GATSBY_DEBUG_FBQ === 'true') {
