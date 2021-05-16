@@ -367,8 +367,10 @@ class Product extends Component {
           // @TODO: Make category dynamic.
           // category: 'Sandals',
           id: get(selectedVariant, 'sku'),
+          item_id: get(selectedVariant, 'sku'),
           name: get(product, 'title'),
           variant: get(selectedVariant, 'title'),
+          item_variant: get(selectedVariant, 'title'),
           quantity,
           price: get(selectedVariant, 'price'),
         },
