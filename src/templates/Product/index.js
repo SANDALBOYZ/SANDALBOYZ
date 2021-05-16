@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 
 import getPrice from '@utils/price';
-import Head, { gtag } from '@utils/seo';
+import Head, { gtag, fbq } from '@utils/seo';
 import { Breakpoint, breakpoints, mq } from '@utils/styles';
 import { Badge, ContentLabel } from '@utils/type';
 import colors from '@utils/colors';
@@ -329,8 +329,25 @@ class Product extends Component {
   }
 
   componentDidMount() {
+    const { data } = this.props;
+    const { sizeShopifyId } = this.state;
+    const product = data.shopifyProduct;
+
+    const selectedVariant = product.variants.find(
+      (variant) => variant.shopifyId === sizeShopifyId
+    );
+
     // eslint-disable-next-line no-undef
     zE('webWidget', 'hide');
+
+    fbq('track', 'ViewContent', {
+      content_name: get(product, 'title'),
+      content_type: 'product',
+      content_category: get(product, 'productType'),
+      content_ids: product.variants.map((variant) => variant.sku),
+      value: Number(get(selectedVariant, 'price')),
+      currency: 'USD',
+    });
   }
 
   handleAddToCart = () => {
@@ -340,7 +357,7 @@ class Product extends Component {
     const product = data.shopifyProduct;
 
     const selectedVariant = product.variants.find(
-      variant => variant.shopifyId === sizeShopifyId
+      (variant) => variant.shopifyId === sizeShopifyId
     );
 
     gtag('event', 'add_to_cart', {
@@ -356,6 +373,15 @@ class Product extends Component {
           price: get(selectedVariant, 'price'),
         },
       ],
+    });
+
+    fbq('track', 'AddToCart', {
+      content_name: get(product, 'title'),
+      content_type: 'product',
+      content_category: get(product, 'productType'),
+      content_ids: [get(selectedVariant, 'sku')],
+      value: Number(get(selectedVariant, 'price')),
+      currency: 'USD',
     });
 
     let variantId = sizeShopifyId || color;
@@ -377,16 +403,16 @@ class Product extends Component {
     this.setState({ sizeChartOpen: true });
   };
 
-  handleQuantityChange = value => {
+  handleQuantityChange = (value) => {
     this.setState({ quantity: value });
   };
 
-  handleColorChange = value => {
+  handleColorChange = (value) => {
     const onSale = this.getFirstOnSale(value);
     this.setState({ color: value, onSale });
   };
 
-  handleSizeChange = value => {
+  handleSizeChange = (value) => {
     const onSale = this.getFirstOnSale(value);
     this.setState({ sizeShopifyId: value, onSale });
   };
@@ -397,10 +423,10 @@ class Product extends Component {
 
     return get(
       product.variants
-        .filter(variant =>
-          variant.selectedOptions.find(option => option.name === 'Color')
+        .filter((variant) =>
+          variant.selectedOptions.find((option) => option.name === 'Color')
         )
-        .find(variant => variant.availableForSale),
+        .find((variant) => variant.availableForSale),
       'shopifyId'
     );
   };
@@ -411,19 +437,19 @@ class Product extends Component {
 
     return get(
       product.variants
-        .filter(variant =>
-          variant.selectedOptions.find(option => option.name === 'Size')
+        .filter((variant) =>
+          variant.selectedOptions.find((option) => option.name === 'Size')
         )
-        .find(variant => variant.availableForSale),
+        .find((variant) => variant.availableForSale),
       'shopifyId'
     );
   };
 
-  getFirstOnSale = id => {
+  getFirstOnSale = (id) => {
     const { data } = this.props;
     const product = data.shopifyProduct;
 
-    const firstAvailable = product.variants.find(variant => {
+    const firstAvailable = product.variants.find((variant) => {
       if (id) {
         return variant.shopifyId === id;
       }
@@ -443,12 +469,12 @@ class Product extends Component {
     const product = data.shopifyProduct;
 
     return product.variants
-      .filter(variant =>
-        variant.selectedOptions.find(option => option.name === 'Color')
+      .filter((variant) =>
+        variant.selectedOptions.find((option) => option.name === 'Color')
       )
-      .map(variant => {
+      .map((variant) => {
         const color = variant.selectedOptions.find(
-          option => option.name === 'Color'
+          (option) => option.name === 'Color'
         ).value;
 
         const optionLabel = variant.availableForSale
@@ -468,12 +494,12 @@ class Product extends Component {
     const product = data.shopifyProduct;
 
     return product.variants
-      .filter(variant =>
-        variant.selectedOptions.find(option => option.name === 'Size')
+      .filter((variant) =>
+        variant.selectedOptions.find((option) => option.name === 'Size')
       )
-      .map(variant => {
+      .map((variant) => {
         const size = variant.selectedOptions.find(
-          option => option.name === 'Size'
+          (option) => option.name === 'Size'
         ).value;
 
         const optionLabel = variant.availableForSale
@@ -509,7 +535,7 @@ class Product extends Component {
         '@type': 'Brand',
         name: 'SANDALBOYZ',
       },
-      image: get(product, 'images', []).map(image => image.originalSrc),
+      image: get(product, 'images', []).map((image) => image.originalSrc),
       offers: {
         '@type': 'Offer',
         // @TODO: `availability` needs to be dynamic. https://schema.org/OutOfStock

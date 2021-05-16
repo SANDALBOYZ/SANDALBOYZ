@@ -6,12 +6,31 @@ import { StaticQuery, graphql } from 'gatsby';
 import shareImage from '@images/shareImage.jpg';
 
 export const gtag = (command, eventName, eventParams) => {
-  if (typeof window.gtag === 'function') {
+  if (
+    typeof window.gtag === 'function' &&
+    process.env.NODE_ENV !== 'production'
+  ) {
     window.gtag(command, eventName, eventParams);
   }
 
   if (process.env.GATSBY_DEBUG_GTAG === 'true') {
     console.log('`gtag` debug');
+    console.log(`command: ${command}`);
+    console.log(`eventName: ${eventName}`);
+    console.log(eventParams);
+  }
+};
+
+export const fbq = (command, eventName, eventParams) => {
+  if (
+    typeof window.fbq === 'function' &&
+    process.env.NODE_ENV !== 'production'
+  ) {
+    return window.fbq(command, eventName, eventParams);
+  }
+
+  if (process.env.GATSBY_DEBUG_FBQ === 'true') {
+    console.log('`fbq` debug');
     console.log(`command: ${command}`);
     console.log(`eventName: ${eventName}`);
     console.log(eventParams);
@@ -66,7 +85,7 @@ class SEO extends Component {
     return (
       <StaticQuery
         query={detailsQuery}
-        render={data => {
+        render={(data) => {
           const url = slug
             ? `${data.site.siteMetadata.siteUrl}${slug}`
             : `${data.site.siteMetadata.siteUrl}`;
