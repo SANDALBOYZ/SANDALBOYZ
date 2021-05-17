@@ -534,11 +534,10 @@ class Product extends Component {
     // https://developers.google.com/search/docs/data-types/product
     const schemaOrg = {
       productID: get(product, 'handle'),
-      // brand: {
-      //   '@type': 'Brand',
-      //   name: 'SANDALBOYZ',
-      // },
-      brand: 'SANDALBOYZ',
+      brand: {
+        '@type': 'Brand',
+        name: 'SANDALBOYZ',
+      },
       image: get(product, 'images', [])[0]?.originalSrc,
       offers: [
         {
