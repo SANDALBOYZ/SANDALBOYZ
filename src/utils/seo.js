@@ -91,7 +91,7 @@ class SEO extends Component {
             : `${data.site.siteMetadata.siteUrl}`;
 
           const schemaOrg = {
-            '@context': 'http://schema.org',
+            '@context': 'https://schema.org',
             '@type': schemaType,
             name: title,
             description,

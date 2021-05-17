@@ -533,18 +533,23 @@ class Product extends Component {
 
     // https://developers.google.com/search/docs/data-types/product
     const schemaOrg = {
-      brand: {
-        '@type': 'Brand',
-        name: 'SANDALBOYZ',
-      },
-      image: get(product, 'images', []).map((image) => image.originalSrc),
-      offers: {
-        '@type': 'Offer',
-        // @TODO: `availability` needs to be dynamic. https://schema.org/OutOfStock
-        availability: 'http://schema.org/InStock',
-        price: get(product, 'variants[0].price', ''),
-        priceCurrency: 'USD',
-      },
+      productID: get(product, 'handle'),
+      // brand: {
+      //   '@type': 'Brand',
+      //   name: 'SANDALBOYZ',
+      // },
+      brand: 'SANDALBOYZ',
+      image: get(product, 'images', [])[0]?.originalSrc,
+      offers: [
+        {
+          '@type': 'Offer',
+          // @TODO: `availability` needs to be dynamic. https://schema.org/OutOfStock
+          availability: 'http://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          price: get(product, 'variants[0].price', ''),
+          priceCurrency: 'USD',
+        },
+      ],
     };
 
     const gtagData = {
