@@ -236,9 +236,7 @@ class ProductsPage extends Component {
             products={products}
             filters={activeFilters}
             openFilters={this.handleOpenFilters}
-            description="Among the coziest this planet has to offer. Explore our new
-              Permanent Collection, which features timeless aesthetic and
-              uncompromising durability."
+            description="Among the coziest this planet has to offer. Our collaboration with HiteJinro is available now."
           />
         </motion.div>
         <Filters onClose={this.handleCloseFilters} open={showFilters} />

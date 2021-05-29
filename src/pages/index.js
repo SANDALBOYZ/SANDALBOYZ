@@ -55,7 +55,7 @@ const LandingPage = ({ data }) => {
                   get(node, 'variants[0].price'),
               }))}
               title="What's New"
-              description="The latest and greatest in the world of SANDALBOYZ."
+              description="The latest and greatest in the world of SANDALBOYZ. Explore our collection with HiteJinro."
               ctaIcon="arrow-right"
             />
           )}
