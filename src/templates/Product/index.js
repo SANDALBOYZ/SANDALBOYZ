@@ -437,13 +437,17 @@ class Product extends Component {
     const { data } = this.props;
     const product = data.shopifyProduct;
 
+    if (product.variants.length === 1) {
+      return product.variants[0].shopifyId;
+    }
+
     return get(
       product.variants
         .filter((variant) =>
           variant.selectedOptions.find((option) => option.name === 'Size')
         )
         .find((variant) => variant.availableForSale),
-      'shopifyId'
+      'shopifyId',
     );
   };
 
