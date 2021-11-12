@@ -36,6 +36,12 @@ const Image = styled.img`
   margin-bottom: ${space[5]};
 `;
 
+const TextContainer = styled(motion.header)`
+  margin-top: ${space[10]};
+  margin-bottom: ${space[10]};
+  text-align: center;
+`;
+
 const PAGE_URL = '/sale';
 class SalePage extends Component {
   constructor(props) {
@@ -221,9 +227,12 @@ class SalePage extends Component {
     const { data } = this.props;
     const { activeFilters, activeSort, showFilters } = this.state;
 
-    const products =
-      Array.isArray(get(data, 'products.edges')) &&
-      data.products.edges.filter(this.filterProducts);
+    // const products =
+    //   Array.isArray(get(data, 'saleCollection.edges[0].node.products')) &&
+    //   data.products.edges.filter(this.filterProducts);
+
+    const products = get(data, 'saleCollection.edges[0].node.products');
+    const filteredProducts = products.filter(this.filterProducts);
 
     const isFiltered = activeFilters.collection.concat(
       activeFilters.productType
@@ -237,16 +246,12 @@ class SalePage extends Component {
     //         label="Black Friday / Cyber Monday"
     //         shrinkOnMobile
     //         title="Sale"
-    //       >
-    //         <Button theme="text" onClick={this.handleOpenFilters}>
-    //           Sort/Filter
-    //         </Button>
-    //       </Header>
+    //       />
     //       {products.length ? (
     //         <ProductGrid
     //           filters={activeFilters}
     //           onFilter={this.handleFilter}
-    //           products={products.sort(this.sortProducts).map(({ node }) => ({
+    //           products={products.sort(this.sortProducts).map((node) => ({
     //             id: get(node, 'id'),
     //             href: `/products/${get(node, 'handle')}`,
     //             images: [
@@ -261,7 +266,7 @@ class SalePage extends Component {
     //               Number(get(node, 'variants[0].compareAtPrice')) >
     //               Number(get(node, 'variants[0].price')),
     //           }))}
-    //           title={isFiltered ? 'Filtered Results' : 'All Products'}
+    //           title={''}
     //         />
     //       ) : (
     //         <Empty>
@@ -284,7 +289,15 @@ class SalePage extends Component {
     //   </>
     // );
 
-    return null;
+    return (
+      <TextContainer>
+        <h1>Black Friday / Cyber Monday 2021</h1>
+        <p>
+          Our biggest sale of the year is coming soon! Stay up to date on our
+          Instagram <a href="https://www.instagram.com/sandalboyz">@sandalboyz</a>.
+        </p>
+      </TextContainer>
+    );
   }
 }
 
@@ -292,33 +305,34 @@ export default SalePage;
 
 export const salePageQuery = graphql`
   query SalePageQuery {
-    products: allShopifyProduct(
-      sort: { fields: [createdAt], order: DESC },
-      filter: { tags: { in: "collection:Sale" } }
-    ) {
+    saleCollection: allShopifyCollection(filter: { handle: { eq: "sale" } }) {
       edges {
         node {
-          id
-          availableForSale
-          productType
-          tags
+          description
           title
-          handle
-          createdAt
-          images {
+          products {
             id
-            originalSrc
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 910) {
-                  ...GatsbyImageSharpFluid_noBase64
+            availableForSale
+            productType
+            tags
+            title
+            handle
+            createdAt
+            images {
+              id
+              originalSrc
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 910) {
+                    ...GatsbyImageSharpFluid_noBase64
+                  }
                 }
               }
             }
-          }
-          variants {
-            price
-            compareAtPrice
+            variants {
+              price
+              compareAtPrice
+            }
           }
         }
       }

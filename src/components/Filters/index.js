@@ -71,8 +71,8 @@ export const Actions = styled.div`
 `;
 
 const PRODUCT_TYPE_FILTERS = [
-  { label: 'Slides', value: 'Court Slide' },
-  { label: 'Socks', value: 'Sock' },
+  { label: 'Slides', value: 'Court Slides' },
+  { label: 'Socks', value: 'Socks' },
   { label: 'Shorts', value: 'Shorts' },
 ];
 
