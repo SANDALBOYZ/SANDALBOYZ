@@ -236,7 +236,7 @@ class ProductsPage extends Component {
             products={products}
             filters={activeFilters}
             openFilters={this.handleOpenFilters}
-            description="Among the coziest this planet has to offer. Our collaboration with HiteJinro is available now."
+            description="Among the coziest this planet has to offer."
           />
         </motion.div>
         <Filters onClose={this.handleCloseFilters} open={showFilters} />
