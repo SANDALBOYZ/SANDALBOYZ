@@ -40,6 +40,7 @@ const TextContainer = styled(motion.header)`
   margin-top: ${space[10]};
   margin-bottom: ${space[10]};
   text-align: center;
+  padding: 0 ${space[2]};
 `;
 
 const PAGE_URL = '/sale';
