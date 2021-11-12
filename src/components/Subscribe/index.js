@@ -108,10 +108,12 @@ export const Subscribe = () => {
           type="email"
           placeholder="hello@youareawesome.com"
           value={email}
-          onChange={event => setEmail(event.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
           aria-label="Email"
         />
-        <Button><CaretRight name='caret-down' /></Button>
+        <Button aria-label="Subscribe to our newsletter">
+          <CaretRight name="caret-down" />
+        </Button>
       </Form>
     </SubscribeWrapper>
   );
