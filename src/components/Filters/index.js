@@ -80,6 +80,7 @@ const COLLECTION_FILTERS = [
   { label: 'Permanent', value: 'Permanent' },
   { label: 'Inline', value: 'Inline' },
   { label: 'Special', value: 'Special Projects' },
+  { label: 'Sale', value: 'Sale' },
 ];
 
 function Filters({ open, onClose }) {
