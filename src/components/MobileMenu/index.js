@@ -70,9 +70,9 @@ export function MobileMenu({
   return (
     <MobileMenuWrapper open={open}>
       <Links>
-        {/* <NavLink to="/sale" onClick={onMenuClose} partiallyActive>
-            <H300>SALE</H300>
-          </NavLink> */}
+        <NavLink to="/sale" onClick={onMenuClose} partiallyActive style={{color: 'red'}}>
+          Sale
+        </NavLink>
         <NavLink to="/products" onClick={onMenuClose} partiallyActive>
           Products
         </NavLink>
