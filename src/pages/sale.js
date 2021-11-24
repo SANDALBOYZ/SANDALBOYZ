@@ -12,8 +12,6 @@ import space from '@utils/space';
 import { Container } from '@utils/styles';
 import { Body, H300 } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
-import sandal from '@images/sandal.svg';
-import Button from '@components/Button';
 import Filters from '@components/Filters';
 import Header from '@components/Header';
 import ProductGrid from '@components/ProductGrid';
@@ -50,12 +48,8 @@ class SalePage extends Component {
 
     const search = qs.parse(props.location.search);
     const activeFilters = {
-      collection: get(search, 'collection', '')
-        .split(',')
-        .filter(Boolean),
-      productType: get(search, 'productType', '')
-        .split(',')
-        .filter(Boolean),
+      collection: get(search, 'collection', '').split(',').filter(Boolean),
+      productType: get(search, 'productType', '').split(',').filter(Boolean),
     };
 
     this.state = {
@@ -86,9 +80,10 @@ class SalePage extends Component {
     let matchesProductType = true;
 
     if (activeFilters.collection.length) {
-      matchesCollection = activeFilters.collection.filter(activeFilter =>
-        this.getCollections(product).includes(activeFilter)
-      ).length > 0;
+      matchesCollection =
+        activeFilters.collection.filter((activeFilter) =>
+          this.getCollections(product).includes(activeFilter)
+        ).length > 0;
     }
 
     if (activeFilters.productType.length) {
@@ -100,8 +95,8 @@ class SalePage extends Component {
     return matchesCollection && matchesProductType;
   };
 
-  getCollections = product => {
-    const collectionTags = get(product, 'tags', []).filter(tag =>
+  getCollections = (product) => {
+    const collectionTags = get(product, 'tags', []).filter((tag) =>
       tag.includes('collection')
     );
 
@@ -109,10 +104,10 @@ class SalePage extends Component {
       return '';
     }
 
-    return collectionTags.map(collectionTag => collectionTag.split(':')[1]);
+    return collectionTags.map((collectionTag) => collectionTag.split(':')[1]);
   };
 
-  handleFilter = filters => {
+  handleFilter = (filters) => {
     const { location } = this.props;
 
     const query = qs.parse(location.search);
@@ -187,7 +182,7 @@ class SalePage extends Component {
     this.setState({ showFilters: true });
   };
 
-  handleSort = async key => {
+  handleSort = async (key) => {
     let sortKey = key;
     let reverse = false;
 
@@ -248,45 +243,34 @@ class SalePage extends Component {
             shrinkOnMobile
             title="Sale"
           />
-          {products.length ? (
-            <ProductGrid
-              filters={activeFilters}
-              onFilter={this.handleFilter}
-              products={products.sort(this.sortProducts).map((node) => ({
-                id: get(node, 'id'),
-                href: `/products/${get(node, 'handle')}`,
-                images: [
-                  get(node, 'images[0].localFile.childImageSharp.fluid'),
-                  get(node, 'images[1].localFile.childImageSharp.fluid'),
-                ],
-                price: get(node, 'variants[0].price'),
-                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-                title: get(node, 'title'),
-                soldOut: !get(node, 'availableForSale'),
-                onSale:
-                  Number(get(node, 'variants[0].compareAtPrice')) >
-                  Number(get(node, 'variants[0].price')),
-              }))}
-              title={''}
-            />
-          ) : (
-            <Empty>
-              <Image src={sandal} />
-              <Heading>No products found</Heading>
-              <Body>
-                Try selecting different filters to view more available products.
-              </Body>
-            </Empty>
-          )}
+          <ProductGrid
+            filters={activeFilters}
+            onFilter={this.handleFilter}
+            products={products.sort(this.sortProducts).map((node) => ({
+              id: get(node, 'id'),
+              href: `/products/${get(node, 'handle')}`,
+              images: [
+                get(
+                  node,
+                  'images[0].localFile.childImageSharp.gatsbyImageData'
+                ),
+                get(
+                  node,
+                  'images[1].localFile.childImageSharp.gatsbyImageData'
+                ),
+              ],
+              price: get(node, 'variants[0].price'),
+              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+              title: get(node, 'title'),
+              productType: get(node, 'productType'),
+              soldOut: !get(node, 'availableForSale'),
+              onSale:
+                Number(get(node, 'variants[0].compareAtPrice')) >
+                Number(get(node, 'variants[0].price')),
+            }))}
+            title={''}
+          />
         </motion.div>
-        <Filters
-          activeFilters={activeFilters}
-          activeSort={activeSort}
-          onFilter={this.handleFilter}
-          onClose={this.handleCloseFilters}
-          onSort={this.handleSort}
-          open={showFilters}
-        />
       </>
     );
 
@@ -324,6 +308,7 @@ export const salePageQuery = graphql`
               originalSrc
               localFile {
                 childImageSharp {
+                  gatsbyImageData
                   fluid(maxWidth: 910) {
                     ...GatsbyImageSharpFluid_noBase64
                   }

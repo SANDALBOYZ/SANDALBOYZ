@@ -9,27 +9,20 @@ const PercentOff = styled.span`
   color: #f22e2e;
 `;
 
-export default (price, compareAtPrice = null, currencyCode = 'USD') => {
-  // const formattedPrice = Intl.NumberFormat('en-US', {
-  //   currency: currencyCode,
-  //   minimumFractionDigits: 0,
-  //   style: 'currency',
-  // }).format(parseFloat(price ? price : 0));
-
-  const formattedPrice = Intl.NumberFormat('en-US').format(
-    parseFloat(price ? price : 0)
-  );
+const getPrice = (price, compareAtPrice = null, currencyCode = 'USD') => {
+  const priceParsed = parseFloat(price ? price : 0);
+  const formattedPrice =
+    priceParsed % 1 === 0 ? priceParsed.toString() : priceParsed.toFixed(2);
 
   if (compareAtPrice && compareAtPrice !== price) {
-    // const formattedComparePrice = Intl.NumberFormat('en-US', {
-    //   currency: currencyCode,
-    //   minimumFractionDigits: 0,
-    //   style: 'currency',
-    // }).format(parseFloat(compareAtPrice ? compareAtPrice : 0));
-
-    const formattedComparePrice = Intl.NumberFormat('en-US').format(
-      parseFloat(compareAtPrice ? compareAtPrice : 0)
+    const compareAtPriceParsed = parseFloat(
+      compareAtPrice ? compareAtPrice : 0
     );
+
+    const formattedComparePrice =
+      compareAtPriceParsed % 1 === 0
+        ? compareAtPriceParsed.toString()
+        : compareAtPriceParsed.toFixed(2);
 
     const percentOff = Math.round(
       ((compareAtPrice - price) / compareAtPrice) * 100
@@ -45,3 +38,5 @@ export default (price, compareAtPrice = null, currencyCode = 'USD') => {
 
   return formattedPrice;
 };
+
+export default getPrice;
