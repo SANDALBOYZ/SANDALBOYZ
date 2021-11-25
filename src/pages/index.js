@@ -22,8 +22,8 @@ const LandingPage = ({ data }) => {
             'desktopHero.childImageSharp.gatsbyImageData'
           )}
           mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
-          label="Sandals, shorts, and socks."
-          title="Midnight Black"
+          label="Up to 60% off"
+          title="Black Friday 2021"
           callToAction="Shop Now"
         />
 
