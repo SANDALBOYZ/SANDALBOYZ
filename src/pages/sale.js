@@ -16,29 +16,9 @@ import Filters from '@components/Filters';
 import Header from '@components/Header';
 import ProductGrid from '@components/ProductGrid';
 
-const Empty = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: ${space[8]} 0;
-`;
-
-const Heading = styled(H300)`
-  margin-bottom: ${space[2]};
-`;
-
-const Image = styled.img`
-  height: 64px;
-  margin-bottom: ${space[5]};
-`;
-
 const TextContainer = styled(motion.header)`
-  margin-top: ${space[10]};
-  margin-bottom: ${space[10]};
   text-align: center;
-  padding: 0 ${space[2]};
+  padding: 0 ${space[1]};
 `;
 
 const PAGE_URL = '/sale';
@@ -243,6 +223,7 @@ class SalePage extends Component {
             shrinkOnMobile
             title="Sale"
           />
+          <TextContainer>All sales are final.</TextContainer>
           <ProductGrid
             filters={activeFilters}
             onFilter={this.handleFilter}
