@@ -9,8 +9,6 @@ import qs from 'querystringify';
 import Head from '@utils/seo';
 import { getSortedProductIds } from '@utils/shopify';
 import space from '@utils/space';
-import { Container } from '@utils/styles';
-import { Body, H300 } from '@utils/type';
 import { fadeInEntry } from '@utils/animations';
 import Filters from '@components/Filters';
 import Header from '@components/Header';
