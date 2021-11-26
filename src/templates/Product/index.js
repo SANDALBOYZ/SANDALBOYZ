@@ -313,6 +313,13 @@ const H2 = styled.h2`
   text-transform: uppercase;
 `;
 
+const FinalSaleDetail = styled.div`
+  font-family: ${fonts.NIMBUS_CONDENSED};
+  font-weight: ${weights.LIGHT};
+  font-size: 12px;
+  text-transform: uppercase;
+`;
+
 class Product extends Component {
   static contextType = StoreContext;
 
@@ -668,6 +675,10 @@ class Product extends Component {
                 Add to bag — {price}
               </Button>
             </Selections>
+
+            {onSale && (
+              <FinalSaleDetail>All sales are final. No returns/exchanges on discounted products.</FinalSaleDetail>
+            )}
 
             <afterpay-placement
               data-locale="en_US"
