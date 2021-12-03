@@ -212,56 +212,56 @@ class SalePage extends Component {
       activeFilters.productType
     ).length;
 
-    return (
-      <>
-        <Head title="Black Friday Sale" />
-        <motion.div {...fadeInEntry()}>
-          <Header
-            label="Black Friday / Cyber Monday"
-            shrinkOnMobile
-            title="Sale"
-          />
-          <TextContainer>All sales are final.</TextContainer>
-          <ProductGrid
-            filters={activeFilters}
-            onFilter={this.handleFilter}
-            products={products.sort(this.sortProducts).map((node) => ({
-              id: get(node, 'id'),
-              href: `/products/${get(node, 'handle')}`,
-              images: [
-                get(
-                  node,
-                  'images[0].localFile.childImageSharp.gatsbyImageData'
-                ),
-                get(
-                  node,
-                  'images[1].localFile.childImageSharp.gatsbyImageData'
-                ),
-              ],
-              price: get(node, 'variants[0].price'),
-              compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-              title: get(node, 'title'),
-              productType: get(node, 'productType'),
-              soldOut: !get(node, 'availableForSale'),
-              onSale:
-                Number(get(node, 'variants[0].compareAtPrice')) >
-                Number(get(node, 'variants[0].price')),
-            }))}
-            title={''}
-          />
-        </motion.div>
-      </>
-    );
-
     // return (
-    //   <TextContainer>
-    //     <h1>Black Friday / Cyber Monday 2021</h1>
-    //     <p>
-    //       Our biggest sale of the year is coming soon! Stay up to date on our
-    //       Instagram <a href="https://www.instagram.com/sandalboyz">@sandalboyz</a>.
-    //     </p>
-    //   </TextContainer>
+    //   <>
+    //     <Head title="Black Friday Sale" />
+    //     <motion.div {...fadeInEntry()}>
+    //       <Header
+    //         label="Black Friday / Cyber Monday"
+    //         shrinkOnMobile
+    //         title="Sale"
+    //       />
+    //       <TextContainer>All sales are final.</TextContainer>
+    //       <ProductGrid
+    //         filters={activeFilters}
+    //         onFilter={this.handleFilter}
+    //         products={products.sort(this.sortProducts).map((node) => ({
+    //           id: get(node, 'id'),
+    //           href: `/products/${get(node, 'handle')}`,
+    //           images: [
+    //             get(
+    //               node,
+    //               'images[0].localFile.childImageSharp.gatsbyImageData'
+    //             ),
+    //             get(
+    //               node,
+    //               'images[1].localFile.childImageSharp.gatsbyImageData'
+    //             ),
+    //           ],
+    //           price: get(node, 'variants[0].price'),
+    //           compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+    //           title: get(node, 'title'),
+    //           productType: get(node, 'productType'),
+    //           soldOut: !get(node, 'availableForSale'),
+    //           onSale:
+    //             Number(get(node, 'variants[0].compareAtPrice')) >
+    //             Number(get(node, 'variants[0].price')),
+    //         }))}
+    //         title={''}
+    //       />
+    //     </motion.div>
+    //   </>
     // );
+
+    return (
+      <TextContainer>
+        <h1>Black Friday / Cyber Monday 2021</h1>
+        <p>
+          Our biggest sale of the year is over! Come back next year. Stay up to date on our
+          Instagram <a href="https://www.instagram.com/sandalboyz">@sandalboyz</a>.
+        </p>
+      </TextContainer>
+    );
   }
 }
 
