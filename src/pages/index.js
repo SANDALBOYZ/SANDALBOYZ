@@ -22,8 +22,8 @@ const LandingPage = ({ data }) => {
             'desktopHero.childImageSharp.gatsbyImageData'
           )}
           mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
-          label="Up to 60% off"
-          title="Black Friday 2021"
+          label="Give the gift of comfort this year."
+          title="Happy Holidays"
           callToAction="Shop Now"
         />
 
