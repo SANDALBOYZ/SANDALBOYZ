@@ -22,8 +22,8 @@ const LandingPage = ({ data }) => {
             'desktopHero.childImageSharp.gatsbyImageData'
           )}
           mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
-          label="Give the gift of comfort this year."
-          title="Happy Holidays"
+          label="Be comfortable with who you are."
+          title="SANDALBOYZ"
           callToAction="Shop Now"
         />
 

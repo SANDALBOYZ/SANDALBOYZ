@@ -74,6 +74,8 @@ const PRODUCT_TYPE_FILTERS = [
   { label: 'Slides', value: 'Court Slides' },
   { label: 'Socks', value: 'Socks' },
   { label: 'Shorts', value: 'Shorts' },
+  { label: 'Accessories', value: 'Accessories' },
+  { label: 'Home', value: 'Home' },
 ];
 
 const COLLECTION_FILTERS = [
