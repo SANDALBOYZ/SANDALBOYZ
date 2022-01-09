@@ -99,20 +99,23 @@ const StoryTemplate = ({ data }) => {
             {format(parseISO(article.publishDate), 'MMMM d, yyyy')}
           </styled.DateLabel>
         </styled.Box>
-        <styled.Authors>
-          <styled.AuthorBox>
-            <styled.ContentLabel>Words</styled.ContentLabel>
-            {article.author.map(a => (
-              <styled.AuthorLabel key={a}>{a}</styled.AuthorLabel>
-            ))}
-          </styled.AuthorBox>
-          <styled.AuthorBox>
-            <styled.ContentLabel>Photos</styled.ContentLabel>
-            {article.photographer.map(p => (
-              <styled.AuthorLabel key={p}>{p}</styled.AuthorLabel>
-            ))}
-          </styled.AuthorBox>
-        </styled.Authors>
+        {
+          article.author || article.photographer &&
+          <styled.Authors>
+            <styled.AuthorBox>
+              <styled.ContentLabel>Words</styled.ContentLabel>
+              {article.author.map(a => (
+                <styled.AuthorLabel key={a}>{a}</styled.AuthorLabel>
+              ))}
+            </styled.AuthorBox>
+            <styled.AuthorBox>
+              <styled.ContentLabel>Photos</styled.ContentLabel>
+              {article.photographer.map(p => (
+                <styled.AuthorLabel key={p}>{p}</styled.AuthorLabel>
+              ))}
+            </styled.AuthorBox>
+          </styled.Authors>
+        }
       </styled.Hero>
       <styled.Lede>{get(article, 'previewText.previewText')}</styled.Lede>
       <styled.Sections>
