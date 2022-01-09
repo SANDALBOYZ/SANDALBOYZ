@@ -63,7 +63,7 @@ const StoryTemplate = ({ data }) => {
   const schemaOrg = {
     author: {
       '@type': 'Person',
-      name: article.author[0],
+      name: get(article, 'author[0]'),
     },
     image: article.heroImage.fluid.src,
     datePublished: article.publishDate,
@@ -99,23 +99,26 @@ const StoryTemplate = ({ data }) => {
             {format(parseISO(article.publishDate), 'MMMM d, yyyy')}
           </styled.DateLabel>
         </styled.Box>
-        {
-          article.author || article.photographer &&
+        {(article.author || article.photographer) && (
           <styled.Authors>
-            <styled.AuthorBox>
-              <styled.ContentLabel>Words</styled.ContentLabel>
-              {article.author.map(a => (
-                <styled.AuthorLabel key={a}>{a}</styled.AuthorLabel>
-              ))}
-            </styled.AuthorBox>
-            <styled.AuthorBox>
-              <styled.ContentLabel>Photos</styled.ContentLabel>
-              {article.photographer.map(p => (
-                <styled.AuthorLabel key={p}>{p}</styled.AuthorLabel>
-              ))}
-            </styled.AuthorBox>
+            {article.author && (
+              <styled.AuthorBox>
+                <styled.ContentLabel>Words</styled.ContentLabel>
+                {article.author.map((a) => (
+                  <styled.AuthorLabel key={a}>{a}</styled.AuthorLabel>
+                ))}
+              </styled.AuthorBox>
+            )}
+            {article.photographer && (
+              <styled.AuthorBox>
+                <styled.ContentLabel>Photos</styled.ContentLabel>
+                {article.photographer.map((p) => (
+                  <styled.AuthorLabel key={p}>{p}</styled.AuthorLabel>
+                ))}
+              </styled.AuthorBox>
+            )}
           </styled.Authors>
-        }
+        )}
       </styled.Hero>
       <styled.Lede>{get(article, 'previewText.previewText')}</styled.Lede>
       <styled.Sections>
