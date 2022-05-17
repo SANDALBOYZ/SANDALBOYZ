@@ -100,13 +100,13 @@ export default LandingPage;
 
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    desktopHero: file(relativePath: { eq: "DSC05937.jpg" }) {
+    desktopHero: file(relativePath: { eq: "DSC08728-desktop_hero.jpg" }) {
       id
       childImageSharp {
         gatsbyImageData
       }
     }
-    mobileHero: file(relativePath: { eq: "DSC05942-mobile.jpg" }) {
+    mobileHero: file(relativePath: { eq: "DSC08732-MOBILE_hero.jpg" }) {
       id
       childImageSharp {
         gatsbyImageData
