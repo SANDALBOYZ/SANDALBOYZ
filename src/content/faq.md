@@ -3,10 +3,11 @@ templateKey: faq
 title: FAQ
 questions:
   - answer: >
-      * We do free standard (3-5 day) shipping and free returns on all domestic
-      USA orders.
+      * We do $5 standard (3-5 days) shipping and free returns/exchanges on all domestic USA orders.
 
-      * Express (2 day) domestic shipping is available for $12 USD.
+      * All orders above $100 have the option for free shipping.
+
+      * Express (1-3 days) domestic shipping is available for $12.50 USD.
 
       * International orders are shipped with signature confirmation (3-5 day) for
       $20 USD.

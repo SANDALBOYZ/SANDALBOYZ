@@ -6,17 +6,19 @@ title: Shipping, Returns, and Exchanges
 
 #### Domestic
 
-FREE standard shipping and free returns for all orders placed in the US (2-5 days).
-Express shipping (1-3 days) is available for $12 USD upgrade.
+Shop with confidence. Free returns and exchanges on all orders.
+
+Standard shipping (2-5 days) is $5. Free standard shipping on all orders above $100.
+Express shipping (1-3 days) is available for $12.50 USD upgrade.
 
 #### International
 
-Standard International Shipping w/ Signature Confirmation (3-5 days) $20.
+Standard International Shipping w/ Signature Confirmation (3-5 days) $21.50 USD.
 
-FREE international shipping on all orders over $150.
+FREE international shipping on all orders over $175.
 
 International customers are responsible for customs charges that may apply depending on country.
-International customers are responsible for covering return shipping for returns/exchanges.
+Unfortunately our free returns policy does not cover international customers. International customers are responsible for covering return shipping for returns/exchanges.
 
 
 ### RETURN/EXCHANGE

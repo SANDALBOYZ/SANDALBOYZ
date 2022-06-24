@@ -49,11 +49,21 @@ function Cart({ open, onClose }) {
     }
   };
 
+  const subtotalPrice = get(checkout, 'subtotalPrice', 0);
+
+  const freeShippingText =
+    100 - subtotalPrice > 0
+      ? `Spend $${(100 - subtotalPrice).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })} more to get free shipping.`
+      : 'Free shipping unlocked ✅';
+
   return (
     <Drawer onClose={onClose} open={open} loading={adding}>
       <styled.CartContainer>
         <styled.H3>Bag</styled.H3>
-        {checkout.lineItems.map(lineItem => (
+        {checkout.lineItems.map((lineItem) => (
           <LineItem key={lineItem.id.toString()} lineItem={lineItem} />
         ))}
         {checkout.lineItems.length === 0 && (
@@ -64,12 +74,13 @@ function Cart({ open, onClose }) {
         )}
       </styled.CartContainer>
       <styled.Actions>
-        <styled.CheckoutText>
-          Free standard shipping and returns on all United States orders.
-        </styled.CheckoutText>
+        {/* <styled.CheckoutText>
+          Free shipping on purchases of $100 or more.
+        </styled.CheckoutText> */}
+        <styled.CheckoutText>{freeShippingText}</styled.CheckoutText>
         <styled.SubtotalContainer>
           <styled.Subtotal>Subtotal</styled.Subtotal>
-          <styled.Price>${checkout.subtotalPrice}</styled.Price>
+          <styled.Price>${subtotalPrice}</styled.Price>
         </styled.SubtotalContainer>
         <Button2
           disabled={adding || checkout.lineItems.length === 0}
