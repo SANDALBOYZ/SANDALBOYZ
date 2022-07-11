@@ -1,13 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { graphql } from 'gatsby';
-import get from 'lodash/get';
+import { get, isEmpty } from 'lodash';
 
 import Head from '@utils/seo';
 import { FullHero } from '@components/Hero';
 import ProductGrid from '@components/ProductGrid';
 import RecentStories from '@components/RecentStories';
 import { fadeInEntry } from '@utils/animations';
+
+function formatNode({ node }) {
+  const activeImages = node.images.filter((image) => !isEmpty(image.localFile));
+
+  return {
+    id: get(node, 'id'),
+    href: `/products/${get(node, 'handle')}`,
+    images: [
+      get(activeImages, '[0].localFile.childImageSharp.gatsbyImageData'),
+      get(activeImages, '[1].localFile.childImageSharp.gatsbyImageData'),
+    ],
+    price: get(node, 'variants[0].price'),
+    compareAtPrice: get(node, 'variants[0].compareAtPrice'),
+    title: get(node, 'title'),
+    productType: get(node, 'productType'),
+    soldOut: !get(node, 'availableForSale'),
+    onSale:
+      get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
+  };
+}
 
 const LandingPage = ({ data }) => {
   return (
@@ -32,28 +52,7 @@ const LandingPage = ({ data }) => {
             <ProductGrid
               cta="Shop Now / See More"
               extraPadding={!get(data, 'fullHero')}
-              products={data.recommendedPicks.edges.map(({ node }) => ({
-                id: get(node, 'id'),
-                href: `/products/${get(node, 'handle')}`,
-                images: [
-                  get(
-                    node,
-                    'images[0].localFile.childImageSharp.gatsbyImageData'
-                  ),
-                  get(
-                    node,
-                    'images[1].localFile.childImageSharp.gatsbyImageData'
-                  ),
-                ],
-                price: get(node, 'variants[0].price'),
-                compareAtPrice: get(node, 'variants[0].compareAtPrice'),
-                title: get(node, 'title'),
-                productType: get(node, 'productType'),
-                soldOut: !get(node, 'availableForSale'),
-                onSale:
-                  get(node, 'variants[0].compareAtPrice') >
-                  get(node, 'variants[0].price'),
-              }))}
+              products={data.recommendedPicks.edges.map(formatNode)}
               title="What's New"
               description="The latest and greatest in the world of SANDALBOYZ."
               ctaIcon="arrow-right"

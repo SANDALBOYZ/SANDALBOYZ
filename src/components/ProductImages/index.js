@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
+import { get, isEmpty } from 'lodash';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -138,13 +138,17 @@ function ProductImages({ images, videos }) {
     setActiveIndex(null);
   };
 
-  const handleZoom = idx => {
+  const handleZoom = (idx) => {
     setActiveIndex(idx);
     setModalOpen(true);
   };
 
   const [activeIndex, setActiveIndex] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const activeImages = !isEmpty(images)
+    ? images.filter((image) => !isEmpty(image.localFile))
+    : [];
 
   return (
     <>
@@ -167,17 +171,19 @@ function ProductImages({ images, videos }) {
           },
         }}
       >
-        {images.map((image, idx) => (
+        {activeImages.map((image, idx) => (
           <ImageWrapper
             key={idx}
             onClick={() => {
               handleZoom(idx);
             }}
           >
-            <Image image={get(image, 'localFile.childImageSharp.gatsbyImageData')} />
+            <Image
+              image={get(image, 'localFile.childImageSharp.gatsbyImageData')}
+            />
           </ImageWrapper>
         ))}
-        {videos.map(video => (
+        {videos.map((video) => (
           <ImageWrapper key={video.id}>
             <Video autoBuffer autoPlay loop muted playsInline>
               <source src={video.file.url} />
