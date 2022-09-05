@@ -33,7 +33,7 @@ const TopRibbon = () => {
 
   return (
     <Ribbon>
-      Labor Day Flash Sale - 24 hours only for 25% off!{' '}
+      Labor Day Flash Sale - 48 hours only for 25% off!{' '}
       <SubscribeClick onClick={subscribeOnClick}>
         Subscribe to our newsletter
       </SubscribeClick>{' '}
