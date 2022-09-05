@@ -6,6 +6,8 @@ import get from 'lodash/get';
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
 import { getCustomer } from '@utils/shopify';
 import { GlobalStyle } from '@utils/styles';
+
+import TopRibbon from '@components/TopRibbon';
 import Cart from '@components/Cart';
 import Footer from '@components/Footer/container';
 import MobileMenu from '@components/MobileMenu';
@@ -233,6 +235,7 @@ class Layout extends React.Component {
       <StoreContext.Provider value={this.state.store}>
         <GlobalStyle />
         <>
+          <TopRibbon />
           <Navigation
             animate
             authLinks={this.getNavAuthLinks()}

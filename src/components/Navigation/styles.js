@@ -66,7 +66,7 @@ const getNavBackground = props => {
 
 export const Nav = styled(motion.div)`
   position: fixed;
-  top: 0;
+  top: 30px;
   right: 0;
   left: 0;
   z-index: 10000;
