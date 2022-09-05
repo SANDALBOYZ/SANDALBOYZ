@@ -23,12 +23,12 @@ const StyledCheckbox = styled.div`
   position: relative;
   height: 20px;
   width: 20px;
-  background-color: ${props => props.checked ? colors.N700 : colors.N100};
+  background-color: ${(props) => (props.checked ? colors.N700 : colors.N100)};
   cursor: pointer;
 `;
 
 const StyledIcon = styled(Icon)`
-  fill: ${props => props.checked ? colors.N0 : colors.N400};
+  fill: ${(props) => (props.checked ? colors.N0 : colors.N400)};
   height: 20px;
   pointer-events: none;
 `;

@@ -19,25 +19,13 @@ const mockImage = {
 
 export const Desktop = () => (
   <ProductImages
-    images={[
-      mockImage,
-      mockImage,
-      mockImage,
-      mockImage,
-      mockImage,
-    ]}
+    images={[mockImage, mockImage, mockImage, mockImage, mockImage]}
   />
 );
 
 export const Mobile = () => (
   <ProductImages
-    images={[
-      mockImage,
-      mockImage,
-      mockImage,
-      mockImage,
-      mockImage,
-    ]}
+    images={[mockImage, mockImage, mockImage, mockImage, mockImage]}
   />
 );
 

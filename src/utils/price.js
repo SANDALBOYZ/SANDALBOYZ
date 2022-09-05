@@ -16,7 +16,7 @@ const getPrice = (price, compareAtPrice = null, currencyCode = 'USD') => {
 
   if (compareAtPrice && compareAtPrice !== price) {
     const compareAtPriceParsed = parseFloat(
-      compareAtPrice ? compareAtPrice : 0
+      compareAtPrice ? compareAtPrice : 0,
     );
 
     const formattedComparePrice =
@@ -25,7 +25,7 @@ const getPrice = (price, compareAtPrice = null, currencyCode = 'USD') => {
         : compareAtPriceParsed.toFixed(2);
 
     const percentOff = Math.round(
-      ((compareAtPrice - price) / compareAtPrice) * 100
+      ((compareAtPrice - price) / compareAtPrice) * 100,
     );
 
     return (

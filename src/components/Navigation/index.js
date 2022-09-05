@@ -122,7 +122,7 @@ class Navigation extends Component {
               onClick={toggleFunction}
               aria-label="Open mobile navigation menu"
             />
-            {authLinks.map(authLink => (
+            {authLinks.map((authLink) => (
               <styled.NavLink key={authLink.name} to={authLink.href}>
                 {authLink.name}
               </styled.NavLink>

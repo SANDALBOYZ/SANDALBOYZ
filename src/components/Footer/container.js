@@ -22,7 +22,7 @@ export default () => (
         }
       }
     `}
-    render={data => {
+    render={(data) => {
       return (
         <Footer about={get(data, 'about.edges[0].node.frontmatter.about')} />
       );

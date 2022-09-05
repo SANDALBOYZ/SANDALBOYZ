@@ -64,12 +64,12 @@ export const CaretRight = styled(Icon)`
 function SearchForm({ onSearch }) {
   const [query, setQuery] = useState('');
 
-  const handleSubmit = evt => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
     onSearch(query);
   };
 
-  const searchOnChange = evt => {
+  const searchOnChange = (evt) => {
     setQuery(evt.target.value);
   };
 

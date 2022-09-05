@@ -37,7 +37,7 @@ export const H400 = styled(BaseH400)`
 export const Footer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: ${props => props.centered ? 'center': 'space-between'};
+  justify-content: ${(props) => (props.centered ? 'center' : 'space-between')};
   width: 100%;
   max-width: ${space[13]};
   padding: ${space[4]} 0;

@@ -65,7 +65,7 @@ export const Empty = styled(BaseContainer)`
 export const Filter = styled.a`
   display: block;
   font-size: 15px;
-  text-decoration: ${props => props.active ? 'underline' : 'none'};
+  text-decoration: ${(props) => (props.active ? 'underline' : 'none')};
 
   &:hover {
     text-decoration: underline;

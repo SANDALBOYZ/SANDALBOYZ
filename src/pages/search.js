@@ -41,12 +41,12 @@ const SearchPage = ({ location }) => (
           }
         }
       `}
-      render={data => (
+      render={(data) => (
         <Search
           index={get(data, 'siteSearchIndex.index')}
           location={location}
           products={get(data, 'allShopifyProduct.edges', []).map(
-            ({ node }) => node
+            ({ node }) => node,
           )}
         />
       )}

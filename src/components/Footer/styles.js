@@ -7,7 +7,6 @@ import { H600 as BaseH600 } from '@utils/type';
 import BaseLogo from '@components/Logo';
 
 export const About = styled.div`
-
   ${mq.gtlg} {
     max-width: ${space[13]};
     margin-right: ${space[8]};

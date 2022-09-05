@@ -341,7 +341,7 @@ class Product extends Component {
     const product = data.shopifyProduct;
 
     const selectedVariant = product.variants.find(
-      (variant) => variant.shopifyId === sizeShopifyId
+      (variant) => variant.shopifyId === sizeShopifyId,
     );
 
     // eslint-disable-next-line no-undef
@@ -364,7 +364,7 @@ class Product extends Component {
     const product = data.shopifyProduct;
 
     const selectedVariant = product.variants.find(
-      (variant) => variant.shopifyId === sizeShopifyId
+      (variant) => variant.shopifyId === sizeShopifyId,
     );
 
     gtag('event', 'add_to_cart', {
@@ -433,10 +433,10 @@ class Product extends Component {
     return get(
       product.variants
         .filter((variant) =>
-          variant.selectedOptions.find((option) => option.name === 'Color')
+          variant.selectedOptions.find((option) => option.name === 'Color'),
         )
         .find((variant) => variant.availableForSale),
-      'shopifyId'
+      'shopifyId',
     );
   };
 
@@ -451,7 +451,7 @@ class Product extends Component {
     return get(
       product.variants
         .filter((variant) =>
-          variant.selectedOptions.find((option) => option.name === 'Size')
+          variant.selectedOptions.find((option) => option.name === 'Size'),
         )
         .find((variant) => variant.availableForSale),
       'shopifyId',
@@ -483,11 +483,11 @@ class Product extends Component {
 
     return product.variants
       .filter((variant) =>
-        variant.selectedOptions.find((option) => option.name === 'Color')
+        variant.selectedOptions.find((option) => option.name === 'Color'),
       )
       .map((variant) => {
         const color = variant.selectedOptions.find(
-          (option) => option.name === 'Color'
+          (option) => option.name === 'Color',
         ).value;
 
         const optionLabel = variant.availableForSale
@@ -508,11 +508,11 @@ class Product extends Component {
 
     return product.variants
       .filter((variant) =>
-        variant.selectedOptions.find((option) => option.name === 'Size')
+        variant.selectedOptions.find((option) => option.name === 'Size'),
       )
       .map((variant) => {
         const size = variant.selectedOptions.find(
-          (option) => option.name === 'Size'
+          (option) => option.name === 'Size',
         ).value;
 
         const optionLabel = variant.availableForSale
@@ -577,7 +577,7 @@ class Product extends Component {
 
     const price = getPrice(
       get(product, 'variants[0].price'),
-      get(product, 'variants[0].compareAtPrice')
+      get(product, 'variants[0].compareAtPrice'),
     );
 
     return (
@@ -677,7 +677,10 @@ class Product extends Component {
             </Selections>
 
             {onSale && (
-              <FinalSaleDetail>All sales are final. No returns/exchanges on discounted products.</FinalSaleDetail>
+              <FinalSaleDetail>
+                All sales are final. No returns/exchanges on discounted
+                products.
+              </FinalSaleDetail>
             )}
 
             <afterpay-placement

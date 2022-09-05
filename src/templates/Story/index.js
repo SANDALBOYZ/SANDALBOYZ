@@ -27,12 +27,11 @@ const ARTICLE_FULL_WIDTH_IMAGE = 'ContentfulArticleFullWidthStretchImage';
 const storyRendererOptions = (references) => {
   return {
     renderNode: {
-      [BLOCKS.EMBEDDED_ENTRY]: node => {
-        const contentfulId =
-          node.data.target.sys.id;
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const contentfulId = node.data.target.sys.id;
 
         const reference = references.find(
-          ref => (ref.contentful_id === contentfulId)
+          (ref) => ref.contentful_id === contentfulId,
         );
 
         const contentType = reference.internal.type;
@@ -124,7 +123,7 @@ const StoryTemplate = ({ data }) => {
       <styled.Sections>
         {documentToReactComponents(
           JSON.parse(get(article, 'body.raw')),
-          storyRendererOptions(get(article, 'body.references'))
+          storyRendererOptions(get(article, 'body.references')),
         )}
       </styled.Sections>
     </>

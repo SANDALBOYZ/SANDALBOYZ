@@ -2,6 +2,7 @@
 templateKey: returns
 title: Shipping, Returns, and Exchanges
 ---
+
 ### SHIPPING
 
 #### Domestic
@@ -19,7 +20,6 @@ FREE international shipping on all orders over $175.
 
 International customers are responsible for customs charges that may apply depending on country.
 Unfortunately our free returns policy does not cover international customers. International customers are responsible for covering return shipping for returns/exchanges.
-
 
 ### RETURN/EXCHANGE
 

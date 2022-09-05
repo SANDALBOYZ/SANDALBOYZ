@@ -1,4 +1,4 @@
-export default function(str, maxChars) {
+export default function (str, maxChars) {
   const append = '…';
   const charLimit = maxChars + 1;
 

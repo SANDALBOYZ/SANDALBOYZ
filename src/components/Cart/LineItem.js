@@ -11,7 +11,7 @@ import * as styled from './styles';
 
 function LineItem({ lineItem }) {
   const { checkout, client, updateLineItem, removeLineItem } = useContext(
-    StoreContext
+    StoreContext,
   );
 
   const [quantity, setQuantity] = useState(lineItem.quantity);
@@ -61,7 +61,7 @@ function LineItem({ lineItem }) {
           <styled.Remove onClick={handleRemove}>Remove</styled.Remove>
         </styled.Left>
         <Dropdown
-          onChange={quantity => setQuantity(quantity)}
+          onChange={(quantity) => setQuantity(quantity)}
           options={[...Array(5)].map((_, idx) => ({
             name: `${idx + 1}`,
             value: idx + 1,

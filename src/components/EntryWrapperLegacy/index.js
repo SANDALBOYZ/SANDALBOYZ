@@ -18,19 +18,21 @@ const shiftFade = keyframes`
 `;
 
 export const Wrapper = styled.div`
-  ${props => props.customAnimation
-    ? props.customAnimation
-    : css`
-      animation: ${shiftFade} 1.5s cubic-bezier(.19, 1, .22, 1);
-      animation-delay: 800ms;
-    `
-  }
+  ${(props) =>
+    props.customAnimation
+      ? props.customAnimation
+      : css`
+          animation: ${shiftFade} 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+          animation-delay: 800ms;
+        `}
   display: block;
   position: relative;
   z-index: 1;
-  ${props => props.zIndex && css`
-    z-index: ${props.zIndex};
-  `}
+  ${(props) =>
+    props.zIndex &&
+    css`
+      z-index: ${props.zIndex};
+    `}
 
   opacity: 0;
 

@@ -6,14 +6,22 @@ import Button from '@components/Button';
 import xIcon from '@images/x.svg';
 import * as styled from './styles';
 
-export function Drawer({ actions, children, onClose, open, title, loading, backgroundColor }) {
-  const handleKeyDown = event => {
+export function Drawer({
+  actions,
+  children,
+  onClose,
+  open,
+  title,
+  loading,
+  backgroundColor,
+}) {
+  const handleKeyDown = (event) => {
     if (event.keyCode === 27 && open) {
       onClose();
     }
   };
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     event.stopPropagation();
   };
 

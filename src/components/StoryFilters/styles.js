@@ -26,7 +26,9 @@ export const Option = styled.button`
   cursor: pointer;
   outline: 0;
 
-  ${props => props.selected && css`
-    border-bottom: 1px solid ${colors.N600};
-  `}
+  ${(props) =>
+    props.selected &&
+    css`
+      border-bottom: 1px solid ${colors.N600};
+    `}
 `;

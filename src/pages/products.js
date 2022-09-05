@@ -19,12 +19,8 @@ class ProductsPage extends Component {
 
     const search = qs.parse(props.location.search);
     const activeFilters = {
-      collection: get(search, 'collection', '')
-        .split(',')
-        .filter(Boolean),
-      productType: get(search, 'productType', '')
-        .split(',')
-        .filter(Boolean),
+      collection: get(search, 'collection', '').split(',').filter(Boolean),
+      productType: get(search, 'productType', '').split(',').filter(Boolean),
     };
 
     this.state = {
@@ -63,33 +59,33 @@ class ProductsPage extends Component {
 
     if (activeFilters.collection.length) {
       matchesCollection =
-        activeFilters.collection.filter(activeFilter =>
-          this.getCollections(product).includes(activeFilter)
+        activeFilters.collection.filter((activeFilter) =>
+          this.getCollections(product).includes(activeFilter),
         ).length > 0;
     }
 
     if (activeFilters.productType.length) {
       matchesProductType = activeFilters.productType.includes(
-        product.productType
+        product.productType,
       );
     }
 
     return matchesCollection && matchesProductType;
   };
 
-  getCollections = product => {
-    const collectionTags = get(product, 'tags', []).filter(tag =>
-      tag.includes('collection')
+  getCollections = (product) => {
+    const collectionTags = get(product, 'tags', []).filter((tag) =>
+      tag.includes('collection'),
     );
 
     if (collectionTags.length === 0) {
       return '';
     }
 
-    return collectionTags.map(collectionTag => collectionTag.split(':')[1]);
+    return collectionTags.map((collectionTag) => collectionTag.split(':')[1]);
   };
 
-  handleFilter = filters => {
+  handleFilter = (filters) => {
     const { location } = this.props;
 
     const query = qs.parse(location.search);
@@ -164,7 +160,7 @@ class ProductsPage extends Component {
     this.setState({ showFilters: true });
   };
 
-  handleSort = async key => {
+  handleSort = async (key) => {
     let sortKey = key;
     let reverse = false;
 

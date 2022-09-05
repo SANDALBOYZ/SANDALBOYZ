@@ -41,6 +41,4 @@ export const Lede = styled(Body)`
   margin-top: ${space[2]};
 `;
 
-export const Wrapper = styled.div`
-
-`;
+export const Wrapper = styled.div``;

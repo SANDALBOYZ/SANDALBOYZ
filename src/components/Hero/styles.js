@@ -39,21 +39,23 @@ export const Button = styled(BaseButton)`
 `;
 
 export const H100 = styled(BaseH100)`
-  ${props => props.isLong && css`
-    ${fluidSize('font-size', {
-      minSize: 36,
-      maxSize: 84,
-      minScreenSize: breakpoints.xxs,
-      maxScreenSize: breakpoints.xl,
-    })}
+  ${(props) =>
+    props.isLong &&
+    css`
+      ${fluidSize('font-size', {
+        minSize: 36,
+        maxSize: 84,
+        minScreenSize: breakpoints.xxs,
+        maxScreenSize: breakpoints.xl,
+      })}
 
-    ${fluidSize('line-height', {
-      minSize: 32,
-      maxSize: 76,
-      minScreenSize: breakpoints.xxs,
-      maxScreenSize: breakpoints.xl,
-    })}
-  `}
+      ${fluidSize('line-height', {
+        minSize: 32,
+        maxSize: 76,
+        minScreenSize: breakpoints.xxs,
+        maxScreenSize: breakpoints.xl,
+      })}
+    `}
 `;
 
 export const H500 = styled(BaseH500)`

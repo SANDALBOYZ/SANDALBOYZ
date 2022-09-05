@@ -76,7 +76,7 @@ class AccountPage extends Component {
     this.handleCloseAddressForm();
   };
 
-  handleDeleteAddress = async addressId => {
+  handleDeleteAddress = async (addressId) => {
     await deleteAddress(addressId);
 
     const customer = await getCustomer();
@@ -89,7 +89,7 @@ class AccountPage extends Component {
     this.setState({ addressForm: {} });
   };
 
-  handleOpenAddressForm = values => {
+  handleOpenAddressForm = (values) => {
     disableBodyScroll();
     this.setState({
       addressForm: {

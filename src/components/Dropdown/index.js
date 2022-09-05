@@ -20,7 +20,7 @@ export const DropdownBox = styled.div`
   max-height: 380px;
   overflow: scroll;
 
-  ${props => {
+  ${(props) => {
     if (props.dropUp) {
       if (props.optionsLength > 10) {
         return css`
@@ -43,8 +43,8 @@ export const Option = styled.div`
   height: 38px;
   padding: 0 ${space[1]};
   cursor: pointer;
-  pointer-events: ${props => (props.disabled ? 'none' : 'auto')};
-  opacity: ${props => (props.disabled ? 0.5 : 1)};
+  pointer-events: ${(props) => (props.disabled ? 'none' : 'auto')};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 
   &:hover {
     background-color: ${colors.N100};
@@ -88,7 +88,7 @@ const StyledIcon = styled(Icon)`
   fill: #333;
   height: 9px;
   width: 9px;
-  transform: ${props => props.isOpen ? 'rotate(180deg)' : 'none' };
+  transform: ${(props) => (props.isOpen ? 'rotate(180deg)' : 'none')};
 `;
 
 const Dropdown = ({
@@ -119,8 +119,8 @@ const Dropdown = ({
           {prefix && <span>{prefix}</span>}
           <Value>
             {get(
-              options.find(opt => opt.value === currentValue),
-              'name'
+              options.find((opt) => opt.value === currentValue),
+              'name',
             )}
           </Value>
         </>
@@ -130,7 +130,7 @@ const Dropdown = ({
       {isOpen && (
         <DropdownBox optionsLength={options.length} dropUp={dropUp}>
           <div>
-            {options.map(opt => (
+            {options.map((opt) => (
               <Option
                 disabled={opt.disabled}
                 key={opt.value}
@@ -156,7 +156,7 @@ Dropdown.propTypes = {
       name: PropTypes.string,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       disabled: PropTypes.bool,
-    })
+    }),
   ),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   placeholder: PropTypes.string,

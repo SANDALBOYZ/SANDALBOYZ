@@ -47,8 +47,8 @@ export const Modal = styled.div`
   ${'' /* padding-top: ${space[6]}; */}
   color: ${colors.N0};
   background-color: rgba(0, 0, 0, 0.8);
-  opacity: ${props => props.open ? 1 : 0};
-  pointer-events: ${props => props.open ? 'auto' : 'none'};
+  opacity: ${(props) => (props.open ? 1 : 0)};
+  pointer-events: ${(props) => (props.open ? 'auto' : 'none')};
   transition: opacity 150ms linear;
   ${'' /* overflow: auto; */}
 `;

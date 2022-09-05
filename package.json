@@ -10,7 +10,7 @@
     "rmrf": "rimraf public build .cache",
     "lint": "eslint src --ext .js",
     "lint:fix": "eslint --fix src --ext .js",
-    "format": "prettier --write",
+    "format": "prettier --write src",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""

@@ -38,7 +38,7 @@ const getTheme = (theme) => {
   }
 };
 
-const Button = props => {
+const Button = (props) => {
   const {
     children,
     external,
@@ -54,10 +54,10 @@ const Button = props => {
     ${getTheme(theme)}
     ${sizes[size]}
     ${fullWidth &&
-      css`
-        padding: 0 !important;
-        width: 100%;
-      `}
+    css`
+      padding: 0 !important;
+      width: 100%;
+    `}
   `;
 
   let StyledButton = styled.button`
@@ -67,11 +67,11 @@ const Button = props => {
   if (!rest.disabled) {
     if (external && href) {
       StyledButton = styled.a.attrs({ href })`
-      ${styles}
+        ${styles}
       `;
     } else if (href) {
       StyledButton = styled(Link).attrs({ to: href })`
-      ${styles}
+        ${styles}
       `;
     }
   }

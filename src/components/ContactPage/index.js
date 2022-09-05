@@ -114,7 +114,9 @@ const Contact = () => {
             .
           </Body>
           <StyledBody>
-            Can't find the widget? Click <HereButton onClick={openForm}>here</HereButton> to open our contact form.
+            Can't find the widget? Click{' '}
+            <HereButton onClick={openForm}>here</HereButton> to open our contact
+            form.
           </StyledBody>
         </TextWrapper>
         <TextWrapper>

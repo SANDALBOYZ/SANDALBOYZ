@@ -138,11 +138,17 @@ const D_AUTO_GRID_MIN_SIZE = '22rem';
 
 export const Products = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(${M_AUTO_GRID_MIN_SIZE}, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(${M_AUTO_GRID_MIN_SIZE}, 1fr)
+  );
   grid-row-gap: ${space[2]};
 
   ${mq.gtmd} {
-    grid-template-columns: repeat(auto-fill, minmax(${D_AUTO_GRID_MIN_SIZE}, 1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(${D_AUTO_GRID_MIN_SIZE}, 1fr)
+    );
     grid-gap: ${space[2]};
   }
 `;
@@ -154,15 +160,19 @@ export const Title = styled.div`
 
 export const ProductGridWrapper = styled.div`
   margin-bottom: ${space[8]};
-  ${props => props.extraPadding && css`
-    padding-top: 48px;
-  `}
+  ${(props) =>
+    props.extraPadding &&
+    css`
+      padding-top: 48px;
+    `}
 
   ${mq.gtlg} {
     margin-top: ${space[2]};
 
-    ${props => props.extraPadding && css`
-      padding-top: 80px;
-    `}
+    ${(props) =>
+      props.extraPadding &&
+      css`
+        padding-top: 80px;
+      `}
   }
 `;

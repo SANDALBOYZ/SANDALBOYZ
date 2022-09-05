@@ -15,12 +15,12 @@ const StylesheetInjector = ({ children }) => {
   return (
     <>
       {iframeRef && (
-          <StyleSheetManager target={iframeRef}>
-            <>
-              <GlobalStyle />
-              {children}
-            </>
-          </StyleSheetManager>
+        <StyleSheetManager target={iframeRef}>
+          <>
+            <GlobalStyle />
+            {children}
+          </>
+        </StyleSheetManager>
       )}
     </>
   );

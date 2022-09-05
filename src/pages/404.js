@@ -72,14 +72,15 @@ const NotFoundPage = () => (
     <Container>
       <Image src={sandal} />
       <Heading>Uh Oh! Nothing to see here.</Heading>
-      <Description>It appears that what you are looking for no longer exists here. Please return to the homepage or search for something different</Description>
+      <Description>
+        It appears that what you are looking for no longer exists here. Please
+        return to the homepage or search for something different
+      </Description>
       <Buttons>
         <Button href="/" theme="outline">
           Back to home
         </Button>
-        <Button href="/products">
-          Browse Products
-        </Button>
+        <Button href="/products">Browse Products</Button>
       </Buttons>
     </Container>
   </>

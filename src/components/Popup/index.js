@@ -30,7 +30,7 @@ class Popup extends Component {
     this.handlePopup();
   }
 
-  handleClick = evt => {
+  handleClick = (evt) => {
     evt.stopPropagation();
   };
 
@@ -70,12 +70,14 @@ class Popup extends Component {
             <div>
               <ContentLabel>{label}</ContentLabel>
               <styled.Title>{title}</styled.Title>
-              <styled.Description dangerouslySetInnerHTML={{
-                __html: remark()
-                  .use(html)
-                  .processSync(description)
-                  .toString(),
-              }}/>
+              <styled.Description
+                dangerouslySetInnerHTML={{
+                  __html: remark()
+                    .use(html)
+                    .processSync(description)
+                    .toString(),
+                }}
+              />
               {/* <styled.Social>
                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?${qs.stringify(

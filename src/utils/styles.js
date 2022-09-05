@@ -28,15 +28,15 @@ export const mq = {
 
 export const fluidSize = (
   property,
-  { minSize, maxSize, minScreenSize, maxScreenSize }
+  { minSize, maxSize, minScreenSize, maxScreenSize },
 ) => {
   return css`
     ${property}: ${minSize}px;
 
     @media screen and (min-width: ${minScreenSize}px) {
       ${property}: calc(${minSize}px + ${maxSize -
-    minSize} * ((100vw - ${minScreenSize}px) / ${maxScreenSize -
-    minScreenSize}));
+      minSize} * ((100vw - ${minScreenSize}px) / ${maxScreenSize -
+      minScreenSize}));
     }
 
     @media screen and (min-width: ${maxScreenSize}px) {
@@ -139,10 +139,10 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Group = styled.div`
-  display: ${props => (props.inline ? 'inline-flex' : 'flex')};
+  display: ${(props) => (props.inline ? 'inline-flex' : 'flex')};
 
   & > *:not(:last-child) {
-    margin-right: ${props => props.spacing || space[2]};
+    margin-right: ${(props) => props.spacing || space[2]};
   }
 `;
 

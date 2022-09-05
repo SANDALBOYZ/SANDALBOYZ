@@ -28,7 +28,7 @@ function Cart({ open, onClose }) {
 
     if (get(checkout, 'id') && get(checkout, 'lineItems.length')) {
       gtag('event', 'begin_checkout', {
-        items: checkout.lineItems.map(lineItem => ({
+        items: checkout.lineItems.map((lineItem) => ({
           id: lineItem.variant.sku,
           name: lineItem.title,
           brand: 'SANDALBOYZ',
@@ -42,7 +42,7 @@ function Cart({ open, onClose }) {
     if (checkout.webUrl) {
       const url = checkout.webUrl.replace(
         `${process.env.GATSBY_SHOP_NAME}.myshopify`,
-        'checkout.sandalboyz'
+        'checkout.sandalboyz',
       );
 
       window.location.href = url;

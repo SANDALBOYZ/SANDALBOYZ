@@ -8,16 +8,12 @@ import * as styled from './styles';
 const BannerLight = ({ cta, image, label, title }) => (
   <styled.Wrapper>
     <styled.Background>
-      {image && (
-        <AbsoluteImg fluid={image} />
-      )}
+      {image && <AbsoluteImg fluid={image} />}
     </styled.Background>
     <styled.Box>
       {label && <styled.H500>{label}</styled.H500>}
       <H200>{title}</H200>
-      <styled.Button href={cta.href}>
-        {cta.name}
-      </styled.Button>
+      <styled.Button href={cta.href}>{cta.name}</styled.Button>
     </styled.Box>
   </styled.Wrapper>
 );

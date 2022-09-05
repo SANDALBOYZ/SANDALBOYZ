@@ -80,13 +80,11 @@ class Filters extends Component {
         <styled.Filters>
           <styled.Filter>
             <H600>Tags</H600>
-            {allTags.map(tag => (
+            {allTags.map((tag) => (
               <styled.Option
                 key={tag}
                 selected={activeFilters.tags.includes(tag)}
-                onClick={() =>
-                  this.handleFilterSelect('tags', tag)
-                }
+                onClick={() => this.handleFilterSelect('tags', tag)}
               >
                 <Body>{tag}</Body>
               </styled.Option>
@@ -94,13 +92,11 @@ class Filters extends Component {
           </styled.Filter>
           <styled.Filter>
             <H600>Year</H600>
-            {allYears.map(year => (
+            {allYears.map((year) => (
               <styled.Option
                 key={year}
                 selected={activeFilters.years.includes(year)}
-                onClick={() =>
-                  this.handleFilterSelect('years', year)
-                }
+                onClick={() => this.handleFilterSelect('years', year)}
               >
                 <Body>{year}</Body>
               </styled.Option>

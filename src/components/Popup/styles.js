@@ -229,8 +229,8 @@ export const PopupWrapper = styled.div`
   padding: 0 ${H_PADDING_MOBILE};
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 150ms linear;
-  opacity: ${props => (props.open ? 1 : 0)};
-  pointer-events: ${props => (props.open ? 'auto' : 'none')};
+  opacity: ${(props) => (props.open ? 1 : 0)};
+  pointer-events: ${(props) => (props.open ? 'auto' : 'none')};
 
   ${mq.gtsm} {
     padding: 0;

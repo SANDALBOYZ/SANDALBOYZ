@@ -6,6 +6,8 @@ import get from 'lodash/get';
 import StoreContext, { defaultStoreContext } from '@context/StoreContext';
 import { getCustomer } from '@utils/shopify';
 import { GlobalStyle } from '@utils/styles';
+
+import TopRibbon from '@components/TopRibbon';
 import Cart from '@components/Cart';
 import Footer from '@components/Footer/container';
 import MobileMenu from '@components/MobileMenu';
@@ -24,7 +26,7 @@ class Layout extends React.Component {
           return;
         }
 
-        this.setState(state => ({
+        this.setState((state) => ({
           cartOpen: true,
           store: {
             ...state.store,
@@ -40,8 +42,8 @@ class Layout extends React.Component {
 
         return client.checkout
           .addLineItems(checkoutId, lineItemsToUpdate)
-          .then(checkout => {
-            this.setState(state => ({
+          .then((checkout) => {
+            this.setState((state) => ({
               store: {
                 ...state.store,
                 checkout,
@@ -52,7 +54,7 @@ class Layout extends React.Component {
       },
       closeMobileMenu: this.handleMenuClose,
       removeLineItem: (client, checkoutID, lineItemID) => {
-        this.setState(state => ({
+        this.setState((state) => ({
           store: {
             ...state.store,
             adding: true,
@@ -61,8 +63,8 @@ class Layout extends React.Component {
 
         return client.checkout
           .removeLineItems(checkoutID, [lineItemID])
-          .then(res => {
-            this.setState(state => ({
+          .then((res) => {
+            this.setState((state) => ({
               store: {
                 ...state.store,
                 checkout: res,
@@ -76,7 +78,7 @@ class Layout extends React.Component {
           { id: lineItemID, quantity: parseInt(quantity, 10) },
         ];
 
-        this.setState(state => ({
+        this.setState((state) => ({
           store: {
             ...state.store,
             adding: true,
@@ -85,8 +87,8 @@ class Layout extends React.Component {
 
         return client.checkout
           .updateLineItems(checkoutID, lineItemsToUpdate)
-          .then(res => {
-            this.setState(state => ({
+          .then((res) => {
+            this.setState((state) => ({
               store: {
                 ...state.store,
                 checkout: res,
@@ -95,8 +97,8 @@ class Layout extends React.Component {
             }));
           });
       },
-      setCustomer: customer => {
-        this.setState(state => ({
+      setCustomer: (customer) => {
+        this.setState((state) => ({
           store: {
             ...state.store,
             customer,
@@ -113,12 +115,12 @@ class Layout extends React.Component {
       ? localStorage.getItem('shopify_checkout_id')
       : null;
 
-    const setCheckoutInState = checkout => {
+    const setCheckoutInState = (checkout) => {
       if (isBrowser) {
         localStorage.setItem('shopify_checkout_id', checkout.id);
       }
 
-      this.setState(state => ({
+      this.setState((state) => ({
         store: {
           ...state.store,
           checkout,
@@ -127,7 +129,7 @@ class Layout extends React.Component {
     };
 
     const createNewCheckout = () => this.state.store.client.checkout.create();
-    const fetchCheckout = id => this.state.store.client.checkout.fetch(id);
+    const fetchCheckout = (id) => this.state.store.client.checkout.fetch(id);
 
     if (existingCheckoutID) {
       try {
@@ -151,14 +153,14 @@ class Layout extends React.Component {
     const customer = await getCustomer();
 
     if (get(customer, 'id')) {
-      this.setState(state => ({
+      this.setState((state) => ({
         store: {
           ...state.store,
           customer,
         },
       }));
     }
-  };
+  }
 
   componentDidMount() {
     this.initializeCheckout();
@@ -180,17 +182,20 @@ class Layout extends React.Component {
     const { store } = this.state;
 
     if (get(store, 'customer.id')) {
-      return [{
-        name: 'My Account',
-        href: '/account',
-      }, {
-        name: 'Log out',
-        href: '/logout',
-      }];
+      return [
+        {
+          name: 'My Account',
+          href: '/account',
+        },
+        {
+          name: 'Log out',
+          href: '/logout',
+        },
+      ];
     }
 
     return [{ name: 'Sign in', href: '/signin' }];
-  }
+  };
 
   getNavLight = () => {
     const { location } = this.props;
@@ -233,6 +238,7 @@ class Layout extends React.Component {
       <StoreContext.Provider value={this.state.store}>
         <GlobalStyle />
         <>
+          <TopRibbon />
           <Navigation
             animate
             authLinks={this.getNavAuthLinks()}

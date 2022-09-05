@@ -13,17 +13,14 @@ const FaqPage = ({ data }) => {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: get(data, 'markdownRemark.frontmatter.questions', []).map(
-      faq => ({
+      (faq) => ({
         '@type': 'Question',
         name: faq.question,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: remark()
-            .use(html)
-            .processSync(faq.answer)
-            .toString(),
+          text: remark().use(html).processSync(faq.answer).toString(),
         },
-      })
+      }),
     ),
   };
 
@@ -32,7 +29,7 @@ const FaqPage = ({ data }) => {
       <Head
         title={get(data, 'markdownRemark.frontmatter.title')}
         additionalSchemaOrg={schemaOrg}
-        slug='/faq'
+        slug="/faq"
       />
       <Header
         shrinkOnMobile

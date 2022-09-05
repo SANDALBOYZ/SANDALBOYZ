@@ -102,8 +102,8 @@ const ProductTile = ({
   const domRef = useRef();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (!visible) {
           setVisible(entry.isIntersecting);
         }

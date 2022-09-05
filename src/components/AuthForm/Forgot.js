@@ -24,11 +24,11 @@ const ForgotForm = () => {
       }
 
       if (get(userErrors, 'length')) {
-        userErrors.forEach(err => {
+        userErrors.forEach((err) => {
           const errors = {};
 
           if (err.code && err.code === 'UNIDENTIFIED_CUSTOMER') {
-            errors.general = "We couldn't find an account matching that email.";
+            errors.general = 'We couldn\'t find an account matching that email.';
           }
 
           setErrors(errors);

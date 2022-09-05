@@ -25,14 +25,14 @@ const SectionContainer = styled(motion.section)`
   margin-bottom: ${space[8]};
 
   ${mq.gtlg} {
-    flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
+    flex-direction: ${(props) => (props.reverse ? 'row-reverse' : 'row')};
   }
 `;
 
 // Just a background piece
 const StickyWrapper = styled.div`
   align-self: stretch;
-  background-color: ${props => STICKY_WRAPPER_COLORS[(props.index + 1) % 3]};
+  background-color: ${(props) => STICKY_WRAPPER_COLORS[(props.index + 1) % 3]};
   margin-bottom: ${space[6]};
 
   ${mq.gtlg} {
@@ -167,7 +167,7 @@ export const About = ({ title, description, sections }) => (
             <StickySection>
               <H2>{get(section, 'node.header')}</H2>
               {documentToReactComponents(
-                JSON.parse(get(section, 'node.description.raw'))
+                JSON.parse(get(section, 'node.description.raw')),
               )}
             </StickySection>
           </StickyWrapper>
@@ -178,7 +178,7 @@ export const About = ({ title, description, sections }) => (
                 <H3>{subSection.title}</H3>
                 <Divider />
                 {documentToReactComponents(
-                  JSON.parse(get(subSection, 'description.raw'))
+                  JSON.parse(get(subSection, 'description.raw')),
                 )}
               </SectionTile>
             ))}

@@ -23,7 +23,7 @@ export const Container = styled(BaseContainer)`
 `;
 
 export const Icon = styled(BaseIcon)`
-  fill: ${props => (props.light ? colors.N0 : colors.N900)};
+  fill: ${(props) => (props.light ? colors.N0 : colors.N900)};
   width: 22px;
 
   ${mq.gtlg} {
@@ -33,11 +33,12 @@ export const Icon = styled(BaseIcon)`
 
 export const Logo = styled(BaseLogo)`
   height: 14px;
-  fill: ${props => (props.light && !props.cartOpen ? colors.N0 : colors.N900)};
+  fill: ${(props) =>
+    props.light && !props.cartOpen ? colors.N0 : colors.N900};
 
   ${mq.gtlg} {
     height: 20px;
-    fill: ${props => (props.light ? colors.N0 : colors.N900)};
+    fill: ${(props) => (props.light ? colors.N0 : colors.N900)};
   }
 `;
 
@@ -52,7 +53,7 @@ export const MobileNavWrapper = styled.div`
   }
 `;
 
-const getNavBackground = props => {
+const getNavBackground = (props) => {
   if (props.cartOpen && props.hasScrolled) {
     return colors.N0;
   }
@@ -71,9 +72,9 @@ export const Nav = styled(motion.div)`
   left: 0;
   z-index: 10000;
   background-color: transparent;
-  transition: background-color 600ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  transition: background-color 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
-  ${props =>
+  ${(props) =>
     props.light &&
     css`
       & ${NavLink} {
@@ -117,7 +118,7 @@ export const NavLink = styled(Link).attrs({
   display: none;
 
   &:after {
-    content: "";
+    content: '';
     border-bottom: 1px solid;
     display: block;
     transform: scaleX(0) translateY(4px);
@@ -145,7 +146,7 @@ export const RegularLink = styled.a`
   display: none;
 
   &:after {
-    content: "";
+    content: '';
     border-bottom: 1px solid;
     display: block;
     transform: scaleX(0) translateY(4px);

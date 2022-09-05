@@ -14,16 +14,16 @@ const StoriesGrid = ({ stories }) => {
 
   const getFilteredStories = () => {
     return stories
-      .filter(story => {
+      .filter((story) => {
         if (tagFilter.length && Array.isArray(story.tags)) {
-          return tagFilter.find(tag => story.tags.includes(tag));
+          return tagFilter.find((tag) => story.tags.includes(tag));
         } else if (tagFilter.length) {
           return false;
         }
 
         return true;
       })
-      .filter(story => {
+      .filter((story) => {
         if (yearFilter.length) {
           return yearFilter.includes(new Date(story.date).getFullYear());
         }
@@ -45,52 +45,54 @@ const StoriesGrid = ({ stories }) => {
     setYearFilter(years);
   };
 
-  const setTags = tag => {
+  const setTags = (tag) => {
     if (!tagFilter.includes(tag)) {
       setTagFilter([...tagFilter, tag]);
     } else {
-      setTagFilter(tagFilter.filter(t => t !== tag));
+      setTagFilter(tagFilter.filter((t) => t !== tag));
     }
   };
 
-  const setYears = year => {
+  const setYears = (year) => {
     if (!yearFilter.includes(year)) {
       setYearFilter([...yearFilter, year]);
     } else {
-      setYearFilter(yearFilter.filter(y => y !== year));
+      setYearFilter(yearFilter.filter((y) => y !== year));
     }
   };
 
   const storyYears = [
-    ...new Set(stories.map(story => new Date(story.date).getFullYear())),
-  ].sort().reverse();
-  const storyTags = [...new Set(stories.map(story => story.tags).flat())]
+    ...new Set(stories.map((story) => new Date(story.date).getFullYear())),
+  ]
+    .sort()
+    .reverse();
+  const storyTags = [...new Set(stories.map((story) => story.tags).flat())]
     .filter(Boolean)
     .sort();
 
-  const activeTagFilters = tagFilter.map(filter => (
+  const activeTagFilters = tagFilter.map((filter) => (
     <styled.ActiveFilter key={filter}>
       {filter}
       <styled.ClearFilter
         onClick={() => {
           setTags(filter);
         }}
-        >
-          <styled.Icon name="x" />
-        </styled.ClearFilter>
-      </styled.ActiveFilter>
+      >
+        <styled.Icon name="x" />
+      </styled.ClearFilter>
+    </styled.ActiveFilter>
   ));
-  const activeYearFilters = yearFilter.map(filter => (
+  const activeYearFilters = yearFilter.map((filter) => (
     <styled.ActiveFilter key={filter}>
       {filter}
       <styled.ClearFilter
         onClick={() => {
           setYears(filter);
         }}
-        >
-          <styled.Icon name="x" />
-        </styled.ClearFilter>
-      </styled.ActiveFilter>
+      >
+        <styled.Icon name="x" />
+      </styled.ClearFilter>
+    </styled.ActiveFilter>
   ));
 
   return (
@@ -98,14 +100,16 @@ const StoriesGrid = ({ stories }) => {
       <styled.Container>
         <styled.Header>
           <styled.Title>Stories</styled.Title>
-          <styled.Description>A collection of our editorials, lookbooks, and more.</styled.Description>
+          <styled.Description>
+            A collection of our editorials, lookbooks, and more.
+          </styled.Description>
         </styled.Header>
         <styled.FiltersAside>
           <styled.Title>Stories</styled.Title>
           {storyTags.length > 0 && (
             <>
               <styled.FilterTitle>Tags</styled.FilterTitle>
-              {storyTags.map(tag => (
+              {storyTags.map((tag) => (
                 <styled.Filter
                   active={tagFilter.includes(tag)}
                   key={tag}
@@ -121,7 +125,7 @@ const StoriesGrid = ({ stories }) => {
           {storyYears.length > 0 && (
             <>
               <styled.FilterTitle>Year</styled.FilterTitle>
-              {storyYears.map(year => (
+              {storyYears.map((year) => (
                 <styled.Filter
                   active={yearFilter.includes(year)}
                   key={year}
@@ -137,7 +141,7 @@ const StoriesGrid = ({ stories }) => {
         </styled.FiltersAside>
         {getFilteredStories().length ? (
           <styled.Stories>
-            {getFilteredStories().map(story => (
+            {getFilteredStories().map((story) => (
               <StoryTile key={story.id} {...story} />
             ))}
           </styled.Stories>
@@ -173,7 +177,7 @@ StoriesGrid.propTypes = {
       image: PropTypes.object,
       tags: PropTypes.array,
       title: PropTypes.string.isRequired,
-    })
+    }),
   ),
 };
 

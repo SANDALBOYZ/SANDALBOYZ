@@ -32,19 +32,23 @@ const StyledTextarea = styled.textarea`
   }
 `;
 
-const Textarea = React.forwardRef(({ label, name, size, type, ...rest }, ref) => {
-  const textarea = <StyledTextarea name={name} ref={ref} size={size} {...rest} />;
-
-  if (label) {
-    return (
-      <Label htmlFor={name} text={label}>
-        {textarea}
-      </Label>
+const Textarea = React.forwardRef(
+  ({ label, name, size, type, ...rest }, ref) => {
+    const textarea = (
+      <StyledTextarea name={name} ref={ref} size={size} {...rest} />
     );
-  }
 
-  return textarea;
-});
+    if (label) {
+      return (
+        <Label htmlFor={name} text={label}>
+          {textarea}
+        </Label>
+      );
+    }
+
+    return textarea;
+  },
+);
 
 Textarea.propTypes = {
   label: PropTypes.string,

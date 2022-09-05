@@ -65,7 +65,7 @@ export const getCustomerQuery = () =>
     return get(data, 'data.customer');
   });
 
-export const associateCheckout = checkoutId =>
+export const associateCheckout = (checkoutId) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -96,7 +96,7 @@ export const associateCheckout = checkoutId =>
     checkoutId: get(data, 'data.checkoutCustomerAssociateV2.checkout.id'),
   }));
 
-export const disassociateCheckout = checkoutId =>
+export const disassociateCheckout = (checkoutId) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -124,7 +124,7 @@ export const disassociateCheckout = checkoutId =>
     checkoutId: get(data, 'data.checkoutCustomerDisassociateV2.checkout.id'),
   }));
 
-export const addAddress = address =>
+export const addAddress = (address) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -181,7 +181,7 @@ export const updateAddress = (newAddress, addressId) =>
     addressId: get(data, 'data.customerAddressUpdate.customerAddress.id'),
   }));
 
-export const deleteAddress = addressId =>
+export const deleteAddress = (addressId) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -208,7 +208,7 @@ export const deleteAddress = addressId =>
     addressId: get(data, 'data.customerAddressDelete.deletedCustomerAddressId'),
   }));
 
-export const setDefaultAddress = addressId =>
+export const setDefaultAddress = (addressId) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -236,7 +236,7 @@ export const setDefaultAddress = addressId =>
     customer: get(data, 'data.customerDefaultAddressUpdate.customer'),
   }));
 
-export const register = input =>
+export const register = (input) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -263,7 +263,7 @@ export const register = input =>
     userErrors: get(data, 'data.customerCreate.userErrors'),
   }));
 
-export const signin = input =>
+export const signin = (input) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -288,17 +288,17 @@ export const signin = input =>
   }).then(({ data }) => ({
     accessToken: get(
       data,
-      'data.customerAccessTokenCreate.customerAccessToken.accessToken'
+      'data.customerAccessTokenCreate.customerAccessToken.accessToken',
     ),
     expiresAt: get(
       data,
-      'data.customerAccessTokenCreate.customerAccessToken.expiresAt'
+      'data.customerAccessTokenCreate.customerAccessToken.expiresAt',
     ),
     errors: get(data, 'errors'),
     userErrors: get(data, 'data.customerAccessTokenCreate.userErrors'),
   }));
 
-export const forgot = email =>
+export const forgot = (email) =>
   axios({
     url: apiUrl,
     method: 'post',
@@ -350,7 +350,7 @@ export const reset = (id, input) =>
   }).then(({ data }) => ({
     accessToken: get(
       data,
-      'data.customerReset.customerAccessToken.accessToken'
+      'data.customerReset.customerAccessToken.accessToken',
     ),
     expiresAt: get(data, 'data.customerReset.customerAccessToken.expiresAt'),
     errors: get(data, 'errors'),
@@ -377,5 +377,7 @@ export const getSortedProductIds = (sortKey, reverse) =>
       variables: { sortKey, reverse },
     },
   }).then(({ data }) => ({
-    sortedProductIds: get(data, 'data.products.edges', []).map(({ node }) => `Shopify__Product__${node.id}`),
+    sortedProductIds: get(data, 'data.products.edges', []).map(
+      ({ node }) => `Shopify__Product__${node.id}`,
+    ),
   }));

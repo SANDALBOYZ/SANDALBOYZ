@@ -62,7 +62,8 @@ export const onSale = () => (
     <ProductTile
       price="65"
       onSale
-      compareAtPrice="75" title="Kelly Green"
+      compareAtPrice="75"
+      title="Kelly Green"
       images={[
         {
           src: 'https://source.unsplash.com/random',

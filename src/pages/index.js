@@ -39,7 +39,7 @@ const LandingPage = ({ data }) => {
           href="/products"
           desktopImage={get(
             data,
-            'desktopHero.childImageSharp.gatsbyImageData'
+            'desktopHero.childImageSharp.gatsbyImageData',
           )}
           mobileImage={get(data, 'mobileHero.childImageSharp.gatsbyImageData')}
           label="Be comfortable with who you are."
@@ -66,26 +66,26 @@ const LandingPage = ({ data }) => {
                 href: `/stories/${data.recentStories.edges[0].node.slug}`,
                 image: get(
                   data,
-                  'recentStories.edges[0].node.heroImage.gatsbyImageData'
+                  'recentStories.edges[0].node.heroImage.gatsbyImageData',
                 ),
                 title: get(data, 'recentStories.edges[0].node.title'),
                 date: get(data, 'recentStories.edges[0].node.publishDate'),
                 previewText: get(
                   data,
-                  'recentStories.edges[0].node.previewText.previewText'
+                  'recentStories.edges[0].node.previewText.previewText',
                 ),
               }}
               storyB={{
                 href: `/stories/${data.recentStories.edges[1].node.slug}`,
                 image: get(
                   data,
-                  'recentStories.edges[1].node.heroImage.gatsbyImageData'
+                  'recentStories.edges[1].node.heroImage.gatsbyImageData',
                 ),
                 title: get(data, 'recentStories.edges[1].node.title'),
                 date: get(data, 'recentStories.edges[1].node.publishDate'),
                 previewText: get(
                   data,
-                  'recentStories.edges[1].node.previewText.previewText'
+                  'recentStories.edges[1].node.previewText.previewText',
                 ),
               }}
             />

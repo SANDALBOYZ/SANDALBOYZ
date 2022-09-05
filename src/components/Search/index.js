@@ -57,7 +57,7 @@ class Search extends Component {
     return Index.load(this.props.index);
   };
 
-  handleSearch = query => {
+  handleSearch = (query) => {
     const { location } = this.props;
 
     this.setState(
@@ -69,7 +69,7 @@ class Search extends Component {
       },
       () => {
         navigate(`${location.pathname}?${qs.stringify({ search: query })}`);
-      }
+      },
     );
   };
 
@@ -87,9 +87,9 @@ class Search extends Component {
           </NoResults>
         ) : (
           <div>
-            {results.map(result => {
+            {results.map((result) => {
               const matchingProduct = products.find(
-                product => product.id === result.id
+                (product) => product.id === result.id,
               );
               return (
                 <SearchResult
@@ -99,7 +99,7 @@ class Search extends Component {
                   href={`/products/${get(matchingProduct, 'handle')}`}
                   image={get(
                     matchingProduct,
-                    'images[0].localFile.childImageSharp.fluid'
+                    'images[0].localFile.childImageSharp.fluid',
                   )}
                   price={get(matchingProduct, 'variants[0].price')}
                   title={get(matchingProduct, 'title')}

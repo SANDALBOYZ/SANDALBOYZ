@@ -10,7 +10,10 @@ const ResetPage = ({ location }) => (
   <>
     <Head title="Reset Password" />
     <Header shrinkOnMobile theme="dark" title="Reset your password" />
-    <ResetForm id={get(qs.parse(location.search), 'id')} token={get(qs.parse(location.search), 'token')} />
+    <ResetForm
+      id={get(qs.parse(location.search), 'id')}
+      token={get(qs.parse(location.search), 'token')}
+    />
   </>
 );
 

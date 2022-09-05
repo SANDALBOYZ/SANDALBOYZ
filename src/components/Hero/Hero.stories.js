@@ -33,7 +33,6 @@ export const heroMobile = () => (
   />
 );
 
-
 heroMobile.story = {
   parameters: {
     viewport: {

@@ -17,7 +17,7 @@ const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState();
   const [generalError, setGeneralError] = useState();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     setLoading(true);
 
     try {
@@ -28,7 +28,7 @@ const RegisterForm = () => {
       }
 
       if (get(userErrors, 'length')) {
-        userErrors.forEach(err => {
+        userErrors.forEach((err) => {
           if (err.field.includes('email')) {
             setEmailError(err.message);
           }

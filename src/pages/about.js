@@ -20,7 +20,7 @@ const AboutPage = ({ data }) => {
         title="About Us"
         description={get(
           data,
-          'aboutPage.edges[0].node.descriptionPlainText.descriptionPlainText'
+          'aboutPage.edges[0].node.descriptionPlainText.descriptionPlainText',
         )}
         additionalSchemaOrg={additionalSchemaOrg}
       />

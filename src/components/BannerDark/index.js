@@ -7,9 +7,7 @@ import * as styled from './styles';
 const BannerDark = ({ cta, image, label, title }) => (
   <styled.Wrapper>
     <styled.Background>
-      {image && (
-        <AbsoluteImg image={image} />
-      )}
+      {image && <AbsoluteImg image={image} />}
     </styled.Background>
     <styled.Box>
       {label && <styled.ContentLabel>{label}</styled.ContentLabel>}

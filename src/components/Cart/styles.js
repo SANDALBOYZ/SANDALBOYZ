@@ -31,8 +31,7 @@ export const Info = styled.div`
   flex: 1;
 `;
 
-export const ProductDetailsContainer = styled.div`
-`;
+export const ProductDetailsContainer = styled.div``;
 
 export const ProductDetailLine = styled.p`
   font-family: ${fonts.NIMBUS};
@@ -59,7 +58,7 @@ export const LineItemImage = styled.div`
   width: 80px;
   margin-right: ${space[3]};
   background-color: ${colors.N100};
-  background-image: url(${props => props.image});
+  background-image: url(${(props) => props.image});
   background-position: center;
   background-size: cover;
 `;

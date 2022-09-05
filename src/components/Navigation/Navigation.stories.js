@@ -7,13 +7,14 @@ import Navigation from '.';
 
 export default { title: 'Navigation ' };
 
-export const DesktopDark = () =>
+export const DesktopDark = () => (
   <Navigation
     menuOpen={false}
     onCartClose={() => console.log('onCartClose')}
     onCartOpen={() => console.log('onCartOpen')}
     onMenuClose={() => console.log('onMenuClose')}
-  />;
+  />
+);
 
 const DarkBackground = styled.div`
   background-color: ${colors.N700};
@@ -33,13 +34,14 @@ export const DesktopLight = () => (
   </DarkBackground>
 );
 
-export const MobileDark = () =>
+export const MobileDark = () => (
   <Navigation
     menuOpen={false}
     onCartClose={() => console.log('onCartClose')}
     onCartOpen={() => console.log('onCartOpen')}
     onMenuClose={() => console.log('onMenuClose')}
-  />;
+  />
+);
 
 MobileDark.story = {
   parameters: {

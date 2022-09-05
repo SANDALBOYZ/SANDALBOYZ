@@ -50,7 +50,7 @@ const FilterItem = styled.button`
   padding: 0;
   display: block;
   font-family: ${fonts.NIMBUS};
-  font-weight: ${props => (props.active ? weights.BOLD : weights.NORMAL)};
+  font-weight: ${(props) => (props.active ? weights.BOLD : weights.NORMAL)};
   cursor: pointer;
 
   & ~ & {
@@ -105,7 +105,7 @@ function Filters({ open, onClose }) {
       <FilterListsContainer>
         <FilterLists>
           <FilterTitle>Product Type</FilterTitle>
-          {PRODUCT_TYPE_FILTERS.map(filter => (
+          {PRODUCT_TYPE_FILTERS.map((filter) => (
             <FilterItem
               onClick={() => handleFilterSelect('productType', filter.value)}
               active={productType.includes(filter.value)}
@@ -117,7 +117,7 @@ function Filters({ open, onClose }) {
         </FilterLists>
         <FilterLists>
           <FilterTitle>Collection</FilterTitle>
-          {COLLECTION_FILTERS.map(filter => (
+          {COLLECTION_FILTERS.map((filter) => (
             <FilterItem
               onClick={() => handleFilterSelect('collection', filter.value)}
               active={collection.includes(filter.value)}

@@ -104,7 +104,7 @@ export const Title = styled.div`
 
 export const ProductGridWrapper = styled.div`
   margin-bottom: ${space[8]};
-  ${props =>
+  ${(props) =>
     props.extraPadding &&
     css`
       padding-top: 48px;
@@ -113,7 +113,7 @@ export const ProductGridWrapper = styled.div`
   ${mq.gtlg} {
     margin-top: ${space[2]};
 
-    ${props =>
+    ${(props) =>
       props.extraPadding &&
       css`
         padding-top: 80px;
@@ -184,7 +184,7 @@ const FilterButton = styled.button`
   cursor: pointer;
 
   &:after {
-    content: '${props => (props.filtersLength ? props.filtersLength : '')}';
+    content: '${(props) => (props.filtersLength ? props.filtersLength : '')}';
     vertical-align: super;
     padding-left: 2px;
   }
@@ -242,7 +242,7 @@ const ProductGrid = ({
         </Header>
         {products.length > 0 ? (
           <Products>
-            {products.map(product => (
+            {products.map((product) => (
               <ProductTile key={product.id} {...product} />
             ))}
           </Products>
@@ -273,7 +273,7 @@ ProductGrid.propTypes = {
       soldOut: PropTypes.bool,
       onSale: PropTypes.bool,
       title: PropTypes.string.isRequired,
-    })
+    }),
   ),
   title: PropTypes.string.isRequired,
 };

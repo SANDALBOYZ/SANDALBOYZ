@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 import colors from '@utils/colors';
-import space, {
-  H_PADDING,
-  V_PADDING,
-  H_PADDING_MOBILE,
-} from '@utils/space';
+import space, { H_PADDING, V_PADDING, H_PADDING_MOBILE } from '@utils/space';
 import { Container as BaseContainer, mq } from '@utils/styles';
 import { H300, H500 as BaseH500, H600 as BaseH600 } from '@utils/type';
 
@@ -31,7 +27,7 @@ export const ImageWrapper = styled.div`
 
   & > div {
     transform: scale(1);
-    transition: transform 800ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: transform 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   & img {
@@ -73,7 +69,7 @@ export const Wrapper = styled.div`
   }
 
   & ${H300} {
-    transition: all 800ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   &:hover ${H300} {
@@ -82,9 +78,9 @@ export const Wrapper = styled.div`
   }
 `;
 
-
 export const Container = styled(BaseContainer)`
-  background-color: ${props => props.backgroundColor || colors.SANDALBOYZ_NATURAL};
+  background-color: ${(props) =>
+    props.backgroundColor || colors.SANDALBOYZ_NATURAL};
   margin-bottom: ${space[8]};
   padding: ${space[1]} 0;
 

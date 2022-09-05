@@ -51,8 +51,8 @@ export const MobileMenuWrapper = styled.div`
   left: 0;
   z-index: 9000;
   background-color: ${colors.BONE_WHITE};
-  opacity: ${props => (props.open ? 1 : 0)};
-  pointer-events: ${props => (props.open ? 'auto' : 'none')};
+  opacity: ${(props) => (props.open ? 1 : 0)};
+  pointer-events: ${(props) => (props.open ? 'auto' : 'none')};
   transition: opacity 250ms ease-in;
 `;
 

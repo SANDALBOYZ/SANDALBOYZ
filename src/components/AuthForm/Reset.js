@@ -24,7 +24,7 @@ const ResetForm = ({ id, token }) => {
         {
           resetToken: token,
           password,
-        }
+        },
       );
 
       if (get(errors, 'length')) {
@@ -32,7 +32,7 @@ const ResetForm = ({ id, token }) => {
       }
 
       if (get(userErrors, 'length')) {
-        userErrors.forEach(err => {
+        userErrors.forEach((err) => {
           const errors = {};
 
           if (err.field && err.field.includes('password')) {

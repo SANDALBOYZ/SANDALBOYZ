@@ -67,7 +67,10 @@ const FullHeightImageWrapper = styled.div`
 export const FullHeightImage = ({ image }) => (
   <FullHeightImageWrapper>
     {image && (
-      <GatsbyImage image={image.gatsbyImageData} backgroundColor={randomSandalboyzColor()} />
+      <GatsbyImage
+        image={image.gatsbyImageData}
+        backgroundColor={randomSandalboyzColor()}
+      />
     )}
   </FullHeightImageWrapper>
 );
@@ -87,7 +90,10 @@ const FullWidthImageWrapper = styled.div`
 export const FullWidthImage = ({ image }) => (
   <FullWidthImageWrapper>
     {image && (
-      <AbsoluteImg image={image.gatsbyImageData} backgroundColor={randomSandalboyzColor()} />
+      <AbsoluteImg
+        image={image.gatsbyImageData}
+        backgroundColor={randomSandalboyzColor()}
+      />
     )}
   </FullWidthImageWrapper>
 );
@@ -117,7 +123,7 @@ const OffsetGridWrapper = styled.div`
   }
 `;
 
-export const OffsetGridImage = props => (
+export const OffsetGridImage = (props) => (
   <OffsetGridWrapper>
     <OffsetGridContainer>
       {get(props, 'images', [])

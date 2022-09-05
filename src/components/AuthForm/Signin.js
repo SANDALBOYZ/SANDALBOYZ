@@ -15,7 +15,7 @@ const SigninForm = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     setLoading(true);
 
     try {
@@ -26,7 +26,7 @@ const SigninForm = () => {
       }
 
       if (get(userErrors, 'length')) {
-        userErrors.forEach(err => {
+        userErrors.forEach((err) => {
           const errors = {};
 
           if (err.field && err.field.includes('email')) {

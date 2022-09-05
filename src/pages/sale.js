@@ -60,13 +60,13 @@ class SalePage extends Component {
     if (activeFilters.collection.length) {
       matchesCollection =
         activeFilters.collection.filter((activeFilter) =>
-          this.getCollections(product).includes(activeFilter)
+          this.getCollections(product).includes(activeFilter),
         ).length > 0;
     }
 
     if (activeFilters.productType.length) {
       matchesProductType = activeFilters.productType.includes(
-        product.productType
+        product.productType,
       );
     }
 
@@ -75,7 +75,7 @@ class SalePage extends Component {
 
   getCollections = (product) => {
     const collectionTags = get(product, 'tags', []).filter((tag) =>
-      tag.includes('collection')
+      tag.includes('collection'),
     );
 
     if (collectionTags.length === 0) {
@@ -209,7 +209,7 @@ class SalePage extends Component {
     const filteredProducts = products.filter(this.filterProducts);
 
     const isFiltered = activeFilters.collection.concat(
-      activeFilters.productType
+      activeFilters.productType,
     ).length;
 
     // return (
@@ -257,8 +257,9 @@ class SalePage extends Component {
       <TextContainer>
         <h1>Black Friday / Cyber Monday 2021</h1>
         <p>
-          Our biggest sale of the year is over! Come back next year. Stay up to date on our
-          Instagram <a href="https://www.instagram.com/sandalboyz">@sandalboyz</a>.
+          Our biggest sale of the year is over! Come back next year. Stay up to
+          date on our Instagram{' '}
+          <a href="https://www.instagram.com/sandalboyz">@sandalboyz</a>.
         </p>
       </TextContainer>
     );

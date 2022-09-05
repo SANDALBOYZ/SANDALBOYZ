@@ -116,7 +116,7 @@ const Footer = ({ about }) => {
         <Subscribe />
         <Info>
           <Links>
-            {links.map(link => (
+            {links.map((link) => (
               <Link key={link.name} to={link.href}>
                 {link.name}
               </Link>

@@ -44,7 +44,7 @@ export const baseStyles = css`
     transform: translateY(-1px);
   }
 
-  width: ${props => props.fullWidth ? '100%' : 'auto'};
+  width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
 `;
 
 const PrimaryButton = styled.button`

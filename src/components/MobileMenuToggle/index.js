@@ -45,7 +45,7 @@ const Button = styled.a`
   display: inline-block;
   position: relative;
   width: 28px;
-	height: 24px;
+  height: 24px;
   cursor: pointer;
 
   ${mq.gtlg} {
@@ -58,14 +58,14 @@ const Span = styled.span`
   position: absolute;
   top: 50%;
   right: 0;
-  height: ${props => props.light ? '2px' : '3px'};
+  height: ${(props) => (props.light ? '2px' : '3px')};
   margin-top: -3px;
-  background: ${props => props.light ? colors.N0 : colors.N900};
+  background: ${(props) => (props.light ? colors.N0 : colors.N900)};
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   &:nth-child(1) {
     width: 28px;
-    ${props =>
+    ${(props) =>
       !props.open
         ? css`
             animation: ${rotateBack} 0.6s
@@ -79,13 +79,13 @@ const Span = styled.span`
   }
 
   &:nth-child(2) {
-    width: ${props => props.open ? '28px' : '22px'};
-    transform: scaleX(${props => (props.open ? 0 : 1)});
+    width: ${(props) => (props.open ? '28px' : '22px')};
+    transform: scaleX(${(props) => (props.open ? 0 : 1)});
   }
 
   &:nth-child(3) {
     width: 28px;
-    ${props =>
+    ${(props) =>
       !props.open
         ? css`
             animation: ${rotateBackReverse} 0.6s
@@ -95,8 +95,8 @@ const Span = styled.span`
             animation: ${rotateScaleReverse} 0.4s
               cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards;
           `}
-    transform: translateY(7px) scaleX(${props => props.open ? 1 : 0.4});
-    transform-origin: ${props => props.open ? 'center' : 'right'};
+    transform: translateY(7px) scaleX(${(props) => (props.open ? 1 : 0.4)});
+    transform-origin: ${(props) => (props.open ? 'center' : 'right')};
   }
 `;
 
@@ -105,7 +105,7 @@ const Wrapper = styled.span`
   position: absolute;
   width: 28px;
   height: 28px;
-  transform: scale(${props => (props.open ? 0.9 : 0.8)});
+  transform: scale(${(props) => (props.open ? 0.9 : 0.8)});
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 `;
 

@@ -15,7 +15,7 @@ export const Dropdown = styled.div`
   max-height: 380px;
   overflow: scroll;
 
-  ${props => {
+  ${(props) => {
     if (props.dropUp) {
       if (props.optionsLength > 10) {
         return css`
@@ -28,7 +28,9 @@ export const Dropdown = styled.div`
       }
     }
 
-    return css`top: 38px;`;
+    return css`
+      top: 38px;
+    `;
   }}
 `;
 
@@ -36,8 +38,8 @@ export const Option = styled.div`
   height: 38px;
   padding: 0 ${space[1]};
   cursor: pointer;
-  pointer-events: ${props => props.disabled ? 'none' : 'auto'};
-  opacity: ${props => props.disabled ? 0.5 : 1};
+  pointer-events: ${(props) => (props.disabled ? 'none' : 'auto')};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 
   &:hover {
     background-color: ${colors.N100};

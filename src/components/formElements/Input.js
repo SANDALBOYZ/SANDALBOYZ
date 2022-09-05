@@ -30,7 +30,7 @@ const getInputHeight = ({ hasPrefix, size }) =>
     size,
     css`
       height: ${hasPrefix ? '38px' : '40px'};
-    `
+    `,
   );
 
 const ErrorText = styled.div`
@@ -141,7 +141,7 @@ const Input = React.forwardRef(
         {input}
       </WrapperComp>
     );
-  }
+  },
 );
 
 Input.propTypes = {

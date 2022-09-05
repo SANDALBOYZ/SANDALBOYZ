@@ -27,7 +27,12 @@ export const Checkbox = () => (
 export const Input = () => (
   <Form>
     <InputComponent label="First name" name="name" placeholder="First name" />
-    <InputComponent error="This email is already taken" name="email" placeholder="email@example.com" size="large" />
+    <InputComponent
+      error="This email is already taken"
+      name="email"
+      placeholder="email@example.com"
+      size="large"
+    />
     <InputComponent name="name" placeholder="First name" size="xlarge" />
   </Form>
 );

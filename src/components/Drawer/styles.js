@@ -43,8 +43,8 @@ export const Drawer = styled.div`
   max-width: 100%;
   padding: 0 ${H_PADDING_MOBILE};
   background-color: ${colors.WINTER_WHITE};
-  transition: transform 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
-  transform: ${props => (props.open ? 'translateX(0)' : 'translateX(100%)')};
+  transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: ${(props) => (props.open ? 'translateX(0)' : 'translateX(100%)')};
   overflow-y: auto;
   cursor: auto;
 
@@ -52,7 +52,8 @@ export const Drawer = styled.div`
     width: 470px;
     max-width: 470px;
     padding: ${space[5]};
-    transform: ${props => (props.open ? 'translateX(0)' : 'translateX(470px)')};
+    transform: ${(props) =>
+      props.open ? 'translateX(0)' : 'translateX(470px)'};
   }
 `;
 
@@ -91,12 +92,13 @@ export const DrawerWrapper = styled.div`
   bottom: 0;
   left: 0;
   z-index: 9000;
-  background-color: ${props => (props.open ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)')};
+  background-color: ${(props) =>
+    props.open ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)'};
   transition: background-color 400ms ease-in;
   transition-delay: 250ms;
   opacity: 1;
-  pointer-events: ${props => (props.open ? 'auto' : 'none')};
-  cursor: url(${props => props.cursorIcon}) 16 16, auto;
+  pointer-events: ${(props) => (props.open ? 'auto' : 'none')};
+  cursor: url(${(props) => props.cursorIcon}) 16 16, auto;
 
   ${mq.gtmd} {
     z-index: 10000;

@@ -89,7 +89,7 @@ Select.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       value: PropTypes.string,
-    })
+    }),
   ),
 };
 

@@ -12,7 +12,7 @@ class FAQ extends Component {
       PropTypes.shape({
         question: PropTypes.string,
         answer: PropTypes.string,
-      })
+      }),
     ).isRequired,
   };
 
@@ -20,7 +20,7 @@ class FAQ extends Component {
     open: [],
   };
 
-  toggleOpen = idx => {
+  toggleOpen = (idx) => {
     const open = [...this.state.open];
     const currentPos = open.indexOf(idx);
 
@@ -53,10 +53,7 @@ class FAQ extends Component {
             {open.includes(idx) && (
               <styled.Answer
                 dangerouslySetInnerHTML={{
-                  __html: remark()
-                    .use(html)
-                    .processSync(faq.answer)
-                    .toString(),
+                  __html: remark().use(html).processSync(faq.answer).toString(),
                 }}
               />
             )}

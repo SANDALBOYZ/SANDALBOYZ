@@ -24,7 +24,8 @@ export const baseButton = css`
   user-select: none;
   appearance: none;
   cursor: pointer;
-  transition: background-color linear 100ms, color linear 100ms, fill linear 100ms;
+  transition: background-color linear 100ms, color linear 100ms,
+    fill linear 100ms;
 
   &:disabled {
     color: ${colors.N300};

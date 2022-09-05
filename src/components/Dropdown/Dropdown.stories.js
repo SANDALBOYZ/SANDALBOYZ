@@ -4,7 +4,6 @@ import Dropdown from '.';
 
 export default { title: 'Dropdown' };
 
-
 const LONG_OPTIONS = [
   {
     disabled: false,
@@ -119,7 +118,7 @@ export const Scrolled = () => (
     placeholder="Size"
     prefix="Size:"
     value={null}
-    onChange={() => { }}
+    onChange={() => {}}
     options={LONG_OPTIONS}
   />
 );
@@ -136,7 +135,7 @@ export const DropUp = () => (
       placeholder="Size"
       prefix="Size:"
       value={null}
-      onChange={() => { }}
+      onChange={() => {}}
       options={LONG_OPTIONS}
     />
   </div>

@@ -4,10 +4,10 @@ import qs from 'qs';
 // @see https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&-cropping/specify-width-&-height
 const CONTENTFUL_IMAGE_MAX_SIZE = 4000;
 
-const isImage = image =>
+const isImage = (image) =>
   _.includes(
     ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'],
-    _.get(image, 'file.contentType')
+    _.get(image, 'file.contentType'),
   );
 
 const getBasicImageProps = (image, args) => {
@@ -41,7 +41,7 @@ const createUrl = (imgUrl, options = {}) => {
       f: options.cropFocus || '',
       bg: options.background || '',
     },
-    _.identity
+    _.identity,
   );
   return `${imgUrl}?${qs.stringify(args)}`;
 };
@@ -89,7 +89,7 @@ export const getFluidGatsbyImage = (image, options) => {
   fluidSizes = fluidSizes.map(Math.round);
 
   // Filter out sizes larger than the image's maxWidth and the contentful image's max size.
-  const filteredSizes = fluidSizes.filter(size => {
+  const filteredSizes = fluidSizes.filter((size) => {
     const calculatedHeight = Math.round(size / desiredAspectRatio);
     return (
       size <= CONTENTFUL_IMAGE_MAX_SIZE &&
@@ -113,7 +113,7 @@ export const getFluidGatsbyImage = (image, options) => {
 
   // Create the srcSet.
   const srcSet = sortedSizes
-    .map(width => {
+    .map((width) => {
       const h = Math.round(width / desiredAspectRatio);
       return `${createUrl(image.file.url, {
         ...options,

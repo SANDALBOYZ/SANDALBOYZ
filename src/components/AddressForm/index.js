@@ -46,11 +46,11 @@ const AddressForm = ({ initialValues = {}, onCancel, onSubmit }) => {
   const [region, setRegion] = useState(get(initialValues, 'provinceCode', ''));
   const [country, setCountry] = useState(get(initialValues, 'country', ''));
 
-  const onDefaultChange = evt => {
+  const onDefaultChange = (evt) => {
     setDefaultAddress(evt.target.checked);
   };
 
-  const onFormSubmit = data => {
+  const onFormSubmit = (data) => {
     onSubmit({ ...data, country, province: region }, defaultAddress);
   };
 
@@ -88,7 +88,7 @@ const AddressForm = ({ initialValues = {}, onCancel, onSubmit }) => {
           <custom.CountryDropdown
             priorityOptions={['US', 'ID', 'CA', 'GB']}
             value={country}
-            onChange={val => {
+            onChange={(val) => {
               setCountry(val);
             }}
           />
@@ -99,7 +99,7 @@ const AddressForm = ({ initialValues = {}, onCancel, onSubmit }) => {
           country={country}
           value={region}
           valueType="short"
-          onChange={val => {
+          onChange={(val) => {
             setRegion(val);
           }}
         />
@@ -110,12 +110,7 @@ const AddressForm = ({ initialValues = {}, onCancel, onSubmit }) => {
           name="zip"
           ref={register({ required: true })}
         />
-        <Input
-          label="Phone"
-          name="phone"
-          ref={register}
-          type="tel"
-        />
+        <Input label="Phone" name="phone" ref={register} type="tel" />
       </Group>
       <Checkbox
         checked={defaultAddress}

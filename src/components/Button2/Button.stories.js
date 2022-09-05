@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '.';
 
-const Template = args => <Button {...args} />;
+const Template = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -56,7 +56,7 @@ export default {
     docs: {
       description: {
         component:
-          "Button2 renders its `styled-component` outside of React's `render`.",
+          'Button2 renders its `styled-component` outside of React\'s `render`.',
       },
     },
   },
