@@ -16,11 +16,15 @@ const Ribbon = styled.div`
   z-index: 10000;
 `;
 
+const Text = styled.div`
+  padding: 0 24px;
+`;
+
 const SubscribeClick = styled.span`
   text-decoration: underline;
   margin: 0 0.2em;
   cursor: pointer;
-`
+`;
 
 const TopRibbon = () => {
   const subscribeOnClick = () => {
@@ -33,11 +37,13 @@ const TopRibbon = () => {
 
   return (
     <Ribbon>
-      Labor Day Flash Sale - 48 hours only for 25% off!{' '}
-      <SubscribeClick onClick={subscribeOnClick}>
-        Subscribe to our newsletter
-      </SubscribeClick>{' '}
-      to get access.
+      <Text>
+        Labor Day Flash Sale - 48 hours only for 25% off!{' '}
+        <SubscribeClick onClick={subscribeOnClick}>
+          Subscribe to our newsletter
+        </SubscribeClick>{' '}
+        to get access.
+      </Text>
     </Ribbon>
   );
 };

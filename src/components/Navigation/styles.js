@@ -66,14 +66,19 @@ const getNavBackground = props => {
 
 export const Nav = styled(motion.div)`
   position: fixed;
-  top: 30px;
+
+  ${mq.gtlg} {
+    top: 30px; // ONLY FOR WHEN TOPRIBBON IS ON. OTHERWISE 0.
+  }
+  top: 60px; // ONLY FOR WHEN TOPRIBBON IS ON. OTHERWISE 0.
+
   right: 0;
   left: 0;
   z-index: 10000;
   background-color: transparent;
-  transition: background-color 600ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  transition: background-color 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
-  ${props =>
+  ${(props) =>
     props.light &&
     css`
       & ${NavLink} {
