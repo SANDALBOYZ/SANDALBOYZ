@@ -235,7 +235,7 @@ class Layout extends React.Component {
       <StoreContext.Provider value={this.state.store}>
         <GlobalStyle />
         <>
-          <TopRibbon />
+          {/* <TopRibbon /> */}
           <Navigation
             animate
             authLinks={this.getNavAuthLinks()}
