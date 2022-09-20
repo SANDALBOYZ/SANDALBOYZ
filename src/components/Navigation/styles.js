@@ -67,11 +67,12 @@ const getNavBackground = props => {
 export const Nav = styled(motion.div)`
   position: fixed;
 
-  ${mq.gtlg} {
+  /* ${mq.gtlg} {
     top: 30px; // ONLY FOR WHEN TOPRIBBON IS ON. OTHERWISE 0.
   }
-  top: 60px; // ONLY FOR WHEN TOPRIBBON IS ON. OTHERWISE 0.
+  top: 60px; // ONLY FOR WHEN TOPRIBBON IS ON. OTHERWISE 0. */
 
+  top: 0;
   right: 0;
   left: 0;
   z-index: 10000;
