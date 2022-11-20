@@ -16,6 +16,7 @@ module.exports = {
       'SANDALBOYZ is a movement and lifestyle bridging the gap between sophistication and comfort.',
   },
   plugins: [
+    'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-layout',
     {
       resolve: 'gatsby-plugin-create-client-paths',
