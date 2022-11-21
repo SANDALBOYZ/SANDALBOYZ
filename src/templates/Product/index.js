@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 
-// import getPrice from '@utils/price';
+import getPrice from '@utils/price';
 import Head, { gtag, fbq } from '@utils/seo';
 import { Breakpoint, breakpoints, mq } from '@utils/styles';
 import { Badge, ContentLabel } from '@utils/type';
@@ -538,6 +538,8 @@ class Product extends Component {
     } = this.state;
 
     const product = data.shopifyProduct;
+    console.log('\n\n\n')
+    console.log(product)
     const sizes = this.getSizes();
     const productColors = this.getColors();
     const soldOut = !product.availableForSale;
@@ -549,7 +551,7 @@ class Product extends Component {
         '@type': 'Brand',
         name: 'SANDALBOYZ',
       },
-      image: get(product, 'images', [])[0]?.originalSrc,
+      image: get(product, 'media[0].preview.image.originalSrc', ''),
       offers: [
         {
           '@type': 'Offer',
@@ -586,7 +588,7 @@ class Product extends Component {
           title={product.title}
           description={product.description}
           schemaType="Product" // https://schema.org/Product
-          image={get(product, 'images[0].localFile.childImageSharp.fluid.src')}
+          image={get(product, 'media[0].preview.image.originalSrc')}
           meta={[
             {
               property: 'og:price:amount',
@@ -617,7 +619,7 @@ class Product extends Component {
             )}
           </MobileProductTitle>
           <ProductImages
-            images={product.images}
+            media={product.media}
             videos={get(data, 'contentfulProduct.videos', [])}
           />
           <ProductInfo {...fadeInRight}>
@@ -784,18 +786,14 @@ export const query = graphql`
           value
         }
       }
-      # images {
-      #   originalSrc
-      #   id
-      #   localFile {
-      #     childImageSharp {
-      #       gatsbyImageData
-      #       fluid(maxWidth: 1080, quality: 90) {
-      #         ...GatsbyImageSharpFluid_withWebp
-      #       }
-      #     }
-      #   }
-      # }
+      media {
+        preview {
+          image {
+            originalSrc
+            gatsbyImageData
+          }
+        }
+      }
     }
     contentfulProduct(handle: { eq: $handle }) {
       videos {

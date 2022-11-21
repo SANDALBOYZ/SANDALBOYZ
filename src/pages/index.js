@@ -146,6 +146,9 @@ export const landingPageQuery = graphql`
           previewText {
             previewText
           }
+          heroImage {
+            gatsbyImageData
+          }
         }
       }
     }
