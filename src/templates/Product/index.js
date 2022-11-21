@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 
-import getPrice from '@utils/price';
+// import getPrice from '@utils/price';
 import Head, { gtag, fbq } from '@utils/seo';
 import { Breakpoint, breakpoints, mq } from '@utils/styles';
 import { Badge, ContentLabel } from '@utils/type';

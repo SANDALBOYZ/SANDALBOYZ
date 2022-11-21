@@ -61,7 +61,7 @@ function LineItem({ lineItem }) {
           <styled.Remove onClick={handleRemove}>Remove</styled.Remove>
         </styled.Left>
         <Dropdown
-          onChange={quantity => setQuantity(quantity)}
+          onChange={(quantity) => setQuantity(quantity)}
           options={[...Array(5)].map((_, idx) => ({
             name: `${idx + 1}`,
             value: idx + 1,
