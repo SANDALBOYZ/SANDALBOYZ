@@ -214,14 +214,14 @@ class ProductsPage extends Component {
           id: get(node, 'id'),
           href: `/products/${get(node, 'handle')}`,
           images: [
-            get(node, 'images[0].localFile.childImageSharp.gatsbyImageData'),
-            get(node, 'images[1].localFile.childImageSharp.gatsbyImageData'),
+            get(node, 'media[0].preview.image.gatsbyImageData'),
+            get(node, 'media[1].preview.image.gatsbyImageData'),
           ],
           price: get(node, 'variants[0].price'),
           compareAtPrice: get(node, 'variants[0].compareAtPrice'),
           title: get(node, 'title'),
           productType: get(node, 'productType'),
-          soldOut: !get(node, 'availableForSale'),
+          soldOut: (get(node, 'totalInventory', 0) <= 0),
           onSale:
             Number(get(node, 'variants[0].compareAtPrice')) >
             Number(get(node, 'variants[0].price')),
@@ -249,31 +249,28 @@ export default ProductsPage;
 
 export const productsPageQuery = graphql`
   query ProductsPageQuery {
-    products: allShopifyProduct(sort: { fields: [createdAt], order: DESC }) {
+    products: allShopifyProduct(sort: { createdAt: DESC }) {
       edges {
         node {
           id
-          availableForSale
           productType
           tags
           title
           handle
           createdAt
-          images {
-            id
-            originalSrc
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-                fluid(maxWidth: 910) {
-                  ...GatsbyImageSharpFluid_noBase64
-                }
-              }
-            }
-          }
+          totalInventory
           variants {
             price
             compareAtPrice
+          }
+          media {
+            id
+            preview {
+              image {
+                originalSrc
+                gatsbyImageData
+              }
+            }
           }
         }
       }

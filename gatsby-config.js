@@ -5,9 +5,9 @@ require('dotenv').config({
 module.exports = {
   // https://www.gatsbyjs.com/docs/reference/release-notes/v2.28/#feature-flags-in-gatsby-configjs
   flags: {
-    FAST_DEV: true,
-    DEV_SSR: false,
-    PRESERVE_WEBPACK_CACHE: true,
+    // FAST_DEV: true,
+    // DEV_SSR: false,
+    // PRESERVE_WEBPACK_CACHE: true,
   },
   siteMetadata: {
     siteUrl: 'https://sandalboyz.com',
@@ -15,15 +15,16 @@ module.exports = {
     description:
       'SANDALBOYZ is a movement and lifestyle bridging the gap between sophistication and comfort.',
   },
+  trailingSlash: 'never',
   plugins: [
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-layout',
-    {
-      resolve: 'gatsby-plugin-create-client-paths',
-      options: {
-        prefixes: ['/account/*'],
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-create-client-paths',
+    //   options: {
+    //     prefixes: ['/account/*'],
+    //   },
+    // },
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -57,7 +58,6 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-netlify',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-alias-imports',
@@ -149,12 +149,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-shopify',
       options: {
-        shopName: process.env.GATSBY_SHOP_NAME,
-        // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
-        accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+        storeUrl: `${process.env.GATSBY_SHOP_NAME}.myshopify.com`,
+        password: process.env.GATSBY_SHOPIFY_PASSWORD,
+        shopifyConnections: ['collections'],
         verbose: true,
-        apiVersion: process.env.GATSBY_SHOPIFY_API_VERSION || '2021-01',
-        paginationSize: 250,
       },
     },
     {
@@ -199,6 +197,5 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST || 'preview.contentful.com',
       },
     },
-    'gatsby-plugin-remove-trailing-slashes',
   ],
 };

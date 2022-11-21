@@ -64,11 +64,6 @@ export const aboutPageQuery = graphql`
             }
             image {
               gatsbyImageData
-              fluid {
-                src
-                srcSet
-                aspectRatio
-              }
             }
           }
         }

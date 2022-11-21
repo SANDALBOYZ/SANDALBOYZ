@@ -65,7 +65,7 @@ const StoryTemplate = ({ data }) => {
       '@type': 'Person',
       name: get(article, 'author[0]'),
     },
-    image: article.heroImage.fluid.src,
+    image: article.heroImage.gatsbyImageData,
     datePublished: article.publishDate,
     headline: get(article, 'previewText.previewText') || article.title,
     publisher: {
@@ -85,7 +85,7 @@ const StoryTemplate = ({ data }) => {
         description={get(article, 'previewText.previewText')}
         schemaType="Article" // https://schema.org/Article
         ogType="article" // https://ogp.me/#type_article
-        image={article.heroImage.fluid.src}
+        image={article.heroImage.gatsbyImageData}
         slug={article.slug}
         additionalSchemaOrg={schemaOrg}
       />
@@ -199,9 +199,6 @@ export const query = graphql`
       }
       heroImage {
         gatsbyImageData
-        fluid {
-          src
-        }
       }
       previewText {
         previewText

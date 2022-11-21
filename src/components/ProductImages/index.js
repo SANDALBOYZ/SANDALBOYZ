@@ -132,7 +132,7 @@ export const Video = styled.video`
   width: 100%;
 `;
 
-function ProductImages({ images, videos }) {
+function ProductImages({ media, videos }) {
   const closeModal = () => {
     setModalOpen(false);
     setActiveIndex(null);
@@ -146,16 +146,15 @@ function ProductImages({ images, videos }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const activeImages = !isEmpty(images)
-    ? images.filter((image) => !isEmpty(image.localFile))
-    : [];
-
   return (
     <>
       {modalOpen && (
         <Modal onClick={closeModal}>
           <ModalImage>
-            <img alt="" src={get(images[activeIndex], 'originalSrc')} />
+            <img
+              alt=""
+              src={get(media[activeIndex], 'preview.image.originalSrc')}
+            />
           </ModalImage>
         </Modal>
       )}
@@ -171,16 +170,14 @@ function ProductImages({ images, videos }) {
           },
         }}
       >
-        {activeImages.map((image, idx) => (
+        {media.map((media, idx) => (
           <ImageWrapper
             key={idx}
             onClick={() => {
               handleZoom(idx);
             }}
           >
-            <Image
-              image={get(image, 'localFile.childImageSharp.gatsbyImageData')}
-            />
+            <Image image={get(media, 'preview.image.gatsbyImageData')} />
           </ImageWrapper>
         ))}
         {videos.map((video) => (
@@ -196,7 +193,7 @@ function ProductImages({ images, videos }) {
 }
 
 ProductImages.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.object),
+  media: PropTypes.arrayOf(PropTypes.object),
   videos: PropTypes.arrayOf(PropTypes.object),
 };
 

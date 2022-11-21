@@ -34,13 +34,15 @@ function LineItem({ lineItem }) {
           variant: get(lineItem, 'variant.title'),
           // list_position: 1,
           quantity: get(lineItem, 'quantity'),
-          price: get(lineItem, 'variant.price'),
+          price: get(lineItem, 'variant.price.amount'),
         },
       ],
     });
 
     removeLineItem(client, checkout.id, lineItem.id);
   };
+
+  console.log(lineItem);
 
   return (
     <styled.LineItem key={lineItem.id.toString()}>
@@ -55,13 +57,13 @@ function LineItem({ lineItem }) {
               {selectedOptionName} {selectedOptionValue}
             </styled.ProductDetailLine>
             <styled.ProductDetailLine>
-              {getPrice(get(lineItem, 'variant.price'))}
+              {getPrice(get(lineItem, 'variant.price.amount'))}
             </styled.ProductDetailLine>
           </styled.ProductDetailsContainer>
           <styled.Remove onClick={handleRemove}>Remove</styled.Remove>
         </styled.Left>
         <Dropdown
-          onChange={quantity => setQuantity(quantity)}
+          onChange={(quantity) => setQuantity(quantity)}
           options={[...Array(5)].map((_, idx) => ({
             name: `${idx + 1}`,
             value: idx + 1,

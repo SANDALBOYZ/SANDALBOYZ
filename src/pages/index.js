@@ -10,20 +10,18 @@ import RecentStories from '@components/RecentStories';
 import { fadeInEntry } from '@utils/animations';
 
 function formatNode({ node }) {
-  const activeImages = node.images.filter((image) => !isEmpty(image.localFile));
-
   return {
     id: get(node, 'id'),
     href: `/products/${get(node, 'handle')}`,
     images: [
-      get(activeImages, '[0].localFile.childImageSharp.gatsbyImageData'),
-      get(activeImages, '[1].localFile.childImageSharp.gatsbyImageData'),
+      get(node, 'media[0].preview.image.gatsbyImageData'),
+      get(node, 'media[1].preview.image.gatsbyImageData'),
     ],
     price: get(node, 'variants[0].price'),
     compareAtPrice: get(node, 'variants[0].compareAtPrice'),
     title: get(node, 'title'),
     productType: get(node, 'productType'),
-    soldOut: !get(node, 'availableForSale'),
+    soldOut: (get(node, 'totalInventory') <= 0),
     onSale:
       get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
   };
@@ -113,40 +111,32 @@ export const landingPageQuery = graphql`
     }
     recommendedPicks: allShopifyProduct(
       filter: { tags: { in: "featured:primary" } }
-      limit: 8
-      sort: { fields: [createdAt], order: DESC }
+      sort: { createdAt: DESC }
     ) {
       edges {
         node {
           id
-          availableForSale
           title
           productType
           handle
           createdAt
-          images {
-            id
-            originalSrc
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-                fluid(maxWidth: 360) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
           variants {
+            availableForSale
             price
             compareAtPrice
+          }
+          media {
+            id
+            preview {
+              image {
+                gatsbyImageData
+              }
+            }
           }
         }
       }
     }
-    recentStories: allContentfulArticle(
-      sort: { order: DESC, fields: publishDate }
-      limit: 2
-    ) {
+    recentStories: allContentfulArticle(sort: { publishDate: DESC }, limit: 2) {
       edges {
         node {
           id
@@ -158,12 +148,6 @@ export const landingPageQuery = graphql`
           }
           heroImage {
             gatsbyImageData
-            fluid {
-              sizes
-              src
-              srcSet
-              aspectRatio
-            }
           }
         }
       }

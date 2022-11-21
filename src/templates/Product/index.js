@@ -540,7 +540,7 @@ class Product extends Component {
     const product = data.shopifyProduct;
     const sizes = this.getSizes();
     const productColors = this.getColors();
-    const soldOut = !product.availableForSale;
+    const soldOut = product.totalInventory <= 0;
 
     // https://developers.google.com/search/docs/data-types/product
     const schemaOrg = {
@@ -549,7 +549,7 @@ class Product extends Component {
         '@type': 'Brand',
         name: 'SANDALBOYZ',
       },
-      image: get(product, 'images', [])[0]?.originalSrc,
+      image: get(product, 'media[0].preview.image.originalSrc', ''),
       offers: [
         {
           '@type': 'Offer',
@@ -586,7 +586,7 @@ class Product extends Component {
           title={product.title}
           description={product.description}
           schemaType="Product" // https://schema.org/Product
-          image={get(product, 'images[0].localFile.childImageSharp.fluid.src')}
+          image={get(product, 'media[0].preview.image.originalSrc')}
           meta={[
             {
               property: 'og:price:amount',
@@ -617,7 +617,7 @@ class Product extends Component {
             )}
           </MobileProductTitle>
           <ProductImages
-            images={product.images}
+            media={product.media}
             videos={get(data, 'contentfulProduct.videos', [])}
           />
           <ProductInfo {...fadeInRight}>
@@ -765,9 +765,9 @@ export const query = graphql`
       description
       descriptionHtml
       shopifyId
-      availableForSale
+      totalInventory
       options {
-        id
+        # id
         name
         values
       }
@@ -784,15 +784,11 @@ export const query = graphql`
           value
         }
       }
-      images {
-        originalSrc
-        id
-        localFile {
-          childImageSharp {
+      media {
+        preview {
+          image {
+            originalSrc
             gatsbyImageData
-            fluid(maxWidth: 1080, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
           }
         }
       }

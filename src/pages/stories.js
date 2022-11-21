@@ -34,7 +34,7 @@ export default StoriesPage;
 
 export const query = graphql`
   query StoriesPageQuery {
-    articles: allContentfulArticle(sort: { order: DESC, fields: publishDate }) {
+    articles: allContentfulArticle(sort: { publishDate: DESC }) {
       edges {
         node {
           id
@@ -49,12 +49,6 @@ export const query = graphql`
           publishDate
           heroImage {
             gatsbyImageData
-            fluid {
-              sizes
-              src
-              srcSet
-              aspectRatio
-            }
           }
         }
       }

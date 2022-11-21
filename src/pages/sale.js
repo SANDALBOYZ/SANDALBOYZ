@@ -229,20 +229,14 @@ class SalePage extends Component {
               id: get(node, 'id'),
               href: `/products/${get(node, 'handle')}`,
               images: [
-                get(
-                  node,
-                  'images[0].localFile.childImageSharp.gatsbyImageData'
-                ),
-                get(
-                  node,
-                  'images[1].localFile.childImageSharp.gatsbyImageData'
-                ),
+                get(node, 'media[0].preview.image.gatsbyImageData'),
+                get(node, 'media[1].preview.image.gatsbyImageData'),
               ],
               price: get(node, 'variants[0].price'),
               compareAtPrice: get(node, 'variants[0].compareAtPrice'),
               title: get(node, 'title'),
               productType: get(node, 'productType'),
-              soldOut: !get(node, 'availableForSale'),
+              soldOut: get(node, 'totalInventory', 0) <= 0,
               onSale:
                 Number(get(node, 'variants[0].compareAtPrice')) >
                 Number(get(node, 'variants[0].price')),
@@ -255,7 +249,7 @@ class SalePage extends Component {
 
     // return (
     //   <TextContainer>
-    //     <h1>Black Friday / Cyber Monday 2021</h1>
+    //     <h1>Black Friday / Cyber Monday 2022</h1>
     //     <p>
     //       Our biggest sale of the year is over! Come back next year. Stay up to date on our
     //       Instagram <a href="https://www.instagram.com/sandalboyz">@sandalboyz</a>.
@@ -276,21 +270,18 @@ export const salePageQuery = graphql`
           title
           products {
             id
-            availableForSale
             productType
             tags
             title
             handle
             createdAt
-            images {
+            totalInventory
+            media {
               id
-              originalSrc
-              localFile {
-                childImageSharp {
+              preview {
+                image {
+                  originalSrc
                   gatsbyImageData
-                  fluid(maxWidth: 910) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
                 }
               }
             }
