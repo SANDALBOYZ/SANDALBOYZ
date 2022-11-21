@@ -49,7 +49,9 @@ function Cart({ open, onClose }) {
     }
   };
 
-  const subtotalPrice = get(checkout, 'subtotalPrice', 0);
+  const subtotalPrice = Number(get(checkout, 'subtotalPrice.amount', 0));
+
+  const subtotalPriceFormatted = '$' + subtotalPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   const freeShippingText =
     100 - subtotalPrice > 0
@@ -80,7 +82,7 @@ function Cart({ open, onClose }) {
         <styled.CheckoutText>{freeShippingText}</styled.CheckoutText>
         <styled.SubtotalContainer>
           <styled.Subtotal>Subtotal</styled.Subtotal>
-          <styled.Price>${subtotalPrice}</styled.Price>
+          <styled.Price>{subtotalPriceFormatted}</styled.Price>
         </styled.SubtotalContainer>
         <Button2
           disabled={adding || checkout.lineItems.length === 0}

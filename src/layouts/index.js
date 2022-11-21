@@ -256,7 +256,7 @@ class Layout extends React.Component {
             onMenuOpen={this.handleMenuOpen}
             open={this.state.menuOpen}
           />
-          {/* <Cart open={this.state.cartOpen} onClose={this.handleCartClose} /> */}
+          <Cart open={this.state.cartOpen} onClose={this.handleCartClose} />
           {children}
           <Footer />
           {/* <Popup
