@@ -73,14 +73,14 @@
     "@storybook/theming": "^6.2.9",
     "babel-loader": "^9",
     "babel-preset-gatsby": "^3.0.0",
-    "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.7.1",
     "reset-css": "^5.0.1",
     "rimraf": "^3.0.2"
   }
