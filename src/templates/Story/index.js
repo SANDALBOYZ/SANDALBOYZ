@@ -151,9 +151,9 @@ export const query = graphql`
             internal {
               type
             }
-            images {
-              gatsbyImageData
-            }
+            # images {
+            #   gatsbyImageData
+            # }
           }
           ... on ContentfulArticleDoubleSplitImage {
             contentful_id
@@ -161,9 +161,9 @@ export const query = graphql`
             internal {
               type
             }
-            images {
-              gatsbyImageData
-            }
+            # images {
+            #   gatsbyImageData
+            # }
           }
           ... on ContentfulArticleFullHeightImage {
             contentful_id
@@ -171,9 +171,9 @@ export const query = graphql`
             internal {
               type
             }
-            images {
-              gatsbyImageData
-            }
+            # images {
+            #   gatsbyImageData
+            # }
           }
           ... on ContentfulArticleFullWidthStretchImage {
             contentful_id
@@ -181,9 +181,9 @@ export const query = graphql`
             internal {
               type
             }
-            images {
-              gatsbyImageData
-            }
+            # images {
+            #   gatsbyImageData
+            # }
           }
           ... on ContentfulArticleOffsetGridImage {
             contentful_id
@@ -191,18 +191,18 @@ export const query = graphql`
             internal {
               type
             }
-            images {
-              gatsbyImageData
-            }
+            # images {
+            #   gatsbyImageData
+            # }
           }
         }
       }
-      heroImage {
-        gatsbyImageData
-        fluid {
-          src
-        }
-      }
+      # heroImage {
+      #   gatsbyImageData
+      #   fluid {
+      #     src
+      #   }
+      # }
       previewText {
         previewText
         childMarkdownRemark {

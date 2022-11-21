@@ -249,28 +249,15 @@ export default ProductsPage;
 
 export const productsPageQuery = graphql`
   query ProductsPageQuery {
-    products: allShopifyProduct(sort: { fields: [createdAt], order: DESC }) {
+    products: allShopifyProduct(sort: { createdAt: DESC }) {
       edges {
         node {
           id
-          availableForSale
           productType
           tags
           title
           handle
           createdAt
-          images {
-            id
-            originalSrc
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-                fluid(maxWidth: 910) {
-                  ...GatsbyImageSharpFluid_noBase64
-                }
-              }
-            }
-          }
           variants {
             price
             compareAtPrice

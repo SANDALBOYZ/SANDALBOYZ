@@ -62,14 +62,14 @@ export const aboutPageQuery = graphql`
             description {
               raw
             }
-            image {
-              gatsbyImageData
-              fluid {
-                src
-                srcSet
-                aspectRatio
-              }
-            }
+            # image {
+            #   gatsbyImageData
+            #   fluid {
+            #     src
+            #     srcSet
+            #     aspectRatio
+            #   }
+            # }
           }
         }
       }

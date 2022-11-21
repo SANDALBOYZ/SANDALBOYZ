@@ -101,41 +101,22 @@ export const landingPageQuery = graphql`
   query LandingPageQuery {
     desktopHero: file(relativePath: { eq: "DSC08728-desktop_hero.jpg" }) {
       id
-      childImageSharp {
-        gatsbyImageData
-      }
     }
     mobileHero: file(relativePath: { eq: "DSC08732-MOBILE_hero.jpg" }) {
       id
-      childImageSharp {
-        gatsbyImageData
-      }
     }
     recommendedPicks: allShopifyProduct(
       filter: { tags: { in: "featured:primary" } }
       limit: 8
-      sort: { fields: [createdAt], order: DESC }
+      sort: { createdAt: DESC }
     ) {
       edges {
         node {
           id
-          availableForSale
           title
           productType
           handle
           createdAt
-          images {
-            id
-            originalSrc
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-                fluid(maxWidth: 360) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
           variants {
             price
             compareAtPrice
@@ -143,10 +124,7 @@ export const landingPageQuery = graphql`
         }
       }
     }
-    recentStories: allContentfulArticle(
-      sort: { order: DESC, fields: publishDate }
-      limit: 2
-    ) {
+    recentStories: allContentfulArticle(sort: { publishDate: DESC }, limit: 2) {
       edges {
         node {
           id
@@ -155,15 +133,6 @@ export const landingPageQuery = graphql`
           publishDate
           previewText {
             previewText
-          }
-          heroImage {
-            gatsbyImageData
-            fluid {
-              sizes
-              src
-              srcSet
-              aspectRatio
-            }
           }
         }
       }

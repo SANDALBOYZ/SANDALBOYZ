@@ -14,7 +14,7 @@ const SearchPage = ({ location }) => (
           siteSearchIndex {
             index
           }
-          allShopifyProduct(sort: { fields: [title], order: DESC }) {
+          allShopifyProduct(sort: { title: DESC }) {
             edges {
               node {
                 id
@@ -22,17 +22,6 @@ const SearchPage = ({ location }) => (
                 title
                 handle
                 createdAt
-                images {
-                  id
-                  originalSrc
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 160) {
-                        ...GatsbyImageSharpFluid
-                      }
-                    }
-                  }
-                }
                 variants {
                   price
                 }
@@ -41,7 +30,7 @@ const SearchPage = ({ location }) => (
           }
         }
       `}
-      render={data => (
+      render={(data) => (
         <Search
           index={get(data, 'siteSearchIndex.index')}
           location={location}

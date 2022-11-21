@@ -255,7 +255,7 @@ class SalePage extends Component {
 
     // return (
     //   <TextContainer>
-    //     <h1>Black Friday / Cyber Monday 2021</h1>
+    //     <h1>Black Friday / Cyber Monday 2022</h1>
     //     <p>
     //       Our biggest sale of the year is over! Come back next year. Stay up to date on our
     //       Instagram <a href="https://www.instagram.com/sandalboyz">@sandalboyz</a>.
@@ -276,24 +276,23 @@ export const salePageQuery = graphql`
           title
           products {
             id
-            availableForSale
             productType
             tags
             title
             handle
             createdAt
-            images {
-              id
-              originalSrc
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                  fluid(maxWidth: 910) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
-              }
-            }
+            # images {
+            #   id
+            #   originalSrc
+            #   localFile {
+            #     childImageSharp {
+            #       gatsbyImageData
+            #       fluid(maxWidth: 910) {
+            #         ...GatsbyImageSharpFluid_noBase64
+            #       }
+            #     }
+            #   }
+            # }
             variants {
               price
               compareAtPrice

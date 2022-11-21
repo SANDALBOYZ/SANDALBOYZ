@@ -765,9 +765,9 @@ export const query = graphql`
       description
       descriptionHtml
       shopifyId
-      availableForSale
+      # availableForSale
       options {
-        id
+        # id
         name
         values
       }
@@ -776,7 +776,7 @@ export const query = graphql`
         title
         price
         compareAtPrice
-        availableForSale
+        # availableForSale
         shopifyId
         sku
         selectedOptions {
@@ -784,18 +784,18 @@ export const query = graphql`
           value
         }
       }
-      images {
-        originalSrc
-        id
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-            fluid(maxWidth: 1080, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
+      # images {
+      #   originalSrc
+      #   id
+      #   localFile {
+      #     childImageSharp {
+      #       gatsbyImageData
+      #       fluid(maxWidth: 1080, quality: 90) {
+      #         ...GatsbyImageSharpFluid_withWebp
+      #       }
+      #     }
+      #   }
+      # }
     }
     contentfulProduct(handle: { eq: $handle }) {
       videos {
