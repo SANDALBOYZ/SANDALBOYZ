@@ -1,4 +1,4 @@
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 

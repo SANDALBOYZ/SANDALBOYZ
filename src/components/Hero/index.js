@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import styled from 'styled-components';
 import { GatsbyImage, withArtDirection } from 'gatsby-plugin-image';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 
 import colors, { randomSandalboyzColor } from '@utils/colors';
 import { AbsoluteImg, Breakpoint, breakpoints, mq } from '@utils/styles';
