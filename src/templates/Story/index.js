@@ -65,7 +65,7 @@ const StoryTemplate = ({ data }) => {
       '@type': 'Person',
       name: get(article, 'author[0]'),
     },
-    image: article.heroImage.fluid.src,
+    image: article.heroImage.gatsbyImageData,
     datePublished: article.publishDate,
     headline: get(article, 'previewText.previewText') || article.title,
     publisher: {
@@ -85,7 +85,7 @@ const StoryTemplate = ({ data }) => {
         description={get(article, 'previewText.previewText')}
         schemaType="Article" // https://schema.org/Article
         ogType="article" // https://ogp.me/#type_article
-        image={article.heroImage.fluid.src}
+        image={article.heroImage.gatsbyImageData}
         slug={article.slug}
         additionalSchemaOrg={schemaOrg}
       />
@@ -151,9 +151,9 @@ export const query = graphql`
             internal {
               type
             }
-            # images {
-            #   gatsbyImageData
-            # }
+            images {
+              gatsbyImageData
+            }
           }
           ... on ContentfulArticleDoubleSplitImage {
             contentful_id
@@ -161,9 +161,9 @@ export const query = graphql`
             internal {
               type
             }
-            # images {
-            #   gatsbyImageData
-            # }
+            images {
+              gatsbyImageData
+            }
           }
           ... on ContentfulArticleFullHeightImage {
             contentful_id
@@ -171,9 +171,9 @@ export const query = graphql`
             internal {
               type
             }
-            # images {
-            #   gatsbyImageData
-            # }
+            images {
+              gatsbyImageData
+            }
           }
           ... on ContentfulArticleFullWidthStretchImage {
             contentful_id
@@ -181,9 +181,9 @@ export const query = graphql`
             internal {
               type
             }
-            # images {
-            #   gatsbyImageData
-            # }
+            images {
+              gatsbyImageData
+            }
           }
           ... on ContentfulArticleOffsetGridImage {
             contentful_id
@@ -191,18 +191,15 @@ export const query = graphql`
             internal {
               type
             }
-            # images {
-            #   gatsbyImageData
-            # }
+            images {
+              gatsbyImageData
+            }
           }
         }
       }
-      # heroImage {
-      #   gatsbyImageData
-      #   fluid {
-      #     src
-      #   }
-      # }
+      heroImage {
+        gatsbyImageData
+      }
       previewText {
         previewText
         childMarkdownRemark {

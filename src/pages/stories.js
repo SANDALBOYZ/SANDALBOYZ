@@ -47,6 +47,9 @@ export const query = graphql`
           }
           createdAt
           publishDate
+          heroImage {
+            gatsbyImageData
+          }
         }
       }
     }
