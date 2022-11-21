@@ -229,20 +229,14 @@ class SalePage extends Component {
               id: get(node, 'id'),
               href: `/products/${get(node, 'handle')}`,
               images: [
-                get(
-                  node,
-                  'images[0].localFile.childImageSharp.gatsbyImageData'
-                ),
-                get(
-                  node,
-                  'images[1].localFile.childImageSharp.gatsbyImageData'
-                ),
+                get(node, 'media[0].preview.image.gatsbyImageData'),
+                get(node, 'media[1].preview.image.gatsbyImageData'),
               ],
               price: get(node, 'variants[0].price'),
               compareAtPrice: get(node, 'variants[0].compareAtPrice'),
               title: get(node, 'title'),
               productType: get(node, 'productType'),
-              soldOut: (get(node, 'totalInventory', 0) <= 0),
+              soldOut: get(node, 'totalInventory', 0) <= 0,
               onSale:
                 Number(get(node, 'variants[0].compareAtPrice')) >
                 Number(get(node, 'variants[0].price')),
@@ -282,18 +276,15 @@ export const salePageQuery = graphql`
             handle
             createdAt
             totalInventory
-            # images {
-            #   id
-            #   originalSrc
-            #   localFile {
-            #     childImageSharp {
-            #       gatsbyImageData
-            #       fluid(maxWidth: 910) {
-            #         ...GatsbyImageSharpFluid_noBase64
-            #       }
-            #     }
-            #   }
-            # }
+            media {
+              id
+              preview {
+                image {
+                  originalSrc
+                  gatsbyImageData
+                }
+              }
+            }
             variants {
               price
               compareAtPrice
