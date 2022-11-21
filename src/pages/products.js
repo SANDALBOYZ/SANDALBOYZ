@@ -214,8 +214,8 @@ class ProductsPage extends Component {
           id: get(node, 'id'),
           href: `/products/${get(node, 'handle')}`,
           images: [
-            get(node, 'images[0].localFile.childImageSharp.gatsbyImageData'),
-            get(node, 'images[1].localFile.childImageSharp.gatsbyImageData'),
+            get(node, 'media[0].preview.image.gatsbyImageData'),
+            get(node, 'media[1].preview.image.gatsbyImageData'),
           ],
           price: get(node, 'variants[0].price'),
           compareAtPrice: get(node, 'variants[0].compareAtPrice'),
@@ -261,6 +261,14 @@ export const productsPageQuery = graphql`
           variants {
             price
             compareAtPrice
+          }
+          media {
+            id
+            preview {
+              image {
+                gatsbyImageData
+              }
+            }
           }
         }
       }

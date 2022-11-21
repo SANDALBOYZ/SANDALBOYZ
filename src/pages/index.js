@@ -10,14 +10,12 @@ import RecentStories from '@components/RecentStories';
 import { fadeInEntry } from '@utils/animations';
 
 function formatNode({ node }) {
-  const activeImages = node.images.filter((image) => !isEmpty(image.localFile));
-
   return {
     id: get(node, 'id'),
     href: `/products/${get(node, 'handle')}`,
     images: [
-      get(activeImages, '[0].localFile.childImageSharp.gatsbyImageData'),
-      get(activeImages, '[1].localFile.childImageSharp.gatsbyImageData'),
+      get(node, 'media[0].preview.image.gatsbyImageData'),
+      get(node, 'media[1].preview.image.gatsbyImageData'),
     ],
     price: get(node, 'variants[0].price'),
     compareAtPrice: get(node, 'variants[0].compareAtPrice'),
@@ -101,9 +99,15 @@ export const landingPageQuery = graphql`
   query LandingPageQuery {
     desktopHero: file(relativePath: { eq: "DSC08728-desktop_hero.jpg" }) {
       id
+      childImageSharp {
+        gatsbyImageData
+      }
     }
     mobileHero: file(relativePath: { eq: "DSC08732-MOBILE_hero.jpg" }) {
       id
+      childImageSharp {
+        gatsbyImageData
+      }
     }
     recommendedPicks: allShopifyProduct(
       filter: { tags: { in: "featured:primary" } }
@@ -120,6 +124,14 @@ export const landingPageQuery = graphql`
           variants {
             price
             compareAtPrice
+          }
+          media {
+            id
+            preview {
+              image {
+                gatsbyImageData
+              }
+            }
           }
         }
       }
