@@ -538,11 +538,9 @@ class Product extends Component {
     } = this.state;
 
     const product = data.shopifyProduct;
-    console.log('\n\n\n')
-    console.log(product)
     const sizes = this.getSizes();
     const productColors = this.getColors();
-    const soldOut = !product.availableForSale;
+    const soldOut = product.totalInventory <= 0;
 
     // https://developers.google.com/search/docs/data-types/product
     const schemaOrg = {
@@ -767,7 +765,7 @@ export const query = graphql`
       description
       descriptionHtml
       shopifyId
-      # availableForSale
+      totalInventory
       options {
         # id
         name
@@ -778,7 +776,7 @@ export const query = graphql`
         title
         price
         compareAtPrice
-        # availableForSale
+        availableForSale
         shopifyId
         sku
         selectedOptions {

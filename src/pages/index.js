@@ -21,7 +21,7 @@ function formatNode({ node }) {
     compareAtPrice: get(node, 'variants[0].compareAtPrice'),
     title: get(node, 'title'),
     productType: get(node, 'productType'),
-    soldOut: !get(node, 'availableForSale'),
+    soldOut: (get(node, 'totalInventory') <= 0),
     onSale:
       get(node, 'variants[0].compareAtPrice') > get(node, 'variants[0].price'),
   };
@@ -122,6 +122,7 @@ export const landingPageQuery = graphql`
           handle
           createdAt
           variants {
+            availableForSale
             price
             compareAtPrice
           }

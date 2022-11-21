@@ -221,7 +221,7 @@ class ProductsPage extends Component {
           compareAtPrice: get(node, 'variants[0].compareAtPrice'),
           title: get(node, 'title'),
           productType: get(node, 'productType'),
-          soldOut: !get(node, 'availableForSale'),
+          soldOut: (get(node, 'totalInventory', 0) <= 0),
           onSale:
             Number(get(node, 'variants[0].compareAtPrice')) >
             Number(get(node, 'variants[0].price')),
@@ -258,6 +258,7 @@ export const productsPageQuery = graphql`
           title
           handle
           createdAt
+          totalInventory
           variants {
             price
             compareAtPrice
@@ -266,6 +267,7 @@ export const productsPageQuery = graphql`
             id
             preview {
               image {
+                originalSrc
                 gatsbyImageData
               }
             }
