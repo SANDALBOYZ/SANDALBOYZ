@@ -58,8 +58,8 @@ function Cart({ open, onClose }) {
       ? `Spend $${(100 - subtotalPrice).toLocaleString('en-US', {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
-        })} more to get free shipping.`
-      : 'Free shipping unlocked ✅';
+        })} more to get free shipping and a free pair of socks!`
+      : 'Free shipping unlocked + free pair of socks ✅';
 
   return (
     <Drawer onClose={onClose} open={open} loading={adding}>
