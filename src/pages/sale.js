@@ -221,7 +221,7 @@ class SalePage extends Component {
             shrinkOnMobile
             title="Sale"
           />
-          <TextContainer>All sales are final.</TextContainer>
+          <TextContainer>All sales are final. Get up to 50% off past items. Spend $100 or more and get a free pair of socks. Add any sock to your cart to redeem offer - discount is automatically applied.</TextContainer>
           <ProductGrid
             filters={activeFilters}
             onFilter={this.handleFilter}
