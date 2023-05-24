@@ -236,7 +236,7 @@ class ProductsPage extends Component {
             products={products}
             filters={activeFilters}
             openFilters={this.handleOpenFilters}
-            description="Among the coziest this planet has to offer. Our Black Friday sale is going on now. Get up to 50% off. Spend $100 to get a free pair of socks (add any sock and discount is automatically applied at checkout)."
+            description="Among the coziest this planet has to offer. Shop the Bruce Lee collection now."
           />
         </motion.div>
         <Filters onClose={this.handleCloseFilters} open={showFilters} />
